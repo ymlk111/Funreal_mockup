@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>採用情報 | 株式会社ファンリアル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00;
+    --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666;
+    --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
+  .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
+  .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+  .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
+  .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; }
+  .drawer.open { right: 0; }
+  .drawer-overlay.open { display: block; }
+  .drawer-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
+  .drawer nav ul { list-style: none; }
+  .drawer nav > ul > li { border-bottom: 1px solid #333; }
+  .drawer nav > ul > li > a { display: block; padding: 16px 0; color: var(--white); text-decoration: none; font-size: 15px; font-weight: 500; letter-spacing: 0.05em; transition: color 0.2s; }
+  .drawer nav > ul > li > a:hover { color: var(--blue); }
+  .drawer-sub { list-style: none; padding-left: 16px; overflow: hidden; max-height: 0; transition: max-height 0.3s; }
+  .drawer-sub.open { max-height: 200px; }
+  .drawer-sub li a { display: block; padding: 10px 0; color: #aaa; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .drawer-sub li a:hover { color: var(--blue); }
+  .drawer-sub li a::before { content: "└ "; }
+  .has-sub > a::after { content: " ›"; color: var(--blue); }
+  .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
+  .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; }
+  .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+  .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
+  .section-body { font-size: 15px; line-height: 2; color: #444; }
+  .info-table { width: 100%; border-collapse: collapse; }
+  .info-table th, .info-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
+  .info-table th { width: 200px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
+  .info-table td { color: var(--black); line-height: 1.8; }
+  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
+  .card-grid { display: grid; gap: 24px; }
+  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+  .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .card-img { width: 100%; aspect-ratio: 16/9; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
+  .card-body { padding: 20px; }
+  .card-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
+  .card-title { font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--black); margin-bottom: 8px; }
+  .card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
+  .card-date { font-size: 12px; color: #aaa; font-family: var(--font-en); margin-top: 8px; }
+  .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-dark { background: var(--black); color: var(--white); }
+  .btn-dark:hover { background: var(--red); }
+  .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
+  .btn-outline:hover { background: var(--black); color: var(--white); }
+  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 80px; }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 40px; border-bottom: 1px solid #2a2a2a; margin-bottom: 32px; }
+  .footer-logo-ph { height: 48px; width: 100px; border: 1px dashed #444; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .footer-logo-ph span { font-size: 10px; color: #555; font-family: var(--font-en); letter-spacing: 0.05em; }
+  .footer-logo-name { color: #555; font-size: 12px; }
+  .footer-sns { display: flex; gap: 10px; align-items: center; }
+  .sns-icon { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #666; text-decoration: none; transition: all 0.2s; }
+  .sns-icon:hover { border-color: var(--blue); color: var(--blue); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: #555; font-size: 12px; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+  .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="mockup-badge">MOCKUP</div>
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  <nav><ul>
+    <li><a href="about.html">About Us（会社概要）</a></li>
+    <li class="has-sub"><a href="#" onclick="toggleSub(event)">サービス</a>
+      <ul class="drawer-sub" id="sub">
+        <li><a href="service-se.html">SE</a></li>
+        <li><a href="service-is.html">IS</a></li>
+        <li><a href="solutions.html">ソリューションズ</a></li>
+      </ul>
+    </li>
+    <li><a href="recruit.html">採用情報</a></li>
+    <li><a href="news.html">ニュース</a></li>
+    <li><a href="contact.html">お問い合わせ</a></li>
+  </ul></nav>
+</div>
+<header>
+  <a href="index.html" class="logo">
+    <div class="logo-ph"><span>LOGO</span></div>
+    <span class="logo-text">株式会社ファンリアル</span>
+  </a>
+  <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+</header>
+
+  <div class="page-hero">
+    <div class="page-hero-label">Recruit</div>
+    <h1>採用情報</h1>
+  </div>
+  <div class="section">
+    <div class="section-label">Culture</div>
+    <h2 class="section-title">社内の雰囲気・カルチャー</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:80px;">
+      <div class="ph-box" style="height:300px;">CULTURE IMAGE</div>
+      <div class="ph-box" style="height:240px;font-size:12px;">カルチャー紹介テキスト（内容は後日）</div>
+    </div>
+    <hr class="divider" style="margin-bottom:80px;">
+    <div class="section-label">Job</div>
+    <h2 class="section-title">募集職種・条件</h2>
+    <div class="card-grid card-grid-2" style="margin-bottom:80px;">
+      
+        <div class="card">
+          <div class="card-body" style="padding:32px;">
+            <span class="card-tag">OPEN</span>
+            <div class="card-title" style="font-size:18px;margin:8px 0 20px;">エンジニア職</div>
+            <table class="info-table">
+              <tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr>
+              <tr><th>給与</th><td>内容は後日</td></tr>
+              <tr><th>勤務地</th><td>東京都新宿区</td></tr>
+              <tr><th>勤務時間</th><td>内容は後日</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" style="padding:32px;">
+            <span class="card-tag">OPEN</span>
+            <div class="card-title" style="font-size:18px;margin:8px 0 20px;">営業職</div>
+            <table class="info-table">
+              <tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr>
+              <tr><th>給与</th><td>内容は後日</td></tr>
+              <tr><th>勤務地</th><td>東京都新宿区</td></tr>
+              <tr><th>勤務時間</th><td>内容は後日</td></tr>
+            </table>
+          </div>
+        </div>
+    </div>
+    <hr class="divider" style="margin-bottom:80px;">
+    <div class="section-label">Interview</div>
+    <h2 class="section-title">社員インタビュー</h2>
+    <div class="card-grid card-grid-3" style="margin-bottom:80px;">
+      
+        <div class="card">
+          <div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 1</div>
+          <div class="card-body">
+            <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div>
+            <div class="card-title">社員インタビュー 1</div>
+            <div class="card-text">インタビュー内容は後日。</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 2</div>
+          <div class="card-body">
+            <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div>
+            <div class="card-title">社員インタビュー 2</div>
+            <div class="card-text">インタビュー内容は後日。</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 3</div>
+          <div class="card-body">
+            <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div>
+            <div class="card-title">社員インタビュー 3</div>
+            <div class="card-text">インタビュー内容は後日。</div>
+          </div>
+        </div>
+    </div>
+    <div style="text-align:center;padding:60px 40px;background:var(--black);border-radius:12px;">
+      <p style="color:#888;font-size:14px;margin-bottom:24px;line-height:2;">ファンリアルで一緒に、自由に楽しく働きませんか？<br>まずはエントリーフォームからご応募ください。</p>
+      <a href="#" class="btn" style="background:var(--white);color:var(--black);font-size:14px;padding:18px 48px;">ENTRY →</a>
+      <p style="color:#555;font-size:11px;margin-top:16px;font-family:var(--font-en);">* Googleフォームに遷移します</p>
+    </div>
+  </div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-ph"><span>LOGO</span></div>
+      <div class="footer-logo-name">株式会社ファンリアル</div>
+    </div>
+    <div class="footer-sns">
+  <a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+  <a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+  <a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+</div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-links"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div>
+    <div class="footer-copy">© 2026 Funreal Inc. All Rights Reserved.</div>
+  </div>
+</footer>
+<script>
+  function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
+  function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
+  function toggleSub(e){e.preventDefault();document.getElementById('sub').classList.toggle('open');}
+</script>
+</body></html>

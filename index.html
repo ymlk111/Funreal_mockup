@@ -121,7 +121,8 @@
   .svc-desc { font-size: 13px; line-height: 1.8; color: var(--gray-text); }
   .svc-arrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 24px; font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s, gap 0.2s; }
   .service-card:hover .svc-arrow { opacity: 1; gap: 10px; }
-  #pickup-sec { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+  #pickup-sec { background: var(--gray-light); padding: 100px 0; }
+  .pickup-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
   .pickup-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
   .pickup-all { font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); text-decoration: none; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--blue); padding-bottom: 2px; transition: gap 0.2s; }
   .pickup-all:hover { gap: 10px; }
@@ -196,6 +197,24 @@
     </div>
   </div>
 </div>
+<section id="pickup-sec">
+  <div class="pickup-inner">
+  <div class="pickup-header">
+    <div><div class="section-label">Pickup</div><h2 class="section-title">PickUp</h2></div>
+    <a href="news.html" class="pickup-all">ニュース一覧へ &rarr;</a>
+  </div>
+  <div class="carousel">
+    <a href="news-detail.html" class="news-card"><div class="news-card-img">IMAGE</div><div class="news-card-body"><span class="news-card-tag">NEWS</span><div class="news-card-title">新サービス「ソリューションズ」提供開始のお知らせ</div><div class="news-card-date">2026.05.10</div></div></a>
+    <a href="news-detail.html" class="news-card"><div class="news-card-img">IMAGE</div><div class="news-card-body"><span class="news-card-tag">RECRUIT</span><div class="news-card-title">2026年度 採用エントリー受付開始</div><div class="news-card-date">2026.04.15</div></div></a>
+    <a href="news-detail.html" class="news-card"><div class="news-card-img">IMAGE</div><div class="news-card-body"><span class="news-card-tag">SERVICE</span><div class="news-card-title">LEAD TECH インサイドセールス支援実績200社突破</div><div class="news-card-date">2026.03.20</div></div></a>
+  </div>
+  <div class="carousel-nav">
+    <button class="carousel-btn">&lsaquo;</button>
+    <div class="carousel-dots"><div class="carousel-dot active"></div><div class="carousel-dot"></div><div class="carousel-dot"></div></div>
+    <button class="carousel-btn">&rsaquo;</button>
+  </div>
+  </div>
+</section>
 <section id="about-sec">
   <div class="about-inner">
     <div>
@@ -248,22 +267,6 @@
     </div>
   </div>
 </div>
-<section id="pickup-sec">
-  <div class="pickup-header">
-    <div><div class="section-label">Pickup</div><h2 class="section-title">PickUp</h2></div>
-    <a href="news.html" class="pickup-all">ニュース一覧へ &rarr;</a>
-  </div>
-  <div class="carousel">
-    <a href="news-detail.html" class="news-card"><div class="news-card-img">IMAGE</div><div class="news-card-body"><span class="news-card-tag">NEWS</span><div class="news-card-title">新サービス「ソリューションズ」提供開始のお知らせ</div><div class="news-card-date">2026.05.10</div></div></a>
-    <a href="news-detail.html" class="news-card"><div class="news-card-img">IMAGE</div><div class="news-card-body"><span class="news-card-tag">RECRUIT</span><div class="news-card-title">2026年度 採用エントリー受付開始</div><div class="news-card-date">2026.04.15</div></div></a>
-    <a href="news-detail.html" class="news-card"><div class="news-card-img">IMAGE</div><div class="news-card-body"><span class="news-card-tag">SERVICE</span><div class="news-card-title">LEAD TECH インサイドセールス支援実績200社突破</div><div class="news-card-date">2026.03.20</div></div></a>
-  </div>
-  <div class="carousel-nav">
-    <button class="carousel-btn">&lsaquo;</button>
-    <div class="carousel-dots"><div class="carousel-dot active"></div><div class="carousel-dot"></div><div class="carousel-dot"></div></div>
-    <button class="carousel-btn">&rsaquo;</button>
-  </div>
-</section>
 <div id="recruit-cta">
   <div class="recruit-inner">
     <div>

@@ -6,11 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00;
-    --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666;
-    --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif;
-  }
+  :root { --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00; --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666; --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
@@ -20,25 +16,25 @@
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
-  .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; }
+  .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; overflow-y: auto; }
   .drawer.open { right: 0; }
   .drawer-overlay.open { display: block; }
   .drawer-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
   .drawer nav ul { list-style: none; }
   .drawer nav > ul > li { border-bottom: 1px solid #333; }
-  .drawer nav > ul > li > a { display: block; padding: 16px 0; color: var(--white); text-decoration: none; font-size: 15px; font-weight: 500; letter-spacing: 0.05em; transition: color 0.2s; }
+  .drawer nav > ul > li > a { display: block; padding: 16px 0; color: var(--white); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
   .drawer nav > ul > li > a:hover { color: var(--blue); }
   .drawer-sub { list-style: none; padding-left: 16px; overflow: hidden; max-height: 0; transition: max-height 0.3s; }
   .drawer-sub.open { max-height: 200px; }
   .drawer-sub li a { display: block; padding: 10px 0; color: #aaa; text-decoration: none; font-size: 13px; transition: color 0.2s; }
   .drawer-sub li a:hover { color: var(--blue); }
-  .drawer-sub li a::before { content: "└ "; }
-  .has-sub > a::after { content: " ›"; color: var(--blue); }
+  .drawer-sub li a::before { content: "- "; }
+  .has-sub > a::after { content: " >"; color: var(--blue); }
   .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
   .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
   .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; }
+  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); }
   .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
   .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
@@ -76,9 +72,20 @@
   .sns-icon:hover { border-color: var(--blue); color: var(--blue); }
   .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
   .footer-links { display: flex; gap: 24px; }
-  .footer-links a { color: #555; font-size: 12px; text-decoration: none; transition: color 0.2s; }
+  .footer-links a { color: #555; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 28px 36px; border-bottom: 1px solid var(--gray-mid); position: sticky; top: 0; background: var(--white); z-index: 1; }
+  .modal-header h2 { font-size: 20px; font-weight: 700; }
+  .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #888; padding: 4px; }
+  .modal-close:hover { color: var(--black); }
+  .modal-body { padding: 36px; }
+  .modal-body h3 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-mid); }
+  .modal-body h3:first-child { margin-top: 0; }
+  .modal-body .ph-box { height: 60px; font-size: 11px; }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
 </style>
 </head>
@@ -86,7 +93,7 @@
 <div class="mockup-badge">MOCKUP</div>
 <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
-  <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
   <nav><ul>
     <li><a href="about.html">About Us（会社概要）</a></li>
     <li class="has-sub"><a href="#" onclick="toggleSub(event)">サービス</a>
@@ -109,104 +116,79 @@
   <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
 </header>
 
-  <div class="page-hero">
-    <div class="page-hero-label">Recruit</div>
-    <h1>採用情報</h1>
+<div class="page-hero"><div class="page-hero-label">Recruit</div><h1>採用情報</h1></div>
+<div class="section">
+  <div class="section-label">Culture</div><h2 class="section-title">社内の雰囲気・カルチャー</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:80px;">
+    <div class="ph-box" style="height:300px;">CULTURE IMAGE</div>
+    <div class="ph-box" style="height:240px;font-size:12px;">カルチャー紹介テキスト（内容は後日）</div>
   </div>
-  <div class="section">
-    <div class="section-label">Culture</div>
-    <h2 class="section-title">社内の雰囲気・カルチャー</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:80px;">
-      <div class="ph-box" style="height:300px;">CULTURE IMAGE</div>
-      <div class="ph-box" style="height:240px;font-size:12px;">カルチャー紹介テキスト（内容は後日）</div>
-    </div>
-    <hr class="divider" style="margin-bottom:80px;">
-    <div class="section-label">Job</div>
-    <h2 class="section-title">募集職種・条件</h2>
-    <div class="card-grid card-grid-2" style="margin-bottom:80px;">
-      
-        <div class="card">
-          <div class="card-body" style="padding:32px;">
-            <span class="card-tag">OPEN</span>
-            <div class="card-title" style="font-size:18px;margin:8px 0 20px;">エンジニア職</div>
-            <table class="info-table">
-              <tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr>
-              <tr><th>給与</th><td>内容は後日</td></tr>
-              <tr><th>勤務地</th><td>東京都新宿区</td></tr>
-              <tr><th>勤務時間</th><td>内容は後日</td></tr>
-            </table>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body" style="padding:32px;">
-            <span class="card-tag">OPEN</span>
-            <div class="card-title" style="font-size:18px;margin:8px 0 20px;">営業職</div>
-            <table class="info-table">
-              <tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr>
-              <tr><th>給与</th><td>内容は後日</td></tr>
-              <tr><th>勤務地</th><td>東京都新宿区</td></tr>
-              <tr><th>勤務時間</th><td>内容は後日</td></tr>
-            </table>
-          </div>
-        </div>
-    </div>
-    <hr class="divider" style="margin-bottom:80px;">
-    <div class="section-label">Interview</div>
-    <h2 class="section-title">社員インタビュー</h2>
-    <div class="card-grid card-grid-3" style="margin-bottom:80px;">
-      
-        <div class="card">
-          <div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 1</div>
-          <div class="card-body">
-            <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div>
-            <div class="card-title">社員インタビュー 1</div>
-            <div class="card-text">インタビュー内容は後日。</div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 2</div>
-          <div class="card-body">
-            <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div>
-            <div class="card-title">社員インタビュー 2</div>
-            <div class="card-text">インタビュー内容は後日。</div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 3</div>
-          <div class="card-body">
-            <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div>
-            <div class="card-title">社員インタビュー 3</div>
-            <div class="card-text">インタビュー内容は後日。</div>
-          </div>
-        </div>
-    </div>
-    <div style="text-align:center;padding:60px 40px;background:var(--black);border-radius:12px;">
-      <p style="color:#888;font-size:14px;margin-bottom:24px;line-height:2;">ファンリアルで一緒に、自由に楽しく働きませんか？<br>まずはエントリーフォームからご応募ください。</p>
-      <a href="#" class="btn" style="background:var(--white);color:var(--black);font-size:14px;padding:18px 48px;">ENTRY →</a>
-      <p style="color:#555;font-size:11px;margin-top:16px;font-family:var(--font-en);">* Googleフォームに遷移します</p>
-    </div>
+  <hr class="divider" style="margin-bottom:80px;">
+  <div class="section-label">Job</div><h2 class="section-title">募集職種・条件</h2>
+  <div class="card-grid card-grid-2" style="margin-bottom:80px;">
+    <div class="card"><div class="card-body" style="padding:32px;"><span class="card-tag">OPEN</span><div class="card-title" style="font-size:18px;margin:8px 0 20px;">エンジニア職</div><table class="info-table"><tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr><tr><th>給与</th><td>内容は後日</td></tr><tr><th>勤務地</th><td>東京都新宿区</td></tr></table></div></div>
+    <div class="card"><div class="card-body" style="padding:32px;"><span class="card-tag">OPEN</span><div class="card-title" style="font-size:18px;margin:8px 0 20px;">営業職</div><table class="info-table"><tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr><tr><th>給与</th><td>内容は後日</td></tr><tr><th>勤務地</th><td>東京都新宿区</td></tr></table></div></div>
   </div>
+  <hr class="divider" style="margin-bottom:80px;">
+  <div class="section-label">Interview</div><h2 class="section-title">社員インタビュー</h2>
+  <div class="card-grid card-grid-3" style="margin-bottom:80px;">
+    <div class="card"><div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 1</div><div class="card-body"><div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div><div class="card-title">社員インタビュー 1</div><div class="card-text">インタビュー内容は後日。</div></div></div>
+    <div class="card"><div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 2</div><div class="card-body"><div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">SALES</div><div class="card-title">社員インタビュー 2</div><div class="card-text">インタビュー内容は後日。</div></div></div>
+    <div class="card"><div class="card-img" style="aspect-ratio:1;">MEMBER PHOTO 3</div><div class="card-body"><div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.1em;margin-bottom:6px;">ENGINEER</div><div class="card-title">社員インタビュー 3</div><div class="card-text">インタビュー内容は後日。</div></div></div>
+  </div>
+  <div style="text-align:center;padding:60px 40px;background:var(--black);border-radius:12px;">
+    <p style="color:#888;font-size:14px;margin-bottom:24px;line-height:2;">ファンリアルで一緒に、自由に楽しく働きませんか？</p>
+    <a href="#" class="btn" style="background:var(--white);color:var(--black);font-size:14px;padding:18px 48px;">ENTRY &rarr;</a>
+    <p style="color:#555;font-size:11px;margin-top:16px;font-family:var(--font-en);">* Googleフォームに遷移します</p>
+  </div>
+</div>
 
 <footer>
   <div class="footer-top">
-    <div>
-      <div class="footer-logo-ph"><span>LOGO</span></div>
-      <div class="footer-logo-name">株式会社ファンリアル</div>
-    </div>
-    <div class="footer-sns">
-  <a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-  <a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-  <a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-</div>
+    <div><div class="footer-logo-ph"><span>LOGO</span></div><div class="footer-logo-name">株式会社ファンリアル</div></div>
+    <div class="footer-sns"><a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+<a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+<a href="#" class="sns-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-links"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div>
-    <div class="footer-copy">© 2026 Funreal Inc. All Rights Reserved.</div>
+    <div class="footer-links">
+      <a onclick="openModal('modal-privacy')">プライバシーポリシー</a>
+      <a onclick="openModal('modal-terms')">利用規約</a>
+    </div>
+    <div class="footer-copy">&#169; 2026 Funreal Inc. All Rights Reserved.</div>
   </div>
 </footer>
+
+<div class="modal-overlay" id="modal-privacy" onclick="if(event.target===this)closeModal('modal-privacy')">
+  <div class="modal">
+    <div class="modal-header"><h2>プライバシーポリシー</h2><button class="modal-close" onclick="closeModal('modal-privacy')">&#x2715;</button></div>
+    <div class="modal-body">
+      <h3>第1条 個人情報の収集について</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第2条 個人情報の利用目的</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第3条 個人情報の第三者提供</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第4条 個人情報の管理</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第5条 お問い合わせ</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-terms" onclick="if(event.target===this)closeModal('modal-terms')">
+  <div class="modal">
+    <div class="modal-header"><h2>利用規約</h2><button class="modal-close" onclick="closeModal('modal-terms')">&#x2715;</button></div>
+    <div class="modal-body">
+      <h3>第1条 サービスの利用</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第2条 禁止事項</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第3条 免責事項</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第4条 著作権・知的財産権</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+      <h3>第5条 規約の変更</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
+    </div>
+  </div>
+</div>
 <script>
   function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
   function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
   function toggleSub(e){e.preventDefault();document.getElementById('sub').classList.toggle('open');}
+  function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+  function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
 </script>
 </body></html>

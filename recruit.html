@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>採用情報 | 株式会社ファンリアル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00; --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666; --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif; }
@@ -13,6 +13,9 @@
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
+  .header-entry { display: inline-flex; align-items: center; gap: 12px; }
+  .header-entry-btn { padding: 8px 20px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+  .header-entry-btn:hover { background: #0090aa; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
@@ -30,39 +33,89 @@
   .drawer-sub li a:hover { color: var(--blue); }
   .drawer-sub li a::before { content: "- "; }
   .has-sub > a::after { content: " >"; color: var(--blue); }
-  .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
-  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
-  .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); }
-  .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+
+  /* ===== HERO ===== */
+  .recruit-hero { min-height: 70vh; background: var(--black); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .recruit-hero-bg { position: absolute; inset: 0; background: url('image/hero-image.png') center/cover no-repeat; opacity: 0.35; }
+  .recruit-hero-content { position: relative; z-index: 1; padding: 80px 40px; }
+  .recruit-hero-catch { font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: var(--white); margin-bottom: 24px; line-height: 1.4; }
+  .recruit-hero-sub { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 2; max-width: 520px; margin: 0 auto; }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width: 1100px; margin: 0 auto; padding: 100px 60px; }
   .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
-  .section-body { font-size: 15px; line-height: 2; color: #444; }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: var(--black); }
+  .section-lead { font-size: 15px; line-height: 2; color: #555; margin-bottom: 48px; }
+
+  /* ===== MESSAGE ===== */
+  .message-grid { display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: center; }
+  .message-text { font-size: 15px; line-height: 2.2; color: #444; }
+  .message-text p { margin-bottom: 20px; }
+  .message-name { margin-top: 32px; font-size: 13px; color: var(--gray-text); }
+  .message-name strong { font-size: 16px; color: var(--black); display: block; margin-top: 4px; }
+  .message-photo { width: 100%; aspect-ratio: 3/4; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== CULTURE 3 PILLARS ===== */
+  .culture-bg { background: var(--gray-light); }
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .pillar { background: var(--white); border-radius: 12px; padding: 40px 32px; border: 1px solid var(--gray-mid); transition: box-shadow 0.2s, transform 0.2s; }
+  .pillar:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }
+  .pillar-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+  .pillar-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--black); line-height: 1.5; }
+  .pillar-sub { font-size: 11px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 16px; text-transform: uppercase; }
+  .pillar-text { font-size: 14px; line-height: 2; color: #555; }
+
+  /* ===== NUMBERS ===== */
+  .numbers-bg { background: var(--black); }
+  .numbers-bg .section-label::before { background: var(--blue); }
+  .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .num-item { text-align: center; padding: 32px 16px; }
+  .num-value { font-family: var(--font-en); font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--blue); line-height: 1; }
+  .num-unit { font-size: 20px; font-weight: 700; color: var(--blue); margin-left: 4px; }
+  .num-label { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 12px; line-height: 1.6; }
+  .num-note { text-align: center; margin-top: 32px; font-size: 11px; color: rgba(255,255,255,0.35); font-family: var(--font-en); }
+
+  /* ===== INTERVIEW ===== */
+  .interview-item { display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; padding: 48px 0; border-bottom: 1px solid var(--gray-mid); }
+  .interview-item:last-child { border-bottom: none; }
+  .interview-item.reverse { grid-template-columns: 1fr 240px; }
+  .interview-photo { width: 100%; aspect-ratio: 1; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); }
+  .interview-meta { font-size: 11px; color: var(--blue); font-family: var(--font-en); letter-spacing: 0.15em; margin-bottom: 8px; text-transform: uppercase; }
+  .interview-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; line-height: 1.5; color: var(--black); }
+  .interview-q { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 6px; margin-top: 20px; }
+  .interview-q:first-of-type { margin-top: 0; }
+  .interview-a { font-size: 14px; line-height: 2; color: #555; }
+
+  /* ===== JOB ===== */
   .info-table { width: 100%; border-collapse: collapse; }
   .info-table th, .info-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
   .info-table th { width: 200px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
   .info-table td { color: var(--black); line-height: 1.8; }
-  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
   .card-grid { display: grid; gap: 24px; }
-  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
   .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
   .card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
   .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-img { width: 100%; aspect-ratio: 16/9; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
   .card-body { padding: 20px; }
   .card-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
-  .card-title { font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--black); margin-bottom: 8px; }
-  .card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
-  .card-date { font-size: 12px; color: #aaa; font-family: var(--font-en); margin-top: 8px; }
-  .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
+
+  /* ===== ENTRY CTA ===== */
+  .entry-cta { text-align: center; padding: 80px 40px; background: var(--black); border-radius: 16px; }
+  .entry-cta-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+  .entry-cta-text { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 32px; line-height: 2; }
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-dark { background: var(--black); color: var(--white); }
-  .btn-dark:hover { background: var(--red); }
-  .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
-  .btn-outline:hover { background: var(--black); color: var(--white); }
-  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 80px; }
+  .btn-primary { background: var(--blue); color: var(--white); font-size: 15px; padding: 18px 56px; border-radius: 6px; }
+  .btn-primary:hover { background: #0090aa; }
+
+  /* ===== MID CTA ===== */
+  .mid-cta { text-align: center; padding: 48px 40px; background: rgba(0,170,204,0.06); border: 1px solid rgba(0,170,204,0.15); border-radius: 12px; margin-top: 48px; }
+  .mid-cta p { font-size: 14px; color: #555; margin-bottom: 20px; }
+
+  /* ===== DIVIDER ===== */
+  .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 0; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 40px; border-bottom: 1px solid #2a2a2a; margin-bottom: 32px; }
   .footer-logo-ph { height: 48px; width: 100px; border: 1px dashed #444; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .footer-logo-ph span { font-size: 10px; color: #555; font-family: var(--font-en); letter-spacing: 0.05em; }
@@ -75,6 +128,8 @@
   .footer-links a { color: #555; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== MODAL ===== */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
@@ -85,8 +140,25 @@
   .modal-body { padding: 36px; }
   .modal-body h3 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-mid); }
   .modal-body h3:first-child { margin-top: 0; }
-  .modal-body .ph-box { height: 60px; font-size: 11px; }
+  .modal-body .ph-box { height: 60px; font-size: 11px; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+
+  /* ===== ANIMATION ===== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.15s; }
+  .fade-up-delay-2 { transition-delay: 0.3s; }
+  .fade-up-delay-3 { transition-delay: 0.45s; }
+  .recruit-hero-catch { animation: heroFadeIn 1s ease forwards; }
+  .recruit-hero-sub { animation: heroFadeIn 1s ease 0.3s forwards; opacity: 0; }
+  @keyframes heroFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== REFERRAL BANNER ===== */
+  .referral-banner { text-align: center; padding: 48px 40px; background: linear-gradient(135deg, #0d1b2a, #1a1a2e); border-radius: 12px; margin-top: 48px; }
+  .referral-banner-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .referral-banner-text { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+  .referral-banner-link { display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px; background: transparent; border: 1.5px solid rgba(0,170,204,0.4); color: var(--blue); font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.08em; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+  .referral-banner-link:hover { background: rgba(0,170,204,0.1); border-color: var(--blue); }
 </style>
 </head>
 <body>
@@ -95,7 +167,7 @@
 <div class="drawer" id="drawer">
   <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
   <nav><ul>
-    <li><a href="about.html">About Us（会社概要）</a></li>
+    <li><a href="about.html">About Us</a></li>
     <li class="has-sub"><a href="#" onclick="toggleSub(event)">サービス</a>
       <ul class="drawer-sub" id="sub">
         <li><a href="service-se.html">SE</a></li>
@@ -113,54 +185,197 @@
     <div class="logo-ph"><span>LOGO</span></div>
     <span class="logo-text">株式会社ファンリアル</span>
   </a>
-  <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  <div class="header-entry">
+    <a href="#entry" class="header-entry-btn">Entry</a>
+    <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  </div>
 </header>
 
-<div class="page-hero"><div class="page-hero-label">Recruit</div><h1>採用情報</h1></div>
+<!-- ===== HERO ===== -->
+<div class="recruit-hero">
+  <div class="recruit-hero-bg"></div>
+  <div class="recruit-hero-content">
+    <h1 class="recruit-hero-catch">自由に、そして楽しく。</h1>
+    <p class="recruit-hero-sub">完璧な経歴も、飾った言葉も必要ありません。<br>ファンリアルは、あなたらしく息ができる場所です。</p>
+  </div>
+</div>
+
+<!-- ===== MESSAGE ===== -->
 <div class="section">
-  <div class="section-label">Culture</div><h2 class="section-title">社内の雰囲気・カルチャー</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:80px;">
-    <div class="ph-box" style="height:300px;">CULTURE IMAGE</div>
-    <div class="ph-box" style="height:240px;font-size:12px;">カルチャー紹介テキスト（内容は後日）</div>
+  <div class="section-label fade-up">Message</div>
+  <h2 class="section-title fade-up">代表メッセージ</h2>
+  <div class="message-grid fade-up">
+    <div>
+      <div class="message-text">
+        <p>これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが「自然体で、長く安心して働けること」です。</p>
+        <p>私たちは、画一的なモチベーションの高さを求めたり、過度なプレッシャーをかけたりすることはありません。これまでの枠組みが合わず一度立ち止まってしまった方や、不器用でもコツコツと取り組める方にこそ、当社の柔軟な環境が活きると考えています。</p>
+        <p>社内は若手メンバーが多く、年齢や社歴に関わらずフラットに会話ができる風通しの良さがあります。<br>まずはしっかりと腰を据え、残業の少ない環境でご自身のペースを取り戻してください。心に余裕が生まれてから、次のステップや新しいやりがいを一緒に見つけていきましょう。</p>
+      </div>
+      <div class="message-name">株式会社ファンリアル 代表取締役<strong>（代表者名）</strong></div>
+    </div>
+    <div class="message-photo">CEO PHOTO</div>
   </div>
-  <hr class="divider" style="margin-bottom:80px;">
-  <div class="section-label">Job</div><h2 class="section-title">募集職種・条件</h2>
-  <div class="card-grid card-grid-2" style="margin-bottom:80px;">
-    <div class="card"><div class="card-body" style="padding:32px;"><span class="card-tag">OPEN</span><div class="card-title" style="font-size:18px;margin:8px 0 20px;">エンジニア職</div><table class="info-table"><tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr><tr><th>給与</th><td>内容は後日</td></tr><tr><th>勤務地</th><td>東京都新宿区</td></tr></table></div></div>
-    <div class="card"><div class="card-body" style="padding:32px;"><span class="card-tag">OPEN</span><div class="card-title" style="font-size:18px;margin:8px 0 20px;">営業職</div><table class="info-table"><tr><th style="width:120px;">雇用形態</th><td>内容は後日</td></tr><tr><th>給与</th><td>内容は後日</td></tr><tr><th>勤務地</th><td>東京都新宿区</td></tr></table></div></div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== CULTURE & ENVIRONMENT ===== -->
+<div class="section culture-bg" style="max-width:none;padding:100px 60px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label fade-up">Culture &amp; Environment</div>
+    <h2 class="section-title fade-up">ファンリアルの3つの約束</h2>
+    <p class="section-lead fade-up">エンゲージメントは、押し付けるものではなく自然と生まれるもの。<br>安心して働ける環境の先に、やりがいや挑戦が待っています。</p>
+    <div class="pillar-grid">
+
+      <div class="pillar fade-up fade-up-delay-1">
+        <div class="pillar-icon">&#x1F4C8;</div>
+        <div class="pillar-sub">Growth Assignment</div>
+        <div class="pillar-title">エンジニアの「成長」を<br>第一に考えたアサイン</div>
+        <p class="pillar-text">「キャリアが停滞するアサイン」はいたしません。「入社したものの、単調な業務ばかりでスキルアップの未来が見えない」といった不安を抱えさせることはありません。今のあなたにとって最適な働き方と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
+      </div>
+
+      <div class="pillar fade-up fade-up-delay-2">
+        <div class="pillar-icon">&#x2615;</div>
+        <div class="pillar-sub">Freedom &amp; Comfort</div>
+        <div class="pillar-title">肩の力を抜いて働ける<br>「圧倒的な自由度」</div>
+        <p class="pillar-text">定着率の高さが証明する居心地の良さは、過度な干渉や厳しすぎるルールのないフラットな社風にあります。ゲームなどの共通の趣味を持つメンバーが多く、オフの話題でも盛り上がれる心理的安全性の高い環境。残業も少なく、オンとオフを両立させて働くことができます。</p>
+      </div>
+
+      <div class="pillar fade-up fade-up-delay-3">
+        <div class="pillar-icon">&#x1F6A9;</div>
+        <div class="pillar-sub">Flexible Career Path</div>
+        <div class="pillar-title">「やってみたい」を<br>形にできるキャリアパス</div>
+        <p class="pillar-text">やりがいは、強制されるものではなく「選ぶ」もの。個人やチームでの開発プロジェクトを会社の事業として持ち込むことも大歓迎。営業やセキュリティエンジニアへのキャリアチェンジも柔軟にサポート。幅広い雇用形態にも対応しており、あなただけのキャリアを描けます。</p>
+      </div>
+
+    </div>
+
+    <!-- Mid CTA -->
+    <div class="mid-cta">
+      <p>少しでも気になった方は、まずはカジュアルにお話ししましょう。</p>
+      <a href="#entry" class="btn btn-primary" style="font-size:13px;padding:14px 40px;">Entry &rarr;</a>
+    </div>
   </div>
-  <hr class="divider" style="margin-bottom:80px;">
-  <div class="section-label">Interview</div><h2 class="section-title">社員インタビュー</h2>
-  <div style="margin-bottom:80px;">
-    <div style="display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;padding-bottom:48px;margin-bottom:48px;border-bottom:1px solid var(--gray-mid);">
-      <div class="ph-box" style="aspect-ratio:1;border-radius:8px;">MEMBER PHOTO 1</div>
-      <div>
-        <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.15em;margin-bottom:8px;">ENGINEER</div>
-        <div style="font-size:20px;font-weight:700;margin-bottom:16px;">社員インタビュー 1</div>
-        <p style="font-size:14px;line-height:2;color:#666;">インタビュー内容は後日。</p>
+</div>
+
+<!-- ===== NUMBERS ===== -->
+<div class="numbers-bg" style="padding:100px 60px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label fade-up" style="justify-content:center;">Numbers</div>
+    <h2 class="section-title fade-up" style="text-align:center;color:var(--white);margin-bottom:60px;">数字で見るファンリアル</h2>
+
+    <div class="numbers-grid fade-up">
+      <div class="num-item">
+        <div class="num-value">200<span class="num-unit">%</span></div>
+        <div class="num-label">過去5年の成長率</div>
+      </div>
+      <div class="num-item">
+        <div class="num-value">10<span class="num-unit">h</span></div>
+        <div class="num-label">月平均残業時間</div>
+      </div>
+      <div class="num-item">
+        <div class="num-value">95<span class="num-unit">%</span></div>
+        <div class="num-label">定着率</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 200px;gap:40px;align-items:center;padding-bottom:48px;margin-bottom:48px;border-bottom:1px solid var(--gray-mid);">
-      <div>
-        <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.15em;margin-bottom:8px;">SALES</div>
-        <div style="font-size:20px;font-weight:700;margin-bottom:16px;">社員インタビュー 2</div>
-        <p style="font-size:14px;line-height:2;color:#666;">インタビュー内容は後日。</p>
+    <div class="numbers-grid" style="margin-top:24px;">
+      <div class="num-item">
+        <div class="num-value">27<span class="num-unit">歳</span></div>
+        <div class="num-label">平均年齢</div>
       </div>
-      <div class="ph-box" style="aspect-ratio:1;border-radius:8px;">MEMBER PHOTO 2</div>
+      <div class="num-item">
+        <div class="num-value">60<span class="num-unit">%</span></div>
+        <div class="num-label">未経験入社率</div>
+      </div>
+      <div class="num-item">
+        <div class="num-value">5<span class="num-unit">種</span></div>
+        <div class="num-label">対応雇用形態数</div>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;">
-      <div class="ph-box" style="aspect-ratio:1;border-radius:8px;">MEMBER PHOTO 3</div>
-      <div>
-        <div style="font-size:11px;color:var(--blue);font-family:var(--font-en);letter-spacing:0.15em;margin-bottom:8px;">ENGINEER</div>
-        <div style="font-size:20px;font-weight:700;margin-bottom:16px;">社員インタビュー 3</div>
-        <p style="font-size:14px;line-height:2;color:#666;">インタビュー内容は後日。</p>
-      </div>
+    <p class="num-note">※ 数値はすべてダミーです。実データに差し替え予定（2026年◯月時点）</p>
+  </div>
+</div>
+
+<!-- ===== INTERVIEW ===== -->
+<div class="section">
+  <div class="section-label fade-up">Interview</div>
+  <h2 class="section-title fade-up">社員インタビュー</h2>
+  <p class="section-lead fade-up">ファンリアルで働く仲間のリアルな声をお届けします。</p>
+
+  <!-- Interview 1 -->
+  <div class="interview-item fade-up">
+    <div class="interview-photo">MEMBER PHOTO 1</div>
+    <div>
+      <div class="interview-meta">Engineer / 入社2年目</div>
+      <div class="interview-title">前の環境で消耗していた私が、<br>自分のペースと新しい目標を見つけるまで</div>
+      <div class="interview-q">入社のきっかけ</div>
+      <p class="interview-a">以前は規模の大きい企業にいたのですが、希望とは全く違う単調な現場に配属され、残業も多く心身ともにすり減っていました。ファンリアルの面接では、無理に自分を良く見せようとしなくても自然体で話せたこと、「まずは自分のペースで働きなよ」という言葉に惹かれ、入社を決めました。</p>
+      <div class="interview-q">ファンリアルでの働き方</div>
+      <p class="interview-a">劇的に変わったのは、残業が減りプライベートの時間がしっかり取れるようになったことです。現場配属の際も、「どんなスキルを身につけたいか」「どんな環境なら働きやすいか」を親身にヒアリングしてくれ、先のステップに繋がる現場を任せてもらえています。</p>
+      <div class="interview-q">現在のやりがい</div>
+      <p class="interview-a">心に余裕ができたからか、自然と「もっとこうしたら面白くなるかも」と思えるようになりました。最近は任意で参加できる社内プロジェクトの企画にも関わっています。将来は自分で企画したサービスを事業化してみたいという新しい目標もできました。</p>
     </div>
   </div>
-  <div style="text-align:center;padding:60px 40px;background:var(--black);border-radius:12px;">
-    <p style="color:#888;font-size:14px;margin-bottom:24px;line-height:2;">ファンリアルで一緒に、自由に楽しく働きませんか？</p>
-    <a href="#" class="btn" style="background:var(--white);color:var(--black);font-size:14px;padding:18px 48px;">ENTRY &rarr;</a>
-    <p style="color:#555;font-size:11px;margin-top:16px;font-family:var(--font-en);">* Googleフォームに遷移します</p>
+
+  <!-- Interview 2 -->
+  <div class="interview-item reverse fade-up">
+    <div>
+      <div class="interview-meta">Sales / 入社3年目</div>
+      <div class="interview-title">社員インタビュー 2</div>
+      <div class="interview-q">入社のきっかけ</div>
+      <p class="interview-a">インタビュー内容は取材後に差し替え予定です。</p>
+      <div class="interview-q">ファンリアルでの働き方</div>
+      <p class="interview-a">インタビュー内容は取材後に差し替え予定です。</p>
+      <div class="interview-q">現在のやりがい</div>
+      <p class="interview-a">インタビュー内容は取材後に差し替え予定です。</p>
+    </div>
+    <div class="interview-photo">MEMBER PHOTO 2</div>
+  </div>
+
+  <!-- Interview 3 -->
+  <div class="interview-item fade-up">
+    <div class="interview-photo">MEMBER PHOTO 3</div>
+    <div>
+      <div class="interview-meta">Engineer / 入社1年目</div>
+      <div class="interview-title">社員インタビュー 3</div>
+      <div class="interview-q">入社のきっかけ</div>
+      <p class="interview-a">インタビュー内容は取材後に差し替え予定です。</p>
+      <div class="interview-q">ファンリアルでの働き方</div>
+      <p class="interview-a">インタビュー内容は取材後に差し替え予定です。</p>
+      <div class="interview-q">現在のやりがい</div>
+      <p class="interview-a">インタビュー内容は取材後に差し替え予定です。</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== JOB ===== -->
+<div class="section">
+  <div class="section-label">Job</div>
+  <h2 class="section-title">募集職種・条件</h2>
+  <div class="card-grid card-grid-2" style="margin-bottom:48px;">
+    <div class="card"><div class="card-body" style="padding:32px;"><span class="card-tag">OPEN</span><div style="font-size:18px;font-weight:700;margin:8px 0 20px;">エンジニア職</div><table class="info-table"><tr><th style="width:120px;">雇用形態</th><td>正社員 / 契約社員 / 業務委託 / SES</td></tr><tr><th>給与</th><td>内容は後日</td></tr><tr><th>勤務地</th><td>東京都新宿区（リモート相談可）</td></tr><tr><th>特徴</th><td>未経験歓迎 / キャリアチェンジ可</td></tr></table></div></div>
+    <div class="card"><div class="card-body" style="padding:32px;"><span class="card-tag">OPEN</span><div style="font-size:18px;font-weight:700;margin:8px 0 20px;">営業職</div><table class="info-table"><tr><th style="width:120px;">雇用形態</th><td>正社員</td></tr><tr><th>給与</th><td>内容は後日</td></tr><tr><th>勤務地</th><td>東京都新宿区</td></tr><tr><th>特徴</th><td>エンジニア経験者歓迎</td></tr></table></div></div>
+  </div>
+</div>
+
+<!-- ===== REFERRAL BANNER ===== -->
+<div class="section" style="padding-bottom:0;">
+  <div class="referral-banner fade-up">
+    <div class="referral-banner-title">&#x1F3AE; 友達に紹介されましたか？</div>
+    <p class="referral-banner-text">ゲーム好き・ボドゲ好き必見。ファンリアルの「素顔」を覗いてみてください。</p>
+    <a href="referral.html" class="referral-banner-link">ファンリアルの素顔を見る &rarr;</a>
+  </div>
+</div>
+
+<!-- ===== ENTRY CTA ===== -->
+<div class="section" id="entry" style="padding-top:48px;">
+  <div class="entry-cta fade-up">
+    <div class="entry-cta-title">私たちと一緒に、新しいスタートを切りませんか？</div>
+    <p class="entry-cta-text">現在、様々なポジションで積極採用を行っています。<br>少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。</p>
+    <a href="#" class="btn btn-primary">Entry &rarr;</a>
+    <p style="color:#555;font-size:11px;margin-top:16px;font-family:var(--font-en);">* Google フォームに遷移します</p>
   </div>
 </div>
 
@@ -211,5 +426,13 @@
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
+
+  // Scroll fade-in animation
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(function(el){ observer.observe(el); });
 </script>
 </body></html>

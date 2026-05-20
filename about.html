@@ -11,7 +11,7 @@
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
 
   /* ===== HEADER ===== */
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(26,26,26,0.92); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
@@ -123,18 +123,6 @@
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
 
-  /* ===== MODAL ===== */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
-  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 28px 36px; border-bottom: 1px solid var(--gray-mid); position: sticky; top: 0; background: var(--white); z-index: 1; }
-  .modal-header h2 { font-size: 20px; font-weight: 700; }
-  .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #888; padding: 4px; }
-  .modal-close:hover { color: var(--black); }
-  .modal-body { padding: 36px; }
-  .modal-body h3 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-mid); }
-  .modal-body h3:first-child { margin-top: 0; }
-  .modal-body .ph-box { height: 60px; font-size: 11px; }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
 
   /* ===== ANIMATION ===== */
@@ -143,6 +131,37 @@
   .fade-up-delay-1 { transition-delay: 0.15s; }
   .fade-up-delay-2 { transition-delay: 0.3s; }
   .fade-up-delay-3 { transition-delay: 0.45s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .svc-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+    .header-entry-btn { padding: 6px 14px; font-size: 11px; }
+    .about-hero { padding: 60px 24px 50px; }
+    .section { padding: 60px 24px; }
+    .section-title { font-size: 22px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .value-card { padding: 28px 24px; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .info-table th { width: 120px; padding: 12px 14px; font-size: 13px; }
+    .info-table td { padding: 12px 14px; font-size: 13px; }
+    .recruit-cta { padding: 60px 24px; }
+    footer { padding: 40px 24px 24px; }
+    .footer-top { flex-direction: column; gap: 20px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { justify-content: center; }
+    .drawer { width: 85%; right: -85%; }
+  }
+  @media (max-width: 480px) {
+    .logo-text { display: none; }
+    .info-table { display: block; }
+    .info-table tbody, .info-table tr, .info-table th, .info-table td { display: block; width: 100%; }
+    .info-table th { width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -308,15 +327,15 @@
       <span class="svc-card-link">View More &rarr;</span>
     </a>
     <a href="service-is.html" class="svc-card fade-up fade-up-delay-2">
-      <div class="svc-card-icon">&#x1F6E1;</div>
-      <div class="svc-card-title">IS事業</div>
-      <p class="svc-card-text">情報システム部門の支援を通じて、企業のIT基盤を強化。セキュリティからインフラまで幅広くサポートします。</p>
+      <div class="svc-card-icon">&#x1F4C8;</div>
+      <div class="svc-card-title">IS事業 &#8212; LEAD TECH</div>
+      <p class="svc-card-text">インサイドセールスの戦略設計から実行・改善まで。安定した商談創出の仕組みをつくり、営業成果を最大化します。</p>
       <span class="svc-card-link">View More &rarr;</span>
     </a>
     <a href="solutions.html" class="svc-card fade-up fade-up-delay-3">
       <div class="svc-card-icon">&#x1F4A1;</div>
       <div class="svc-card-title">ソリューションズ</div>
-      <p class="svc-card-text">社員発の企画やチーム開発から生まれた自社プロダクト。持ち込み企画も歓迎する、ファンリアルらしい事業です。</p>
+      <p class="svc-card-text">受託開発から自社プロダクトまで。企画構想からシステム開発・運用保守を一貫して手がけ、ビジネスの成長を支えます。</p>
       <span class="svc-card-link">View More &rarr;</span>
     </a>
   </div>
@@ -340,45 +359,17 @@
   </div>
   <div class="footer-bottom">
     <div class="footer-links">
-      <a onclick="openModal('modal-privacy')">プライバシーポリシー</a>
-      <a onclick="openModal('modal-terms')">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
     </div>
     <div class="footer-copy">&#169; 2026 Funreal Inc. All Rights Reserved.</div>
   </div>
 </footer>
 
-<div class="modal-overlay" id="modal-privacy" onclick="if(event.target===this)closeModal('modal-privacy')">
-  <div class="modal">
-    <div class="modal-header"><h2>プライバシーポリシー</h2><button class="modal-close" onclick="closeModal('modal-privacy')">&#x2715;</button></div>
-    <div class="modal-body">
-      <h3>第1条 個人情報の収集について</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第2条 個人情報の利用目的</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第3条 個人情報の第三者提供</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第4条 個人情報の管理</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第5条 お問い合わせ</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-    </div>
-  </div>
-</div>
-<div class="modal-overlay" id="modal-terms" onclick="if(event.target===this)closeModal('modal-terms')">
-  <div class="modal">
-    <div class="modal-header"><h2>利用規約</h2><button class="modal-close" onclick="closeModal('modal-terms')">&#x2715;</button></div>
-    <div class="modal-body">
-      <h3>第1条 サービスの利用</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第2条 禁止事項</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第3条 免責事項</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第4条 著作権・知的財産権</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-      <h3>第5条 規約の変更</h3><div class="ph-box" style="height:60px;">本文テキスト（内容は後日）</div>
-    </div>
-  </div>
-</div>
 <script>
   function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
   function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
   function toggleSub(e){e.preventDefault();document.getElementById('sub').classList.toggle('open');}
-  function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
-  function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
-
   // Scroll fade-in animation
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){

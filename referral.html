@@ -11,7 +11,7 @@
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
 
   /* ===== HEADER ===== */
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(26,26,26,0.92); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
@@ -136,6 +136,22 @@
   .fade-up-delay-3 { transition-delay: 0.3s; }
 
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--red); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+    .header-entry-btn { padding: 6px 14px; font-size: 11px; }
+    .section { padding: 60px 24px; }
+    .section-title { font-size: 22px; }
+    footer { padding: 40px 24px 24px; }
+    .footer-top { flex-direction: column; gap: 20px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { justify-content: center; }
+    .drawer { width: 85%; right: -85%; }
+  }
+  @media (max-width: 480px) {
+    .logo-text { display: none; }
+  }
 </style>
 </head>
 <body>

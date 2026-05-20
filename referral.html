@@ -138,11 +138,31 @@
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--red); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
 
   /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .game-grid { grid-template-columns: repeat(2, 1fr); }
+    .hobby-grid { grid-template-columns: repeat(2, 1fr); }
+    .game-stat-bar { flex-wrap: wrap; }
+  }
   @media (max-width: 768px) {
     header { padding: 0 20px; }
     .header-entry-btn { padding: 6px 14px; font-size: 11px; }
     .section { padding: 60px 24px; }
     .section-title { font-size: 22px; }
+    .ref-hero-content { padding: 40px 24px; }
+    .ref-hero-sub br { display: none; }
+    .gaming-bg, .hobby-bg { padding: 60px 24px !important; }
+    .game-stat-bar { flex-direction: column; gap: 12px; }
+    .game-stat { padding: 16px 24px; }
+    .game-stat-num { font-size: 28px; }
+    .game-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .event-photos { grid-template-columns: repeat(2, 1fr); }
+    .hobby-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .hobby-card { padding: 24px 16px; }
+    .voice-grid { grid-template-columns: 1fr; }
+    .voice-card { padding: 24px; }
+    .ref-cta { padding: 48px 24px; }
+    .ref-cta-text br { display: none; }
+    .section-lead br { display: none; }
     footer { padding: 40px 24px 24px; }
     .footer-top { flex-direction: column; gap: 20px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
@@ -151,6 +171,12 @@
   }
   @media (max-width: 480px) {
     .logo-text { display: none; }
+    .game-grid { grid-template-columns: 1fr; }
+    .event-photos { grid-template-columns: 1fr; }
+    .hobby-grid { grid-template-columns: 1fr; }
+    .ref-hero-catch { font-size: 24px; }
+    .ref-cta-title { font-size: 20px; }
+    .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
   }
 </style>
 </head>

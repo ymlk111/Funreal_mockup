@@ -3,18 +3,25 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>IS — LEAD TECH | 株式会社ファンリアル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00; --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666; --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
+
+  /* ===== HEADER ===== */
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-entry-btn { padding: 8px 20px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+  .header-entry-btn:hover { background: #0090aa; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ===== DRAWER ===== */
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
   .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; overflow-y: auto; }
   .drawer.open { right: 0; }
@@ -30,39 +37,96 @@
   .drawer-sub li a:hover { color: var(--blue); }
   .drawer-sub li a::before { content: "- "; }
   .has-sub > a::after { content: " >"; color: var(--blue); }
-  .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
-  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
-  .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); }
-  .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+
+  /* ===== HERO ===== */
+  .is-hero { background: linear-gradient(135deg, #0d1a2e, #1a2a3e); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
+  .is-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
+  .is-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .is-hero-label::before, .is-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+  .is-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); margin-bottom: 12px; line-height: 1.4; animation: heroIn 0.8s ease forwards; }
+  .is-hero-brand { font-family: var(--font-en); font-size: 14px; font-weight: 600; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); margin-bottom: 20px; animation: heroIn 0.8s ease 0.15s forwards; opacity: 0; }
+  .is-hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 2; max-width: 600px; margin: 0 auto; animation: heroIn 0.8s ease 0.3s forwards; opacity: 0; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width: 1100px; margin: 0 auto; padding: 100px 60px; }
   .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
-  .section-body { font-size: 15px; line-height: 2; color: #444; }
-  .info-table { width: 100%; border-collapse: collapse; }
-  .info-table th, .info-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
-  .info-table th { width: 200px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
-  .info-table td { color: var(--black); line-height: 1.8; }
-  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
-  .card-grid { display: grid; gap: 24px; }
-  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-  .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-img { width: 100%; aspect-ratio: 16/9; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
-  .card-body { padding: 20px; }
-  .card-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
-  .card-title { font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--black); margin-bottom: 8px; }
-  .card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
-  .card-date { font-size: 12px; color: #aaa; font-family: var(--font-en); margin-top: 8px; }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: var(--black); }
+  .section-lead { font-size: 15px; line-height: 2; color: #555; margin-bottom: 48px; }
   .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-dark { background: var(--black); color: var(--white); }
-  .btn-dark:hover { background: var(--red); }
-  .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
-  .btn-outline:hover { background: var(--black); color: var(--white); }
-  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 80px; }
+
+  /* ===== MESSAGE ===== */
+  .msg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .msg-text { font-size: 15px; line-height: 2.2; color: #444; }
+  .msg-text p { margin-bottom: 20px; }
+  .msg-text p:last-child { margin-bottom: 0; }
+  .msg-visual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== STRENGTHS ===== */
+  .str-bg { background: var(--gray-light); }
+  .str-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .str-card { background: var(--white); border-radius: 12px; padding: 40px 32px; border: 1px solid var(--gray-mid); text-align: center; transition: box-shadow 0.2s, transform 0.2s; }
+  .str-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }
+  .str-num { font-family: var(--font-en); font-size: 48px; font-weight: 900; color: rgba(0,170,204,0.15); line-height: 1; margin-bottom: 12px; }
+  .str-en { font-family: var(--font-en); font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--blue); text-transform: uppercase; margin-bottom: 8px; }
+  .str-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--black); }
+  .str-text { font-size: 14px; line-height: 2; color: #555; text-align: left; }
+
+  /* ===== SERVICE MENU ===== */
+  .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .menu-card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; padding: 32px 28px; border-left: 4px solid var(--blue); transition: box-shadow 0.2s, transform 0.2s; }
+  .menu-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+  .menu-card-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--black); }
+  .menu-card-text { font-size: 13px; color: var(--gray-text); line-height: 1.8; }
+
+  /* ===== FLOW ===== */
+  .flow-list { position: relative; padding-left: 40px; }
+  .flow-list::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: var(--gray-mid); }
+  .flow-item { position: relative; margin-bottom: 48px; }
+  .flow-item:last-child { margin-bottom: 0; }
+  .flow-dot { position: absolute; left: -34px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--blue); }
+  .flow-step-label { font-family: var(--font-en); font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: 0.1em; margin-bottom: 6px; }
+  .flow-step-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--black); }
+  .flow-step-text { font-size: 14px; color: #555; line-height: 1.9; }
+
+  /* ===== NUMBERS ===== */
+  .numbers-bg { background: var(--black); }
+  .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .num-item { text-align: center; }
+  .num-value { font-family: var(--font-en); font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--blue); line-height: 1; margin-bottom: 4px; }
+  .num-unit { font-family: var(--font-en); font-size: 16px; font-weight: 600; color: var(--blue); }
+  .num-label { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+
+  /* ===== FAQ ===== */
+  .faq-item { border-bottom: 1px solid var(--gray-mid); }
+  .faq-q { padding: 24px 0; font-size: 15px; font-weight: 700; color: var(--black); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .faq-q::before { content: 'Q.'; font-family: var(--font-en); font-weight: 900; color: var(--blue); font-size: 18px; min-width: 30px; }
+  .faq-q::after { content: '+'; font-family: var(--font-en); font-size: 20px; color: var(--blue); transition: transform 0.3s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-a-inner { padding: 0 0 24px 42px; font-size: 14px; line-height: 2; color: #555; }
+
+  /* ===== SERVICE LINKS ===== */
+  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .svc-card { display: block; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 36px 28px; text-decoration: none; color: var(--black); transition: box-shadow 0.2s, transform 0.2s; }
+  .svc-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .svc-card-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+  .svc-card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .svc-card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; margin-bottom: 16px; }
+  .svc-card-link { font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); text-transform: uppercase; }
+
+  /* ===== CTA ===== */
+  .contact-cta { text-align: center; padding: 80px 40px; background: var(--black); border-radius: 16px; }
+  .contact-cta-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .contact-cta-text { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--blue); color: var(--white); padding: 16px 40px; }
+  .btn-primary:hover { background: #0090aa; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 0; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 40px; border-bottom: 1px solid #2a2a2a; margin-bottom: 32px; }
   .footer-logo-ph { height: 48px; width: 100px; border: 1px dashed #444; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .footer-logo-ph span { font-size: 10px; color: #555; font-family: var(--font-en); letter-spacing: 0.05em; }
@@ -75,6 +139,8 @@
   .footer-links a { color: #555; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== MODAL ===== */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
@@ -87,6 +153,15 @@
   .modal-body h3:first-child { margin-top: 0; }
   .modal-body .ph-box { height: 60px; font-size: 11px; }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ===== ANIMATION ===== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.15s; }
+  .fade-up-delay-2 { transition-delay: 0.3s; }
+  .fade-up-delay-3 { transition-delay: 0.45s; }
+  .fade-up-delay-4 { transition-delay: 0.6s; }
 </style>
 </head>
 <body>
@@ -113,44 +188,230 @@
     <div class="logo-ph"><span>LOGO</span></div>
     <span class="logo-text">株式会社ファンリアル</span>
   </a>
-  <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  <div class="header-right">
+    <a href="recruit.html#entry" class="header-entry-btn">Entry</a>
+    <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  </div>
 </header>
 
-<div class="page-hero" style="background:linear-gradient(135deg,#0d1a2e,#1a2a3e);">
-  <div class="page-hero-label">Service</div><h1>IS — LEAD TECH</h1>
-  <p style="color:#888;font-size:14px;margin-top:8px;font-family:var(--font-en);letter-spacing:0.1em;">INSIDE SALES SOLUTION</p>
-</div>
-<div class="section">
-  <div class="section-label">Overview</div><h2 class="section-title">サービス概要</h2>
-  <p class="section-body" style="margin-bottom:60px;">商談創出の安定と成果の最大化を目指し、洗練されたインサイドセールスソリューションを提供します。お客様のビジネス目標に合わせた最適な戦略を構築し、質の高い成果を実現します。</p>
-  <div class="section-label">Feature</div><h2 class="section-title">特徴・強み</h2>
-  <div style="margin-bottom:60px;">
-    <div style="display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;padding:32px 0;border-bottom:1px solid var(--gray-mid);">
-      <div style="font-family:var(--font-en);font-size:32px;font-weight:700;color:var(--blue);line-height:1;">01</div>
-      <div>
-        <div style="font-size:18px;font-weight:700;margin-bottom:12px;">戦略設計</div>
-        <p style="font-size:14px;line-height:2;color:#666;">内容は後日</p>
-      </div>
+<!-- ===== HERO ===== -->
+<section class="is-hero">
+  <div class="is-hero-label">Service — IS</div>
+  <h1>商談を創る、<br>仕組みを創る。</h1>
+  <div class="is-hero-brand">LEAD TECH — INSIDE SALES SOLUTION</div>
+  <p class="is-hero-sub">インサイドセールスの戦略設計から実行・改善まで。<br>安定した商談創出の仕組みをつくり、クライアントの営業成果を最大化します。</p>
+</section>
+
+<!-- ===== MESSAGE ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Message</div>
+    <h2 class="section-title">営業の「仕組み化」で、成果を変える</h2>
+  </div>
+  <div class="msg-grid fade-up">
+    <div class="msg-text">
+      <p>多くの企業が抱える課題——「リードはあるのに商談につながらない」「営業リソースが足りない」「属人的な営業から脱却したい」。</p>
+      <p>LEAD TECHは、これらの課題にインサイドセールスの力で応えます。ターゲット選定から架電・メール施策、アポイント獲得まで、商談創出のプロセスを一気通貫で設計・実行。</p>
+      <p>単なるコール代行ではなく、データに基づいた戦略設計と継続的な改善サイクルで、再現性のある成果を生み出します。</p>
     </div>
-    <div style="display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;padding:32px 0;border-bottom:1px solid var(--gray-mid);">
-      <div style="font-family:var(--font-en);font-size:32px;font-weight:700;color:var(--blue);line-height:1;">02</div>
-      <div>
-        <div style="font-size:18px;font-weight:700;margin-bottom:12px;">実行支援</div>
-        <p style="font-size:14px;line-height:2;color:#666;">内容は後日</p>
-      </div>
+    <div class="msg-visual">MESSAGE IMAGE</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== STRENGTHS ===== -->
+<section class="section str-bg">
+  <div class="fade-up">
+    <div class="section-label">Strengths</div>
+    <h2 class="section-title">LEAD TECHの強み</h2>
+    <p class="section-lead">「アポを取る」だけでなく、「成果が出続ける仕組み」を構築します。</p>
+  </div>
+  <div class="str-grid">
+    <div class="str-card fade-up fade-up-delay-1">
+      <div class="str-num">01</div>
+      <div class="str-en">Strategy Design</div>
+      <div class="str-title">戦略設計力</div>
+      <div class="str-text">ターゲット選定、ペルソナ設計、トークスクリプト作成まで、データに基づいた戦略を設計。属人的な営業を仕組みに変換します。</div>
     </div>
-    <div style="display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;padding:32px 0;">
-      <div style="font-family:var(--font-en);font-size:32px;font-weight:700;color:var(--blue);line-height:1;">03</div>
-      <div>
-        <div style="font-size:18px;font-weight:700;margin-bottom:12px;">成果報告</div>
-        <p style="font-size:14px;line-height:2;color:#666;">内容は後日</p>
-      </div>
+    <div class="str-card fade-up fade-up-delay-2">
+      <div class="str-num">02</div>
+      <div class="str-en">Flexible Execution</div>
+      <div class="str-title">柔軟な実行体制</div>
+      <div class="str-text">月単位での施策調整、スケール対応が可能。クライアントの事業フェーズに合わせて、最適な体制を柔軟に構築します。</div>
+    </div>
+    <div class="str-card fade-up fade-up-delay-3">
+      <div class="str-num">03</div>
+      <div class="str-en">Data Driven</div>
+      <div class="str-title">データドリブンな<br>改善</div>
+      <div class="str-text">架電結果・アポ率・商談化率を定量的に分析し、PDCAを高速で回転。感覚ではなくデータに基づいた改善を継続します。</div>
     </div>
   </div>
-  <div class="section-label">Flow</div><h2 class="section-title">ご支援の流れ</h2>
-  <div class="ph-box" style="height:160px;">フロー図（内容は後日）</div>
-</div>
+</section>
 
+<!-- ===== SERVICE MENU ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Service Menu</div>
+    <h2 class="section-title">提供メニュー</h2>
+    <p class="section-lead">課題やフェーズに応じて、最適なメニューを組み合わせてご提案します。</p>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card fade-up fade-up-delay-1">
+      <div class="menu-card-title">アポイント獲得代行</div>
+      <div class="menu-card-text">ターゲットリストに基づき、架電・メールによるアポイント獲得を実行。質の高い商談機会を安定的に創出します。</div>
+    </div>
+    <div class="menu-card fade-up fade-up-delay-2">
+      <div class="menu-card-title">リードナーチャリング</div>
+      <div class="menu-card-text">獲得済みリードに対して、適切なタイミングでフォローアップ。検討段階を引き上げ、商談化率を最大化します。</div>
+    </div>
+    <div class="menu-card fade-up fade-up-delay-1">
+      <div class="menu-card-title">トークスクリプト設計</div>
+      <div class="menu-card-text">ターゲットの課題・ペルソナに最適化されたトークスクリプトを設計。再現性の高い営業トークを標準化します。</div>
+    </div>
+    <div class="menu-card fade-up fade-up-delay-2">
+      <div class="menu-card-title">営業戦略コンサルティング</div>
+      <div class="menu-card-text">ターゲット市場の分析からKPI設計、チーム体制の構築まで。インサイドセールスの立ち上げを包括的に支援します。</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== FLOW ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Flow</div>
+    <h2 class="section-title">ご支援の流れ</h2>
+    <p class="section-lead">初回ヒアリングから成果創出まで、伴走型のサポートを提供します。</p>
+  </div>
+  <div class="flow-list fade-up">
+    <div class="flow-item">
+      <div class="flow-dot"></div>
+      <div class="flow-step-label">STEP 01</div>
+      <div class="flow-step-title">ヒアリング・課題整理</div>
+      <div class="flow-step-text">現状の営業プロセス、ターゲット、KPIをヒアリング。課題を可視化し、インサイドセールス導入の方向性を明確にします。</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-dot"></div>
+      <div class="flow-step-label">STEP 02</div>
+      <div class="flow-step-title">戦略設計・スクリプト作成</div>
+      <div class="flow-step-text">ターゲットリストの作成、ペルソナ設計、トークスクリプトの作成を実施。初期の施策設計を固めます。</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-dot"></div>
+      <div class="flow-step-label">STEP 03</div>
+      <div class="flow-step-title">体制構築・トレーニング</div>
+      <div class="flow-step-text">専任チームを編成し、業界知識・商材理解のトレーニングを実施。高品質な架電体制を整えます。</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-dot"></div>
+      <div class="flow-step-label">STEP 04</div>
+      <div class="flow-step-title">施策実行・商談創出</div>
+      <div class="flow-step-text">架電・メール施策を実行し、アポイントを獲得。日次・週次での進捗レポートを共有しながら、PDCAを回します。</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-dot"></div>
+      <div class="flow-step-label">STEP 05</div>
+      <div class="flow-step-title">分析・改善</div>
+      <div class="flow-step-text">架電結果・アポ率・商談化率を定量分析。スクリプトの改善やターゲットの見直しを行い、成果を継続的に最大化します。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NUMBERS ===== -->
+<section class="section numbers-bg">
+  <div class="fade-up" style="text-align: center; margin-bottom: 60px;">
+    <div class="section-label" style="justify-content: center; color: rgba(255,255,255,0.4);">
+      <span style="color: rgba(255,255,255,0.4);">Numbers</span>
+    </div>
+    <h2 class="section-title" style="color: var(--white);">数字で見るLEAD TECH</h2>
+  </div>
+  <div class="numbers-grid fade-up">
+    <div class="num-item">
+      <div class="num-value">500<span class="num-unit">+</span></div>
+      <div class="num-label">月間商談創出数</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">8.5<span class="num-unit">%</span></div>
+      <div class="num-label">平均アポイント率</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">92<span class="num-unit">%</span></div>
+      <div class="num-label">クライアント継続率</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">30<span class="num-unit">+</span></div>
+      <div class="num-label">支援企業数</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">15<span class="num-unit">+</span></div>
+      <div class="num-label">対応業界数</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">2<span class="num-unit">週間</span></div>
+      <div class="num-label">最短稼働開始</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">よくあるご質問</h2>
+  </div>
+  <div class="fade-up">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">最低契約期間はありますか？</div>
+      <div class="faq-a"><div class="faq-a-inner">最低3ヶ月からのご契約を推奨しています。インサイドセールスは施策の検証・改善サイクルが必要なため、成果を出すために一定期間をいただいています。</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">自社の営業チームと連携できますか？</div>
+      <div class="faq-a"><div class="faq-a-inner">はい、可能です。既存の営業チームとの役割分担を設計し、インサイドセールスが獲得したアポイントをスムーズにフィールドセールスへ引き継ぐ体制を構築します。</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">どのような業界に対応していますか？</div>
+      <div class="faq-a"><div class="faq-a-inner">IT・SaaS、人材、不動産、製造業など幅広い業界に対応実績があります。専門性の高い商材についても、事前トレーニングを通じて対応可能です。</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">成果報酬型の料金体系はありますか？</div>
+      <div class="faq-a"><div class="faq-a-inner">基本は固定報酬型ですが、商材やご要望に応じて成果報酬型や併用型のプランもご提案可能です。詳細はお問い合わせください。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA + SERVICE LINKS ===== -->
+<section class="section">
+  <div class="fade-up" style="margin-bottom: 80px;">
+    <div class="contact-cta">
+      <div class="contact-cta-title">まずはお気軽にご相談ください</div>
+      <p class="contact-cta-text">インサイドセールスの導入・改善について、<br>貴社の課題に合わせたご提案をいたします。</p>
+      <a href="contact.html" class="btn btn-primary">Contact Us →</a>
+    </div>
+  </div>
+
+  <div class="fade-up">
+    <div class="section-label">Other Services</div>
+    <h2 class="section-title">その他のサービス</h2>
+  </div>
+  <div class="svc-grid fade-up">
+    <a href="service-se.html" class="svc-card">
+      <div class="svc-card-icon">👨‍💻</div>
+      <div class="svc-card-title">SE — システムエンジニアリング</div>
+      <p class="svc-card-text">クライアントの開発現場にエンジニアを送り出すSES事業。成長を前提としたアサインで、技術力と品質を両立します。</p>
+      <span class="svc-card-link">View Detail →</span>
+    </a>
+    <a href="solutions.html" class="svc-card">
+      <div class="svc-card-icon">💡</div>
+      <div class="svc-card-title">Solutions — ソリューションズ</div>
+      <p class="svc-card-text">自社プロダクトの開発・提供を通じて、企業のDXを加速させるソリューションを展開しています。</p>
+      <span class="svc-card-link">View Detail →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-top">
     <div><div class="footer-logo-ph"><span>LOGO</span></div><div class="footer-logo-name">株式会社ファンリアル</div></div>
@@ -167,6 +428,7 @@
   </div>
 </footer>
 
+<!-- ===== MODALS ===== -->
 <div class="modal-overlay" id="modal-privacy" onclick="if(event.target===this)closeModal('modal-privacy')">
   <div class="modal">
     <div class="modal-header"><h2>プライバシーポリシー</h2><button class="modal-close" onclick="closeModal('modal-privacy')">&#x2715;</button></div>
@@ -191,6 +453,7 @@
     </div>
   </div>
 </div>
+
 <script>
   function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
   function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
@@ -198,5 +461,13 @@
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body></html>

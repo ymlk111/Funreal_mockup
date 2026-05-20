@@ -3,18 +3,25 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>About Us | 株式会社ファンリアル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00; --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666; --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
+
+  /* ===== HEADER ===== */
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-entry-btn { padding: 8px 20px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+  .header-entry-btn:hover { background: #0090aa; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ===== DRAWER ===== */
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
   .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; overflow-y: auto; }
   .drawer.open { right: 0; }
@@ -30,39 +37,79 @@
   .drawer-sub li a:hover { color: var(--blue); }
   .drawer-sub li a::before { content: "- "; }
   .has-sub > a::after { content: " >"; color: var(--blue); }
-  .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
-  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
-  .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); }
-  .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+
+  /* ===== HERO ===== */
+  .about-hero { background: var(--black); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
+  .about-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
+  .about-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .about-hero-label::before, .about-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+  .about-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); margin-bottom: 20px; line-height: 1.4; animation: heroIn 0.8s ease forwards; }
+  .about-hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 2; max-width: 600px; margin: 0 auto; animation: heroIn 0.8s ease 0.2s forwards; opacity: 0; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width: 1100px; margin: 0 auto; padding: 100px 60px; }
   .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
-  .section-body { font-size: 15px; line-height: 2; color: #444; }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: var(--black); }
+  .section-lead { font-size: 15px; line-height: 2; color: #555; margin-bottom: 48px; }
+  .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
+
+  /* ===== MISSION ===== */
+  .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .mission-text { font-size: 15px; line-height: 2.2; color: #444; }
+  .mission-text p { margin-bottom: 20px; }
+  .mission-text p:last-child { margin-bottom: 0; }
+  .mission-visual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== VALUES ===== */
+  .values-bg { background: var(--gray-light); }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .value-card { background: var(--white); border-radius: 12px; padding: 40px 32px; border: 1px solid var(--gray-mid); text-align: center; transition: box-shadow 0.2s, transform 0.2s; }
+  .value-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }
+  .value-num { font-family: var(--font-en); font-size: 48px; font-weight: 900; color: rgba(0,170,204,0.15); line-height: 1; margin-bottom: 12px; }
+  .value-en { font-family: var(--font-en); font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--blue); text-transform: uppercase; margin-bottom: 8px; }
+  .value-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--black); }
+  .value-text { font-size: 14px; line-height: 2; color: #555; text-align: left; }
+
+  /* ===== COMPANY PROFILE ===== */
   .info-table { width: 100%; border-collapse: collapse; }
-  .info-table th, .info-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
+  .info-table th, .info-table td { padding: 18px 24px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
   .info-table th { width: 200px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
   .info-table td { color: var(--black); line-height: 1.8; }
+
+  /* ===== HISTORY ===== */
+  .history-line { position: relative; padding-left: 40px; }
+  .history-line::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: var(--gray-mid); }
+  .history-item { position: relative; margin-bottom: 40px; }
+  .history-item:last-child { margin-bottom: 0; }
+  .history-dot { position: absolute; left: -34px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--blue); }
+  .history-year { font-family: var(--font-en); font-size: 14px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 4px; }
+  .history-text { font-size: 15px; color: #444; line-height: 1.8; }
+
+  /* ===== SERVICES ===== */
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .svc-card { display: block; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 36px 28px; text-decoration: none; color: var(--black); transition: box-shadow 0.2s, transform 0.2s; }
+  .svc-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .svc-card-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+  .svc-card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .svc-card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; margin-bottom: 16px; }
+  .svc-card-link { font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); text-transform: uppercase; }
+
+  /* ===== ACCESS ===== */
+  .access-info { font-size: 15px; line-height: 2; color: #444; margin-top: 24px; }
   .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
-  .card-grid { display: grid; gap: 24px; }
-  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-  .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-img { width: 100%; aspect-ratio: 16/9; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
-  .card-body { padding: 20px; }
-  .card-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
-  .card-title { font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--black); margin-bottom: 8px; }
-  .card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
-  .card-date { font-size: 12px; color: #aaa; font-family: var(--font-en); margin-top: 8px; }
-  .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-dark { background: var(--black); color: var(--white); }
-  .btn-dark:hover { background: var(--red); }
-  .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
-  .btn-outline:hover { background: var(--black); color: var(--white); }
-  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 80px; }
+
+  /* ===== RECRUIT CTA ===== */
+  .recruit-cta { text-align: center; padding: 80px 40px; background: var(--black); border-radius: 16px; }
+  .recruit-cta-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .recruit-cta-text { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--blue); color: var(--white); padding: 16px 40px; }
+  .btn-primary:hover { background: #0090aa; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 0; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 40px; border-bottom: 1px solid #2a2a2a; margin-bottom: 32px; }
   .footer-logo-ph { height: 48px; width: 100px; border: 1px dashed #444; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .footer-logo-ph span { font-size: 10px; color: #555; font-family: var(--font-en); letter-spacing: 0.05em; }
@@ -75,6 +122,8 @@
   .footer-links a { color: #555; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== MODAL ===== */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
@@ -87,6 +136,13 @@
   .modal-body h3:first-child { margin-top: 0; }
   .modal-body .ph-box { height: 60px; font-size: 11px; }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+
+  /* ===== ANIMATION ===== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.15s; }
+  .fade-up-delay-2 { transition-delay: 0.3s; }
+  .fade-up-delay-3 { transition-delay: 0.45s; }
 </style>
 </head>
 <body>
@@ -95,7 +151,7 @@
 <div class="drawer" id="drawer">
   <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
   <nav><ul>
-    <li><a href="about.html">About Us（会社概要）</a></li>
+    <li><a href="about.html">About Us</a></li>
     <li class="has-sub"><a href="#" onclick="toggleSub(event)">サービス</a>
       <ul class="drawer-sub" id="sub">
         <li><a href="service-se.html">SE</a></li>
@@ -113,27 +169,166 @@
     <div class="logo-ph"><span>LOGO</span></div>
     <span class="logo-text">株式会社ファンリアル</span>
   </a>
-  <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  <div class="header-right">
+    <a href="recruit.html#entry" class="header-entry-btn">Entry</a>
+    <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  </div>
 </header>
 
-<div class="page-hero"><div class="page-hero-label">About Us</div><h1>会社概要</h1></div>
+<!-- ===== HERO ===== -->
+<div class="about-hero">
+  <div class="about-hero-label">About Us</div>
+  <h1>人の力が、社会を動かす。</h1>
+  <p class="about-hero-sub">ITの進化が加速するいま、私たちは「人」の可能性を最大化することに全力を注いでいます。<br>個々の「やりたいこと」を実現し、心身ともに豊かなエンジニアが生み出す力で、社会とお客様の発展に貢献します。</p>
+</div>
+
+<!-- ===== MISSION ===== -->
 <div class="section">
-  <div class="section-label">Company Profile</div><h2 class="section-title">会社概要</h2>
-  <table class="info-table">
+  <div class="section-label fade-up">Mission</div>
+  <h2 class="section-title fade-up">私たちの使命</h2>
+  <div class="mission-grid">
+    <div class="mission-text fade-up">
+      <p>株式会社ファンリアルは、「自由に、そして楽しく」を合言葉に、エンジニアが本来の力を発揮できる環境づくりを追求しています。</p>
+      <p>画一的なキャリアパスに縛られず、一人ひとりの個性と希望に寄り添いながら、技術力と人間力の両面で成長できる場を提供すること。それが私たちの使命です。</p>
+      <p>まだ小さな会社ですが、だからこそ一人ひとりの声が届き、一人ひとりの挑戦が会社を動かす。その手触り感を大切にしながら、お客様と社員の双方に価値ある未来を創っていきます。</p>
+    </div>
+    <div class="mission-visual fade-up fade-up-delay-1">MISSION IMAGE</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== VALUES ===== -->
+<div class="values-bg" style="padding:100px 60px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label fade-up">Values</div>
+    <h2 class="section-title fade-up">私たちが大切にする3つの価値観</h2>
+    <p class="section-lead fade-up">これらの価値観は、採用・評価・日々のコミュニケーション、<br>すべての判断基準の土台になっています。</p>
+    <div class="values-grid">
+      <div class="value-card fade-up fade-up-delay-1">
+        <div class="value-num">01</div>
+        <div class="value-en">Freedom</div>
+        <div class="value-title">自由であること</div>
+        <p class="value-text">画一的なルールに縛られず、個々の裁量を最大限に尊重します。働き方も、キャリアの描き方も、あなた自身が選べる環境であり続けます。</p>
+      </div>
+      <div class="value-card fade-up fade-up-delay-2">
+        <div class="value-num">02</div>
+        <div class="value-en">Growth</div>
+        <div class="value-title">成長を楽しむこと</div>
+        <p class="value-text">強制ではなく、自然と挑戦したくなる環境をつくります。心に余裕があるからこそ芽生える「もっとやってみたい」を、全力で後押しします。</p>
+      </div>
+      <div class="value-card fade-up fade-up-delay-3">
+        <div class="value-num">03</div>
+        <div class="value-en">Respect</div>
+        <div class="value-title">人を大切にすること</div>
+        <p class="value-text">経歴や背景に関わらず、すべての人の可能性を信じます。年齢も社歴も関係ない、フラットで風通しの良い関係性を大切にしています。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== COMPANY PROFILE ===== -->
+<div class="section">
+  <div class="section-label fade-up">Company Profile</div>
+  <h2 class="section-title fade-up">会社概要</h2>
+  <table class="info-table fade-up">
     <tr><th>社名</th><td>株式会社ファンリアル</td></tr>
+    <tr><th>英文社名</th><td>Funreal Inc.</td></tr>
+    <tr><th>設立日</th><td>2022年（令和4年）4月25日</td></tr>
     <tr><th>資本金</th><td>100万円</td></tr>
-    <tr><th>設立日</th><td>令和４年４月２５日</td></tr>
-    <tr><th>業務内容</th><td>システムの設計、開発、運用<br>ウェブサイトの企画、制作、運営<br>各種映像の企画、制作、販売</td></tr>
-    <tr><th>役員</th><td>代表取締役 渡邉 悟<br>代表取締役 羽田 怜生</td></tr>
-    <tr><th>所在地</th><td>〒160-0023 東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406</td></tr>
+    <tr><th>代表者</th><td>代表取締役 渡邉 悟<br>代表取締役 羽田 怜生</td></tr>
+    <tr><th>事業内容</th><td>システムの設計・開発・運用<br>ウェブサイトの企画・制作・運営<br>各種映像の企画・制作・販売<br>ITソリューション事業</td></tr>
+    <tr><th>所在地</th><td>〒160-0023<br>東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406</td></tr>
     <tr><th>TEL</th><td>03-6403-4418</td></tr>
   </table>
 </div>
+
 <hr class="divider">
+
+<!-- ===== HISTORY ===== -->
 <div class="section">
-  <div class="section-label">Access</div><h2 class="section-title">アクセス</h2>
-  <div class="ph-box" style="height:380px;margin-bottom:24px;font-size:13px;">MAP PLACEHOLDER（実装時にGoogleマップを埋め込み）</div>
-  <p style="font-size:15px;line-height:2;color:#444;">〒160-0023 東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406<br>Tel: 03-6403-4418</p>
+  <div class="section-label fade-up">History</div>
+  <h2 class="section-title fade-up">沿革</h2>
+  <p class="section-lead fade-up">設立から現在まで、着実に成長を続けています。</p>
+  <div class="history-line">
+    <div class="history-item fade-up">
+      <div class="history-dot"></div>
+      <div class="history-year">2022.04</div>
+      <div class="history-text">株式会社ファンリアル 設立</div>
+    </div>
+    <div class="history-item fade-up">
+      <div class="history-dot"></div>
+      <div class="history-year">2022.XX</div>
+      <div class="history-text">初案件獲得（マイルストーン内容は後日）</div>
+    </div>
+    <div class="history-item fade-up">
+      <div class="history-dot"></div>
+      <div class="history-year">2023.XX</div>
+      <div class="history-text">社員数◯名突破（マイルストーン内容は後日）</div>
+    </div>
+    <div class="history-item fade-up">
+      <div class="history-dot"></div>
+      <div class="history-year">2024.XX</div>
+      <div class="history-text">ソリューション事業開始（マイルストーン内容は後日）</div>
+    </div>
+    <div class="history-item fade-up">
+      <div class="history-dot"></div>
+      <div class="history-year">2025.XX</div>
+      <div class="history-text">マイルストーン内容は後日</div>
+    </div>
+    <div class="history-item fade-up">
+      <div class="history-dot"></div>
+      <div class="history-year">2026</div>
+      <div class="history-text" style="color:var(--blue);font-weight:700;">採用強化フェーズ開始 &#8212; 30名体制を目指して</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== ACCESS ===== -->
+<div class="section">
+  <div class="section-label fade-up">Access</div>
+  <h2 class="section-title fade-up">アクセス</h2>
+  <div class="ph-box fade-up" style="height:380px;margin-bottom:24px;font-size:13px;">MAP PLACEHOLDER（実装時にGoogleマップを埋め込み）</div>
+  <p class="access-info fade-up">〒160-0023 東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406<br>Tel: 03-6403-4418</p>
+</div>
+
+<hr class="divider">
+
+<!-- ===== SERVICE LINKS ===== -->
+<div class="section">
+  <div class="section-label fade-up">Service</div>
+  <h2 class="section-title fade-up">私たちのサービス</h2>
+  <div class="svc-grid">
+    <a href="service-se.html" class="svc-card fade-up fade-up-delay-1">
+      <div class="svc-card-icon">&#x1F4BB;</div>
+      <div class="svc-card-title">SE事業</div>
+      <p class="svc-card-text">お客様のプロジェクトに最適なエンジニアをアサイン。成長を重視した配属で、エンジニアとクライアント双方に価値を提供します。</p>
+      <span class="svc-card-link">View More &rarr;</span>
+    </a>
+    <a href="service-is.html" class="svc-card fade-up fade-up-delay-2">
+      <div class="svc-card-icon">&#x1F6E1;</div>
+      <div class="svc-card-title">IS事業</div>
+      <p class="svc-card-text">情報システム部門の支援を通じて、企業のIT基盤を強化。セキュリティからインフラまで幅広くサポートします。</p>
+      <span class="svc-card-link">View More &rarr;</span>
+    </a>
+    <a href="solutions.html" class="svc-card fade-up fade-up-delay-3">
+      <div class="svc-card-icon">&#x1F4A1;</div>
+      <div class="svc-card-title">ソリューションズ</div>
+      <p class="svc-card-text">社員発の企画やチーム開発から生まれた自社プロダクト。持ち込み企画も歓迎する、ファンリアルらしい事業です。</p>
+      <span class="svc-card-link">View More &rarr;</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== RECRUIT CTA ===== -->
+<div class="section" style="padding-top:0;">
+  <div class="recruit-cta fade-up">
+    <div class="recruit-cta-title">一緒に働きませんか？</div>
+    <p class="recruit-cta-text">ファンリアルでは、様々なポジションで仲間を募集しています。<br>完璧な経歴は必要ありません。まずはお気軽にご連絡ください。</p>
+    <a href="recruit.html" class="btn btn-primary">採用情報を見る &rarr;</a>
+  </div>
 </div>
 
 <footer>
@@ -183,5 +378,13 @@
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
+
+  // Scroll fade-in animation
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(function(el){ observer.observe(el); });
 </script>
 </body></html>

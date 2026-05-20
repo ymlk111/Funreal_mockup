@@ -3,18 +3,25 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>お問い合わせ | 株式会社ファンリアル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00; --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666; --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
+
+  /* ===== HEADER ===== */
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-entry-btn { padding: 8px 20px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+  .header-entry-btn:hover { background: #0090aa; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ===== DRAWER ===== */
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
   .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; overflow-y: auto; }
   .drawer.open { right: 0; }
@@ -30,39 +37,73 @@
   .drawer-sub li a:hover { color: var(--blue); }
   .drawer-sub li a::before { content: "- "; }
   .has-sub > a::after { content: " >"; color: var(--blue); }
-  .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
-  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
-  .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); }
-  .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+
+  /* ===== HERO ===== */
+  .contact-hero { background: var(--black); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
+  .contact-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
+  .contact-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .contact-hero-label::before, .contact-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+  .contact-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); margin-bottom: 20px; line-height: 1.4; animation: heroIn 0.8s ease forwards; }
+  .contact-hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 2; max-width: 600px; margin: 0 auto; animation: heroIn 0.8s ease 0.2s forwards; opacity: 0; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width: 1100px; margin: 0 auto; padding: 100px 60px; }
+  .section-narrow { max-width: 780px; }
   .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
-  .section-body { font-size: 15px; line-height: 2; color: #444; }
-  .info-table { width: 100%; border-collapse: collapse; }
-  .info-table th, .info-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
-  .info-table th { width: 200px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
-  .info-table td { color: var(--black); line-height: 1.8; }
-  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
-  .card-grid { display: grid; gap: 24px; }
-  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-  .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-img { width: 100%; aspect-ratio: 16/9; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
-  .card-body { padding: 20px; }
-  .card-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
-  .card-title { font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--black); margin-bottom: 8px; }
-  .card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
-  .card-date { font-size: 12px; color: #aaa; font-family: var(--font-en); margin-top: 8px; }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: var(--black); }
+  .section-lead { font-size: 15px; line-height: 2; color: #555; margin-bottom: 48px; }
   .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-dark { background: var(--black); color: var(--white); }
-  .btn-dark:hover { background: var(--red); }
-  .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
-  .btn-outline:hover { background: var(--black); color: var(--white); }
-  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 80px; }
+
+  /* ===== INQUIRY TYPES ===== */
+  .type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+  .type-card { background: var(--gray-light); border-radius: 12px; padding: 32px 24px; text-align: center; border: 2px solid transparent; transition: all 0.2s; cursor: default; }
+  .type-card:hover { border-color: var(--blue); background: rgba(0,170,204,0.03); }
+  .type-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; }
+  .type-card-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--black); }
+  .type-card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
+
+  /* ===== FORM ===== */
+  .form-group { margin-bottom: 28px; }
+  .form-label { display: block; font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+  .form-label .required { font-size: 11px; color: var(--red); margin-left: 6px; font-weight: 700; }
+  .form-input, .form-select, .form-textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--gray-mid); border-radius: 6px; font-size: 14px; font-family: var(--font-jp); color: var(--black); background: var(--white); transition: border-color 0.2s; outline: none; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,170,204,0.1); }
+  .form-input::placeholder, .form-textarea::placeholder { color: #bbb; }
+  .form-textarea { resize: vertical; min-height: 160px; }
+  .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-note { font-size: 12px; color: var(--gray-text); margin-top: 6px; }
+  .form-submit { text-align: center; margin-top: 40px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--blue); color: var(--white); padding: 16px 56px; font-size: 14px; }
+  .btn-primary:hover { background: #0090aa; }
+  .form-privacy { text-align: center; margin-top: 20px; font-size: 12px; color: var(--gray-text); }
+  .form-privacy a { color: var(--blue); text-decoration: none; }
+  .form-privacy a:hover { text-decoration: underline; }
+  .form-mockup-note { text-align: center; margin-top: 16px; padding: 12px; background: rgba(0,170,204,0.05); border-radius: 6px; font-size: 12px; color: var(--blue); font-family: var(--font-en); }
+
+  /* ===== COMPANY INFO ===== */
+  .info-bg { background: var(--gray-light); }
+  .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .info-card { text-align: center; }
+  .info-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 20px; }
+  .info-card-title { font-size: 13px; font-weight: 600; color: var(--gray-text); margin-bottom: 8px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
+  .info-card-value { font-size: 15px; font-weight: 500; color: var(--black); line-height: 1.8; }
+
+  /* ===== FAQ ===== */
+  .faq-item { border-bottom: 1px solid var(--gray-mid); }
+  .faq-q { padding: 24px 0; font-size: 15px; font-weight: 700; color: var(--black); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .faq-q::before { content: 'Q.'; font-family: var(--font-en); font-weight: 900; color: var(--blue); font-size: 18px; min-width: 30px; }
+  .faq-q::after { content: '+'; font-family: var(--font-en); font-size: 20px; color: var(--blue); transition: transform 0.3s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-a-inner { padding: 0 0 24px 42px; font-size: 14px; line-height: 2; color: #555; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 0; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 40px; border-bottom: 1px solid #2a2a2a; margin-bottom: 32px; }
   .footer-logo-ph { height: 48px; width: 100px; border: 1px dashed #444; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .footer-logo-ph span { font-size: 10px; color: #555; font-family: var(--font-en); letter-spacing: 0.05em; }
@@ -75,6 +116,8 @@
   .footer-links a { color: #555; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== MODAL ===== */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
@@ -87,6 +130,14 @@
   .modal-body h3:first-child { margin-top: 0; }
   .modal-body .ph-box { height: 60px; font-size: 11px; }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ===== ANIMATION ===== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.15s; }
+  .fade-up-delay-2 { transition-delay: 0.3s; }
+  .fade-up-delay-3 { transition-delay: 0.45s; }
 </style>
 </head>
 <body>
@@ -113,19 +164,158 @@
     <div class="logo-ph"><span>LOGO</span></div>
     <span class="logo-text">株式会社ファンリアル</span>
   </a>
-  <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  <div class="header-right">
+    <a href="recruit.html#entry" class="header-entry-btn">Entry</a>
+    <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  </div>
 </header>
 
-<div class="page-hero"><div class="page-hero-label">Contact</div><h1>お問い合わせ</h1></div>
-<div class="section" style="max-width:780px;">
-  <p class="section-body" style="margin-bottom:48px;">サービスに関するご質問・ご相談はお気軽にどうぞ。<br>下記フォームよりお問い合わせください。担当者より迅速にご連絡いたします。</p>
-  <div class="ph-box" style="height:500px;flex-direction:column;gap:12px;font-size:13px;">
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-    Googleフォーム埋め込みエリア<br>
-    <span style="font-size:11px;color:#ccc;">（実装時にGoogleフォームを埋め込み）</span>
-  </div>
-</div>
+<!-- ===== HERO ===== -->
+<section class="contact-hero">
+  <div class="contact-hero-label">Contact</div>
+  <h1>お問い合わせ</h1>
+  <p class="contact-hero-sub">サービスに関するご質問・ご相談はお気軽にどうぞ。<br>担当者より2営業日以内にご連絡いたします。</p>
+</section>
 
+<!-- ===== INQUIRY TYPES ===== -->
+<section class="section section-narrow">
+  <div class="fade-up">
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="type-icon">💬</div>
+        <div class="type-card-title">サービスに関する<br>ご相談</div>
+        <div class="type-card-text">SE・IS・ソリューションズ各サービスについてのご質問・お見積もり</div>
+      </div>
+      <div class="type-card">
+        <div class="type-icon">👥</div>
+        <div class="type-card-title">採用に関する<br>お問い合わせ</div>
+        <div class="type-card-text">求人情報・選考プロセスについてのご質問はこちら</div>
+      </div>
+      <div class="type-card">
+        <div class="type-icon">📋</div>
+        <div class="type-card-title">その他の<br>お問い合わせ</div>
+        <div class="type-card-text">取材・協業・その他のお問い合わせはこちらから</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FORM ===== -->
+  <div class="fade-up">
+    <div class="section-label">Form</div>
+    <h2 class="section-title">お問い合わせフォーム</h2>
+    <p class="section-lead" style="margin-bottom: 32px;"><span style="color: var(--red);">*</span> は必須項目です。</p>
+
+    <form onsubmit="return false;">
+      <div class="form-group">
+        <label class="form-label">お問い合わせ種別<span class="required">*</span></label>
+        <select class="form-select">
+          <option value="" disabled selected>選択してください</option>
+          <option>サービスに関するご相談</option>
+          <option>お見積もりのご依頼</option>
+          <option>採用に関するお問い合わせ</option>
+          <option>取材・メディア関連</option>
+          <option>協業・パートナーシップ</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">会社名<span class="required">*</span></label>
+          <input type="text" class="form-input" placeholder="株式会社〇〇">
+        </div>
+        <div class="form-group">
+          <label class="form-label">部署名</label>
+          <input type="text" class="form-input" placeholder="営業部">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">お名前<span class="required">*</span></label>
+          <input type="text" class="form-input" placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label class="form-label">フリガナ<span class="required">*</span></label>
+          <input type="text" class="form-input" placeholder="ヤマダ タロウ">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">メールアドレス<span class="required">*</span></label>
+          <input type="email" class="form-input" placeholder="example@company.co.jp">
+        </div>
+        <div class="form-group">
+          <label class="form-label">電話番号</label>
+          <input type="tel" class="form-input" placeholder="03-0000-0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">お問い合わせ内容<span class="required">*</span></label>
+        <textarea class="form-textarea" placeholder="お問い合わせ内容をご記入ください。"></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn btn-primary" onclick="alert('モックアップのため送信されません')">送信する →</button>
+      </div>
+      <div class="form-privacy">送信することで、<a href="#" onclick="openModal('modal-privacy');return false;">プライバシーポリシー</a>に同意したものとみなします。</div>
+      <div class="form-mockup-note">※ MOCKUP — 実装時はGoogleフォーム埋め込み or API連携に置換予定</div>
+    </form>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== COMPANY INFO ===== -->
+<section class="section info-bg">
+  <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
+    <div class="section-label" style="justify-content: center;">Company Info</div>
+    <h2 class="section-title">お電話・ご来社でのお問い合わせ</h2>
+  </div>
+  <div class="info-grid fade-up">
+    <div class="info-card">
+      <div class="info-icon">📞</div>
+      <div class="info-card-title">Telephone</div>
+      <div class="info-card-value" style="font-family: var(--font-en); font-size: 20px; font-weight: 700;">03-6403-4418</div>
+      <div style="font-size: 12px; color: var(--gray-text); margin-top: 4px;">平日 10:00 - 19:00</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">📍</div>
+      <div class="info-card-title">Address</div>
+      <div class="info-card-value">〒160-0023<br>東京都新宿区西新宿7-5-5<br>Plaza西新宿 UCF406</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">🕐</div>
+      <div class="info-card-title">Business Hours</div>
+      <div class="info-card-value">平日 10:00 - 19:00<br><span style="font-size: 12px; color: var(--gray-text);">土日祝日はお休みです</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section section-narrow">
+  <div class="fade-up">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">よくあるご質問</h2>
+  </div>
+  <div class="fade-up">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">返信までどのくらいかかりますか？</div>
+      <div class="faq-a"><div class="faq-a-inner">通常、2営業日以内にご連絡いたします。お急ぎの場合は、お電話（03-6403-4418）にてお問い合わせください。</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">対応可能なエリアはどこですか？</div>
+      <div class="faq-a"><div class="faq-a-inner">SE事業・IS事業ともに、基本的に首都圏（東京・神奈川・千葉・埼玉）を中心に対応しています。リモート対応が可能な案件については、全国からのご相談も承ります。</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">見積もりだけでも相談できますか？</div>
+      <div class="faq-a"><div class="faq-a-inner">もちろんです。ご検討段階でのお見積もり・ご相談も歓迎しております。まずはお気軽にお問い合わせください。</div></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">採用に関する問い合わせもここからできますか？</div>
+      <div class="faq-a"><div class="faq-a-inner">はい、お問い合わせ種別で「採用に関するお問い合わせ」を選択してご送信ください。採用ページの<a href="recruit.html" style="color:var(--blue);">エントリーフォーム</a>からも直接ご応募いただけます。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-top">
     <div><div class="footer-logo-ph"><span>LOGO</span></div><div class="footer-logo-name">株式会社ファンリアル</div></div>
@@ -142,6 +332,7 @@
   </div>
 </footer>
 
+<!-- ===== MODALS ===== -->
 <div class="modal-overlay" id="modal-privacy" onclick="if(event.target===this)closeModal('modal-privacy')">
   <div class="modal">
     <div class="modal-header"><h2>プライバシーポリシー</h2><button class="modal-close" onclick="closeModal('modal-privacy')">&#x2715;</button></div>
@@ -166,6 +357,7 @@
     </div>
   </div>
 </div>
+
 <script>
   function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
   function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
@@ -173,5 +365,13 @@
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body></html>

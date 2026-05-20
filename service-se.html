@@ -3,18 +3,25 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>SE | 株式会社ファンリアル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00; --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666; --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
+
+  /* ===== HEADER ===== */
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-entry-btn { padding: 8px 20px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+  .header-entry-btn:hover { background: #0090aa; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ===== DRAWER ===== */
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
   .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; overflow-y: auto; }
   .drawer.open { right: 0; }
@@ -30,39 +37,97 @@
   .drawer-sub li a:hover { color: var(--blue); }
   .drawer-sub li a::before { content: "- "; }
   .has-sub > a::after { content: " >"; color: var(--blue); }
-  .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
-  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
-  .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); }
-  .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+
+  /* ===== HERO ===== */
+  .se-hero { background: var(--black); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
+  .se-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
+  .se-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .se-hero-label::before, .se-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+  .se-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); margin-bottom: 20px; line-height: 1.4; animation: heroIn 0.8s ease forwards; }
+  .se-hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 2; max-width: 600px; margin: 0 auto; animation: heroIn 0.8s ease 0.2s forwards; opacity: 0; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width: 1100px; margin: 0 auto; padding: 100px 60px; }
   .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
-  .section-body { font-size: 15px; line-height: 2; color: #444; }
-  .info-table { width: 100%; border-collapse: collapse; }
-  .info-table th, .info-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
-  .info-table th { width: 200px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
-  .info-table td { color: var(--black); line-height: 1.8; }
-  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
-  .card-grid { display: grid; gap: 24px; }
-  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-  .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-img { width: 100%; aspect-ratio: 16/9; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
-  .card-body { padding: 20px; }
-  .card-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
-  .card-title { font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--black); margin-bottom: 8px; }
-  .card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
-  .card-date { font-size: 12px; color: #aaa; font-family: var(--font-en); margin-top: 8px; }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: var(--black); }
+  .section-lead { font-size: 15px; line-height: 2; color: #555; margin-bottom: 48px; }
   .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-dark { background: var(--black); color: var(--white); }
-  .btn-dark:hover { background: var(--red); }
-  .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
-  .btn-outline:hover { background: var(--black); color: var(--white); }
-  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 80px; }
+
+  /* ===== MESSAGE ===== */
+  .msg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .msg-text { font-size: 15px; line-height: 2.2; color: #444; }
+  .msg-text p { margin-bottom: 20px; }
+  .msg-text p:last-child { margin-bottom: 0; }
+  .msg-visual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== STRENGTHS ===== */
+  .strengths-bg { background: var(--gray-light); }
+  .str-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .str-card { background: var(--white); border-radius: 12px; padding: 40px 32px; border: 1px solid var(--gray-mid); text-align: center; transition: box-shadow 0.2s, transform 0.2s; }
+  .str-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }
+  .str-num { font-family: var(--font-en); font-size: 48px; font-weight: 900; color: rgba(0,170,204,0.15); line-height: 1; margin-bottom: 12px; }
+  .str-en { font-family: var(--font-en); font-size: 13px; font-weight: 700; letter-spacing: 0.15em; color: var(--blue); text-transform: uppercase; margin-bottom: 8px; }
+  .str-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--black); }
+  .str-text { font-size: 14px; line-height: 2; color: #555; text-align: left; }
+
+  /* ===== TECHNOLOGY ===== */
+  .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tech-card { background: var(--gray-light); border-radius: 10px; padding: 32px 28px; border-top: 3px solid var(--blue); transition: box-shadow 0.2s, transform 0.2s; }
+  .tech-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+  .tech-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; }
+  .tech-card-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--black); }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .tech-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; }
+  .tech-card-text { font-size: 13px; color: var(--gray-text); line-height: 1.8; }
+
+  /* ===== FLOW ===== */
+  .flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .flow-step { text-align: center; padding: 0 20px; position: relative; }
+  .flow-step:not(:last-child)::after { content: ''; position: absolute; top: 28px; right: -2px; width: 24px; height: 2px; background: var(--blue); z-index: 1; }
+  .flow-num { width: 56px; height: 56px; border-radius: 50%; background: var(--blue); color: var(--white); font-family: var(--font-en); font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .flow-step-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--black); }
+  .flow-step-text { font-size: 13px; color: var(--gray-text); line-height: 1.8; }
+
+  /* ===== CASE ===== */
+  .case-item { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px; }
+  .case-item.reverse { direction: rtl; }
+  .case-item.reverse > * { direction: ltr; }
+  .case-img { width: 100%; aspect-ratio: 16/10; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
+  .case-label { font-family: var(--font-en); font-size: 11px; color: var(--red); letter-spacing: 0.15em; margin-bottom: 8px; font-weight: 600; }
+  .case-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--black); }
+  .case-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  .case-meta-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; background: var(--gray-light); border-radius: 20px; font-size: 11px; color: var(--gray-text); font-weight: 500; }
+  .case-text { font-size: 14px; line-height: 2; color: #555; }
+
+  /* ===== NUMBERS ===== */
+  .numbers-bg { background: var(--black); }
+  .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .num-item { text-align: center; }
+  .num-value { font-family: var(--font-en); font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--blue); line-height: 1; margin-bottom: 4px; }
+  .num-unit { font-family: var(--font-en); font-size: 16px; font-weight: 600; color: var(--blue); }
+  .num-label { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+
+  /* ===== SERVICE LINKS ===== */
+  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .svc-card { display: block; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 36px 28px; text-decoration: none; color: var(--black); transition: box-shadow 0.2s, transform 0.2s; }
+  .svc-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .svc-card-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+  .svc-card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .svc-card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; margin-bottom: 16px; }
+  .svc-card-link { font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); text-transform: uppercase; }
+
+  /* ===== RECRUIT CTA ===== */
+  .recruit-cta { text-align: center; padding: 80px 40px; background: var(--black); border-radius: 16px; }
+  .recruit-cta-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .recruit-cta-text { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--blue); color: var(--white); padding: 16px 40px; }
+  .btn-primary:hover { background: #0090aa; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 0; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 40px; border-bottom: 1px solid #2a2a2a; margin-bottom: 32px; }
   .footer-logo-ph { height: 48px; width: 100px; border: 1px dashed #444; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .footer-logo-ph span { font-size: 10px; color: #555; font-family: var(--font-en); letter-spacing: 0.05em; }
@@ -75,6 +140,8 @@
   .footer-links a { color: #555; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== MODAL ===== */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
@@ -87,6 +154,15 @@
   .modal-body h3:first-child { margin-top: 0; }
   .modal-body .ph-box { height: 60px; font-size: 11px; }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ===== ANIMATION ===== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.15s; }
+  .fade-up-delay-2 { transition-delay: 0.3s; }
+  .fade-up-delay-3 { transition-delay: 0.45s; }
+  .fade-up-delay-4 { transition-delay: 0.6s; }
 </style>
 </head>
 <body>
@@ -113,51 +189,302 @@
     <div class="logo-ph"><span>LOGO</span></div>
     <span class="logo-text">株式会社ファンリアル</span>
   </a>
-  <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  <div class="header-right">
+    <a href="recruit.html#entry" class="header-entry-btn">Entry</a>
+    <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  </div>
 </header>
 
-<div class="page-hero"><div class="page-hero-label">Service</div><h1>SE — システムエンジニアリング</h1></div>
-<div class="section">
-  <div class="section-label">Overview</div><h2 class="section-title">サービス概要</h2>
-  <div class="ph-box" style="height:160px;margin-bottom:60px;">サービス詳細テキスト（内容は後日）</div>
-  <div class="section-label">Technology</div><h2 class="section-title">対応技術・領域</h2>
-  <div class="card-grid card-grid-3" style="margin-bottom:60px;">
-    <div style="background:var(--gray-light);border-radius:8px;padding:28px;border-top:3px solid var(--red);"><div style="font-size:15px;font-weight:700;margin-bottom:10px;">フロントエンド</div><div class="ph-box" style="height:44px;font-size:11px;">技術スタック（後日）</div></div>
-    <div style="background:var(--gray-light);border-radius:8px;padding:28px;border-top:3px solid var(--red);"><div style="font-size:15px;font-weight:700;margin-bottom:10px;">バックエンド</div><div class="ph-box" style="height:44px;font-size:11px;">技術スタック（後日）</div></div>
-    <div style="background:var(--gray-light);border-radius:8px;padding:28px;border-top:3px solid var(--red);"><div style="font-size:15px;font-weight:700;margin-bottom:10px;">インフラ・クラウド</div><div class="ph-box" style="height:44px;font-size:11px;">技術スタック（後日）</div></div>
-    <div style="background:var(--gray-light);border-radius:8px;padding:28px;border-top:3px solid var(--red);"><div style="font-size:15px;font-weight:700;margin-bottom:10px;">モバイル</div><div class="ph-box" style="height:44px;font-size:11px;">技術スタック（後日）</div></div>
-    <div style="background:var(--gray-light);border-radius:8px;padding:28px;border-top:3px solid var(--red);"><div style="font-size:15px;font-weight:700;margin-bottom:10px;">データベース</div><div class="ph-box" style="height:44px;font-size:11px;">技術スタック（後日）</div></div>
-    <div style="background:var(--gray-light);border-radius:8px;padding:28px;border-top:3px solid var(--red);"><div style="font-size:15px;font-weight:700;margin-bottom:10px;">QA・テスト</div><div class="ph-box" style="height:44px;font-size:11px;">技術スタック（後日）</div></div>
-  </div>
-  <div class="section-label">Case</div><h2 class="section-title">実績・事例</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px;">
-    <div class="ph-box" style="height:240px;border-radius:8px;">CASE IMAGE 1</div>
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--red);letter-spacing:0.15em;margin-bottom:8px;">CASE 01</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">実績の概要テキスト。詳細は後日。</p>
-    </div>
-  </div>
-  <hr class="divider" style="margin-bottom:48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px;">
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--red);letter-spacing:0.15em;margin-bottom:8px;">CASE 02</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">実績の概要テキスト。詳細は後日。</p>
-    </div>
-    <div class="ph-box" style="height:240px;border-radius:8px;">CASE IMAGE 2</div>
-  </div>
-  <hr class="divider" style="margin-bottom:48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
-    <div class="ph-box" style="height:240px;border-radius:8px;">CASE IMAGE 3</div>
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--red);letter-spacing:0.15em;margin-bottom:8px;">CASE 03</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">実績の概要テキスト。詳細は後日。</p>
-    </div>
-  </div>
-</div>
+<!-- ===== HERO ===== -->
+<section class="se-hero">
+  <div class="se-hero-label">Service — SE</div>
+  <h1>技術で挑む、<br>ビジネスの現場へ。</h1>
+  <p class="se-hero-sub">クライアントの課題に向き合い、最適な技術と人材で価値を届ける。<br>ファンリアルのSEサービスは、エンジニアの成長とプロジェクトの成功を両立します。</p>
+</section>
 
+<!-- ===== MESSAGE ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Message</div>
+    <h2 class="section-title">エンジニアの力を、最前線へ届ける</h2>
+  </div>
+  <div class="msg-grid fade-up">
+    <div class="msg-text">
+      <p>ファンリアルのSE事業は、クライアント企業の開発現場にエンジニアを送り出すSES（システムエンジニアリングサービス）を中心としたサービスです。</p>
+      <p>私たちが大切にしているのは、「成長を前提としたアサインメント」。エンジニア一人ひとりのキャリアビジョンとスキルレベルを見極め、少し背伸びをしながら成長できる案件にマッチングします。</p>
+      <p>エンジニアが成長すれば、プロジェクトの品質が上がる。品質が上がれば、クライアントからの信頼が深まる。この好循環が、ファンリアルのSE事業の核心です。</p>
+    </div>
+    <div class="msg-visual">MESSAGE IMAGE</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== STRENGTHS ===== -->
+<section class="section strengths-bg">
+  <div class="fade-up">
+    <div class="section-label">Strengths</div>
+    <h2 class="section-title">ファンリアルSEの強み</h2>
+    <p class="section-lead">単なる人材提供ではなく、エンジニアの成長とクライアントの成功を同時に実現する仕組みがあります。</p>
+  </div>
+  <div class="str-grid">
+    <div class="str-card fade-up fade-up-delay-1">
+      <div class="str-num">01</div>
+      <div class="str-en">Growth Assignment</div>
+      <div class="str-title">成長を前提とした<br>アサイン</div>
+      <div class="str-text">エンジニアのスキルとキャリアビジョンに合わせて、次のステップにつながる案件を提案。「今できること」だけでなく「これからできるようになること」を見据えたマッチングを行います。</div>
+    </div>
+    <div class="str-card fade-up fade-up-delay-2">
+      <div class="str-num">02</div>
+      <div class="str-en">Wide Coverage</div>
+      <div class="str-title">幅広い技術領域</div>
+      <div class="str-text">フロントエンドからインフラ、モバイルまで。特定の技術に偏らず、多様な領域のプロジェクトに対応可能。エンジニアにとっては新しい技術に触れる機会にもなります。</div>
+    </div>
+    <div class="str-card fade-up fade-up-delay-3">
+      <div class="str-num">03</div>
+      <div class="str-en">Direct Communication</div>
+      <div class="str-title">クライアントとの<br>直接対話</div>
+      <div class="str-text">多重下請け構造ではなく、クライアントと直接コミュニケーションを取る体制を重視。エンジニアがビジネスの文脈を理解し、主体的に提案できる環境を整えます。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TECHNOLOGY ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Technology</div>
+    <h2 class="section-title">対応技術・領域</h2>
+    <p class="section-lead">多様なプロジェクト実績を通じて、幅広い技術スタックに対応しています。</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-card fade-up fade-up-delay-1">
+      <div class="tech-icon">⚛</div>
+      <div class="tech-card-title">フロントエンド</div>
+      <div class="tech-tags">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">Vue.js</span>
+        <span class="tech-tag">TypeScript</span>
+      </div>
+      <div class="tech-card-text">モダンなSPA/SSR開発からデザインシステムの構築まで。ユーザー体験を重視したフロントエンド開発に対応します。</div>
+    </div>
+    <div class="tech-card fade-up fade-up-delay-2">
+      <div class="tech-icon">⚙</div>
+      <div class="tech-card-title">バックエンド</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Java</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Go</span>
+        <span class="tech-tag">Node.js</span>
+      </div>
+      <div class="tech-card-text">堅牢なAPI設計からマイクロサービスアーキテクチャまで。スケーラブルで保守性の高いバックエンドを構築します。</div>
+    </div>
+    <div class="tech-card fade-up fade-up-delay-3">
+      <div class="tech-icon">☁</div>
+      <div class="tech-card-title">インフラ・クラウド</div>
+      <div class="tech-tags">
+        <span class="tech-tag">AWS</span>
+        <span class="tech-tag">GCP</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">Terraform</span>
+      </div>
+      <div class="tech-card-text">クラウドネイティブなインフラ構築からCI/CDパイプラインの整備まで。安定性とコスト効率を両立する設計を行います。</div>
+    </div>
+    <div class="tech-card fade-up fade-up-delay-1">
+      <div class="tech-icon">📱</div>
+      <div class="tech-card-title">モバイル</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Swift</span>
+        <span class="tech-tag">Kotlin</span>
+        <span class="tech-tag">Flutter</span>
+        <span class="tech-tag">React Native</span>
+      </div>
+      <div class="tech-card-text">ネイティブアプリからクロスプラットフォーム開発まで。iOS/Android両対応のモバイルアプリを開発します。</div>
+    </div>
+    <div class="tech-card fade-up fade-up-delay-2">
+      <div class="tech-icon">🗄</div>
+      <div class="tech-card-title">データベース</div>
+      <div class="tech-tags">
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">Redis</span>
+        <span class="tech-tag">MongoDB</span>
+      </div>
+      <div class="tech-card-text">RDB/NoSQLの設計・運用からパフォーマンスチューニングまで。データの信頼性と速度を担保します。</div>
+    </div>
+    <div class="tech-card fade-up fade-up-delay-3">
+      <div class="tech-icon">✓</div>
+      <div class="tech-card-title">QA・テスト</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Jest</span>
+        <span class="tech-tag">Cypress</span>
+        <span class="tech-tag">Selenium</span>
+        <span class="tech-tag">JUnit</span>
+      </div>
+      <div class="tech-card-text">自動テストの設計・導入からE2Eテストの構築まで。品質を仕組みで担保し、リリースサイクルを加速させます。</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== FLOW ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Flow</div>
+    <h2 class="section-title">ご利用の流れ</h2>
+    <p class="section-lead">ヒアリングからフォローアップまで、プロジェクトの成功に向けて一貫したサポートを提供します。</p>
+  </div>
+  <div class="flow-grid fade-up">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-step-title">ヒアリング</div>
+      <div class="flow-step-text">プロジェクトの概要・技術要件・チーム体制を丁寧にヒアリングし、必要なスキルセットを明確化します。</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-step-title">マッチング</div>
+      <div class="flow-step-text">スキル・経験・志向性を総合的に判断し、プロジェクトに最適なエンジニアをご提案します。</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-step-title">参画・稼働</div>
+      <div class="flow-step-text">チームに合流し、即戦力として稼働を開始。立ち上がりの支援も含めてサポートします。</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-step-title">フォローアップ</div>
+      <div class="flow-step-text">定期的な面談を通じて稼働状況を確認。課題の早期発見とエンジニアの成長支援を継続します。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASE STUDIES ===== -->
+<section class="section" style="background: var(--gray-light);">
+  <div class="fade-up">
+    <div class="section-label">Case</div>
+    <h2 class="section-title">プロジェクト事例</h2>
+    <p class="section-lead">業界・規模を問わず、さまざまな開発プロジェクトにエンジニアが参画しています。</p>
+  </div>
+
+  <div class="case-item fade-up">
+    <div class="case-img">CASE IMAGE 1</div>
+    <div>
+      <div class="case-label">CASE 01</div>
+      <div class="case-title">大手EC企業 — 基幹システムリプレイス</div>
+      <div class="case-meta">
+        <span class="case-meta-tag">EC / リテール</span>
+        <span class="case-meta-tag">Java / Spring Boot</span>
+        <span class="case-meta-tag">12ヶ月</span>
+        <span class="case-meta-tag">3名参画</span>
+      </div>
+      <p class="case-text">老朽化した基幹システムのマイクロサービス化プロジェクトにバックエンドエンジニア3名が参画。API設計からテスト自動化まで一貫して担当し、段階的な移行を実現しました。</p>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin-bottom: 48px;">
+
+  <div class="case-item reverse fade-up">
+    <div class="case-img">CASE IMAGE 2</div>
+    <div>
+      <div class="case-label">CASE 02</div>
+      <div class="case-title">フィンテック企業 — モバイルアプリ新規開発</div>
+      <div class="case-meta">
+        <span class="case-meta-tag">金融 / フィンテック</span>
+        <span class="case-meta-tag">Flutter / Firebase</span>
+        <span class="case-meta-tag">8ヶ月</span>
+        <span class="case-meta-tag">2名参画</span>
+      </div>
+      <p class="case-text">個人向け資産管理アプリの新規開発にモバイルエンジニアが参画。Flutter × Firebaseのクロスプラットフォーム構成で、iOS/Android同時リリースを達成しました。</p>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin-bottom: 48px;">
+
+  <div class="case-item fade-up">
+    <div class="case-img">CASE IMAGE 3</div>
+    <div>
+      <div class="case-label">CASE 03</div>
+      <div class="case-title">SaaS企業 — インフラ基盤のクラウド移行</div>
+      <div class="case-meta">
+        <span class="case-meta-tag">SaaS / BtoB</span>
+        <span class="case-meta-tag">AWS / Terraform</span>
+        <span class="case-meta-tag">6ヶ月</span>
+        <span class="case-meta-tag">1名参画</span>
+      </div>
+      <p class="case-text">オンプレミス環境からAWSへの全面移行プロジェクトにインフラエンジニアが参画。IaC化とCI/CDパイプラインの構築を推進し、デプロイ時間を大幅に短縮しました。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NUMBERS ===== -->
+<section class="section numbers-bg">
+  <div class="fade-up" style="text-align: center; margin-bottom: 60px;">
+    <div class="section-label" style="justify-content: center; color: rgba(255,255,255,0.4);">
+      <span style="color: rgba(255,255,255,0.4);">Numbers</span>
+    </div>
+    <h2 class="section-title" style="color: var(--white);">数字で見るSE事業</h2>
+  </div>
+  <div class="numbers-grid fade-up">
+    <div class="num-item">
+      <div class="num-value">50<span class="num-unit">+</span></div>
+      <div class="num-label">累計参画プロジェクト数</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">6</div>
+      <div class="num-label">対応技術領域</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">95<span class="num-unit">%</span></div>
+      <div class="num-label">クライアント継続率</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">10<span class="num-unit">+</span></div>
+      <div class="num-label">業界カバー数</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">3<span class="num-unit">年</span></div>
+      <div class="num-label">平均プロジェクト継続期間</div>
+    </div>
+    <div class="num-item">
+      <div class="num-value">100<span class="num-unit">%</span></div>
+      <div class="num-label">エンド直案件比率</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RECRUIT CTA + SERVICE LINKS ===== -->
+<section class="section">
+  <div class="fade-up" style="margin-bottom: 80px;">
+    <div class="recruit-cta">
+      <div class="recruit-cta-title">エンジニアとして、ファンリアルで働く</div>
+      <p class="recruit-cta-text">成長を前提としたアサイン、自由で快適な環境、柔軟なキャリアパス。<br>あなたの「次のステップ」を一緒に見つけませんか。</p>
+      <a href="recruit.html" class="btn btn-primary">View Recruit →</a>
+    </div>
+  </div>
+
+  <div class="fade-up">
+    <div class="section-label">Other Services</div>
+    <h2 class="section-title">その他のサービス</h2>
+    <p class="section-lead">SE事業以外にも、情報システム支援やソリューション開発など、多角的にサービスを展開しています。</p>
+  </div>
+  <div class="svc-grid fade-up">
+    <a href="service-is.html" class="svc-card">
+      <div class="svc-card-icon">🖥</div>
+      <div class="svc-card-title">IS — 情報システム</div>
+      <p class="svc-card-text">社内IT環境の構築・運用をトータルサポート。情シス部門のリソース不足を解決し、業務効率化を推進します。</p>
+      <span class="svc-card-link">View Detail →</span>
+    </a>
+    <a href="solutions.html" class="svc-card">
+      <div class="svc-card-icon">💡</div>
+      <div class="svc-card-title">Solutions — ソリューションズ</div>
+      <p class="svc-card-text">自社プロダクトの開発・提供を通じて、企業のDXを加速させるソリューションを展開しています。</p>
+      <span class="svc-card-link">View Detail →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-top">
     <div><div class="footer-logo-ph"><span>LOGO</span></div><div class="footer-logo-name">株式会社ファンリアル</div></div>
@@ -174,6 +501,7 @@
   </div>
 </footer>
 
+<!-- ===== MODALS ===== -->
 <div class="modal-overlay" id="modal-privacy" onclick="if(event.target===this)closeModal('modal-privacy')">
   <div class="modal">
     <div class="modal-header"><h2>プライバシーポリシー</h2><button class="modal-close" onclick="closeModal('modal-privacy')">&#x2715;</button></div>
@@ -198,6 +526,7 @@
     </div>
   </div>
 </div>
+
 <script>
   function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
   function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
@@ -205,5 +534,15 @@
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body></html>

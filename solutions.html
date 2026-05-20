@@ -3,18 +3,25 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>ソリューションズ | 株式会社ファンリアル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --black: #1A1A1A; --red: #CC2200; --blue: #00AACC; --yellow: #CCAA00; --white: #FFFFFF; --gray-light: #F5F5F5; --gray-mid: #E0E0E0; --gray-text: #666666; --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-jp); color: var(--black); background: var(--white); padding-top: 64px; }
+
+  /* ===== HEADER ===== */
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; border-bottom: 2px solid #2a2a2a; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .logo-ph { height: 36px; width: 80px; border: 1px dashed #555; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; font-family: var(--font-en); letter-spacing: 0.05em; }
   .logo-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.05em; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-entry-btn { padding: 8px 20px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: background 0.2s; }
+  .header-entry-btn:hover { background: #0090aa; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  /* ===== DRAWER ===== */
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
   .drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: var(--black); z-index: 1001; transition: right 0.3s ease; padding: 80px 32px 40px; overflow-y: auto; }
   .drawer.open { right: 0; }
@@ -30,39 +37,87 @@
   .drawer-sub li a:hover { color: var(--blue); }
   .drawer-sub li a::before { content: "- "; }
   .has-sub > a::after { content: " >"; color: var(--blue); }
-  .page-hero { background: var(--black); padding: 60px; position: relative; overflow: hidden; }
-  .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
-  .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .page-hero h1 { font-size: 36px; font-weight: 700; color: var(--white); }
-  .section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
+
+  /* ===== HERO ===== */
+  .sol-hero { background: var(--black); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
+  .sol-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
+  .sol-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .sol-hero-label::before, .sol-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--yellow); }
+  .sol-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); margin-bottom: 20px; line-height: 1.4; animation: heroIn 0.8s ease forwards; }
+  .sol-hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 2; max-width: 600px; margin: 0 auto; animation: heroIn 0.8s ease 0.2s forwards; opacity: 0; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width: 1100px; margin: 0 auto; padding: 100px 60px; }
   .section-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
-  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
-  .section-body { font-size: 15px; line-height: 2; color: #444; }
-  .info-table { width: 100%; border-collapse: collapse; }
-  .info-table th, .info-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
-  .info-table th { width: 200px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
-  .info-table td { color: var(--black); line-height: 1.8; }
-  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
-  .card-grid { display: grid; gap: 24px; }
-  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-  .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-img { width: 100%; aspect-ratio: 16/9; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
-  .card-body { padding: 20px; }
-  .card-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
-  .card-title { font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--black); margin-bottom: 8px; }
-  .card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
-  .card-date { font-size: 12px; color: #aaa; font-family: var(--font-en); margin-top: 8px; }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: var(--black); }
+  .section-lead { font-size: 15px; line-height: 2; color: #555; margin-bottom: 48px; }
   .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-dark { background: var(--black); color: var(--white); }
-  .btn-dark:hover { background: var(--red); }
-  .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--black); }
-  .btn-outline:hover { background: var(--black); color: var(--white); }
-  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 80px; }
+
+  /* ===== MESSAGE ===== */
+  .msg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .msg-text { font-size: 15px; line-height: 2.2; color: #444; }
+  .msg-text p { margin-bottom: 20px; }
+  .msg-text p:last-child { margin-bottom: 0; }
+  .msg-visual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== SERVICE TYPES ===== */
+  .type-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .type-card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 48px 36px; transition: box-shadow 0.2s, transform 0.2s; }
+  .type-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }
+  .type-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(204,170,0,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 26px; }
+  .type-en { font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; color: var(--yellow); text-transform: uppercase; margin-bottom: 8px; }
+  .type-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; color: var(--black); }
+  .type-text { font-size: 14px; line-height: 2; color: #555; }
+
+  /* ===== PROCESS ===== */
+  .process-bg { background: var(--gray-light); }
+  .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .process-step { background: var(--white); border-radius: 10px; padding: 32px 24px; border-top: 3px solid var(--yellow); text-align: center; transition: box-shadow 0.2s; }
+  .process-step:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .process-num { font-family: var(--font-en); font-size: 32px; font-weight: 900; color: rgba(204,170,0,0.2); margin-bottom: 12px; }
+  .process-step-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--black); }
+  .process-step-text { font-size: 13px; color: var(--gray-text); line-height: 1.8; }
+
+  /* ===== WORKS ===== */
+  .work-item { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px; }
+  .work-item.reverse { direction: rtl; }
+  .work-item.reverse > * { direction: ltr; }
+  .work-img { width: 100%; aspect-ratio: 16/10; background: var(--gray-light); border: 1px dashed #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
+  .work-label { font-family: var(--font-en); font-size: 11px; color: var(--yellow); letter-spacing: 0.15em; margin-bottom: 8px; font-weight: 600; }
+  .work-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--black); }
+  .work-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .work-meta-tag { display: inline-flex; align-items: center; padding: 4px 12px; background: rgba(204,170,0,0.08); border-radius: 20px; font-size: 11px; color: var(--gray-text); font-weight: 500; }
+  .work-text { font-size: 14px; line-height: 2; color: #555; }
+
+  /* ===== TECHNOLOGY ===== */
+  .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tech-card { background: var(--gray-light); border-radius: 10px; padding: 28px 24px; border-top: 3px solid var(--blue); transition: box-shadow 0.2s; }
+  .tech-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .tech-card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--black); }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; }
+
+  /* ===== SERVICE LINKS ===== */
+  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .svc-card { display: block; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 36px 28px; text-decoration: none; color: var(--black); transition: box-shadow 0.2s, transform 0.2s; }
+  .svc-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .svc-card-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+  .svc-card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .svc-card-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; margin-bottom: 16px; }
+  .svc-card-link { font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); text-transform: uppercase; }
+
+  /* ===== CTA ===== */
+  .contact-cta { text-align: center; padding: 80px 40px; background: var(--black); border-radius: 16px; }
+  .contact-cta-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .contact-cta-text { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--blue); color: var(--white); padding: 16px 40px; }
+  .btn-primary:hover { background: #0090aa; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--black); padding: 60px 60px 32px; border-top: 1px solid #2a2a2a; margin-top: 0; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 40px; border-bottom: 1px solid #2a2a2a; margin-bottom: 32px; }
   .footer-logo-ph { height: 48px; width: 100px; border: 1px dashed #444; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .footer-logo-ph span { font-size: 10px; color: #555; font-family: var(--font-en); letter-spacing: 0.05em; }
@@ -75,6 +130,8 @@
   .footer-links a { color: #555; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
   .footer-links a:hover { color: var(--blue); }
   .footer-copy { color: #444; font-size: 12px; font-family: var(--font-en); }
+
+  /* ===== MODAL ===== */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 40px; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--white); border-radius: 12px; width: 100%; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; }
@@ -87,6 +144,14 @@
   .modal-body h3:first-child { margin-top: 0; }
   .modal-body .ph-box { height: 60px; font-size: 11px; }
   .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+  .ph-box { background: var(--gray-light); border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ===== ANIMATION ===== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.15s; }
+  .fade-up-delay-2 { transition-delay: 0.3s; }
+  .fade-up-delay-3 { transition-delay: 0.45s; }
 </style>
 </head>
 <body>
@@ -113,67 +178,251 @@
     <div class="logo-ph"><span>LOGO</span></div>
     <span class="logo-text">株式会社ファンリアル</span>
   </a>
-  <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  <div class="header-right">
+    <a href="recruit.html#entry" class="header-entry-btn">Entry</a>
+    <div class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></div>
+  </div>
 </header>
 
-<div class="page-hero"><div class="page-hero-label">Solutions</div><h1>ソリューションズ</h1></div>
-<div class="section">
-  <div class="section-label">Works</div><h2 class="section-title">制作実績</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px;">
-    <div class="ph-box" style="height:240px;border-radius:8px;">WORK IMAGE 1</div>
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--yellow);letter-spacing:0.15em;margin-bottom:8px;">WORK 01</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">制作内容の説明テキスト。詳細は後日。</p>
-    </div>
-  </div>
-  <hr class="divider" style="margin-bottom:48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px;">
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--yellow);letter-spacing:0.15em;margin-bottom:8px;">WORK 02</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">制作内容の説明テキスト。詳細は後日。</p>
-    </div>
-    <div class="ph-box" style="height:240px;border-radius:8px;">WORK IMAGE 2</div>
-  </div>
-  <hr class="divider" style="margin-bottom:48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px;">
-    <div class="ph-box" style="height:240px;border-radius:8px;">WORK IMAGE 3</div>
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--yellow);letter-spacing:0.15em;margin-bottom:8px;">WORK 03</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">制作内容の説明テキスト。詳細は後日。</p>
-    </div>
-  </div>
-  <hr class="divider" style="margin-bottom:48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px;">
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--yellow);letter-spacing:0.15em;margin-bottom:8px;">WORK 04</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">制作内容の説明テキスト。詳細は後日。</p>
-    </div>
-    <div class="ph-box" style="height:240px;border-radius:8px;">WORK IMAGE 4</div>
-  </div>
-  <hr class="divider" style="margin-bottom:48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px;">
-    <div class="ph-box" style="height:240px;border-radius:8px;">WORK IMAGE 5</div>
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--yellow);letter-spacing:0.15em;margin-bottom:8px;">WORK 05</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">制作内容の説明テキスト。詳細は後日。</p>
-    </div>
-  </div>
-  <hr class="divider" style="margin-bottom:48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
-    <div>
-      <div style="font-family:var(--font-en);font-size:11px;color:var(--yellow);letter-spacing:0.15em;margin-bottom:8px;">WORK 06</div>
-      <div style="font-size:20px;font-weight:700;margin-bottom:16px;">実績タイトル（内容は後日）</div>
-      <p style="font-size:14px;line-height:2;color:#666;">制作内容の説明テキスト。詳細は後日。</p>
-    </div>
-    <div class="ph-box" style="height:240px;border-radius:8px;">WORK IMAGE 6</div>
-  </div>
-</div>
+<!-- ===== HERO ===== -->
+<section class="sol-hero">
+  <div class="sol-hero-label">Solutions</div>
+  <h1>アイデアを、<br>プロダクトに。</h1>
+  <p class="sol-hero-sub">企画構想からシステム開発、運用保守まで。<br>ファンリアルのソリューションズ事業が、ビジネスの「つくりたい」を形にします。</p>
+</section>
 
+<!-- ===== MESSAGE ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Message</div>
+    <h2 class="section-title">「つくる力」で、ビジネスを前に進める</h2>
+  </div>
+  <div class="msg-grid fade-up">
+    <div class="msg-text">
+      <p>ソリューションズ事業では、クライアントの課題やビジョンに寄り添いながら、Webアプリケーション・業務システム・自社プロダクトの開発を手がけています。</p>
+      <p>SE事業で培ったエンジニアリング力と、多様なプロジェクトで得た知見を活かし、要件定義から設計・開発・テスト・リリース・保守運用まで一貫して対応。</p>
+      <p>「何をつくるべきか」から一緒に考え、技術の力でビジネスの成長を支援します。</p>
+    </div>
+    <div class="msg-visual">MESSAGE IMAGE</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== SERVICE TYPES ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Service Types</div>
+    <h2 class="section-title">サービスタイプ</h2>
+    <p class="section-lead">課題やフェーズに応じて、最適な開発スタイルを選択できます。</p>
+  </div>
+  <div class="type-grid">
+    <div class="type-card fade-up fade-up-delay-1">
+      <div class="type-icon">🛠</div>
+      <div class="type-en">Contract Development</div>
+      <div class="type-title">受託開発</div>
+      <div class="type-text">クライアントの要件に基づき、Webアプリケーションや業務システムをゼロから開発。要件定義から保守運用まで、プロジェクト全体を一貫して担当します。アジャイル・ウォーターフォールいずれの開発手法にも対応可能です。</div>
+    </div>
+    <div class="type-card fade-up fade-up-delay-2">
+      <div class="type-icon">🚀</div>
+      <div class="type-en">Product Development</div>
+      <div class="type-title">自社プロダクト</div>
+      <div class="type-text">SE事業やIS事業で得た業界知見を活かし、市場ニーズに応える自社プロダクトを企画・開発。現場の課題を最もよく知るエンジニア集団だからこそ生まれるプロダクトを目指しています。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="section process-bg">
+  <div class="fade-up">
+    <div class="section-label">Process</div>
+    <h2 class="section-title">開発プロセス</h2>
+    <p class="section-lead">品質と速度を両立する、体系的な開発プロセスで進行します。</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step fade-up fade-up-delay-1">
+      <div class="process-num">01</div>
+      <div class="process-step-title">要件定義</div>
+      <div class="process-step-text">ビジネス要件を整理し、必要な機能・技術要件を明確化。プロジェクトのスコープとゴールを定義します。</div>
+    </div>
+    <div class="process-step fade-up fade-up-delay-2">
+      <div class="process-num">02</div>
+      <div class="process-step-title">設計</div>
+      <div class="process-step-text">UIデザイン・システムアーキテクチャ・DB設計を実施。拡張性と保守性を考慮した設計を行います。</div>
+    </div>
+    <div class="process-step fade-up fade-up-delay-3">
+      <div class="process-num">03</div>
+      <div class="process-step-title">開発</div>
+      <div class="process-step-text">スプリント単位で開発を進行。定期的なレビューとフィードバックで品質を担保しながら実装します。</div>
+    </div>
+    <div class="process-step fade-up fade-up-delay-1">
+      <div class="process-num">04</div>
+      <div class="process-step-title">テスト</div>
+      <div class="process-step-text">単体・結合・E2Eテストを実施。自動テストを活用し、品質を仕組みで担保します。</div>
+    </div>
+    <div class="process-step fade-up fade-up-delay-2">
+      <div class="process-num">05</div>
+      <div class="process-step-title">リリース</div>
+      <div class="process-step-text">CI/CDパイプラインを整備し、安全かつ迅速なデプロイを実現。段階的リリースにも対応します。</div>
+    </div>
+    <div class="process-step fade-up fade-up-delay-3">
+      <div class="process-num">06</div>
+      <div class="process-step-title">保守・運用</div>
+      <div class="process-step-text">リリース後の監視・障害対応・機能追加を継続サポート。プロダクトの成長に伴走します。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORKS ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Works</div>
+    <h2 class="section-title">制作実績</h2>
+    <p class="section-lead">さまざまな業界・規模のプロジェクトで、開発パートナーとして成果を出してきました。</p>
+  </div>
+
+  <div class="work-item fade-up">
+    <div class="work-img">WORK IMAGE 1</div>
+    <div>
+      <div class="work-label">WORK 01</div>
+      <div class="work-title">不動産企業向け 物件管理SaaS</div>
+      <div class="work-meta">
+        <span class="work-meta-tag">不動産</span>
+        <span class="work-meta-tag">React / Node.js</span>
+        <span class="work-meta-tag">受託開発</span>
+      </div>
+      <p class="work-text">物件情報の一元管理と内見予約のオンライン化を実現するSaaSプロダクトを開発。管理工数を大幅に削減し、業務効率化に貢献しました。</p>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin-bottom: 48px;">
+
+  <div class="work-item reverse fade-up">
+    <div class="work-img">WORK IMAGE 2</div>
+    <div>
+      <div class="work-label">WORK 02</div>
+      <div class="work-title">飲食チェーン向け 店舗オペレーション管理アプリ</div>
+      <div class="work-meta">
+        <span class="work-meta-tag">飲食</span>
+        <span class="work-meta-tag">Flutter / Firebase</span>
+        <span class="work-meta-tag">受託開発</span>
+      </div>
+      <p class="work-text">全国50店舗の日次業務報告・在庫管理・シフト管理を一元化するモバイルアプリを開発。現場スタッフの業務負荷を軽減しました。</p>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin-bottom: 48px;">
+
+  <div class="work-item fade-up">
+    <div class="work-img">WORK IMAGE 3</div>
+    <div>
+      <div class="work-label">WORK 03</div>
+      <div class="work-title">社内業務効率化ツール（自社プロダクト）</div>
+      <div class="work-meta">
+        <span class="work-meta-tag">自社開発</span>
+        <span class="work-meta-tag">Next.js / Python</span>
+        <span class="work-meta-tag">プロダクト</span>
+      </div>
+      <p class="work-text">SE事業での案件管理・エンジニアスキル管理・マッチング支援を自動化する社内ツールを開発。自社課題を起点としたプロダクト開発の第一歩です。</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== TECHNOLOGY ===== -->
+<section class="section">
+  <div class="fade-up">
+    <div class="section-label">Technology</div>
+    <h2 class="section-title">主な使用技術</h2>
+    <p class="section-lead">プロジェクトの要件に応じて、最適な技術スタックを選定します。</p>
+  </div>
+  <div class="tech-grid fade-up">
+    <div class="tech-card">
+      <div class="tech-card-title">フロントエンド</div>
+      <div class="tech-tags">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-title">バックエンド</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Go</span>
+        <span class="tech-tag">NestJS</span>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-title">インフラ</div>
+      <div class="tech-tags">
+        <span class="tech-tag">AWS</span>
+        <span class="tech-tag">Vercel</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">GitHub Actions</span>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-title">モバイル</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Flutter</span>
+        <span class="tech-tag">React Native</span>
+        <span class="tech-tag">Swift</span>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-title">データベース</div>
+      <div class="tech-tags">
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">Firebase</span>
+        <span class="tech-tag">Redis</span>
+      </div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-title">デザイン</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Figma</span>
+        <span class="tech-tag">Storybook</span>
+        <span class="tech-tag">Design System</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA + SERVICE LINKS ===== -->
+<section class="section">
+  <div class="fade-up" style="margin-bottom: 80px;">
+    <div class="contact-cta">
+      <div class="contact-cta-title">プロジェクトのご相談はこちら</div>
+      <p class="contact-cta-text">「こんなものをつくりたい」を、お聞かせください。<br>要件が固まっていない段階からでもご相談いただけます。</p>
+      <a href="contact.html" class="btn btn-primary">Contact Us →</a>
+    </div>
+  </div>
+
+  <div class="fade-up">
+    <div class="section-label">Other Services</div>
+    <h2 class="section-title">その他のサービス</h2>
+  </div>
+  <div class="svc-grid fade-up">
+    <a href="service-se.html" class="svc-card">
+      <div class="svc-card-icon">👨‍💻</div>
+      <div class="svc-card-title">SE — システムエンジニアリング</div>
+      <p class="svc-card-text">クライアントの開発現場にエンジニアを送り出すSES事業。成長を前提としたアサインで、技術力と品質を両立します。</p>
+      <span class="svc-card-link">View Detail →</span>
+    </a>
+    <a href="service-is.html" class="svc-card">
+      <div class="svc-card-icon">📞</div>
+      <div class="svc-card-title">IS — LEAD TECH</div>
+      <p class="svc-card-text">インサイドセールスの戦略設計から実行・改善まで。安定した商談創出の仕組みをつくります。</p>
+      <span class="svc-card-link">View Detail →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-top">
     <div><div class="footer-logo-ph"><span>LOGO</span></div><div class="footer-logo-name">株式会社ファンリアル</div></div>
@@ -190,6 +439,7 @@
   </div>
 </footer>
 
+<!-- ===== MODALS ===== -->
 <div class="modal-overlay" id="modal-privacy" onclick="if(event.target===this)closeModal('modal-privacy')">
   <div class="modal">
     <div class="modal-header"><h2>プライバシーポリシー</h2><button class="modal-close" onclick="closeModal('modal-privacy')">&#x2715;</button></div>
@@ -214,6 +464,7 @@
     </div>
   </div>
 </div>
+
 <script>
   function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
   function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
@@ -221,5 +472,13 @@
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open');});document.body.style.overflow='';}});
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body></html>

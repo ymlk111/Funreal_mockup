@@ -434,6 +434,14 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+  // Touch support for pickup carousel (pause on touch, resume on release)
+  var pickupTrack = document.querySelector('.hero-pickup-track');
+  if (pickupTrack) {
+    pickupTrack.addEventListener('touchstart', function(){ pickupTrack.style.animationPlayState = 'paused'; }, { passive: true });
+    pickupTrack.addEventListener('touchend',   function(){ pickupTrack.style.animationPlayState = 'running'; }, { passive: true });
+    pickupTrack.addEventListener('touchcancel',function(){ pickupTrack.style.animationPlayState = 'running'; }, { passive: true });
+  }
+
   // Scroll to top button
   var scrollBtn = document.getElementById('scrollTop');
   window.addEventListener('scroll', function(){

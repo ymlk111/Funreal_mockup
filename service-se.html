@@ -167,7 +167,9 @@
     .str-grid { grid-template-columns: 1fr; }
     .tech-grid { grid-template-columns: 1fr 1fr; }
     .flow-grid { grid-template-columns: 1fr; }
+    .flow-step::after { display: none; }
     .case-item { grid-template-columns: 1fr; gap: 24px; }
+    .case-item.reverse { direction: ltr; }
     .numbers-grid { grid-template-columns: repeat(2, 1fr); }
     footer { padding: 40px 24px 24px; }
     .footer-top { flex-direction: column; gap: 20px; }

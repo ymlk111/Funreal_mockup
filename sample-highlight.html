@@ -15,109 +15,110 @@ html { scroll-behavior: smooth; }
 body { font-family: var(--font-jp); color: var(--black); }
 
 /* ===== PAGE TOP ===== */
-.page-top {
-  background: #0D1B26; color: #fff;
-  text-align: center; padding: 20px 24px;
-  border-bottom: 2px solid #1E3A4E;
-}
+.page-top { background: #0D1B26; color: #fff; text-align: center; padding: 20px 24px; border-bottom: 2px solid #1E3A4E; }
 .page-top h1 { font-size: 12px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
 .page-top p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
 
 /* ===== STICKY NAV ===== */
-.sample-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: #1A1A1A; display: flex; align-items: center;
-  gap: 2px; padding: 0 16px; height: 50px;
-  overflow-x: auto; border-bottom: 2px solid #333;
-  scrollbar-width: none;
-}
+.sample-nav { position: sticky; top: 0; z-index: 200; background: #1A1A1A; display: flex; align-items: center; gap: 2px; padding: 0 16px; height: 50px; overflow-x: auto; border-bottom: 2px solid #333; scrollbar-width: none; }
 .sample-nav::-webkit-scrollbar { display: none; }
-.sample-nav a {
-  display: inline-flex; align-items: center; gap: 7px;
-  text-decoration: none; color: rgba(255,255,255,0.55);
-  font-size: 12px; font-family: var(--font-en); font-weight: 600;
-  padding: 6px 13px; border-radius: 20px; white-space: nowrap;
-  transition: all 0.2s;
-}
+.sample-nav a { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; color: rgba(255,255,255,0.55); font-size: 12px; font-family: var(--font-en); font-weight: 600; padding: 6px 13px; border-radius: 20px; white-space: nowrap; transition: all 0.2s; }
 .sample-nav a:hover { background: rgba(0,170,204,0.18); color: #fff; }
-.nav-dot {
-  width: 16px; height: 16px; border-radius: 50%;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 9px; font-weight: 900; flex-shrink: 0;
-}
+.nav-dot { width: 16px; height: 16px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 900; flex-shrink: 0; }
 
 /* ===== PATTERN SECTION ===== */
-.pattern-section { padding: 44px 0 68px; }
+.pattern-section { padding: 44px 0 0; }
 .pattern-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
 
 /* ===== PATTERN HEADER ===== */
 .pattern-header { margin-bottom: 32px; }
-.pattern-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 700; font-family: var(--font-en);
-  letter-spacing: 0.15em; text-transform: uppercase;
-  padding: 5px 15px; border-radius: 20px; margin-bottom: 14px;
-}
+.pattern-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 15px; border-radius: 20px; margin-bottom: 14px; }
 .pattern-name { font-size: 21px; font-weight: 700; margin-bottom: 8px; }
 .pattern-desc { font-size: 13px; line-height: 1.9; max-width: 700px; }
-
-/* ===== SHARED CONTENT ===== */
-.content-wrap { padding: 48px 52px; border-radius: 16px; }
-.s-label {
-  font-family: var(--font-en); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-}
-.s-label::before { content: ''; display: block; width: 20px; height: 1px; }
-.s-title { font-size: 26px; font-weight: 700; margin-bottom: 16px; line-height: 1.5; }
-.s-lead { font-size: 15px; line-height: 2.1; margin-bottom: 44px; }
-.pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.pillar { border-radius: 12px; padding: 30px 26px; border: 1px solid transparent; }
-.p-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 19px; }
-.p-sub { font-size: 10px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-.p-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; line-height: 1.5; }
-.p-text { font-size: 13px; line-height: 2; }
 
 /* ===== SEPARATOR ===== */
 .pattern-sep { border: none; border-top: 5px solid #EFEFEF; }
 
+/* ================================================================
+   SHARED CONTENT LAYOUT — new recruit.html structure
+================================================================ */
 
-/* =========================================================
-   A: 現在ベース
-========================================================= */
+/* Quote Card */
+.s-quote-card { border-left: 4px solid var(--blue); border-radius: 0 12px 12px 0; padding: 32px 40px 28px; margin-bottom: 48px; position: relative; overflow: hidden; }
+.s-quote-card::before { content: '\201C'; font-family: Georgia, serif; font-size: 100px; opacity: 0.1; position: absolute; top: -10px; left: 12px; line-height: 1; pointer-events: none; color: var(--blue); }
+.s-quote-text { font-size: 14.5px; line-height: 2.2; font-weight: 500; }
+.s-quote-meta { margin-top: 14px; font-size: 11px; }
+.s-quote-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 11px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.08em; text-decoration: none; }
+
+/* Culture header */
+.s-culture-head { text-align: center; padding: 40px 0 24px; }
+.s-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; justify-content: center; }
+.s-label::before, .s-label::after { content: ''; display: block; width: 20px; height: 1px; background: currentColor; opacity: 0.4; }
+.s-title { font-size: 24px; font-weight: 700; margin-bottom: 14px; line-height: 1.45; }
+.s-lead { font-size: 13.5px; line-height: 2; max-width: 520px; margin: 0 auto; }
+
+/* Zigzag Pillar Rows */
+.s-pillar-row { padding: 36px 0; }
+.s-pillar-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
+.s-pillar-inner.rev { direction: rtl; }
+.s-pillar-inner.rev > * { direction: ltr; }
+.s-pillar-visual { display: flex; align-items: center; justify-content: center; }
+.s-pillar-circle { width: 110px; height: 110px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; transition: transform 0.3s; }
+.s-pillar-circle:hover { transform: scale(1.06) rotate(5deg); }
+.s-pillar-sub { font-size: 10px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+.s-pillar-title { font-size: clamp(18px,2vw,22px); font-weight: 700; line-height: 1.45; margin-bottom: 12px; }
+.s-pillar-text { font-size: 13px; line-height: 2; margin-bottom: 12px; }
+.s-pillar-extra { font-size: 13px; line-height: 2; padding: 12px 16px; border-left-width: 3px; border-left-style: solid; border-radius: 0 6px 6px 0; }
+
+/* Numbers Section */
+.s-numbers { padding: 36px 40px; border-radius: 14px; margin-top: 48px; }
+.s-numbers .s-title { text-align: center; margin-bottom: 24px; }
+.s-num-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.s-num-item { border-radius: 10px; padding: 20px 18px; text-align: center; border-width: 1px; border-style: solid; }
+.s-num-value { font-family: var(--font-en); font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+.s-num-unit { font-size: 13px; font-weight: 700; margin-left: 2px; }
+.s-num-label { font-size: 11px; }
+.s-num-item-full { grid-column: span 2; }
+
+/* ================================================================
+   PATTERN A — 現在ベース (recruit.html の .hl-blue スタイル)
+================================================================ */
 #pat-a { background: #F4FBFD; }
 #pat-a .pattern-badge { background: rgba(0,170,204,0.1); color: var(--blue); }
-#pat-a .pattern-name { color: var(--black); }
-#pat-a .pattern-desc { color: var(--gray-text); }
-#pat-a .content-wrap { background: var(--gray-light); }
+#pat-a .pattern-name, #pat-a .s-pillar-title, #pat-a .s-title { color: var(--black); }
+#pat-a .pattern-desc, #pat-a .s-quote-meta, #pat-a .s-lead, #pat-a .s-pillar-text { color: var(--gray-text); }
+#pat-a .s-quote-card { background: var(--gray-light); border-color: var(--blue); }
+#pat-a .s-quote-card::before { color: var(--blue); }
+#pat-a .s-quote-text { color: #333; }
+#pat-a .s-quote-link { color: var(--blue); }
 #pat-a .s-label { color: var(--blue); }
-#pat-a .s-label::before { background: var(--blue); }
-#pat-a .s-title { color: var(--black); }
-#pat-a .s-lead { color: #555; }
-#pat-a .pillar { background: var(--white); border-color: var(--gray-mid); }
-#pat-a .p-icon { background: rgba(0,170,204,0.1); }
-#pat-a .p-sub { color: var(--blue); }
-#pat-a .p-title { color: var(--black); }
-#pat-a .p-text { color: #555; }
+#pat-a .s-pillar-sub { color: var(--blue); }
+#pat-a .s-pillar-extra { border-left-color: var(--blue); background: rgba(0,170,204,0.05); color: #444; }
+#pat-a .s-pillar-row:nth-child(1) { background: var(--white); }
+#pat-a .s-pillar-row:nth-child(2) { background: #E5F4F9; }
+#pat-a .s-pillar-row:nth-child(3) { background: var(--white); }
+#pat-a .s-pillar-circle { background: rgba(0,170,204,0.1); border: 1.5px dashed rgba(0,170,204,0.3); }
+#pat-a .s-numbers { background: linear-gradient(135deg,#00AACC,#006E8A); }
+#pat-a .s-numbers .s-title { color: white; }
+#pat-a .s-num-item { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+#pat-a .s-num-value, #pat-a .s-num-unit { color: white; }
+#pat-a .s-num-label { color: rgba(255,255,255,0.75); }
+/* highlight: blue marker (same as .hl-blue in recruit.html) */
+#pat-a .hl  { background: rgba(0,170,204,0.15); color: #007A99; padding: 0 4px 1px; border-radius: 3px; font-weight: 600; }
+#pat-a .hl2 { background: rgba(0,170,204,0.15); color: #007A99; padding: 0 4px 1px; border-radius: 3px; font-weight: 600; }
 
-
-/* =========================================================
-   B: ぐるぐる（流れるアニメーション）
-========================================================= */
+/* ================================================================
+   PATTERN B — ぐるぐる（流れるアニメーション）
+================================================================ */
 #pat-b { background: #F4FBFD; }
 #pat-b .pattern-badge { background: rgba(204,34,0,0.08); color: var(--red); }
 #pat-b .pattern-name { color: var(--black); }
 #pat-b .pattern-desc { color: var(--gray-text); }
-#pat-b .content-wrap { background: var(--gray-light); }
+#pat-b .s-quote-card { background: var(--gray-light); border-color: var(--red); }
+#pat-b .s-quote-card::before { color: var(--red); }
+#pat-b .s-quote-text { color: #333; }
+#pat-b .s-quote-link { color: var(--blue); }
 #pat-b .s-label { color: var(--blue); }
-#pat-b .s-label::before { background: var(--blue); }
-#pat-b .s-lead { color: #555; }
-#pat-b .pillar { background: var(--white); border-color: var(--gray-mid); }
-#pat-b .p-icon { background: rgba(0,170,204,0.1); }
-#pat-b .p-sub { color: var(--blue); }
-#pat-b .p-text { color: #555; }
-
-/* 見出し: 常時流れるグラデーション */
 #pat-b .s-title {
   background: linear-gradient(90deg, var(--black) 0%, var(--blue) 25%, var(--red) 55%, var(--blue) 75%, var(--black) 100%);
   background-size: 300% auto;
@@ -125,21 +126,23 @@ body { font-family: var(--font-jp); color: var(--black); }
   animation: titleFlow 6s linear infinite;
 }
 @keyframes titleFlow { from { background-position: 0% center; } to { background-position: 300% center; } }
-
-/* ピラータイトル: ホバーで発動 */
-#pat-b .p-title {
-  background: linear-gradient(90deg, var(--black) 0%, var(--blue) 50%, var(--black) 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: pillarFlow 4s linear infinite;
-  animation-play-state: paused;
-}
-#pat-b .pillar:hover .p-title { animation-play-state: running; }
-@keyframes pillarFlow { from { background-position: 0% center; } to { background-position: 200% center; } }
-
-/* キーワード: 流れる下線 */
-.hl-flow { position: relative; display: inline; }
-.hl-flow::after {
+#pat-b .s-lead, #pat-b .s-pillar-text { color: #555; }
+#pat-b .s-quote-meta { color: var(--gray-text); }
+#pat-b .s-pillar-sub { color: var(--blue); }
+#pat-b .s-pillar-title { color: var(--black); }
+#pat-b .s-pillar-extra { border-left-color: var(--blue); background: rgba(0,170,204,0.05); color: #444; }
+#pat-b .s-pillar-row:nth-child(1) { background: var(--white); }
+#pat-b .s-pillar-row:nth-child(2) { background: #E5F4F9; }
+#pat-b .s-pillar-row:nth-child(3) { background: var(--white); }
+#pat-b .s-pillar-circle { background: rgba(0,170,204,0.1); border: 1.5px dashed rgba(0,170,204,0.3); }
+#pat-b .s-numbers { background: linear-gradient(135deg,#00AACC,#006E8A); }
+#pat-b .s-numbers .s-title { color: white; animation: none; -webkit-background-clip: unset; background-clip: unset; }
+#pat-b .s-num-item { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+#pat-b .s-num-value, #pat-b .s-num-unit { color: white; }
+#pat-b .s-num-label { color: rgba(255,255,255,0.75); }
+/* highlight: flowing underline */
+#pat-b .hl, #pat-b .hl2 { position: relative; display: inline; }
+#pat-b .hl::after, #pat-b .hl2::after {
   content: ''; position: absolute; left: 0; bottom: -2px;
   width: 100%; height: 2px;
   background: linear-gradient(90deg, transparent 0%, var(--blue) 35%, var(--red) 65%, transparent 100%);
@@ -148,122 +151,149 @@ body { font-family: var(--font-jp); color: var(--black); }
 }
 @keyframes underlineFlow { from { background-position: 0% center; } to { background-position: 200% center; } }
 
-
-/* =========================================================
-   C: 旧デザイン① ダーク（グロー系ハイライト）
-========================================================= */
+/* ================================================================
+   PATTERN C — ダーク（ネオングロー）
+================================================================ */
 #pat-c { background: #0B1924; }
 #pat-c .pattern-badge { background: rgba(0,170,204,0.15); color: #66CCEE; }
 #pat-c .pattern-name { color: #fff; }
 #pat-c .pattern-desc { color: rgba(255,255,255,0.42); }
-#pat-c .content-wrap { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+#pat-c .s-quote-card { background: rgba(255,255,255,0.04); border-color: #00AACC; border-left-width: 3px; }
+#pat-c .s-quote-card::before { color: var(--blue); opacity: 0.15; }
+#pat-c .s-quote-text { color: rgba(255,255,255,0.85); }
+#pat-c .s-quote-meta { color: rgba(255,255,255,0.4); }
+#pat-c .s-quote-link { color: #66CCEE; }
 #pat-c .s-label { color: var(--blue); }
-#pat-c .s-label::before { background: var(--blue); }
 #pat-c .s-title { color: var(--white); }
 #pat-c .s-lead { color: rgba(255,255,255,0.62); }
-#pat-c .pillar { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.09); }
-#pat-c .p-icon { background: rgba(0,170,204,0.15); }
-#pat-c .p-sub { color: #66CCEE; }
-#pat-c .p-title { color: var(--white); }
-#pat-c .p-text { color: rgba(255,255,255,0.58); }
+#pat-c .s-pillar-sub { color: #66CCEE; }
+#pat-c .s-pillar-title { color: var(--white); }
+#pat-c .s-pillar-text { color: rgba(255,255,255,0.62); }
+#pat-c .s-pillar-extra { border-left-color: rgba(0,170,204,0.5); background: rgba(0,170,204,0.08); color: rgba(255,255,255,0.7); }
+#pat-c .s-pillar-row:nth-child(1) { background: rgba(255,255,255,0.03); }
+#pat-c .s-pillar-row:nth-child(2) { background: rgba(0,170,204,0.06); }
+#pat-c .s-pillar-row:nth-child(3) { background: rgba(255,255,255,0.03); }
+#pat-c .s-pillar-circle { background: rgba(0,170,204,0.12); border: 1.5px dashed rgba(0,170,204,0.3); }
+#pat-c .s-numbers { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+#pat-c .s-numbers .s-title { color: white; }
+#pat-c .s-num-item { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+#pat-c .s-num-value { color: #66CCEE; }
+#pat-c .s-num-unit { color: #66CCEE; }
+#pat-c .s-num-label { color: rgba(255,255,255,0.5); }
+/* highlight: neon glow */
+#pat-c .hl  { color: #33CCEE; text-shadow: 0 0 12px rgba(0,204,238,0.8), 0 0 28px rgba(0,170,204,0.4); }
+#pat-c .hl2 { color: #99DDED; text-shadow: 0 0 8px rgba(0,180,220,0.5); }
 
-/* グロー: メインのハイライト */
-.hl-glow { color: #33CCEE; text-shadow: 0 0 14px rgba(0,204,238,0.75), 0 0 32px rgba(0,170,204,0.35); }
-/* グロー: サブのハイライト（やや控えめ） */
-.hl-glow-soft { color: #99DDED; }
-
-
-/* =========================================================
-   D: 旧デザイン② ミニマル（極太下線）
-========================================================= */
+/* ================================================================
+   PATTERN D — ミニマル（極太下線）
+================================================================ */
 #pat-d { background: #FFFFFF; }
 #pat-d .pattern-badge { background: #F0F0F0; color: #777; }
 #pat-d .pattern-name { color: #111; }
 #pat-d .pattern-desc { color: #888; }
-#pat-d .content-wrap { background: #F8F9FA; }
+#pat-d .s-quote-card { background: #F8F9FA; border-color: #111; }
+#pat-d .s-quote-card::before { color: #111; }
+#pat-d .s-quote-text { color: #222; }
+#pat-d .s-quote-meta { color: #888; }
+#pat-d .s-quote-link { color: #333; }
 #pat-d .s-label { color: #B8B8B8; }
-#pat-d .s-label::before { background: #B8B8B8; }
 #pat-d .s-title { color: #111; }
 #pat-d .s-lead { color: #666; }
-#pat-d .pillar { background: var(--white); border-color: #E4E4E4; }
-#pat-d .p-icon { background: #F2F2F2; }
-#pat-d .p-sub { color: #C0C0C0; }
-#pat-d .p-title { color: #111; }
-#pat-d .p-text { color: #555; }
+#pat-d .s-pillar-sub { color: #C0C0C0; }
+#pat-d .s-pillar-title { color: #111; }
+#pat-d .s-pillar-text { color: #555; }
+#pat-d .s-pillar-extra { border-left-color: #ddd; background: #f8f8f8; color: #444; }
+#pat-d .s-pillar-row:nth-child(1), #pat-d .s-pillar-row:nth-child(3) { background: #fff; }
+#pat-d .s-pillar-row:nth-child(2) { background: #f7f7f7; }
+#pat-d .s-pillar-circle { background: #f2f2f2; border: 1.5px dashed #ddd; }
+#pat-d .s-numbers { background: #111; }
+#pat-d .s-numbers .s-title { color: white; }
+#pat-d .s-num-item { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+#pat-d .s-num-value { color: white; }
+#pat-d .s-num-unit { color: rgba(255,255,255,0.7); }
+#pat-d .s-num-label { color: rgba(255,255,255,0.5); }
+/* highlight: thick underline + bold */
+#pat-d .hl  { border-bottom: 3.5px solid #111; padding-bottom: 1px; font-weight: 900; color: #000; }
+#pat-d .hl2 { font-weight: 900; color: #000; }
 
-/* 極太下線 */
-.hl-line { border-bottom: 3.5px solid #111; padding-bottom: 1px; }
-/* 極太ボールド */
-.hl-bold { font-weight: 900; color: #000; }
-
-
-/* =========================================================
-   E: 旧デザイン③ カラーワード（ブランドカラー全活用）
-========================================================= */
+/* ================================================================
+   PATTERN E — カラーワード（ブランドカラー全活用）
+================================================================ */
 #pat-e { background: #FAFBFC; }
 #pat-e .pattern-badge { background: rgba(204,170,0,0.1); color: #7A6200; }
 #pat-e .pattern-name { color: var(--black); }
 #pat-e .pattern-desc { color: var(--gray-text); }
-#pat-e .content-wrap { background: #ECF7FC; }
+#pat-e .s-quote-card { background: #ECF7FC; border-color: var(--blue); }
+#pat-e .s-quote-card::before { color: var(--blue); }
+#pat-e .s-quote-text { color: #333; }
+#pat-e .s-quote-meta { color: var(--gray-text); }
+#pat-e .s-quote-link { color: var(--blue); }
 #pat-e .s-label { color: var(--blue); }
-#pat-e .s-label::before { background: var(--blue); }
 #pat-e .s-title { color: var(--black); }
 #pat-e .s-lead { color: #555; }
-#pat-e .pillar { background: var(--white); border-color: var(--gray-mid); }
-#pat-e .p-icon { background: rgba(0,170,204,0.08); }
-#pat-e .p-sub { color: var(--blue); }
-#pat-e .p-title { color: var(--black); }
-#pat-e .p-text { color: #555; }
+#pat-e .s-pillar-sub { color: var(--blue); }
+#pat-e .s-pillar-title { color: var(--black); }
+#pat-e .s-pillar-text { color: #555; }
+#pat-e .s-pillar-extra { border-left-color: var(--blue); background: rgba(0,170,204,0.05); color: #444; }
+#pat-e .s-pillar-row:nth-child(1) { background: var(--white); }
+#pat-e .s-pillar-row:nth-child(2) { background: #E5F4F9; }
+#pat-e .s-pillar-row:nth-child(3) { background: var(--white); }
+#pat-e .s-pillar-circle { background: rgba(0,170,204,0.08); border: 1.5px dashed rgba(0,170,204,0.25); }
+#pat-e .s-numbers { background: linear-gradient(135deg,#00AACC,#006E8A); }
+#pat-e .s-numbers .s-title { color: white; }
+#pat-e .s-num-item { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+#pat-e .s-num-value, #pat-e .s-num-unit { color: white; }
+#pat-e .s-num-label { color: rgba(255,255,255,0.75); }
+/* highlight: brand color words */
+#pat-e .hl  { color: var(--red); font-weight: 700; }
+#pat-e .hl2 { color: #007A99; font-weight: 700; }
+#pat-e .hl3 { background: rgba(204,170,0,0.14); color: #5E4800; padding: 0 4px; border-radius: 3px; font-weight: 700; }
 
-/* ブランドカラー3色 */
-.hl-col-red { color: var(--red); font-weight: 700; }
-.hl-col-blue { color: #007A99; font-weight: 700; }
-.hl-col-yel { font-weight: 700; background: rgba(204,170,0,0.14); color: #5E4800; padding: 0 4px; border-radius: 3px; }
-
-
-/* =========================================================
-   F: 現在デザイン＋ハイライト統合提案
-========================================================= */
+/* ================================================================
+   PATTERN F — 統合提案（グラデーション見出し＋マーカー）
+================================================================ */
 #pat-f { background: #F4FBFD; }
-#pat-f .pattern-badge { background: linear-gradient(135deg, var(--blue), var(--red)); color: #fff; }
+#pat-f .pattern-badge { background: linear-gradient(135deg,var(--blue),var(--red)); color: #fff; }
 #pat-f .pattern-name { color: var(--black); }
 #pat-f .pattern-desc { color: var(--gray-text); }
-#pat-f .content-wrap { background: var(--gray-light); }
+#pat-f .s-quote-card { background: var(--gray-light); border-color: var(--blue); }
+#pat-f .s-quote-card::before { color: var(--blue); }
+#pat-f .s-quote-text { color: #333; }
+#pat-f .s-quote-meta { color: var(--gray-text); }
+#pat-f .s-quote-link { color: var(--blue); }
 #pat-f .s-label { color: var(--blue); }
-#pat-f .s-label::before { background: var(--blue); }
+#pat-f .s-title { background: linear-gradient(135deg,#CC2200 0%,#00AACC 55%); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
 #pat-f .s-lead { color: #555; }
-#pat-f .pillar { background: var(--white); border-color: var(--gray-mid); }
-#pat-f .p-icon { background: rgba(0,170,204,0.1); }
-#pat-f .p-sub { color: var(--blue); }
-#pat-f .p-title { color: var(--black); }
-#pat-f .p-text { color: #555; }
-
-/* 見出しグラデーション */
-#pat-f .s-title {
-  background: linear-gradient(135deg, #CC2200 0%, #00AACC 55%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  display: inline-block;
-}
-/* ピラータイトル内の部分グラデーション */
-.hl-grad {
-  background: linear-gradient(135deg, var(--red), var(--blue));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  display: inline-block;
-}
-/* マーカーハイライト: 青系 */
-.hl-mk-blue { background: rgba(0,170,204,0.14); border-radius: 3px; padding: 1px 5px; color: #005E7A; font-weight: 600; }
-/* マーカーハイライト: 赤系 */
-.hl-mk-red { background: rgba(204,34,0,0.09); border-radius: 3px; padding: 1px 5px; color: #8A1600; font-weight: 600; }
-
+#pat-f .s-pillar-sub { color: var(--blue); }
+#pat-f .s-pillar-title { color: var(--black); }
+#pat-f .s-pillar-text { color: #555; }
+#pat-f .s-pillar-extra { border-left-color: var(--blue); background: rgba(0,170,204,0.05); color: #444; }
+#pat-f .s-pillar-row:nth-child(1) { background: var(--white); }
+#pat-f .s-pillar-row:nth-child(2) { background: #E5F4F9; }
+#pat-f .s-pillar-row:nth-child(3) { background: var(--white); }
+#pat-f .s-pillar-circle { background: rgba(0,170,204,0.1); border: 1.5px dashed rgba(0,170,204,0.3); }
+#pat-f .s-numbers { background: linear-gradient(135deg,#00AACC,#006E8A); }
+#pat-f .s-numbers .s-title { background: none; -webkit-background-clip: unset; background-clip: unset; color: white; }
+#pat-f .s-num-item { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+#pat-f .s-num-value, #pat-f .s-num-unit { color: white; }
+#pat-f .s-num-label { color: rgba(255,255,255,0.75); }
+/* highlight: gradient pillar titles + marker */
+#pat-f .hl  { background: rgba(0,170,204,0.14); color: #005E7A; padding: 0 4px; border-radius: 3px; font-weight: 600; }
+#pat-f .hl2 { background: rgba(204,34,0,0.09); color: #8A1600; padding: 0 4px; border-radius: 3px; font-weight: 600; }
+#pat-f .hl3 { background: rgba(204,170,0,0.13); color: #5E4800; padding: 0 4px; border-radius: 3px; font-weight: 600; }
+.hl-grad { background: linear-gradient(135deg,var(--red),var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .pillar-grid { grid-template-columns: 1fr; gap: 16px; }
   .pattern-inner { padding: 0 20px; }
-  .content-wrap { padding: 28px 20px !important; }
-  .pattern-header { margin-bottom: 24px; }
   .pattern-name { font-size: 18px; }
-  .s-title { font-size: 22px; }
+  .s-pillar-inner { grid-template-columns: 1fr; gap: 20px; }
+  .s-pillar-inner.rev { direction: ltr; }
+  .s-pillar-visual { order: -1; }
+  .s-pillar-circle { width: 80px; height: 80px; font-size: 28px; }
+  .s-num-grid { grid-template-columns: 1fr; }
+  .s-num-item-full { grid-column: span 1; }
+  .s-quote-card { padding: 22px 24px; }
 }
 </style>
 </head>
@@ -271,8 +301,8 @@ body { font-family: var(--font-jp); color: var(--black); }
 
 <!-- ===== TOP ===== -->
 <div class="page-top">
-  <h1>Highlight Design Samples</h1>
-  <p>テキストハイライトの各デザインパターン比較ページ。レビュー・選定用。採用ページ「ファンリアルの3つの約束」を題材にした6パターン。</p>
+  <h1>Highlight Design Samples — v2</h1>
+  <p>新しいrecruit.htmlのコンテンツ（代表メッセージ引用カード・ジグザグCultureセクション・数字セクション）にA〜F各ハイライトスタイルを適用した比較ページ。</p>
 </div>
 
 <!-- ===== NAV ===== -->
@@ -290,38 +320,73 @@ body { font-family: var(--font-jp); color: var(--black); }
      A: 現在ベース
 ===================================================== -->
 <section class="pattern-section" id="pat-a">
-  <div class="pattern-inner">
-    <div class="pattern-header">
-      <span class="pattern-badge">A — 現在ベース</span>
-      <div class="pattern-name">現在ベース（白水色 + 青のみ）</div>
-      <p class="pattern-desc">現在のサイトをそのまま表示した比較用ベースライン。ハイライトなし。#00AACC（青）のみをアクセントとして使用。単調さの出発点として確認用。</p>
-    </div>
-    <div class="content-wrap">
-      <div class="s-label">Culture &amp; Environment</div>
-      <h2 class="s-title">ファンリアルの3つの約束</h2>
-      <p class="s-lead">エンゲージメントは、押し付けるものではなく自然と生まれるもの。<br>安心して働ける環境の先に、やりがいや挑戦が待っています。</p>
-      <div class="pillar-grid">
-        <div class="pillar">
-          <div class="p-icon">📈</div>
-          <div class="p-sub">Growth Assignment</div>
-          <div class="p-title">エンジニアの「成長」を<br>第一に考えたアサイン</div>
-          <p class="p-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって最適な働き方と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">☕</div>
-          <div class="p-sub">Freedom &amp; Comfort</div>
-          <div class="p-title">肩の力を抜いて働ける<br>「圧倒的な自由度」</div>
-          <p class="p-text">定着率の高さが証明する居心地の良さは、過度な干渉や厳しすぎるルールのないフラットな社風にあります。残業も少なく、オンとオフを両立できます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">🚩</div>
-          <div class="p-sub">Flexible Career Path</div>
-          <div class="p-title">「やってみたい」を<br>形にできるキャリアパス</div>
-          <p class="p-text">やりがいは、強制されるものではなく「選ぶ」もの。営業やセキュリティエンジニアへのキャリアチェンジも柔軟にサポート。幅広い雇用形態にも対応しています。</p>
-        </div>
+<div class="pattern-inner">
+  <div class="pattern-header">
+    <span class="pattern-badge">A — 現在ベース</span>
+    <div class="pattern-name">現在ベース（recruit.html そのままのスタイル）</div>
+    <p class="pattern-desc">新しい recruit.html で採用済みのスタイル。.hl-blue クラスによる薄い青背景マーカーをキーワードに適用。ジグザグレイアウト・大きめタイトル・追加コピーが活きる現状の比較基準。</p>
+  </div>
+
+  <!-- Quote Card -->
+  <div class="s-quote-card">
+    <p class="s-quote-text">これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span class="hl">「自然体で、長く安心して働けること」</span>です。</p>
+    <div class="s-quote-meta">株式会社ファンリアル 代表取締役</div>
+    <a href="recruit.html" class="s-quote-link">代表メッセージ全文を読む →</a>
+  </div>
+
+  <!-- Culture -->
+  <div class="s-culture-head">
+    <div class="s-label">Culture &amp; Environment</div>
+    <h2 class="s-title">ファンリアルの3つの約束</h2>
+    <p class="s-lead">エンゲージメントは、押し付けるものではなく自然と生まれるもの。<br>安心して働ける環境の先に、やりがいや挑戦が待っています。</p>
+  </div>
+
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">📈</div></div>
+      <div>
+        <div class="s-pillar-sub">Growth Assignment</div>
+        <div class="s-pillar-title">エンジニアの「成長」を<br>第一に考えたアサイン</div>
+        <p class="s-pillar-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって最適な働き方と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
+        <p class="s-pillar-extra"><span class="hl">「スキルが止まる現場には行かせない」</span>——それが私たちの約束です。現場の状況や技術トレンドを定期的にヒアリングしながら、あなたが確実に前進できる環境を整えます。</p>
       </div>
     </div>
   </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner rev">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">☕</div></div>
+      <div>
+        <div class="s-pillar-sub">Freedom &amp; Comfort</div>
+        <div class="s-pillar-title">肩の力を抜いて働ける<br>「圧倒的な自由度」</div>
+        <p class="s-pillar-text">過度な干渉や厳しすぎるルールのないフラットな社風。残業も少なく、オンとオフを両立させて働くことができます。</p>
+        <p class="s-pillar-extra">フラットな組織で<span class="hl">上司への気遣いや空気を読んだ残業は不要</span>。仕事もプライベートも充実させることが、<span class="hl2">長期的なパフォーマンス向上</span>に繋がります。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">🚩</div></div>
+      <div>
+        <div class="s-pillar-sub">Flexible Career Path</div>
+        <div class="s-pillar-title">「やってみたい」を<br>形にできるキャリアパス</div>
+        <p class="s-pillar-text">やりがいは「選ぶ」もの。営業やセキュリティエンジニアへのキャリアチェンジも柔軟にサポート。幅広い雇用形態にも対応しています。</p>
+        <p class="s-pillar-extra">エンジニアから営業へ——<span class="hl">あなたの「やってみたい」に応える多彩なキャリアパス</span>を用意しています。副業や週3日勤務など、ライフスタイルに合わせた働き方が実現できます。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Numbers (simplified) -->
+  <div class="s-numbers">
+    <h2 class="s-title">数字で見るファンリアル</h2>
+    <div class="s-num-grid">
+      <div class="s-num-item"><div class="s-num-value">200<span class="s-num-unit">%</span></div><div class="s-num-label">過去5年の成長率</div></div>
+      <div class="s-num-item"><div class="s-num-value">10<span class="s-num-unit">h</span></div><div class="s-num-label">月平均残業時間</div></div>
+      <div class="s-num-item"><div class="s-num-value">27<span class="s-num-unit">歳</span></div><div class="s-num-label">平均年齢</div></div>
+      <div class="s-num-item"><div class="s-num-value">60<span class="s-num-unit">%</span></div><div class="s-num-label">未経験入社率</div></div>
+      <div class="s-num-item s-num-item-full"><div class="s-num-value">5<span class="s-num-unit">種</span></div><div class="s-num-label">対応雇用形態数</div></div>
+    </div>
+  </div>
+</div>
 </section>
 <hr class="pattern-sep">
 
@@ -330,198 +395,358 @@ body { font-family: var(--font-jp); color: var(--black); }
      B: ぐるぐる（流れるアニメーション）
 ===================================================== -->
 <section class="pattern-section" id="pat-b">
-  <div class="pattern-inner">
-    <div class="pattern-header">
-      <span class="pattern-badge">B — ぐるぐる</span>
-      <div class="pattern-name">ぐるぐる（流れるアニメーションハイライト）</div>
-      <p class="pattern-desc">PickUpセクションの「流れるカード」をテキストに応用。セクションタイトルは青→赤→青のグラデーションが常時流れます。キーワードには左から右へ流れる下線アニメーション。ピラータイトルはホバーで発動します。</p>
-    </div>
-    <div class="content-wrap">
-      <div class="s-label">Culture &amp; Environment</div>
-      <h2 class="s-title">ファンリアルの3つの約束</h2>
-      <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl-flow">自然と生まれる</span>もの。<br><span class="hl-flow">安心して働ける環境</span>の先に、やりがいや挑戦が待っています。</p>
-      <div class="pillar-grid">
-        <div class="pillar">
-          <div class="p-icon">📈</div>
-          <div class="p-sub">Growth Assignment</div>
-          <div class="p-title">エンジニアの「成長」を<br>第一に考えたアサイン</div>
-          <p class="p-text"><span class="hl-flow">キャリアが停滞するアサイン</span>はいたしません。今のあなたにとって<span class="hl-flow">最適な働き方</span>と成長のバランスを、営業担当が二人三脚で見つけていきます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">☕</div>
-          <div class="p-sub">Freedom &amp; Comfort</div>
-          <div class="p-title">肩の力を抜いて働ける<br>「圧倒的な自由度」</div>
-          <p class="p-text">定着率の高さが証明する<span class="hl-flow">居心地の良さ</span>は、<span class="hl-flow">フラットな社風</span>にあります。残業も少なく、オンとオフを両立できます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">🚩</div>
-          <div class="p-sub">Flexible Career Path</div>
-          <div class="p-title">「やってみたい」を<br>形にできるキャリアパス</div>
-          <p class="p-text">やりがいは「<span class="hl-flow">選ぶ</span>」もの。<span class="hl-flow">キャリアチェンジ</span>も柔軟にサポート。幅広い雇用形態にも対応しています。</p>
-        </div>
+<div class="pattern-inner">
+  <div class="pattern-header">
+    <span class="pattern-badge">B — ぐるぐる</span>
+    <div class="pattern-name">ぐるぐる（流れるアニメーションハイライト）</div>
+    <p class="pattern-desc">セクションタイトルは青→赤→青のグラデーションが常時流れ続けるアニメーション。キーワードの下には左から右へ流れる2色グラデーション下線。ジグザグ追加コピーとの組み合わせでキーワードが視覚的に浮かび上がる。</p>
+  </div>
+
+  <div class="s-quote-card">
+    <p class="s-quote-text">これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span class="hl">「自然体で、長く安心して働けること」</span>です。</p>
+    <div class="s-quote-meta">株式会社ファンリアル 代表取締役</div>
+    <a href="recruit.html" class="s-quote-link">代表メッセージ全文を読む →</a>
+  </div>
+
+  <div class="s-culture-head">
+    <div class="s-label">Culture &amp; Environment</div>
+    <h2 class="s-title">ファンリアルの3つの約束</h2>
+    <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl">自然と生まれる</span>もの。安心して働ける環境の先に、やりがいや挑戦が待っています。</p>
+  </div>
+
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">📈</div></div>
+      <div>
+        <div class="s-pillar-sub">Growth Assignment</div>
+        <div class="s-pillar-title">エンジニアの「成長」を<br>第一に考えたアサイン</div>
+        <p class="s-pillar-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって最適な働き方と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
+        <p class="s-pillar-extra"><span class="hl">「スキルが止まる現場には行かせない」</span>——それが私たちの約束です。現場の状況や技術トレンドを定期的にヒアリングし、あなたが確実に前進できる環境を整えます。</p>
       </div>
     </div>
   </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner rev">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">☕</div></div>
+      <div>
+        <div class="s-pillar-sub">Freedom &amp; Comfort</div>
+        <div class="s-pillar-title">肩の力を抜いて働ける<br>「圧倒的な自由度」</div>
+        <p class="s-pillar-text">過度な干渉や厳しすぎるルールのないフラットな社風。残業も少なく、オンとオフを両立させて働くことができます。</p>
+        <p class="s-pillar-extra">フラットな組織で<span class="hl">上司への気遣いや空気を読んだ残業は不要</span>。仕事もプライベートも充実させることが、<span class="hl2">長期的なパフォーマンス向上</span>に繋がります。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">🚩</div></div>
+      <div>
+        <div class="s-pillar-sub">Flexible Career Path</div>
+        <div class="s-pillar-title">「やってみたい」を<br>形にできるキャリアパス</div>
+        <p class="s-pillar-text">やりがいは「選ぶ」もの。営業やセキュリティエンジニアへのキャリアチェンジも柔軟にサポート。幅広い雇用形態にも対応しています。</p>
+        <p class="s-pillar-extra">エンジニアから営業へ——<span class="hl">あなたの「やってみたい」に応える多彩なキャリアパス</span>を用意しています。副業や週3日勤務など、ライフスタイルに合わせた働き方が実現できます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-numbers">
+    <h2 class="s-title">数字で見るファンリアル</h2>
+    <div class="s-num-grid">
+      <div class="s-num-item"><div class="s-num-value">200<span class="s-num-unit">%</span></div><div class="s-num-label">過去5年の成長率</div></div>
+      <div class="s-num-item"><div class="s-num-value">10<span class="s-num-unit">h</span></div><div class="s-num-label">月平均残業時間</div></div>
+      <div class="s-num-item"><div class="s-num-value">27<span class="s-num-unit">歳</span></div><div class="s-num-label">平均年齢</div></div>
+      <div class="s-num-item"><div class="s-num-value">60<span class="s-num-unit">%</span></div><div class="s-num-label">未経験入社率</div></div>
+      <div class="s-num-item s-num-item-full"><div class="s-num-value">5<span class="s-num-unit">種</span></div><div class="s-num-label">対応雇用形態数</div></div>
+    </div>
+  </div>
+</div>
 </section>
 <hr class="pattern-sep">
 
 
 <!-- =====================================================
-     C: 旧デザイン① ダーク（グロー系）
+     C: ダーク（ネオングロー）
 ===================================================== -->
 <section class="pattern-section" id="pat-c">
-  <div class="pattern-inner">
-    <div class="pattern-header">
-      <span class="pattern-badge">C — ダーク</span>
-      <div class="pattern-name">旧デザイン① ダーク（ネオングローハイライト）</div>
-      <p class="pattern-desc">白黒ベース時代のダーク調デザイン。暗い背景に白テキスト。キーワードに青いネオングロー（text-shadow）を適用。テック感・高級感が出る。採用ページには重めの印象になる可能性あり。</p>
-    </div>
-    <div class="content-wrap">
-      <div class="s-label">Culture &amp; Environment</div>
-      <h2 class="s-title">ファンリアルの<span class="hl-glow">3つ</span>の約束</h2>
-      <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl-glow-soft">自然と生まれる</span>もの。<br>安心して働ける環境の先に、<span class="hl-glow-soft">やりがいや挑戦</span>が待っています。</p>
-      <div class="pillar-grid">
-        <div class="pillar">
-          <div class="p-icon">📈</div>
-          <div class="p-sub">Growth Assignment</div>
-          <div class="p-title">エンジニアの<span class="hl-glow">「成長」</span>を<br>第一に考えたアサイン</div>
-          <p class="p-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって<span class="hl-glow-soft">最適な働き方</span>と成長のバランスを、営業担当が二人三脚で見つけていきます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">☕</div>
-          <div class="p-sub">Freedom &amp; Comfort</div>
-          <div class="p-title">肩の力を抜いて働ける<br><span class="hl-glow">「圧倒的な自由度」</span></div>
-          <p class="p-text">定着率の高さが証明する<span class="hl-glow-soft">居心地の良さ</span>は、フラットな社風にあります。残業も少なく、オンとオフを<span class="hl-glow-soft">両立</span>できます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">🚩</div>
-          <div class="p-sub">Flexible Career Path</div>
-          <div class="p-title">「やってみたい」を<br>形にできる<span class="hl-glow">キャリアパス</span></div>
-          <p class="p-text">やりがいは「<span class="hl-glow-soft">選ぶ</span>」もの。キャリアチェンジも<span class="hl-glow-soft">柔軟にサポート</span>。幅広い雇用形態にも対応しています。</p>
-        </div>
+<div class="pattern-inner">
+  <div class="pattern-header">
+    <span class="pattern-badge">C — ダーク</span>
+    <div class="pattern-name">ダーク（ネオングローハイライト）</div>
+    <p class="pattern-desc">深い紺色の背景に白テキスト。強調キーワードに青いネオングロー（text-shadow）を適用。ジグザグ段のrow背景も暗色に変化。テック感・没入感が強くなる一方、採用ページとしてはやや重厚な印象。</p>
+  </div>
+
+  <div class="s-quote-card">
+    <p class="s-quote-text">これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span class="hl">「自然体で、長く安心して働けること」</span>です。</p>
+    <div class="s-quote-meta">株式会社ファンリアル 代表取締役</div>
+    <a href="recruit.html" class="s-quote-link">代表メッセージ全文を読む →</a>
+  </div>
+
+  <div class="s-culture-head">
+    <div class="s-label">Culture &amp; Environment</div>
+    <h2 class="s-title">ファンリアルの<span class="hl">3つ</span>の約束</h2>
+    <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl2">自然と生まれる</span>もの。安心して働ける環境の先に、<span class="hl2">やりがいや挑戦</span>が待っています。</p>
+  </div>
+
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">📈</div></div>
+      <div>
+        <div class="s-pillar-sub">Growth Assignment</div>
+        <div class="s-pillar-title">エンジニアの<span class="hl">「成長」</span>を<br>第一に考えたアサイン</div>
+        <p class="s-pillar-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって最適な働き方と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
+        <p class="s-pillar-extra"><span class="hl">「スキルが止まる現場には行かせない」</span>——それが私たちの約束です。現場の状況や技術トレンドを定期的にヒアリングし、あなたが確実に前進できる環境を整えます。</p>
       </div>
     </div>
   </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner rev">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">☕</div></div>
+      <div>
+        <div class="s-pillar-sub">Freedom &amp; Comfort</div>
+        <div class="s-pillar-title">肩の力を抜いて働ける<br><span class="hl">「圧倒的な自由度」</span></div>
+        <p class="s-pillar-text">過度な干渉や厳しすぎるルールのないフラットな社風。残業も少なく、オンとオフを両立させて働くことができます。</p>
+        <p class="s-pillar-extra">フラットな組織で<span class="hl">上司への気遣いや空気を読んだ残業は不要</span>。仕事もプライベートも充実させることが、<span class="hl2">長期的なパフォーマンス向上</span>に繋がります。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">🚩</div></div>
+      <div>
+        <div class="s-pillar-sub">Flexible Career Path</div>
+        <div class="s-pillar-title">「やってみたい」を<br>形にできる<span class="hl">キャリアパス</span></div>
+        <p class="s-pillar-text">やりがいは「選ぶ」もの。営業やセキュリティエンジニアへのキャリアチェンジも柔軟にサポート。幅広い雇用形態にも対応しています。</p>
+        <p class="s-pillar-extra">エンジニアから営業へ——<span class="hl">あなたの「やってみたい」に応える多彩なキャリアパス</span>を用意しています。副業や週3日勤務など、ライフスタイルに合わせた働き方が実現できます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-numbers">
+    <h2 class="s-title">数字で見るファンリアル</h2>
+    <div class="s-num-grid">
+      <div class="s-num-item"><div class="s-num-value">200<span class="s-num-unit">%</span></div><div class="s-num-label">過去5年の成長率</div></div>
+      <div class="s-num-item"><div class="s-num-value">10<span class="s-num-unit">h</span></div><div class="s-num-label">月平均残業時間</div></div>
+      <div class="s-num-item"><div class="s-num-value">27<span class="s-num-unit">歳</span></div><div class="s-num-label">平均年齢</div></div>
+      <div class="s-num-item"><div class="s-num-value">60<span class="s-num-unit">%</span></div><div class="s-num-label">未経験入社率</div></div>
+      <div class="s-num-item s-num-item-full"><div class="s-num-value">5<span class="s-num-unit">種</span></div><div class="s-num-label">対応雇用形態数</div></div>
+    </div>
+  </div>
+</div>
 </section>
-<hr class="pattern-sep">
+<hr class="pattern-sep" style="border-color:#111;">
 
 
 <!-- =====================================================
-     D: 旧デザイン② ミニマル（極太下線）
+     D: ミニマル（極太下線）
 ===================================================== -->
 <section class="pattern-section" id="pat-d">
-  <div class="pattern-inner">
-    <div class="pattern-header">
-      <span class="pattern-badge">D — ミニマル</span>
-      <div class="pattern-name">旧デザイン② ミニマル（純白・極太下線）</div>
-      <p class="pattern-desc">純白背景×黒文字のミニマルデザイン。色を排除し、強調は極太の黒ボーダーボトムと太字のみ。清潔感・誠実さが伝わりやすく、「静かに強い」印象。カラフルなサイトに疲れた候補者層にも訴求しやすい。</p>
-    </div>
-    <div class="content-wrap">
-      <div class="s-label">Culture &amp; Environment</div>
-      <h2 class="s-title">ファンリアルの<span class="hl-line">3つの約束</span></h2>
-      <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl-bold">自然と生まれる</span>もの。<br>安心して働ける環境の先に、<span class="hl-bold">やりがいや挑戦</span>が待っています。</p>
-      <div class="pillar-grid">
-        <div class="pillar">
-          <div class="p-icon">📈</div>
-          <div class="p-sub">Growth Assignment</div>
-          <div class="p-title">エンジニアの<span class="hl-line">「成長」</span>を<br>第一に考えたアサイン</div>
-          <p class="p-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって<span class="hl-bold">最適な働き方</span>と成長のバランスを、営業担当が二人三脚で見つけていきます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">☕</div>
-          <div class="p-sub">Freedom &amp; Comfort</div>
-          <div class="p-title">肩の力を抜いて働ける<br><span class="hl-line">「圧倒的な自由度」</span></div>
-          <p class="p-text">定着率の高さが証明する<span class="hl-bold">居心地の良さ</span>は、フラットな社風にあります。残業も少なく、オンとオフを両立できます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">🚩</div>
-          <div class="p-sub">Flexible Career Path</div>
-          <div class="p-title">「やってみたい」を<br>形にできる<span class="hl-line">キャリアパス</span></div>
-          <p class="p-text">やりがいは「<span class="hl-bold">選ぶ</span>」もの。キャリアチェンジも柔軟にサポート。幅広い雇用形態にも対応しています。</p>
-        </div>
+<div class="pattern-inner">
+  <div class="pattern-header">
+    <span class="pattern-badge">D — ミニマル</span>
+    <div class="pattern-name">ミニマル（純白・極太下線）</div>
+    <p class="pattern-desc">純白背景×黒文字のミニマルデザイン。強調は極太の黒ボーダーボトムと太字のみ。ジグザグ段の背景もほぼ白でまとめ、静かな誠実さを表現。清潔感重視の候補者層に訴求しやすい。</p>
+  </div>
+
+  <div class="s-quote-card">
+    <p class="s-quote-text">これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span class="hl">「自然体で、長く安心して働けること」</span>です。</p>
+    <div class="s-quote-meta">株式会社ファンリアル 代表取締役</div>
+    <a href="recruit.html" class="s-quote-link">代表メッセージ全文を読む →</a>
+  </div>
+
+  <div class="s-culture-head">
+    <div class="s-label">Culture &amp; Environment</div>
+    <h2 class="s-title">ファンリアルの<span class="hl">3つの約束</span></h2>
+    <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl2">自然と生まれる</span>もの。安心して働ける環境の先に、やりがいや挑戦が待っています。</p>
+  </div>
+
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">📈</div></div>
+      <div>
+        <div class="s-pillar-sub">Growth Assignment</div>
+        <div class="s-pillar-title">エンジニアの<span class="hl">「成長」</span>を<br>第一に考えたアサイン</div>
+        <p class="s-pillar-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって最適な働き方と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
+        <p class="s-pillar-extra"><span class="hl">「スキルが止まる現場には行かせない」</span>——それが私たちの約束です。現場の状況や技術トレンドを定期的にヒアリングし、あなたが確実に前進できる環境を整えます。</p>
       </div>
     </div>
   </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner rev">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">☕</div></div>
+      <div>
+        <div class="s-pillar-sub">Freedom &amp; Comfort</div>
+        <div class="s-pillar-title">肩の力を抜いて働ける<br><span class="hl">「圧倒的な自由度」</span></div>
+        <p class="s-pillar-text">過度な干渉や厳しすぎるルールのないフラットな社風。残業も少なく、オンとオフを両立させて働くことができます。</p>
+        <p class="s-pillar-extra">フラットな組織で<span class="hl">上司への気遣いや空気を読んだ残業は不要</span>。仕事もプライベートも充実させることが、<span class="hl2">長期的なパフォーマンス向上</span>に繋がります。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">🚩</div></div>
+      <div>
+        <div class="s-pillar-sub">Flexible Career Path</div>
+        <div class="s-pillar-title">「やってみたい」を<br>形にできる<span class="hl">キャリアパス</span></div>
+        <p class="s-pillar-text">やりがいは「選ぶ」もの。営業やセキュリティエンジニアへのキャリアチェンジも柔軟にサポート。幅広い雇用形態にも対応しています。</p>
+        <p class="s-pillar-extra">エンジニアから営業へ——<span class="hl">あなたの「やってみたい」に応える多彩なキャリアパス</span>を用意しています。副業や週3日勤務など、ライフスタイルに合わせた働き方が実現できます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-numbers">
+    <h2 class="s-title">数字で見るファンリアル</h2>
+    <div class="s-num-grid">
+      <div class="s-num-item"><div class="s-num-value">200<span class="s-num-unit">%</span></div><div class="s-num-label">過去5年の成長率</div></div>
+      <div class="s-num-item"><div class="s-num-value">10<span class="s-num-unit">h</span></div><div class="s-num-label">月平均残業時間</div></div>
+      <div class="s-num-item"><div class="s-num-value">27<span class="s-num-unit">歳</span></div><div class="s-num-label">平均年齢</div></div>
+      <div class="s-num-item"><div class="s-num-value">60<span class="s-num-unit">%</span></div><div class="s-num-label">未経験入社率</div></div>
+      <div class="s-num-item s-num-item-full"><div class="s-num-value">5<span class="s-num-unit">種</span></div><div class="s-num-label">対応雇用形態数</div></div>
+    </div>
+  </div>
+</div>
 </section>
 <hr class="pattern-sep">
 
 
 <!-- =====================================================
-     E: 旧デザイン③ カラーワード
+     E: カラーワード（ブランドカラー全活用）
 ===================================================== -->
 <section class="pattern-section" id="pat-e">
-  <div class="pattern-inner">
-    <div class="pattern-header">
-      <span class="pattern-badge">E — カラーワード</span>
-      <div class="pattern-name">旧デザイン③ カラーワード（ブランドカラー全活用）</div>
-      <p class="pattern-desc">赤・青・黄のブランドカラーを意味別に使い分ける。赤＝強い約束・警告の否定、青＝プロセス・行動・サポート、黄＝ベネフィット・価値。多様な色が個性と活気を表現するが、使いすぎると散漫になるため対象語は絞るのが鉄則。</p>
-    </div>
-    <div class="content-wrap">
-      <div class="s-label">Culture &amp; Environment</div>
-      <h2 class="s-title">ファンリアルの<span class="hl-col-red">3つ</span>の約束</h2>
-      <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl-col-blue">自然と生まれる</span>もの。<br>安心して働ける環境の先に、<span class="hl-col-yel">やりがいや挑戦</span>が待っています。</p>
-      <div class="pillar-grid">
-        <div class="pillar">
-          <div class="p-icon">📈</div>
-          <div class="p-sub">Growth Assignment</div>
-          <div class="p-title">エンジニアの<span class="hl-col-red">「成長」</span>を<br>第一に考えたアサイン</div>
-          <p class="p-text">「キャリアが停滞するアサイン」はいたしません。<span class="hl-col-blue">最適な働き方</span>と成長のバランスを、営業担当が<span class="hl-col-yel">二人三脚</span>で見つけていきます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">☕</div>
-          <div class="p-sub">Freedom &amp; Comfort</div>
-          <div class="p-title">肩の力を抜いて働ける<br><span class="hl-col-red">「圧倒的な自由度」</span></div>
-          <p class="p-text">定着率の高さが証明する<span class="hl-col-yel">居心地の良さ</span>は、<span class="hl-col-blue">フラットな社風</span>にあります。残業も少なく、オンとオフを両立できます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">🚩</div>
-          <div class="p-sub">Flexible Career Path</div>
-          <div class="p-title">「やってみたい」を<br>形にできる<span class="hl-col-red">キャリアパス</span></div>
-          <p class="p-text">やりがいは「<span class="hl-col-yel">選ぶ</span>」もの。<span class="hl-col-blue">キャリアチェンジ</span>も柔軟にサポート。幅広い雇用形態にも対応しています。</p>
-        </div>
+<div class="pattern-inner">
+  <div class="pattern-header">
+    <span class="pattern-badge">E — カラーワード</span>
+    <div class="pattern-name">カラーワード（ブランドカラー全活用）</div>
+    <p class="pattern-desc">赤＝強い約束・否定の強調、青＝プロセス・サポート・行動、黄＝価値・ベネフィット、と意味ごとに3色を使い分け。ジグザグの各ピラー段ごとにカラー割当を統一すると読み取りやすくなる。</p>
+  </div>
+
+  <div class="s-quote-card">
+    <p class="s-quote-text">これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span class="hl2">「自然体で、長く安心して働けること」</span>です。</p>
+    <div class="s-quote-meta">株式会社ファンリアル 代表取締役</div>
+    <a href="recruit.html" class="s-quote-link">代表メッセージ全文を読む →</a>
+  </div>
+
+  <div class="s-culture-head">
+    <div class="s-label">Culture &amp; Environment</div>
+    <h2 class="s-title">ファンリアルの<span class="hl">3つ</span>の約束</h2>
+    <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl2">自然と生まれる</span>もの。安心して働ける環境の先に、<span class="hl3">やりがいや挑戦</span>が待っています。</p>
+  </div>
+
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">📈</div></div>
+      <div>
+        <div class="s-pillar-sub">Growth Assignment</div>
+        <div class="s-pillar-title">エンジニアの<span class="hl">「成長」</span>を<br>第一に考えたアサイン</div>
+        <p class="s-pillar-text">「キャリアが停滞するアサイン」はいたしません。今のあなたにとって<span class="hl2">最適な働き方</span>と成長のバランスを、営業担当が<span class="hl3">二人三脚</span>で一緒に見つけていきます。</p>
+        <p class="s-pillar-extra"><span class="hl">「スキルが止まる現場には行かせない」</span>——それが私たちの約束です。現場の状況や技術トレンドを定期的にヒアリングし、あなたが確実に<span class="hl3">前進できる環境</span>を整えます。</p>
       </div>
     </div>
   </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner rev">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">☕</div></div>
+      <div>
+        <div class="s-pillar-sub">Freedom &amp; Comfort</div>
+        <div class="s-pillar-title">肩の力を抜いて働ける<br><span class="hl">「圧倒的な自由度」</span></div>
+        <p class="s-pillar-text">過度な干渉や厳しすぎるルールのない<span class="hl2">フラットな社風</span>。残業も少なく、<span class="hl3">オンとオフを両立</span>させて働くことができます。</p>
+        <p class="s-pillar-extra">フラットな組織で<span class="hl">上司への気遣いや空気を読んだ残業は不要</span>。仕事もプライベートも充実させることが、<span class="hl3">長期的なパフォーマンス向上</span>に繋がります。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">🚩</div></div>
+      <div>
+        <div class="s-pillar-sub">Flexible Career Path</div>
+        <div class="s-pillar-title">「やってみたい」を<br>形にできる<span class="hl">キャリアパス</span></div>
+        <p class="s-pillar-text">やりがいは「<span class="hl3">選ぶ</span>」もの。<span class="hl2">キャリアチェンジ</span>も柔軟にサポート。幅広い雇用形態にも対応しています。</p>
+        <p class="s-pillar-extra">エンジニアから営業へ——<span class="hl2">あなたの「やってみたい」に応える多彩なキャリアパス</span>を用意しています。副業や週3日勤務など、<span class="hl3">ライフスタイルに合わせた働き方</span>が実現できます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-numbers">
+    <h2 class="s-title">数字で見るファンリアル</h2>
+    <div class="s-num-grid">
+      <div class="s-num-item"><div class="s-num-value">200<span class="s-num-unit">%</span></div><div class="s-num-label">過去5年の成長率</div></div>
+      <div class="s-num-item"><div class="s-num-value">10<span class="s-num-unit">h</span></div><div class="s-num-label">月平均残業時間</div></div>
+      <div class="s-num-item"><div class="s-num-value">27<span class="s-num-unit">歳</span></div><div class="s-num-label">平均年齢</div></div>
+      <div class="s-num-item"><div class="s-num-value">60<span class="s-num-unit">%</span></div><div class="s-num-label">未経験入社率</div></div>
+      <div class="s-num-item s-num-item-full"><div class="s-num-value">5<span class="s-num-unit">種</span></div><div class="s-num-label">対応雇用形態数</div></div>
+    </div>
+  </div>
+</div>
 </section>
 <hr class="pattern-sep">
 
 
 <!-- =====================================================
-     F: 現在デザイン＋ハイライト統合提案
+     F: 統合提案（グラデーション見出し＋マーカー）
 ===================================================== -->
-<section class="pattern-section" id="pat-f">
-  <div class="pattern-inner">
-    <div class="pattern-header">
-      <span class="pattern-badge">F — 統合提案</span>
-      <div class="pattern-name">現在のデザイン＋ハイライト統合提案</div>
-      <p class="pattern-desc">現在の白水色ベースを維持しつつ、見出しに赤→青のグラデーションテキストを適用。本文中の重要キーワードには薄い背景色マーカー（青系・赤系）を使用。WCAGコントラスト比を守りながらカラフル感を出す、現実的な実装提案。</p>
-    </div>
-    <div class="content-wrap">
-      <div class="s-label">Culture &amp; Environment</div>
-      <h2 class="s-title">ファンリアルの3つの約束</h2>
-      <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl-mk-blue">自然と生まれる</span>もの。<br>安心して働ける環境の先に、<span class="hl-mk-red">やりがいや挑戦</span>が待っています。</p>
-      <div class="pillar-grid">
-        <div class="pillar">
-          <div class="p-icon">📈</div>
-          <div class="p-sub">Growth Assignment</div>
-          <div class="p-title">エンジニアの<span class="hl-grad">「成長」</span>を<br>第一に考えたアサイン</div>
-          <p class="p-text"><span class="hl-mk-red">キャリアが停滞するアサインはいたしません</span>。今のあなたにとって<span class="hl-mk-blue">最適な働き方</span>と成長のバランスを、営業担当が二人三脚で見つけていきます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">☕</div>
-          <div class="p-sub">Freedom &amp; Comfort</div>
-          <div class="p-title">肩の力を抜いて働ける<br><span class="hl-grad">「圧倒的な自由度」</span></div>
-          <p class="p-text">定着率の高さが証明する<span class="hl-mk-blue">居心地の良さ</span>は、<span class="hl-mk-blue">フラットな社風</span>にあります。残業も少なく、オンとオフを両立できます。</p>
-        </div>
-        <div class="pillar">
-          <div class="p-icon">🚩</div>
-          <div class="p-sub">Flexible Career Path</div>
-          <div class="p-title">「やってみたい」を<br>形にできる<span class="hl-grad">キャリアパス</span></div>
-          <p class="p-text">やりがいは「<span class="hl-mk-red">選ぶ</span>」もの。<span class="hl-mk-blue">キャリアチェンジ</span>も柔軟にサポート。幅広い雇用形態にも対応しています。</p>
-        </div>
+<section class="pattern-section" id="pat-f" style="padding-bottom:80px;">
+<div class="pattern-inner">
+  <div class="pattern-header">
+    <span class="pattern-badge">F — 統合提案</span>
+    <div class="pattern-name">現在デザイン＋ハイライト統合提案</div>
+    <p class="pattern-desc">現在の白水色ベースを維持しつつ、セクションタイトルに赤→青のグラデーションテキストを適用。ピラータイトルの一部キーワードにも同様のグラデーション（.hl-grad）を使用。本文キーワードには薄い背景色マーカー（青系・赤系）を使い分け、情報の優先度を表現。</p>
+  </div>
+
+  <div class="s-quote-card">
+    <p class="s-quote-text">これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span class="hl">「自然体で、長く安心して働けること」</span>です。</p>
+    <div class="s-quote-meta">株式会社ファンリアル 代表取締役</div>
+    <a href="recruit.html" class="s-quote-link">代表メッセージ全文を読む →</a>
+  </div>
+
+  <div class="s-culture-head">
+    <div class="s-label">Culture &amp; Environment</div>
+    <h2 class="s-title">ファンリアルの3つの約束</h2>
+    <p class="s-lead">エンゲージメントは、押し付けるものではなく<span class="hl">自然と生まれる</span>もの。安心して働ける環境の先に、<span class="hl2">やりがいや挑戦</span>が待っています。</p>
+  </div>
+
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">📈</div></div>
+      <div>
+        <div class="s-pillar-sub">Growth Assignment</div>
+        <div class="s-pillar-title">エンジニアの<span class="hl-grad">「成長」</span>を<br>第一に考えたアサイン</div>
+        <p class="s-pillar-text"><span class="hl2">キャリアが停滞するアサインはいたしません</span>。今のあなたにとって<span class="hl">最適な働き方</span>と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
+        <p class="s-pillar-extra"><span class="hl2">「スキルが止まる現場には行かせない」</span>——それが私たちの約束です。現場の状況や技術トレンドを定期的にヒアリングし、あなたが確実に前進できる環境を整えます。</p>
       </div>
     </div>
   </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner rev">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">☕</div></div>
+      <div>
+        <div class="s-pillar-sub">Freedom &amp; Comfort</div>
+        <div class="s-pillar-title">肩の力を抜いて働ける<br><span class="hl-grad">「圧倒的な自由度」</span></div>
+        <p class="s-pillar-text">過度な干渉や厳しすぎるルールのない<span class="hl">フラットな社風</span>。残業も少なく、オンとオフを両立させて働くことができます。</p>
+        <p class="s-pillar-extra">フラットな組織で<span class="hl">上司への気遣いや空気を読んだ残業は不要</span>。仕事もプライベートも充実させることが、<span class="hl3">長期的なパフォーマンス向上</span>に繋がります。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-pillar-row">
+    <div class="s-pillar-inner">
+      <div class="s-pillar-visual"><div class="s-pillar-circle">🚩</div></div>
+      <div>
+        <div class="s-pillar-sub">Flexible Career Path</div>
+        <div class="s-pillar-title">「やってみたい」を<br>形にできる<span class="hl-grad">キャリアパス</span></div>
+        <p class="s-pillar-text">やりがいは「<span class="hl2">選ぶ</span>」もの。<span class="hl">キャリアチェンジ</span>も柔軟にサポート。幅広い雇用形態にも対応しています。</p>
+        <p class="s-pillar-extra">エンジニアから営業へ——<span class="hl">あなたの「やってみたい」に応える多彩なキャリアパス</span>を用意しています。副業や週3日勤務など、ライフスタイルに合わせた働き方が実現できます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-numbers">
+    <h2 class="s-title">数字で見るファンリアル</h2>
+    <div class="s-num-grid">
+      <div class="s-num-item"><div class="s-num-value">200<span class="s-num-unit">%</span></div><div class="s-num-label">過去5年の成長率</div></div>
+      <div class="s-num-item"><div class="s-num-value">10<span class="s-num-unit">h</span></div><div class="s-num-label">月平均残業時間</div></div>
+      <div class="s-num-item"><div class="s-num-value">27<span class="s-num-unit">歳</span></div><div class="s-num-label">平均年齢</div></div>
+      <div class="s-num-item"><div class="s-num-value">60<span class="s-num-unit">%</span></div><div class="s-num-label">未経験入社率</div></div>
+      <div class="s-num-item s-num-item-full"><div class="s-num-value">5<span class="s-num-unit">種</span></div><div class="s-num-label">対応雇用形態数</div></div>
+    </div>
+  </div>
+</div>
 </section>
 
 </body>

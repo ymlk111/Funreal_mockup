@@ -199,6 +199,20 @@
   .scroll-top { position: fixed; bottom: 24px; right: 24px; z-index: 900; width: 44px; height: 44px; border-radius: 50%; background: var(--blue); color: var(--white); border: 1px solid var(--blue); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transform: translateY(12px); transition: opacity 0.3s, transform 0.3s, background 0.2s; pointer-events: none; box-shadow: 0 4px 12px rgba(0,170,204,0.3); }
   .scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
   .scroll-top:hover { background: #0090aa; border-color: #0090aa; }
+
+  /* ===== CEO QUOTE CARD ===== */
+  .ceo-quote-sec { background: var(--white); padding: 72px 60px; }
+  .ceo-quote-card { max-width: 820px; margin: 0 auto; background: var(--gray-light); border-left: 4px solid var(--blue); border-radius: 0 16px 16px 0; padding: 44px 52px 36px; position: relative; overflow: hidden; }
+  .ceo-quote-card::before { content: '\201C'; font-family: Georgia, 'Times New Roman', serif; font-size: 120px; color: var(--blue); opacity: 0.12; position: absolute; top: -8px; left: 16px; line-height: 1; pointer-events: none; }
+  .ceo-quote-text { font-size: 16px; line-height: 2.2; color: #333; font-weight: 500; }
+  .ceo-quote-meta { margin-top: 20px; font-size: 12px; color: var(--gray-text); }
+  .ceo-quote-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 12px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.08em; color: var(--blue); text-decoration: none; transition: gap 0.2s, color 0.2s; }
+  .ceo-quote-link:hover { gap: 10px; color: #0090aa; }
+  @media (max-width: 768px) {
+    .ceo-quote-sec { padding: 48px 24px; }
+    .ceo-quote-card { padding: 32px 28px 28px; }
+    .ceo-quote-text { font-size: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -366,6 +380,15 @@
         <div class="svc-arrow" style="color:var(--yellow);">詳しく見る →</div>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ===== CEO QUOTE (Recruit tie-in) ===== -->
+<section class="ceo-quote-sec">
+  <div class="ceo-quote-card fade-up">
+    <p class="ceo-quote-text">これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br>株式会社ファンリアルが大切にしているのは、社員一人ひとりが「自然体で、長く安心して働けること」です。</p>
+    <div class="ceo-quote-meta">株式会社ファンリアル 代表取締役</div>
+    <a href="recruit.html" class="ceo-quote-link">代表メッセージ全文を読む →</a>
   </div>
 </section>
 

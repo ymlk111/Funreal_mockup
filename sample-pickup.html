@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PickUp パターン比較 | サンプル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1A1A1A; --blue: #00AACC; --yellow: #CCAA00; --red: #CC2200;
+    --white: #FFFFFF; --gray-light: #E5F4F9; --gray-mid: #CDE8F0; --gray-text: #5A7A85;
+    --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-jp); color: var(--black); background: #F4FBFD; }
+
+  /* ── TOP NAV ── */
+  .top-nav { position: sticky; top: 0; z-index: 100; background: rgba(26,26,26,0.96); backdrop-filter: blur(8px); display: flex; align-items: center; gap: 0; padding: 0 32px; height: 56px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .top-nav-brand { font-family: var(--font-en); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; margin-right: 24px; padding-right: 24px; border-right: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+  .top-nav a { display: flex; align-items: center; gap: 8px; padding: 0 16px; height: 56px; font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.55); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; flex-shrink: 0; }
+  .top-nav a:hover, .top-nav a.active { color: var(--blue); border-bottom-color: var(--blue); }
+  .top-nav a .nav-num { font-size: 10px; font-weight: 700; background: rgba(0,170,204,0.2); color: var(--blue); padding: 2px 6px; border-radius: 10px; }
+
+  /* ── PATTERN SECTION WRAPPER ── */
+  .pattern-sec { padding: 72px 0 80px; border-bottom: 1px solid var(--gray-mid); }
+  .pattern-header { max-width: 1200px; margin: 0 auto 36px; padding: 0 60px; display: flex; align-items: flex-end; gap: 20px; }
+  .pattern-badge { font-family: var(--font-en); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 4px 12px; border-radius: 4px; flex-shrink: 0; }
+  .pattern-title { font-size: 22px; font-weight: 700; }
+  .pattern-desc { font-size: 13px; color: var(--gray-text); margin-top: 4px; }
+
+  /* ── SHARED CARD ── */
+  .pu-card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 14px; padding: 22px; text-decoration: none; color: var(--black); display: block; }
+  .pu-card-tag { display: inline-block; font-family: var(--font-en); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--blue); padding: 3px 11px; border-radius: 20px; margin-bottom: 12px; }
+  .pu-card-tag.tag-recruit { background: var(--yellow); }
+  .pu-card-tag.tag-news { background: #888; }
+  .pu-card-title { font-size: 15px; font-weight: 700; line-height: 1.5; margin-bottom: 8px; }
+  .pu-card-desc { font-size: 12px; color: var(--gray-text); line-height: 1.7; }
+
+  /* ======================================================
+     PATTERN A — 現在のカルーセル（比較用）
+  ====================================================== */
+  .pA-viewport { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
+  .pA-track { display: flex; gap: 16px; width: max-content; animation: scrollA 36s linear infinite; }
+  .pA-sec:hover .pA-track { animation-play-state: paused; }
+  .pA-track .pu-card { flex: 0 0 250px; transition: transform 0.25s, box-shadow 0.25s; }
+  .pA-track .pu-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0,170,204,0.15); }
+  @keyframes scrollA { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 8px)); } }
+
+  /* ======================================================
+     PATTERN B — 自動ループスクロール（遅め・大カード）
+  ====================================================== */
+  .pB-viewport { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); }
+  .pB-track { display: flex; gap: 24px; width: max-content; animation: scrollB 50s linear infinite; }
+  .pB-sec:hover .pB-track { animation-play-state: paused; }
+  .pB-track .pu-card { flex: 0 0 320px; padding: 28px; transition: transform 0.3s, box-shadow 0.3s; }
+  .pB-track .pu-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,170,204,0.18); }
+  .pB-track .pu-card .pu-card-title { font-size: 17px; }
+  .pB-track .pu-card .pu-card-desc { font-size: 13px; }
+  @keyframes scrollB { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 12px)); } }
+
+  /* ======================================================
+     PATTERN C — グリッド表示
+  ====================================================== */
+  .pC-grid { max-width: 1200px; margin: 0 auto; padding: 0 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pC-grid .pu-card { transition: transform 0.2s, box-shadow 0.2s; }
+  .pC-grid .pu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,170,204,0.12); }
+  .pC-grid .pu-card-title { font-size: 16px; }
+  .pC-last-row { grid-column: span 3; display: flex; gap: 20px; }
+  .pC-last-row .pu-card { flex: 1; }
+  @media (max-width: 768px) {
+    .pC-grid { grid-template-columns: 1fr 1fr; padding: 0 24px; }
+    .pC-last-row { grid-column: span 2; }
+  }
+
+  /* ======================================================
+     PATTERN D — スタック / 重なり
+  ====================================================== */
+  .pD-stage { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .pD-stack-wrap { position: relative; height: 300px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .pD-card { position: absolute; width: 280px; border-radius: 14px; overflow: hidden; transform-origin: bottom center; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+  .pD-card:nth-child(1) { transform: rotate(-8deg) translateY(12px); z-index: 1; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .pD-card:nth-child(2) { transform: rotate(-3deg) translateY(6px); z-index: 2; box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+  .pD-card:nth-child(3) { transform: rotate(0deg) translateY(0px); z-index: 3; box-shadow: 0 10px 28px rgba(0,0,0,0.14); }
+  .pD-card:nth-child(4) { transform: rotate(3deg) translateY(6px); z-index: 2; box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+  .pD-card:nth-child(5) { transform: rotate(8deg) translateY(12px); z-index: 1; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .pD-stack-wrap:hover .pD-card:nth-child(1) { transform: rotate(-8deg) translateY(12px) translateX(-190px); z-index: 1; }
+  .pD-stack-wrap:hover .pD-card:nth-child(2) { transform: rotate(-3deg) translateY(6px) translateX(-100px); z-index: 2; }
+  .pD-stack-wrap:hover .pD-card:nth-child(3) { transform: rotate(0deg) translateY(0) translateX(0); z-index: 3; }
+  .pD-stack-wrap:hover .pD-card:nth-child(4) { transform: rotate(3deg) translateY(6px) translateX(100px); z-index: 2; }
+  .pD-stack-wrap:hover .pD-card:nth-child(5) { transform: rotate(8deg) translateY(12px) translateX(190px); z-index: 1; }
+  .pD-hint { text-align: center; font-size: 12px; color: var(--gray-text); font-family: var(--font-en); margin-top: 16px; letter-spacing: 0.05em; }
+
+  /* ======================================================
+     PATTERN E — フルスクリーン 1 枚ずつ
+  ====================================================== */
+  .pE-stage { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .pE-slider { position: relative; overflow: hidden; border-radius: 16px; background: var(--gray-light); }
+  .pE-slides { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+  .pE-slide { flex: 0 0 100%; padding: 64px 80px; display: flex; gap: 60px; align-items: center; min-height: 220px; }
+  .pE-slide-badge { flex-shrink: 0; }
+  .pE-slide-icon { width: 80px; height: 80px; border-radius: 12px; background: rgba(0,170,204,0.1); border: 1px solid rgba(0,170,204,0.2); display: flex; align-items: center; justify-content: center; }
+  .pE-slide-icon svg { display: block; }
+  .pE-slide-body { flex: 1; }
+  .pE-slide-tag { font-family: var(--font-en); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+  .pE-slide-title { font-size: 24px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+  .pE-slide-desc { font-size: 14px; color: var(--gray-text); line-height: 1.9; }
+  .pE-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 20px; }
+  .pE-btn { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gray-mid); background: var(--white); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--black); transition: all 0.2s; }
+  .pE-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .pE-dots { display: flex; gap: 8px; }
+  .pE-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-mid); cursor: pointer; transition: background 0.2s, transform 0.2s; border: none; padding: 0; }
+  .pE-dot.active { background: var(--blue); transform: scale(1.3); }
+  .pE-counter { font-family: var(--font-en); font-size: 12px; color: var(--gray-text); min-width: 40px; text-align: center; }
+
+  /* ── FOOTER ── */
+  .sample-footer { background: var(--black); padding: 32px 60px; display: flex; align-items: center; justify-content: space-between; }
+  .sample-footer-txt { font-family: var(--font-en); font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; }
+  .sample-footer-link { font-family: var(--font-en); font-size: 11px; color: var(--blue); text-decoration: none; letter-spacing: 0.08em; }
+  .sample-footer-link:hover { text-decoration: underline; }
+
+  .mockup-badge { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--blue); color: var(--white); font-size: 11px; font-family: var(--font-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; pointer-events: none; }
+
+  @media (max-width: 768px) {
+    .pattern-header { padding: 0 24px; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .pC-grid { grid-template-columns: 1fr; }
+    .pC-last-row { grid-column: span 1; flex-direction: column; }
+    .pD-stack-wrap { height: 260px; }
+    .pD-card { width: 220px; }
+    .pD-stack-wrap:hover .pD-card:nth-child(1) { transform: rotate(-8deg) translateY(12px) translateX(-130px); }
+    .pD-stack-wrap:hover .pD-card:nth-child(2) { transform: rotate(-3deg) translateY(6px) translateX(-68px); }
+    .pD-stack-wrap:hover .pD-card:nth-child(4) { transform: rotate(3deg) translateY(6px) translateX(68px); }
+    .pD-stack-wrap:hover .pD-card:nth-child(5) { transform: rotate(8deg) translateY(12px) translateX(130px); }
+    .pE-stage { padding: 0 24px; }
+    .pE-slide { padding: 36px 32px; flex-direction: column; gap: 24px; min-height: auto; }
+    .pE-slide-title { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="mockup-badge">MOCKUP</div>
+
+<!-- ── TOP NAV ── -->
+<nav class="top-nav">
+  <div class="top-nav-brand">PickUp Patterns</div>
+  <a href="#pattern-a"><span class="nav-num">A</span>現在のカルーセル</a>
+  <a href="#pattern-b"><span class="nav-num">B</span>大カード ループ</a>
+  <a href="#pattern-c"><span class="nav-num">C</span>グリッド表示</a>
+  <a href="#pattern-d"><span class="nav-num">D</span>スタック / 重なり</a>
+  <a href="#pattern-e"><span class="nav-num">E</span>フルスクリーン</a>
+</nav>
+
+<!-- ============================================================
+     PATTERN A — 現在のカルーセル（比較用）
+============================================================ -->
+<section class="pattern-sec pA-sec" id="pattern-a">
+  <div class="pattern-header">
+    <span class="pattern-badge">A</span>
+    <div>
+      <div class="pattern-title">現在のカルーセル <span style="font-size:14px;font-weight:400;color:var(--gray-text);">— 比較用</span></div>
+      <div class="pattern-desc">index.html 現状と同じ実装。ホバーで一時停止、マスクによるフェード端。</div>
+    </div>
+  </div>
+  <div class="pA-viewport">
+    <div class="pA-track">
+      <a href="service-se.html" class="pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">システムエンジニアリング</div><div class="pu-card-desc">開発現場で技術力を磨くSES事業</div></a>
+      <a href="service-is.html" class="pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">インサイドセールス</div><div class="pu-card-desc">安定した商談創出の仕組みづくり</div></a>
+      <a href="solutions.html" class="pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">ソリューションズ</div><div class="pu-card-desc">企画構想から開発・運用まで一貫対応</div></a>
+      <a href="recruit.html" class="pu-card"><span class="pu-card-tag tag-recruit">Recruit</span><div class="pu-card-title">一緒に、未来をつくろう。</div><div class="pu-card-desc">2026年度エントリー受付中</div></a>
+      <a href="news-detail.html" class="pu-card"><span class="pu-card-tag tag-news">News</span><div class="pu-card-title">ソリューションズ提供開始</div><div class="pu-card-desc">新サービス提供開始のお知らせ</div></a>
+      <!-- duplicate for seamless loop -->
+      <a href="service-se.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag">Service</span><div class="pu-card-title">システムエンジニアリング</div><div class="pu-card-desc">開発現場で技術力を磨くSES事業</div></a>
+      <a href="service-is.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag">Service</span><div class="pu-card-title">インサイドセールス</div><div class="pu-card-desc">安定した商談創出の仕組みづくり</div></a>
+      <a href="solutions.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag">Service</span><div class="pu-card-title">ソリューションズ</div><div class="pu-card-desc">企画構想から開発・運用まで一貫対応</div></a>
+      <a href="recruit.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag tag-recruit">Recruit</span><div class="pu-card-title">一緒に、未来をつくろう。</div><div class="pu-card-desc">2026年度エントリー受付中</div></a>
+      <a href="news-detail.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag tag-news">News</span><div class="pu-card-title">ソリューションズ提供開始</div><div class="pu-card-desc">新サービス提供開始のお知らせ</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PATTERN B — 自動ループスクロール（大カード・低速）
+============================================================ -->
+<section class="pattern-sec pB-sec" id="pattern-b" style="background:var(--gray-light);">
+  <div class="pattern-header">
+    <span class="pattern-badge" style="background:var(--blue);">B</span>
+    <div>
+      <div class="pattern-title">大カード・低速ループ</div>
+      <div class="pattern-desc">カードを大きく（320px）・速度を遅め（50s）に設定。各カードの情報をより読ませたい場合向け。</div>
+    </div>
+  </div>
+  <div class="pB-viewport">
+    <div class="pB-track">
+      <a href="service-se.html" class="pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">システムエンジニアリング</div><div class="pu-card-desc">開発現場で技術力を磨くSES事業。成長を前提とした現場アサインで技術力を高めます。</div></a>
+      <a href="service-is.html" class="pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">インサイドセールス</div><div class="pu-card-desc">安定した商談創出の仕組みづくり。戦略設計から実行・改善まで一貫して対応します。</div></a>
+      <a href="solutions.html" class="pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">ソリューションズ</div><div class="pu-card-desc">企画構想から開発・運用まで一貫対応。受託開発から自社プロダクトまで幅広く対応。</div></a>
+      <a href="recruit.html" class="pu-card"><span class="pu-card-tag tag-recruit">Recruit</span><div class="pu-card-title">一緒に、未来をつくろう。</div><div class="pu-card-desc">2026年度エントリー受付中。未経験歓迎・残業少なめ・キャリアパス自由。</div></a>
+      <a href="news-detail.html" class="pu-card"><span class="pu-card-tag tag-news">News</span><div class="pu-card-title">ソリューションズ提供開始</div><div class="pu-card-desc">新サービス提供開始のお知らせ。企画構想から運用まで一気通貫のIT支援を開始。</div></a>
+      <!-- duplicate -->
+      <a href="service-se.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag">Service</span><div class="pu-card-title">システムエンジニアリング</div><div class="pu-card-desc">開発現場で技術力を磨くSES事業。成長を前提とした現場アサインで技術力を高めます。</div></a>
+      <a href="service-is.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag">Service</span><div class="pu-card-title">インサイドセールス</div><div class="pu-card-desc">安定した商談創出の仕組みづくり。戦略設計から実行・改善まで一貫して対応します。</div></a>
+      <a href="solutions.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag">Service</span><div class="pu-card-title">ソリューションズ</div><div class="pu-card-desc">企画構想から開発・運用まで一貫対応。受託開発から自社プロダクトまで幅広く対応。</div></a>
+      <a href="recruit.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag tag-recruit">Recruit</span><div class="pu-card-title">一緒に、未来をつくろう。</div><div class="pu-card-desc">2026年度エントリー受付中。未経験歓迎・残業少なめ・キャリアパス自由。</div></a>
+      <a href="news-detail.html" class="pu-card" aria-hidden="true" tabindex="-1"><span class="pu-card-tag tag-news">News</span><div class="pu-card-title">ソリューションズ提供開始</div><div class="pu-card-desc">新サービス提供開始のお知らせ。企画構想から運用まで一気通貫のIT支援を開始。</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PATTERN C — グリッド表示
+============================================================ -->
+<section class="pattern-sec" id="pattern-c">
+  <div class="pattern-header">
+    <span class="pattern-badge" style="background:#2A6E3F;">C</span>
+    <div>
+      <div class="pattern-title">グリッド表示</div>
+      <div class="pattern-desc">全カードを一覧表示。スクロール不要で全体を把握できる。SEO上も有利。</div>
+    </div>
+  </div>
+  <div class="pC-grid">
+    <a href="service-se.html" class="pu-card" style="transition:transform .2s,box-shadow .2s;"><span class="pu-card-tag">Service</span><div class="pu-card-title">システムエンジニアリング</div><div class="pu-card-desc">開発現場で技術力を磨くSES事業</div></a>
+    <a href="service-is.html" class="pu-card" style="transition:transform .2s,box-shadow .2s;"><span class="pu-card-tag">Service</span><div class="pu-card-title">インサイドセールス</div><div class="pu-card-desc">安定した商談創出の仕組みづくり</div></a>
+    <a href="solutions.html" class="pu-card" style="transition:transform .2s,box-shadow .2s;"><span class="pu-card-tag">Service</span><div class="pu-card-title">ソリューションズ</div><div class="pu-card-desc">企画構想から開発・運用まで一貫対応</div></a>
+    <div class="pC-last-row" style="grid-column:span 3;">
+      <a href="recruit.html" class="pu-card" style="transition:transform .2s,box-shadow .2s;"><span class="pu-card-tag tag-recruit">Recruit</span><div class="pu-card-title">一緒に、未来をつくろう。</div><div class="pu-card-desc">2026年度エントリー受付中</div></a>
+      <a href="news-detail.html" class="pu-card" style="transition:transform .2s,box-shadow .2s;"><span class="pu-card-tag tag-news">News</span><div class="pu-card-title">ソリューションズ提供開始</div><div class="pu-card-desc">新サービス提供開始のお知らせ</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PATTERN D — スタック / 重なり
+============================================================ -->
+<section class="pattern-sec" id="pattern-d" style="background:var(--gray-light);">
+  <div class="pattern-header">
+    <span class="pattern-badge" style="background:#7B3F9E;">D</span>
+    <div>
+      <div class="pattern-title">スタック / 重なり</div>
+      <div class="pattern-desc">カードが扇状に重なる表現。ホバーで広がりアニメーション。インパクト重視の演出向け。</div>
+    </div>
+  </div>
+  <div class="pD-stage">
+    <div class="pD-stack-wrap">
+      <a href="service-se.html" class="pD-card pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">システムエンジニアリング</div><div class="pu-card-desc">開発現場で技術力を磨くSES事業</div></a>
+      <a href="service-is.html" class="pD-card pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">インサイドセールス</div><div class="pu-card-desc">安定した商談創出の仕組みづくり</div></a>
+      <a href="solutions.html"  class="pD-card pu-card"><span class="pu-card-tag">Service</span><div class="pu-card-title">ソリューションズ</div><div class="pu-card-desc">企画構想から開発・運用まで一貫対応</div></a>
+      <a href="recruit.html"    class="pD-card pu-card"><span class="pu-card-tag tag-recruit">Recruit</span><div class="pu-card-title">一緒に、未来をつくろう。</div><div class="pu-card-desc">2026年度エントリー受付中</div></a>
+      <a href="news-detail.html" class="pD-card pu-card"><span class="pu-card-tag tag-news">News</span><div class="pu-card-title">ソリューションズ提供開始</div><div class="pu-card-desc">新サービス提供開始のお知らせ</div></a>
+    </div>
+    <p class="pD-hint">Hover to spread cards</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PATTERN E — フルスクリーン 1 枚ずつ
+============================================================ -->
+<section class="pattern-sec" id="pattern-e">
+  <div class="pattern-header">
+    <span class="pattern-badge" style="background:#C25A00;">E</span>
+    <div>
+      <div class="pattern-title">フルスクリーン・スライドショー</div>
+      <div class="pattern-desc">1 枚ずつ大きく表示。左右矢印またはドットで切替。自動再生付き（5 秒）。</div>
+    </div>
+  </div>
+  <div class="pE-stage">
+    <div class="pE-slider" id="sliderE">
+      <div class="pE-slides" id="slidesE">
+
+        <!-- Slide 1 -->
+        <div class="pE-slide">
+          <div class="pE-slide-badge">
+            <div class="pE-slide-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00AACC" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+          </div>
+          <div class="pE-slide-body">
+            <div class="pE-slide-tag">Service</div>
+            <div class="pE-slide-title">システムエンジニアリング</div>
+            <div class="pE-slide-desc">クライアントの開発現場にエンジニアを送り出すSES事業。成長を前提としたアサインで、技術力と品質を両立します。</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="pE-slide">
+          <div class="pE-slide-badge">
+            <div class="pE-slide-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00AACC" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+          </div>
+          <div class="pE-slide-body">
+            <div class="pE-slide-tag">Service</div>
+            <div class="pE-slide-title">インサイドセールス</div>
+            <div class="pE-slide-desc">インサイドセールスの戦略設計から実行・改善まで。安定した商談創出の仕組みをつくり、営業成果を最大化します。</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="pE-slide">
+          <div class="pE-slide-badge">
+            <div class="pE-slide-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#CCAA00" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </div>
+          </div>
+          <div class="pE-slide-body">
+            <div class="pE-slide-tag">Service</div>
+            <div class="pE-slide-title">ソリューションズ</div>
+            <div class="pE-slide-desc">受託開発から自社プロダクトまで。企画構想からシステム開発・運用保守を一貫して手がけ、ビジネスの成長を支えます。</div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="pE-slide" style="background:rgba(0,170,204,0.06);">
+          <div class="pE-slide-badge">
+            <div class="pE-slide-icon" style="background:rgba(204,170,0,0.1);border-color:rgba(204,170,0,0.2);">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#CCAA00" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <div class="pE-slide-body">
+            <div class="pE-slide-tag" style="color:var(--yellow);">Recruit</div>
+            <div class="pE-slide-title">一緒に、未来をつくろう。</div>
+            <div class="pE-slide-desc">2026年度エントリー受付中。未経験歓迎・残業月10h以下・柔軟なキャリアパスで、あなたらしく働ける環境があります。</div>
+          </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="pE-slide">
+          <div class="pE-slide-badge">
+            <div class="pE-slide-icon" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+            </div>
+          </div>
+          <div class="pE-slide-body">
+            <div class="pE-slide-tag" style="color:#888;">News</div>
+            <div class="pE-slide-title">ソリューションズ提供開始</div>
+            <div class="pE-slide-desc">新サービス「ソリューションズ」の提供を開始しました。企画構想から運用まで一気通貫のIT支援で、お客様のビジネスを加速します。</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pE-controls">
+      <button class="pE-btn" id="eBtnPrev" aria-label="前へ">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="pE-dots" id="eDots"></div>
+      <div class="pE-counter" id="eCounter">1 / 5</div>
+      <button class="pE-btn" id="eBtnNext" aria-label="次へ">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="sample-footer">
+  <span class="sample-footer-txt">MOCKUP — PickUp Section Patterns</span>
+  <a href="index.html" class="sample-footer-link">← index.html に戻る</a>
+</footer>
+
+<script>
+/* ── Nav active highlight on scroll ── */
+(function() {
+  var sections = document.querySelectorAll('.pattern-sec');
+  var links = document.querySelectorAll('.top-nav a');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        links.forEach(function(l) { l.classList.remove('active'); });
+        var id = e.target.id;
+        var link = document.querySelector('.top-nav a[href="#' + id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(function(s) { io.observe(s); });
+})();
+
+/* ── Pattern E: Slideshow ── */
+(function() {
+  var total = 5;
+  var current = 0;
+  var autoTimer;
+  var slides = document.getElementById('slidesE');
+  var dotsWrap = document.getElementById('eDots');
+  var counter = document.getElementById('eCounter');
+
+  // Build dots
+  for (var i = 0; i < total; i++) {
+    var d = document.createElement('button');
+    d.className = 'pE-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', (i + 1) + '枚目');
+    (function(idx) { d.addEventListener('click', function() { goTo(idx); }); })(i);
+    dotsWrap.appendChild(d);
+  }
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+    document.querySelectorAll('.pE-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+    counter.textContent = (current + 1) + ' / ' + total;
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() { goTo(current + 1); }, 5000);
+  }
+
+  document.getElementById('eBtnPrev').addEventListener('click', function() { goTo(current - 1); });
+  document.getElementById('eBtnNext').addEventListener('click', function() { goTo(current + 1); });
+
+  resetAuto();
+})();
+</script>
+</body>
+</html>

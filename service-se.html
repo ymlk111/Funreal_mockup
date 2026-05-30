@@ -41,10 +41,10 @@
   /* ===== HERO ===== */
   .se-hero { background: linear-gradient(135deg, #00AACC, #006E8A); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
   .se-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
-  .se-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .se-hero-label::before, .se-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
+  .se-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.92); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .se-hero-label::before, .se-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: rgba(255,255,255,0.7); }
   .se-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); margin-bottom: 20px; line-height: 1.4; animation: heroIn 0.8s ease forwards; }
-  .se-hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 2; max-width: 600px; margin: 0 auto; animation: heroIn 0.8s ease 0.2s forwards; opacity: 0; }
+  .se-hero-sub { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 2; max-width: 600px; margin: 0 auto; animation: heroIn 0.8s ease 0.2s forwards; opacity: 0; }
   @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
   /* ===== SECTIONS ===== */
@@ -105,9 +105,9 @@
   .numbers-bg { background: linear-gradient(135deg, #00AACC, #006E8A); }
   .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
   .num-item { text-align: center; }
-  .num-value { font-family: var(--font-en); font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--blue); line-height: 1; margin-bottom: 4px; }
-  .num-unit { font-family: var(--font-en); font-size: 16px; font-weight: 600; color: var(--blue); }
-  .num-label { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+  .num-value { font-family: var(--font-en); font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 4px; }
+  .num-unit { font-family: var(--font-en); font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.85); }
+  .num-label { font-size: 14px; color: rgba(255,255,255,0.82); margin-top: 8px; }
 
   /* ===== SERVICE LINKS ===== */
   .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -121,7 +121,7 @@
   /* ===== RECRUIT CTA ===== */
   .recruit-cta { text-align: center; padding: 80px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); border-radius: 16px; }
   .recruit-cta-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
-  .recruit-cta-text { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+  .recruit-cta-text { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 6px; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
   .btn-primary { background: var(--blue); color: var(--white); padding: 16px 40px; }
   .btn-primary:hover { background: #0090aa; }
@@ -437,8 +437,8 @@
 <!-- ===== NUMBERS ===== -->
 <section class="section numbers-bg">
   <div class="fade-up" style="text-align: center; margin-bottom: 60px;">
-    <div class="section-label" style="justify-content: center; color: rgba(255,255,255,0.4);">
-      <span style="color: rgba(255,255,255,0.4);">Numbers</span>
+    <div class="section-label" style="justify-content: center; color: rgba(255,255,255,0.85);">
+      <span style="color: rgba(255,255,255,0.9);">Numbers</span>
     </div>
     <h2 class="section-title" style="color: var(--white);">数字で見るSE事業</h2>
   </div>

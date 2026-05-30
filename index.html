@@ -53,18 +53,21 @@
   @keyframes heroTextIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes scrollPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-  /* ===== PICKUP SECTION (ぐるぐる) ===== */
+  /* ===== PICKUP SECTION (Pattern B: large card / slow loop) ===== */
   .pickup-sec { background: var(--gray-light); padding: 80px 0; overflow: hidden; }
   .pickup-head { max-width: 1200px; margin: 0 auto 36px; padding: 0 60px; }
-  .hero-pickup-viewport { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
-  .hero-pickup-track { display: flex; gap: 16px; width: max-content; animation: pickupScroll 36s linear infinite; }
+  .hero-pickup-viewport { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); }
+  .hero-pickup-track { display: flex; gap: 24px; width: max-content; animation: pickupScroll 50s linear infinite; }
   .pickup-sec:hover .hero-pickup-track { animation-play-state: paused; }
-  .pickup-card { flex: 0 0 auto; width: 250px; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 14px; padding: 22px; text-decoration: none; transition: transform 0.25s, box-shadow 0.25s; }
-  .pickup-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0,170,204,0.15); }
+  .pickup-card { flex: 0 0 auto; width: 320px; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 14px; padding: 28px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; }
+  .pickup-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,170,204,0.18); }
   .pickup-card-tag { display: inline-block; font-family: var(--font-en); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--blue); padding: 3px 11px; border-radius: 20px; margin-bottom: 14px; }
-  .pickup-card-title { font-size: 16px; font-weight: 700; color: var(--black); line-height: 1.5; margin-bottom: 8px; }
-  .pickup-card-desc { font-size: 12px; color: var(--gray-text); line-height: 1.7; }
-  @keyframes pickupScroll { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 8px)); } }
+  .pickup-card-tag.tag-red { background: var(--red); }
+  .pickup-card-tag.tag-yellow { background: var(--yellow); color: var(--black); }
+  .pickup-card-tag.tag-dark { background: #3A5060; }
+  .pickup-card-title { font-size: 17px; font-weight: 700; color: var(--black); line-height: 1.5; margin-bottom: 10px; }
+  .pickup-card-desc { font-size: 13px; color: var(--gray-text); line-height: 1.8; }
+  @keyframes pickupScroll { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 12px)); } }
 
   /* ===== SECTIONS ===== */
   .section { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
@@ -103,22 +106,6 @@
   .btn-recruit { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; border-radius: 6px; background: var(--white); color: var(--black); font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: all 0.2s; }
   .btn-recruit:hover { background: var(--yellow); }
 
-  /* ===== NEWS ===== */
-  .news-sec { padding: 100px 0; background: var(--white); }
-  .news-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-  .news-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
-  .news-list { list-style: none; }
-  .news-list-item { display: flex; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-mid); text-decoration: none; color: var(--black); transition: background 0.2s; }
-  .news-list-item:first-child { border-top: 1px solid var(--gray-mid); }
-  .news-list-item:hover { background: var(--gray-light); padding-left: 12px; padding-right: 12px; margin: 0 -12px; border-radius: 4px; }
-  .news-list-date { font-size: 13px; color: #999; font-family: var(--font-en); white-space: nowrap; min-width: 100px; }
-  .news-list-tag { display: inline-block; padding: 2px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; white-space: nowrap; min-width: 70px; text-align: center; }
-  .news-list-title { font-size: 14px; font-weight: 500; line-height: 1.6; flex: 1; }
-  .news-list-arrow { color: #ccc; font-size: 14px; transition: color 0.2s; }
-  .news-list-item:hover .news-list-arrow { color: var(--blue); }
-  .news-more { display: flex; justify-content: center; margin-top: 40px; }
-  .btn-news { display: inline-flex; align-items: center; gap: 8px; padding: 14px 40px; border: 1.5px solid var(--black); border-radius: 4px; font-size: 13px; font-weight: 600; font-family: var(--font-en); letter-spacing: 0.1em; color: var(--black); text-decoration: none; transition: all 0.2s; }
-  .btn-news:hover { background: var(--blue); color: var(--white); }
 
   /* ===== CONTACT CTA ===== */
   .contact-bg { background: var(--gray-light); border-top: 1px solid var(--gray-mid); }
@@ -168,16 +155,14 @@
     .hero-content { padding: 0 24px; }
     .hero-catch { font-size: clamp(28px, 7vw, 48px); }
     #hero { gap: 40px; }
-    .pickup-card { width: 200px; padding: 18px; }
-    .pickup-card-title { font-size: 14px; }
+    .pickup-card { width: 240px; padding: 20px; }
+    .pickup-card-title { font-size: 15px; }
     .section { padding: 60px 24px; }
     .section-title { font-size: 22px; }
     .services-grid { grid-template-columns: 1fr; }
     .service-card { padding: 28px 24px; }
     .recruit-inner { padding: 60px 24px; }
     .recruit-title { font-size: 28px; }
-    .news-list-item { flex-wrap: wrap; gap: 8px; }
-    .news-list-date { min-width: auto; }
     .contact-inner { padding: 60px 24px; }
     .contact-title { font-size: 24px; }
     footer { padding: 40px 24px 24px; }
@@ -262,64 +247,64 @@
   </div>
 </div>
 
-<!-- ===== PICK UP (ぐるぐる) ===== -->
+<!-- ===== PICK UP (各ページへ) ===== -->
 <section class="pickup-sec">
   <div class="pickup-head fade-up">
     <div class="section-label">Pick Up</div>
-    <h2 class="section-title">注目のトピック</h2>
+    <h2 class="section-title">各ページへ</h2>
   </div>
   <div class="hero-pickup-viewport">
     <div class="hero-pickup-track">
-      <a href="service-se.html" class="pickup-card">
-        <span class="pickup-card-tag">Service</span>
-        <div class="pickup-card-title">システムエンジニアリング</div>
-        <div class="pickup-card-desc">開発現場で技術力を磨くSES事業</div>
+      <a href="about.html" class="pickup-card">
+        <span class="pickup-card-tag">About</span>
+        <div class="pickup-card-title">私たちについて</div>
+        <div class="pickup-card-desc">ITで人と企業の未来を拓く。ファンリアルのビジョンと想いをご紹介します。</div>
       </a>
-      <a href="service-is.html" class="pickup-card">
-        <span class="pickup-card-tag">Service</span>
-        <div class="pickup-card-title">インサイドセールス</div>
-        <div class="pickup-card-desc">安定した商談創出の仕組みづくり</div>
+      <a href="service-se.html" class="pickup-card">
+        <span class="pickup-card-tag tag-red">SE</span>
+        <div class="pickup-card-title">システムエンジニアリング</div>
+        <div class="pickup-card-desc">成長を前提とした現場アサインで、エンジニアの可能性を最大化します。</div>
       </a>
       <a href="solutions.html" class="pickup-card">
-        <span class="pickup-card-tag">Service</span>
+        <span class="pickup-card-tag tag-yellow">Solutions</span>
         <div class="pickup-card-title">ソリューションズ</div>
-        <div class="pickup-card-desc">企画構想から開発・運用まで一貫対応</div>
+        <div class="pickup-card-desc">企画構想から開発・運用まで一気通貫。ビジネスの成長をサポートします。</div>
       </a>
       <a href="recruit.html" class="pickup-card">
         <span class="pickup-card-tag">Recruit</span>
         <div class="pickup-card-title">一緒に、未来をつくろう。</div>
-        <div class="pickup-card-desc">2026年度エントリー受付中</div>
+        <div class="pickup-card-desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
       </a>
-      <a href="news-detail.html" class="pickup-card">
-        <span class="pickup-card-tag">News</span>
-        <div class="pickup-card-title">ソリューションズ提供開始</div>
-        <div class="pickup-card-desc">新サービス提供開始のお知らせ</div>
+      <a href="contact.html" class="pickup-card">
+        <span class="pickup-card-tag tag-dark">Contact</span>
+        <div class="pickup-card-title">お問い合わせ</div>
+        <div class="pickup-card-desc">サービスへのご相談・ご質問はお気軽にどうぞ。2営業日以内にご連絡します。</div>
       </a>
       <!-- duplicate set for seamless loop -->
-      <a href="service-se.html" class="pickup-card" aria-hidden="true" tabindex="-1">
-        <span class="pickup-card-tag">Service</span>
-        <div class="pickup-card-title">システムエンジニアリング</div>
-        <div class="pickup-card-desc">開発現場で技術力を磨くSES事業</div>
+      <a href="about.html" class="pickup-card" aria-hidden="true" tabindex="-1">
+        <span class="pickup-card-tag">About</span>
+        <div class="pickup-card-title">私たちについて</div>
+        <div class="pickup-card-desc">ITで人と企業の未来を拓く。ファンリアルのビジョンと想いをご紹介します。</div>
       </a>
-      <a href="service-is.html" class="pickup-card" aria-hidden="true" tabindex="-1">
-        <span class="pickup-card-tag">Service</span>
-        <div class="pickup-card-title">インサイドセールス</div>
-        <div class="pickup-card-desc">安定した商談創出の仕組みづくり</div>
+      <a href="service-se.html" class="pickup-card" aria-hidden="true" tabindex="-1">
+        <span class="pickup-card-tag tag-red">SE</span>
+        <div class="pickup-card-title">システムエンジニアリング</div>
+        <div class="pickup-card-desc">成長を前提とした現場アサインで、エンジニアの可能性を最大化します。</div>
       </a>
       <a href="solutions.html" class="pickup-card" aria-hidden="true" tabindex="-1">
-        <span class="pickup-card-tag">Service</span>
+        <span class="pickup-card-tag tag-yellow">Solutions</span>
         <div class="pickup-card-title">ソリューションズ</div>
-        <div class="pickup-card-desc">企画構想から開発・運用まで一貫対応</div>
+        <div class="pickup-card-desc">企画構想から開発・運用まで一気通貫。ビジネスの成長をサポートします。</div>
       </a>
       <a href="recruit.html" class="pickup-card" aria-hidden="true" tabindex="-1">
         <span class="pickup-card-tag">Recruit</span>
         <div class="pickup-card-title">一緒に、未来をつくろう。</div>
-        <div class="pickup-card-desc">2026年度エントリー受付中</div>
+        <div class="pickup-card-desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
       </a>
-      <a href="news-detail.html" class="pickup-card" aria-hidden="true" tabindex="-1">
-        <span class="pickup-card-tag">News</span>
-        <div class="pickup-card-title">ソリューションズ提供開始</div>
-        <div class="pickup-card-desc">新サービス提供開始のお知らせ</div>
+      <a href="contact.html" class="pickup-card" aria-hidden="true" tabindex="-1">
+        <span class="pickup-card-tag tag-dark">Contact</span>
+        <div class="pickup-card-title">お問い合わせ</div>
+        <div class="pickup-card-desc">サービスへのご相談・ご質問はお気軽にどうぞ。2営業日以内にご連絡します。</div>
       </a>
     </div>
   </div>
@@ -401,50 +386,6 @@
       <p class="recruit-desc">成長を前提としたアサイン、自由で快適な環境、柔軟なキャリアパス。<br>あなたの「次のステップ」を一緒に見つけませんか。</p>
     </div>
     <a href="recruit.html" class="btn-recruit">採用情報を見る →</a>
-  </div>
-</section>
-
-<!-- ===== NEWS ===== -->
-<section class="news-sec">
-  <div class="news-inner">
-    <div class="news-header fade-up">
-      <div><div class="section-label">News</div><h2 class="section-title">ニュース</h2></div>
-    </div>
-    <div class="news-list fade-up">
-      <a href="news-detail.html" class="news-list-item">
-        <span class="news-list-date">2026.05.10</span>
-        <span class="news-list-tag">NEWS</span>
-        <span class="news-list-title">新サービス「ソリューションズ」提供開始のお知らせ</span>
-        <span class="news-list-arrow">&#8250;</span>
-      </a>
-      <a href="news-detail.html" class="news-list-item">
-        <span class="news-list-date">2026.04.15</span>
-        <span class="news-list-tag">RECRUIT</span>
-        <span class="news-list-title">2026年度 採用エントリー受付開始</span>
-        <span class="news-list-arrow">&#8250;</span>
-      </a>
-      <a href="news-detail.html" class="news-list-item">
-        <span class="news-list-date">2026.03.20</span>
-        <span class="news-list-tag">SERVICE</span>
-        <span class="news-list-title">LEAD TECH インサイドセールス支援実績200社突破</span>
-        <span class="news-list-arrow">&#8250;</span>
-      </a>
-      <a href="news-detail.html" class="news-list-item">
-        <span class="news-list-date">2026.03.01</span>
-        <span class="news-list-tag">NEWS</span>
-        <span class="news-list-title">オフィス移転のお知らせ</span>
-        <span class="news-list-arrow">&#8250;</span>
-      </a>
-      <a href="news-detail.html" class="news-list-item">
-        <span class="news-list-date">2026.02.10</span>
-        <span class="news-list-tag">NEWS</span>
-        <span class="news-list-title">エンジニア勉強会レポート Vol.12</span>
-        <span class="news-list-arrow">&#8250;</span>
-      </a>
-    </div>
-    <div class="news-more fade-up">
-      <a href="news.html" class="btn-news">ニュース一覧へ →</a>
-    </div>
   </div>
 </section>
 

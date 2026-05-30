@@ -36,7 +36,7 @@
 
   /* ===== HERO ===== */
   .recruit-hero { min-height: 70vh; background: #06384A; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
-  .recruit-hero-bg { position: absolute; inset: 0; background: url('image/hero-image.png') center/cover no-repeat; opacity: 0.35; }
+  .recruit-hero-bg { position: absolute; inset: 0; background: url('image/hero-image.png') center/cover no-repeat; opacity: 0.45; }
   .recruit-hero-content { position: relative; z-index: 1; padding: 80px 40px; }
   .recruit-hero-catch { font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: var(--white); margin-bottom: 24px; line-height: 1.4; }
   .recruit-hero-sub { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 2; max-width: 520px; margin: 0 auto; }
@@ -175,6 +175,7 @@
   }
   @media (max-width: 480px) {
     .logo-text { display: none; }
+    .recruit-hero-bg { background-position: 60% center; }
     .numbers-grid { grid-template-columns: 1fr; }
     .info-table th { width: 100px; font-size: 12px; }
     .info-table td { font-size: 13px; }
@@ -244,6 +245,18 @@
     background: linear-gradient(90deg, transparent 0%, var(--blue) 35%, var(--red) 65%, transparent 100%);
     background-size: 200% auto;
     animation: underlineFlow 2.8s linear infinite;
+  }
+
+  /* ===== PREFERS-REDUCED-MOTION ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .flow-title, .pillar-title-lg { -webkit-background-clip: unset; background-clip: unset; color: var(--black); animation: none; }
+    .hl-flow::after { animation: none; }
   }
 </style>
 </head>

@@ -39,7 +39,8 @@
   .has-sub > a::after { content: " >"; color: var(--blue); }
 
   /* ===== HERO ===== */
-  .contact-hero { background: linear-gradient(135deg, #00AACC, #006E8A); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
+  /* 実画像追加時: background に url('contact-hero.jpg') center/cover no-repeat をカンマ区切りで後段に追加 */
+  .contact-hero { background: linear-gradient(135deg, rgba(0,110,138,0.88) 0%, rgba(0,170,204,0.82) 100%) center/cover no-repeat; padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; min-height: 52vh; }
   .contact-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
   .contact-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.92); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .contact-hero-label::before, .contact-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--blue); }
@@ -135,7 +136,7 @@
   @media (max-width: 768px) {
     header { padding: 0 20px; }
     .header-entry-btn { padding: 6px 14px; font-size: 11px; }
-    .contact-hero { padding: 60px 24px 50px; }
+    .contact-hero { padding: 60px 24px 50px; min-height: 40vh; }
     .section { padding: 60px 24px; }
     .section-title { font-size: 22px; }
     .type-grid { grid-template-columns: 1fr; }
@@ -149,6 +150,16 @@
   }
   @media (max-width: 480px) {
     .logo-text { display: none; }
+  }
+
+  /* ===== PREFERS-REDUCED-MOTION ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 </head>

@@ -39,7 +39,8 @@
   .has-sub > a::after { content: " >"; color: var(--blue); }
 
   /* ===== HERO ===== */
-  .about-hero { background: linear-gradient(135deg, #00AACC, #006E8A); padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; }
+  /* 実画像追加時: background に url('about-hero.jpg') center/cover no-repeat をカンマ区切りで後段に追加するだけでオーバーレイとして機能する */
+  .about-hero { background: linear-gradient(135deg, rgba(0,110,138,0.88) 0%, rgba(0,170,204,0.82) 100%) center/cover no-repeat; padding: 100px 60px 80px; position: relative; overflow: hidden; text-align: center; min-height: 52vh; }
   .about-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
   .about-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.92); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .about-hero-label::before, .about-hero-label::after { content: ''; display: block; width: 20px; height: 1px; background: rgba(255,255,255,0.7); }
@@ -141,7 +142,7 @@
   @media (max-width: 768px) {
     header { padding: 0 20px; }
     .header-entry-btn { padding: 6px 14px; font-size: 11px; }
-    .about-hero { padding: 60px 24px 50px; }
+    .about-hero { padding: 60px 24px 50px; min-height: 40vh; }
     .section { padding: 60px 24px; }
     .section-title { font-size: 22px; }
     .values-grid { grid-template-columns: 1fr; }
@@ -162,6 +163,16 @@
     .info-table { display: block; }
     .info-table tbody, .info-table tr, .info-table th, .info-table td { display: block; width: 100%; }
     .info-table th { width: 100%; }
+  }
+
+  /* ===== PREFERS-REDUCED-MOTION ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 </head>

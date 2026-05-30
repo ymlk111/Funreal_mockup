@@ -39,7 +39,7 @@
   .has-sub > a::after { content: " >"; color: var(--blue); }
 
   /* ===== HERO ===== */
-  .page-hero { background: linear-gradient(135deg, #00AACC, #006E8A); padding: 80px 60px 60px; position: relative; overflow: hidden; }
+  .page-hero { background: linear-gradient(135deg, rgba(0,110,138,0.88) 0%, rgba(0,170,204,0.82) 100%) center/cover no-repeat; padding: 80px 60px 60px; position: relative; overflow: hidden; min-height: 36vh; }
   .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow)); }
   .page-hero-label { font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.92); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
   .page-hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: rgba(255,255,255,0.7); }
@@ -81,7 +81,7 @@
   @media (max-width: 768px) {
     header { padding: 0 20px; }
     .header-entry-btn { padding: 6px 14px; font-size: 11px; }
-    .page-hero { padding: 60px 24px 40px; }
+    .page-hero { padding: 60px 24px 40px; min-height: 28vh; }
     .legal { padding: 40px 24px 60px; }
     .legal-section h2 { font-size: 15px; }
     footer { padding: 40px 24px 24px; }
@@ -92,6 +92,16 @@
   }
   @media (max-width: 480px) {
     .logo-text { display: none; }
+  }
+
+  /* ===== PREFERS-REDUCED-MOTION ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 </head>

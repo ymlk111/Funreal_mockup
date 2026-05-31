@@ -101,6 +101,11 @@
   .access-info { font-size: 15px; line-height: 2; color: #444; margin-top: 24px; }
   .ph-box { background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
 
+  /* ===== MAP EMBED ===== */
+  /* aspect-ratio で高さを制御 → レスポンシブ対応 */
+  .map-wrapper { position: relative; width: 100%; padding-top: 42%; border-radius: 12px; overflow: hidden; margin-bottom: 24px; background: var(--gray-light); }
+  .map-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+
   /* ===== RECRUIT CTA ===== */
   .recruit-cta { text-align: center; padding: 80px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); border-radius: 16px; }
   .recruit-cta-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
@@ -151,6 +156,7 @@
     .info-table th { width: 120px; padding: 12px 14px; font-size: 13px; }
     .info-table td { padding: 12px 14px; font-size: 13px; }
     .recruit-cta { padding: 60px 24px; }
+    .map-wrapper { padding-top: 65%; }
     .values-bg { padding: 60px 24px !important; }
     footer { padding: 40px 24px 24px; }
     .footer-top { flex-direction: column; gap: 20px; }
@@ -320,7 +326,27 @@
 <div class="section">
   <div class="section-label fade-up">Access</div>
   <h2 class="section-title fade-up">アクセス</h2>
-  <div class="ph-box fade-up" style="height:380px;margin-bottom:24px;font-size:13px;">MAP PLACEHOLDER（実装時にGoogleマップを埋め込み）</div>
+  <!-- ================================================================
+    【Google マップ 差し込み手順 — src の 1 行だけ変更すれば完成】
+
+    1. Google マップ ( maps.google.com ) で住所を検索
+         東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406
+    2. 「共有」→「地図を埋め込む」→ サイズ「カスタム」を選択
+    3. 表示された iframe コードの src="..." の値をコピー
+    4. 下記 src="MAP_EMBED_SRC_HERE" をそのURLに差し替える（この1行のみ）
+
+    ※ APIキー不要。iframeのwidthとheightは無視されCSS側で制御。
+  ================================================================ -->
+  <div class="map-wrapper fade-up">
+    <iframe
+      src="MAP_EMBED_SRC_HERE"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="株式会社ファンリアル 所在地 — 東京都新宿区西新宿7丁目5番5号"
+    ></iframe>
+  </div>
   <p class="access-info fade-up">〒160-0023 東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406<br>Tel: 03-6403-4418</p>
 </div>
 

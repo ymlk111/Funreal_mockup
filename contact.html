@@ -227,59 +227,104 @@
     <h2 class="section-title">お問い合わせフォーム</h2>
     <p class="section-lead" style="margin-bottom: 32px;"><span style="color: var(--red);">*</span> は必須項目です。</p>
 
-    <form onsubmit="return false;">
-      <div class="form-group">
-        <label class="form-label">お問い合わせ種別<span class="required">*</span></label>
-        <select class="form-select">
-          <option value="" disabled selected>選択してください</option>
-          <option>サービスに関するご相談</option>
-          <option>お見積もりのご依頼</option>
-          <option>採用に関するお問い合わせ</option>
-          <option>取材・メディア関連</option>
-          <option>協業・パートナーシップ</option>
-          <option>その他</option>
-        </select>
-      </div>
-      <div class="form-row">
+    <!-- ================================================================
+      【Google Forms 接続手順 — 差し替え箇所は 2 種・計 8 か所】
+
+      ■ STEP 1 — フォーム送信先 URL（1 か所）
+        Google Forms でフォームを作成・公開する
+        公開URL末尾の /viewform を /formResponse に変えたURLを取得
+        例: https://docs.google.com/forms/d/e/XXXXXXXXXX/formResponse
+        → 下記 action="GOOGLE_FORM_ACTION_URL" をそのURLに差し替える
+
+      ■ STEP 2 — 各フィールドの entry ID（7 か所）
+        フォーム編集画面 → ⋮（オプション）→「事前入力リンクを取得」
+        各フィールドに値を入力 → 生成URLの entry.XXXXXXXXX= の数字部分がID
+        → 下記 name="entry.XXXXX_[フィールド名]" をそれぞれ差し替える
+
+      ※ 差し替え完了後はそのまま本稼働。HTML / CSS の変更は不要。
+    ================================================================ -->
+
+    <!-- 送信先が hidden iframe なのでページ遷移しない -->
+    <iframe name="form_hidden_target" style="display:none;" aria-hidden="true" tabindex="-1"></iframe>
+
+    <div id="formWrap">
+      <form
+        id="contactForm"
+        action="GOOGLE_FORM_ACTION_URL"
+        method="POST"
+        target="form_hidden_target"
+        onsubmit="handleContactSubmit(event)"
+      >
         <div class="form-group">
-          <label class="form-label">会社名<span class="required">*</span></label>
-          <input type="text" class="form-input" placeholder="株式会社〇〇">
+          <label class="form-label">お問い合わせ種別<span class="required">*</span></label>
+          <!-- ↓ entry ID を差し替える (entry.XXXXX_INQUIRY_TYPE → 実際のID) -->
+          <select class="form-select" name="entry.XXXXX_INQUIRY_TYPE" required>
+            <option value="" disabled selected>選択してください</option>
+            <option>サービスに関するご相談</option>
+            <option>お見積もりのご依頼</option>
+            <option>採用に関するお問い合わせ</option>
+            <option>取材・メディア関連</option>
+            <option>協業・パートナーシップ</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">会社名<span class="required">*</span></label>
+            <!-- ↓ entry ID を差し替える -->
+            <input type="text" class="form-input" name="entry.XXXXX_COMPANY" placeholder="株式会社〇〇" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">部署名</label>
+            <!-- ↓ entry ID を差し替える -->
+            <input type="text" class="form-input" name="entry.XXXXX_DEPT" placeholder="営業部">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">お名前<span class="required">*</span></label>
+            <!-- ↓ entry ID を差し替える -->
+            <input type="text" class="form-input" name="entry.XXXXX_NAME" placeholder="山田 太郎" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">フリガナ<span class="required">*</span></label>
+            <!-- ↓ entry ID を差し替える -->
+            <input type="text" class="form-input" name="entry.XXXXX_NAME_KANA" placeholder="ヤマダ タロウ" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">メールアドレス<span class="required">*</span></label>
+            <!-- ↓ entry ID を差し替える -->
+            <input type="email" class="form-input" name="entry.XXXXX_EMAIL" placeholder="example@company.co.jp" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">電話番号</label>
+            <!-- ↓ entry ID を差し替える -->
+            <input type="tel" class="form-input" name="entry.XXXXX_PHONE" placeholder="03-0000-0000">
+          </div>
         </div>
         <div class="form-group">
-          <label class="form-label">部署名</label>
-          <input type="text" class="form-input" placeholder="営業部">
+          <label class="form-label">お問い合わせ内容<span class="required">*</span></label>
+          <!-- ↓ entry ID を差し替える -->
+          <textarea class="form-textarea" name="entry.XXXXX_MESSAGE" placeholder="お問い合わせ内容をご記入ください。" required></textarea>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">お名前<span class="required">*</span></label>
-          <input type="text" class="form-input" placeholder="山田 太郎">
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">送信する →</button>
         </div>
-        <div class="form-group">
-          <label class="form-label">フリガナ<span class="required">*</span></label>
-          <input type="text" class="form-input" placeholder="ヤマダ タロウ">
-        </div>
+        <div class="form-privacy">送信することで、<a href="privacy.html">プライバシーポリシー</a>に同意したものとみなします。</div>
+        <div class="form-mockup-note">※ STEP 1・2 の差し替えが完了すると送信が有効化されます</div>
+      </form>
+    </div>
+
+    <!-- 送信後に JS で切り替えるサンクスメッセージ -->
+    <div id="thankYouMsg" style="display:none;text-align:center;padding:60px 24px;">
+      <div style="width:56px;height:56px;border-radius:50%;background:rgba(0,170,204,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00AACC" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">メールアドレス<span class="required">*</span></label>
-          <input type="email" class="form-input" placeholder="example@company.co.jp">
-        </div>
-        <div class="form-group">
-          <label class="form-label">電話番号</label>
-          <input type="tel" class="form-input" placeholder="03-0000-0000">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">お問い合わせ内容<span class="required">*</span></label>
-        <textarea class="form-textarea" placeholder="お問い合わせ内容をご記入ください。"></textarea>
-      </div>
-      <div class="form-submit">
-        <button type="submit" class="btn btn-primary" onclick="alert('モックアップのため送信されません')">送信する →</button>
-      </div>
-      <div class="form-privacy">送信することで、<a href="privacy.html">プライバシーポリシー</a>に同意したものとみなします。</div>
-      <div class="form-mockup-note">※ MOCKUP — 実装時はGoogleフォーム埋め込み or API連携に置換予定</div>
-    </form>
+      <div style="font-size:22px;font-weight:700;margin-bottom:12px;color:var(--black);">送信しました</div>
+      <p style="font-size:14px;color:var(--gray-text);line-height:2;">お問い合わせいただきありがとうございます。<br>担当者より2営業日以内にご連絡いたします。</p>
+    </div>
   </div>
 </section>
 
@@ -358,6 +403,21 @@
   function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open');}
   function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
   function toggleSub(e){e.preventDefault();document.getElementById('sub').classList.toggle('open');}
+
+  function handleContactSubmit(e) {
+    var form = document.getElementById('contactForm');
+    // STEP 1 未設定のガード（開発時のみ）
+    if (form.action.indexOf('GOOGLE_FORM_ACTION_URL') !== -1) {
+      e.preventDefault();
+      alert('【開発者向け】\nGoogle Forms の formResponse URL が未設定です。\ncontact.html の action 属性を差し替えてください。');
+      return;
+    }
+    // 送信後 600ms でサンクスメッセージへ切替
+    setTimeout(function () {
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('thankYouMsg').style.display = 'block';
+    }, 600);
+  }
   // Scroll animation
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

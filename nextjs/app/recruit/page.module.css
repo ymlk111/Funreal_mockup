@@ -1,0 +1,93 @@
+.recruitHero { min-height: 70vh; background: #06384A; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
+.recruitHeroBg { position: absolute; inset: 0; background: url('/image/hero-image.png') center/cover no-repeat; opacity: 0.45; }
+.recruitHeroContent { position: relative; z-index: 1; padding: 80px 40px; }
+.recruitHeroCatch { font-size: clamp(36px,5vw,56px); font-weight: 900; color: var(--white); margin-bottom: 24px; line-height: 1.4; animation: heroFadeIn 1s ease forwards; }
+.recruitHeroSub { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 2; max-width: 520px; margin: 0 auto; animation: heroFadeIn 1s ease 0.3s forwards; opacity: 0; }
+@keyframes heroFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.messageGrid { display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: center; margin-top: 32px; }
+.messageText { font-size: 15px; line-height: 2.2; color: #444; }
+.messageText p { margin-bottom: 20px; }
+.messageName { margin-top: 32px; font-size: 13px; color: var(--gray-text); }
+.messageName strong { font-size: 16px; color: var(--black); display: block; margin-top: 4px; }
+.messagePhoto { width: 100%; aspect-ratio: 3/4; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); }
+
+.cultureHeader { background: #E5F4F9; padding: 72px 60px 56px; }
+.cultureHeaderInner { max-width: 1100px; margin: 0 auto; text-align: center; }
+.pillarRow { padding: 72px 60px; }
+.pillarRowInner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.pillarVisualWrap { display: flex; align-items: center; justify-content: center; }
+.pillarVisualCircle { width: 240px; height: 240px; border-radius: 50%; background: rgba(0,170,204,0.1); border: 2px dashed rgba(0,170,204,0.3); display: flex; align-items: center; justify-content: center; font-size: 72px; flex-shrink: 0; transition: transform 0.35s ease; }
+.pillarVisualCircle:hover { transform: scale(1.06) rotate(4deg); }
+.pillarSub { font-size: 11px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 8px; text-transform: uppercase; }
+.pillarTitleLg {
+  font-size: clamp(24px,2.4vw,32px); font-weight: 700; line-height: 1.45; margin: 6px 0 14px;
+  background: linear-gradient(90deg, var(--black) 0%, var(--blue) 50%, var(--black) 100%);
+  background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: pillarFlow 4s linear infinite; animation-play-state: paused;
+}
+.pillarRow:hover .pillarTitleLg { animation-play-state: running; }
+.pillarText { font-size: 14px; line-height: 2; color: #555; margin-bottom: 14px; }
+.pillarExtra { font-size: 13.5px; line-height: 2.1; color: #444; padding: 14px 18px; border-left: 3px solid var(--blue); background: rgba(0,170,204,0.05); border-radius: 0 8px 8px 0; }
+.cultureCta { background: var(--gray-light); padding: 56px 60px; }
+.midCta { text-align: center; padding: 48px 40px; background: rgba(0,170,204,0.06); border: 1px solid rgba(0,170,204,0.15); border-radius: 12px; max-width: 1100px; margin: 0 auto; }
+.midCta p { font-size: 14px; color: #555; margin-bottom: 20px; }
+
+.numbersBg { background: linear-gradient(135deg, #00AACC, #006E8A); }
+.numGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.numCard { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 28px 24px; text-align: center; transition: transform 0.2s, background 0.2s; }
+.numCard:hover { transform: translateY(-2px); background: rgba(255,255,255,0.18); }
+.numCardTitle { font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 14px; font-weight: 500; }
+.numSvgChart { width: 100%; max-height: 68px; display: block; margin: 0 auto; }
+.numCardValue { font-family: var(--font-en); font-size: clamp(32px,3.5vw,48px); font-weight: 900; color: var(--white); line-height: 1; margin-top: 12px; }
+.numCardUnit { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.85); margin-left: 2px; }
+
+.interviewItem { display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; padding: 48px 0; border-bottom: 1px solid var(--gray-mid); }
+.interviewItem:last-child { border-bottom: none; }
+.reverse { grid-template-columns: 1fr 240px; }
+.interviewPhoto { width: 100%; aspect-ratio: 1; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); }
+.interviewMeta { font-size: 11px; color: var(--blue); font-family: var(--font-en); letter-spacing: 0.15em; margin-bottom: 8px; text-transform: uppercase; }
+.interviewTitle { font-size: 20px; font-weight: 700; margin-bottom: 20px; line-height: 1.5; color: var(--black); }
+.interviewQ { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 6px; margin-top: 20px; }
+.interviewA { font-size: 14px; line-height: 2; color: #555; }
+
+.cardGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+.card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+.card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.cardBody { padding: 32px; }
+.cardTag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
+.jobTable { width: 100%; border-collapse: collapse; }
+.jobTable th, .jobTable td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
+.jobTable th { width: 100px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
+.jobTable td { color: var(--black); line-height: 1.7; }
+
+.referralBanner { text-align: center; padding: 48px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); border-radius: 12px; }
+.referralBannerTitle { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.referralBannerText { font-size: 13px; color: rgba(255,255,255,0.85); margin-bottom: 20px; }
+.referralBannerLink { display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px; background: var(--white); color: #006E8A; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.08em; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+.referralBannerLink:hover { background: rgba(255,255,255,0.85); }
+
+.entryCta { text-align: center; padding: 80px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); border-radius: 16px; }
+.entryCtaTitle { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+.entryCtaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+
+@media (max-width: 1024px) {
+  .messageGrid { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 768px) {
+  .recruitHeroContent { padding: 60px 24px; }
+  .pillarRow { padding: 48px 24px; }
+  .pillarRowInner { grid-template-columns: 1fr; gap: 28px; }
+  .pillarVisualWrap { order: -1 !important; }
+  .pillarVisualCircle { width: 140px; height: 140px; font-size: 44px; }
+  .cultureHeader { padding: 48px 24px 36px; }
+  .cultureCta { padding: 40px 24px; }
+  .numGrid { grid-template-columns: 1fr; }
+  .interviewItem { grid-template-columns: 1fr; gap: 24px; }
+  .reverse { grid-template-columns: 1fr; }
+  .cardGrid { grid-template-columns: 1fr; }
+  .referralBanner { padding: 36px 24px; }
+}
+@media (max-width: 480px) {
+  .recruitHeroBg { background-position: 60% center; }
+}

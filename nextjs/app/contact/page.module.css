@@ -1,0 +1,49 @@
+.typeGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+.typeCard { background: var(--gray-light); border-radius: 12px; padding: 32px 24px; text-align: center; border: 2px solid transparent; transition: all 0.2s; }
+.typeCard:hover { border-color: var(--blue); background: rgba(0,170,204,0.03); }
+.typeIcon { width: 56px; height: 56px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; }
+.typeCardTitle { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--black); }
+.typeCardText { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
+.formGroup { margin-bottom: 28px; }
+.formLabel { display: block; font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+.required { font-size: 11px; color: var(--red); margin-left: 6px; font-weight: 700; }
+.formInput, .formSelect, .formTextarea {
+  width: 100%; padding: 14px 16px; border: 1px solid var(--gray-mid); border-radius: 6px;
+  font-size: 14px; font-family: var(--font-jp); color: var(--black); background: var(--white);
+  transition: border-color 0.2s; outline: none;
+}
+.formInput:focus, .formSelect:focus, .formTextarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,170,204,0.1); }
+.formInput::placeholder, .formTextarea::placeholder { color: #bbb; }
+.formTextarea { resize: vertical; min-height: 160px; }
+.formSelect { appearance: none; }
+.formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.formSubmit { text-align: center; margin-top: 40px; }
+.formPrivacy { text-align: center; margin-top: 20px; font-size: 12px; color: var(--gray-text); }
+.formPrivacy a { color: var(--blue); text-decoration: none; }
+.formMockupNote { text-align: center; margin-top: 16px; padding: 12px; background: rgba(0,170,204,0.05); border-radius: 6px; font-size: 12px; color: var(--blue); font-family: var(--font-en); }
+.infoGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.infoCard { text-align: center; }
+.infoIcon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 20px; }
+.infoCardTitle { font-size: 13px; font-weight: 600; color: var(--gray-text); margin-bottom: 8px; font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase; }
+.infoCardValue { font-size: 15px; font-weight: 500; color: var(--black); line-height: 1.8; }
+.faqItem { border-bottom: 1px solid var(--gray-mid); cursor: pointer; }
+.faqQ {
+  padding: 24px 0; font-size: 15px; font-weight: 700; color: var(--black);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.faqQ::before { content: 'Q.'; font-family: var(--font-en); font-weight: 900; color: var(--blue); font-size: 18px; min-width: 30px; }
+.faqQ::after { content: '+'; font-family: var(--font-en); font-size: 20px; color: var(--blue); transition: transform 0.3s; flex-shrink: 0; }
+.faqOpen .faqQ::after { transform: rotate(45deg); }
+.faqA { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faqOpen .faqA { max-height: 200px; }
+.faqAInner { padding: 0 0 24px 42px; font-size: 14px; line-height: 2; color: #555; }
+
+@media (max-width: 1024px) {
+  .typeGrid { grid-template-columns: 1fr 1fr; }
+  .infoGrid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .typeGrid { grid-template-columns: 1fr; }
+  .formRow { grid-template-columns: 1fr; }
+  .infoGrid { grid-template-columns: 1fr; }
+}

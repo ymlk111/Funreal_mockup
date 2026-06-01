@@ -1,0 +1,42 @@
+.refHero { min-height: 60vh; background: var(--black); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
+.refHeroBg { position: absolute; inset: 0; background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 40%, #2a1a3a 100%); }
+.refHeroParticles { position: absolute; inset: 0; opacity: 0.06; background-image: radial-gradient(circle, rgba(0,170,204,0.8) 1px, transparent 1px); background-size: 40px 40px; }
+.refHeroContent { position: relative; z-index: 1; padding: 60px 40px; }
+.refHeroBadge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,170,204,0.15); border: 1px solid rgba(0,170,204,0.3); padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; font-size: 12px; font-family: var(--font-en); font-weight: 600; color: var(--blue); letter-spacing: 0.1em; }
+.refHeroCatch { font-size: clamp(28px,4vw,48px); font-weight: 900; color: var(--white); margin-bottom: 16px; line-height: 1.5; }
+.refHeroCatch em { font-style: normal; color: var(--blue); }
+.refHeroSub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.8; }
+.gamingBg { background: #0d1117; }
+.gameStatBar { display: flex; gap: 24px; justify-content: center; margin-bottom: 48px; }
+.gameStat { text-align: center; padding: 20px 32px; background: #161b22; border: 1px solid #30363d; border-radius: 10px; }
+.gameStatNum { font-family: var(--font-en); font-size: 36px; font-weight: 900; color: var(--blue); }
+.gameStatLabel { font-size: 12px; color: #8b949e; margin-top: 4px; }
+.gameGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.gameCard { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.gameCard:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,170,204,0.15); }
+.gameCardImg { width: 100%; aspect-ratio: 1; background: #21262d; display: flex; align-items: center; justify-content: center; color: #484f58; font-size: 11px; font-family: var(--font-en); letter-spacing: 0.05em; }
+.gameCardBody { padding: 16px; }
+.gameCardTitle { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.gameCardGenre { font-size: 11px; color: var(--blue); font-family: var(--font-en); font-weight: 600; }
+.gameCardPlayers { font-size: 12px; color: #8b949e; margin-top: 6px; }
+.eventTimeline { position: relative; padding-left: 32px; }
+.eventTimeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gray-mid); }
+.eventItem { position: relative; margin-bottom: 48px; }
+.eventItem:last-child { margin-bottom: 0; }
+.eventDot { position: absolute; left: -28px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--blue); border: 3px solid var(--white); }
+.eventDate { font-family: var(--font-en); font-size: 11px; font-weight: 600; color: var(--blue); letter-spacing: 0.1em; margin-bottom: 4px; text-transform: uppercase; }
+.eventTitle { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--black); }
+.eventText { font-size: 14px; line-height: 2; color: #555; }
+.ctaBox { text-align: center; padding: 80px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); border-radius: 16px; }
+.ctaTitle { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+.ctaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+
+@media (max-width: 768px) {
+  .gameGrid { grid-template-columns: 1fr 1fr; }
+  .gameStatBar { gap: 12px; }
+  .gameStat { padding: 16px 20px; }
+  .ctaBox { padding: 60px 24px; }
+}
+@media (max-width: 480px) {
+  .gameGrid { grid-template-columns: 1fr; }
+}

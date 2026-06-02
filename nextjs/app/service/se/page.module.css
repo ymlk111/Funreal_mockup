@@ -29,6 +29,56 @@
 .ctaTitle { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
 .ctaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
 
+/* ===== CASE STUDIES ===== */
+.caseItem { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px; }
+.caseItem.reverse { direction: rtl; }
+.caseItem.reverse > * { direction: ltr; }
+.caseImg { width: 100%; aspect-ratio: 16/10; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
+.caseLabel { font-family: var(--font-en); font-size: 11px; color: var(--red); letter-spacing: 0.15em; margin-bottom: 8px; font-weight: 600; }
+.caseTitle { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--black); }
+.caseMeta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.caseMetaTag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; background: var(--gray-light); border-radius: 20px; font-size: 11px; color: var(--gray-text); font-weight: 500; }
+.caseText { font-size: 14px; line-height: 2; color: #555; }
+
+/* ===== NUMBERS ===== */
+.numbersBg { background: linear-gradient(135deg, #00AACC, #006E8A); }
+.numbersGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.numItem { text-align: center; }
+.numValue { font-family: var(--font-en); font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 4px; }
+.numUnit { font-family: var(--font-en); font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.numLabel { font-size: 14px; color: rgba(255,255,255,0.82); margin-top: 8px; }
+
+/* ===== OTHER SERVICES ===== */
+.svcGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.svcCard { display: block; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 36px 28px; text-decoration: none; color: var(--black); transition: box-shadow 0.2s, transform 0.2s; }
+.svcCard:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
+.svcCardIcon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+.svcCardTitle { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.svcCardText { font-size: 13px; color: var(--gray-text); line-height: 1.7; margin-bottom: 16px; }
+.svcCardLink { font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); text-transform: uppercase; }
+
+/* ===== RECRUIT CTA ===== */
+.recruitCta { text-align: center; padding: 80px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); border-radius: 16px; }
+.recruitCtaTitle { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+.recruitCtaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+
+/* ===== SERVICE MENU (IS) ===== */
+.menuGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.menuCard { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; padding: 32px 28px; border-left: 4px solid var(--blue); transition: box-shadow 0.2s, transform 0.2s; }
+.menuCard:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+.menuCardTitle { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--black); }
+.menuCardText { font-size: 13px; color: var(--gray-text); line-height: 1.8; }
+
+/* ===== FAQ (IS) ===== */
+.faqItem { border-bottom: 1px solid var(--gray-mid); }
+.faqQ { padding: 24px 0; font-size: 15px; font-weight: 700; color: var(--black); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.faqQ::before { content: 'Q.'; font-family: var(--font-en); font-weight: 900; color: var(--blue); font-size: 18px; min-width: 30px; }
+.faqQ::after { content: '+'; font-family: var(--font-en); font-size: 20px; color: var(--blue); transition: transform 0.3s; }
+.faqItem:global(.open) .faqQ::after { transform: rotate(45deg); }
+.faqA { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faqItem:global(.open) .faqA { max-height: 240px; }
+.faqAInner { padding: 0 0 24px 42px; font-size: 14px; line-height: 2; color: #555; }
+
 @media (max-width: 1024px) {
   .msgGrid { grid-template-columns: 1fr; gap: 40px; }
   .strGrid { grid-template-columns: 1fr 1fr; }
@@ -41,4 +91,11 @@
   .techGrid { grid-template-columns: 1fr; }
   .flowGrid { grid-template-columns: 1fr; }
   .ctaBox { padding: 60px 24px; }
+  .caseItem { grid-template-columns: 1fr; gap: 24px; }
+  .caseItem.reverse { direction: ltr; }
+  .numbersGrid { grid-template-columns: repeat(2, 1fr); }
+  .svcGrid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .numbersGrid { grid-template-columns: 1fr; }
 }

@@ -21,12 +21,44 @@
 .ctaTitle { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
 .ctaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
 
+/* ===== WORKS ===== */
+.workItem { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px; }
+.workItem.reverse { direction: rtl; }
+.workItem.reverse > * { direction: ltr; }
+.workImg { width: 100%; aspect-ratio: 16/10; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.1em; }
+.workLabel { font-family: var(--font-en); font-size: 11px; color: var(--yellow); letter-spacing: 0.15em; margin-bottom: 8px; font-weight: 600; }
+.workTitle { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--black); }
+.workMeta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.workMetaTag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; background: var(--gray-light); border-radius: 20px; font-size: 11px; color: var(--gray-text); font-weight: 500; }
+.workText { font-size: 14px; line-height: 2; color: #555; }
+
+/* ===== TECHNOLOGY ===== */
+.techGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.techCard { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; padding: 28px 24px; }
+.techCardTitle { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--black); }
+.techTags { display: flex; flex-wrap: wrap; gap: 8px; }
+.techTag { display: inline-block; padding: 5px 12px; background: var(--gray-light); border-radius: 6px; font-size: 12px; font-family: var(--font-en); color: var(--gray-text); }
+
+/* ===== OTHER SERVICES ===== */
+.svcGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.svcCard { display: block; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 36px 28px; text-decoration: none; color: var(--black); transition: box-shadow 0.2s, transform 0.2s; }
+.svcCard:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
+.svcCardIcon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+.svcCardTitle { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.svcCardText { font-size: 13px; color: var(--gray-text); line-height: 1.7; margin-bottom: 16px; }
+.svcCardLink { font-size: 12px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); text-transform: uppercase; }
+
 @media (max-width: 1024px) {
   .msgGrid { grid-template-columns: 1fr; }
   .processGrid { grid-template-columns: 1fr 1fr; }
+  .techGrid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
   .typeGrid { grid-template-columns: 1fr; }
   .processGrid { grid-template-columns: 1fr; }
   .ctaBox { padding: 60px 24px; }
+  .workItem { grid-template-columns: 1fr; gap: 24px; }
+  .workItem.reverse { direction: ltr; }
+  .techGrid { grid-template-columns: 1fr; }
+  .svcGrid { grid-template-columns: 1fr; }
 }

@@ -97,6 +97,105 @@ export default function ServiceSEPage() {
         </div>
       </div>
 
+      {/* CASE STUDIES */}
+      <section className="section" style={{ background: "var(--gray-light)" }}>
+        <div className="fade-up">
+          <div className="section-label">Case</div>
+          <h2 className="section-title">プロジェクト事例</h2>
+          <p className="section-lead">業界・規模を問わず、さまざまな開発プロジェクトにエンジニアが参画しています。</p>
+        </div>
+        {[
+          {
+            label: "CASE 01", reverse: false,
+            title: "大手EC企業 — 基幹システムリプレイス",
+            tags: ["EC / リテール", "Java / Spring Boot", "12ヶ月", "3名参画"],
+            text: "老朽化した基幹システムのマイクロサービス化プロジェクトにバックエンドエンジニア3名が参画。API設計からテスト自動化まで一貫して担当し、段階的な移行を実現しました。",
+          },
+          {
+            label: "CASE 02", reverse: true,
+            title: "フィンテック企業 — モバイルアプリ新規開発",
+            tags: ["金融 / フィンテック", "Flutter / Firebase", "8ヶ月", "2名参画"],
+            text: "個人向け資産管理アプリの新規開発にモバイルエンジニアが参画。Flutter × Firebaseのクロスプラットフォーム構成で、iOS/Android同時リリースを達成しました。",
+          },
+          {
+            label: "CASE 03", reverse: false,
+            title: "SaaS企業 — インフラ基盤のクラウド移行",
+            tags: ["SaaS / BtoB", "AWS / Terraform", "6ヶ月", "1名参画"],
+            text: "オンプレミス環境からAWSへの全面移行プロジェクトにインフラエンジニアが参画。IaC化とCI/CDパイプラインの構築を推進し、デプロイ時間を大幅に短縮しました。",
+          },
+        ].map((c, i) => (
+          <div key={c.label}>
+            <div className={`${styles.caseItem}${c.reverse ? " reverse" : ""} fade-up`}>
+              <div className={styles.caseImg}>CASE IMAGE {i + 1}</div>
+              <div>
+                <div className={styles.caseLabel}>{c.label}</div>
+                <div className={styles.caseTitle}>{c.title}</div>
+                <div className={styles.caseMeta}>
+                  {c.tags.map((t) => <span key={t} className={styles.caseMetaTag}>{t}</span>)}
+                </div>
+                <p className={styles.caseText}>{c.text}</p>
+              </div>
+            </div>
+            {i < 2 && <hr className="divider" style={{ marginBottom: "48px" }} />}
+          </div>
+        ))}
+      </section>
+
+      {/* NUMBERS */}
+      <section className={`section ${styles.numbersBg}`}>
+        <div className="fade-up" style={{ textAlign: "center", marginBottom: "60px" }}>
+          <div className="section-label" style={{ justifyContent: "center", color: "rgba(255,255,255,0.9)" }}>
+            <span style={{ color: "rgba(255,255,255,0.9)" }}>Numbers</span>
+          </div>
+          <h2 className="section-title" style={{ color: "var(--white)" }}>数字で見るSE事業</h2>
+        </div>
+        <div className={`${styles.numbersGrid} fade-up`}>
+          {[
+            { value: "50", unit: "+", label: "累計参画プロジェクト数" },
+            { value: "6", unit: "", label: "対応技術領域" },
+            { value: "95", unit: "%", label: "クライアント継続率" },
+            { value: "10", unit: "+", label: "業界カバー数" },
+            { value: "3", unit: "年", label: "平均プロジェクト継続期間" },
+            { value: "100", unit: "%", label: "エンド直案件比率" },
+          ].map((n) => (
+            <div key={n.label} className={styles.numItem}>
+              <div className={styles.numValue}>{n.value}{n.unit && <span className={styles.numUnit}>{n.unit}</span>}</div>
+              <div className={styles.numLabel}>{n.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* RECRUIT CTA + OTHER SERVICES */}
+      <section className="section">
+        <div className="fade-up" style={{ marginBottom: "80px" }}>
+          <div className={styles.recruitCta}>
+            <div className={styles.recruitCtaTitle}>エンジニアとして、ファンリアルで働く</div>
+            <p className={styles.recruitCtaText}>成長を前提としたアサイン、自由で快適な環境、柔軟なキャリアパス。<br />あなたの「次のステップ」を一緒に見つけませんか。</p>
+            <Link href="/recruit" className="btn btn-primary">View Recruit →</Link>
+          </div>
+        </div>
+        <div className="fade-up">
+          <div className="section-label">Other Services</div>
+          <h2 className="section-title">その他のサービス</h2>
+          <p className="section-lead">SE事業以外にも、インサイドセールス支援やソリューション開発など、多角的にサービスを展開しています。</p>
+        </div>
+        <div className={`${styles.svcGrid} fade-up`}>
+          <Link href="/service/is" className={styles.svcCard}>
+            <div className={styles.svcCardIcon}>📞</div>
+            <div className={styles.svcCardTitle}>IS — LEAD TECH</div>
+            <p className={styles.svcCardText}>インサイドセールスの戦略設計から実行・改善まで。安定した商談創出の仕組みをつくり、営業成果を最大化します。</p>
+            <span className={styles.svcCardLink}>View Detail →</span>
+          </Link>
+          <Link href="/solutions" className={styles.svcCard}>
+            <div className={styles.svcCardIcon}>💡</div>
+            <div className={styles.svcCardTitle}>Solutions — ソリューションズ</div>
+            <p className={styles.svcCardText}>受託開発から自社プロダクトまで。企画構想からシステム開発・運用保守を一貫して手がけ、ビジネスの成長を支えます。</p>
+            <span className={styles.svcCardLink}>View Detail →</span>
+          </Link>
+        </div>
+      </section>
+
       {/* CTA */}
       <div className="section section-narrow" style={{ paddingTop: 0 }}>
         <div className={`${styles.ctaBox} fade-up`}>

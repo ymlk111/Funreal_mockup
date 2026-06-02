@@ -78,6 +78,96 @@ export default function SolutionsPage() {
         </div>
       </div>
 
+      {/* WORKS */}
+      <section className="section" style={{ background: "var(--gray-light)" }}>
+        <div className="fade-up">
+          <div className="section-label">Works</div>
+          <h2 className="section-title">制作実績</h2>
+          <p className="section-lead">さまざまな業界・規模のプロジェクトで、開発パートナーとして成果を出してきました。</p>
+        </div>
+        {[
+          {
+            label: "WORK 01", reverse: false,
+            title: "不動産企業向け 物件管理SaaS",
+            tags: ["不動産", "React / Node.js", "受託開発"],
+            text: "物件情報の一元管理と内見予約のオンライン化を実現するSaaSプロダクトを開発。管理工数を大幅に削減し、業務効率化に貢献しました。",
+          },
+          {
+            label: "WORK 02", reverse: true,
+            title: "飲食チェーン向け 店舗オペレーション管理アプリ",
+            tags: ["飲食", "Flutter / Firebase", "受託開発"],
+            text: "全国50店舗の日次業務報告・在庫管理・シフト管理を一元化するモバイルアプリを開発。現場スタッフの業務負荷を軽減しました。",
+          },
+          {
+            label: "WORK 03", reverse: false,
+            title: "社内業務効率化ツール（自社プロダクト）",
+            tags: ["自社開発", "Next.js / Python", "プロダクト"],
+            text: "SE事業での案件管理・エンジニアスキル管理・マッチング支援を自動化する社内ツールを開発。自社課題を起点としたプロダクト開発の第一歩です。",
+          },
+        ].map((w, i) => (
+          <div key={w.label}>
+            <div className={`${styles.workItem}${w.reverse ? " reverse" : ""} fade-up`}>
+              <div className={styles.workImg}>WORK IMAGE {i + 1}</div>
+              <div>
+                <div className={styles.workLabel}>{w.label}</div>
+                <div className={styles.workTitle}>{w.title}</div>
+                <div className={styles.workMeta}>
+                  {w.tags.map((t) => <span key={t} className={styles.workMetaTag}>{t}</span>)}
+                </div>
+                <p className={styles.workText}>{w.text}</p>
+              </div>
+            </div>
+            {i < 2 && <hr className="divider" style={{ marginBottom: "48px" }} />}
+          </div>
+        ))}
+      </section>
+
+      {/* TECHNOLOGY */}
+      <div className="section section-narrow">
+        <div className="fade-up">
+          <div className="section-label">Technology</div>
+          <h2 className="section-title">主な使用技術</h2>
+          <p className="section-lead">プロジェクトの要件に応じて、最適な技術スタックを選定します。</p>
+        </div>
+        <div className={`${styles.techGrid} fade-up`}>
+          {[
+            { title: "フロントエンド", tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
+            { title: "バックエンド", tags: ["Node.js", "Python", "Go", "NestJS"] },
+            { title: "インフラ", tags: ["AWS", "Vercel", "Docker", "GitHub Actions"] },
+            { title: "モバイル", tags: ["Flutter", "React Native", "Swift"] },
+            { title: "データベース", tags: ["PostgreSQL", "Firebase", "Redis"] },
+            { title: "デザイン", tags: ["Figma", "Storybook", "Design System"] },
+          ].map((t) => (
+            <div key={t.title} className={styles.techCard}>
+              <div className={styles.techCardTitle}>{t.title}</div>
+              <div className={styles.techTags}>{t.tags.map((tag) => <span key={tag} className={styles.techTag}>{tag}</span>)}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* OTHER SERVICES */}
+      <div className="section section-narrow">
+        <div className="fade-up">
+          <div className="section-label">Other Services</div>
+          <h2 className="section-title">その他のサービス</h2>
+        </div>
+        <div className={`${styles.svcGrid} fade-up`}>
+          <Link href="/service/se" className={styles.svcCard}>
+            <div className={styles.svcCardIcon}>💻</div>
+            <div className={styles.svcCardTitle}>SE — システムエンジニアリング</div>
+            <p className={styles.svcCardText}>クライアントの開発現場にエンジニアを送り出すSES事業。成長を前提としたアサインで、技術力と品質を両立します。</p>
+            <span className={styles.svcCardLink}>View Detail →</span>
+          </Link>
+          <Link href="/service/is" className={styles.svcCard}>
+            <div className={styles.svcCardIcon}>📞</div>
+            <div className={styles.svcCardTitle}>IS — LEAD TECH</div>
+            <p className={styles.svcCardText}>インサイドセールスの戦略設計から実行・改善まで。安定した商談創出の仕組みをつくります。</p>
+            <span className={styles.svcCardLink}>View Detail →</span>
+          </Link>
+        </div>
+      </div>
+
       {/* CTA */}
       <div className="section section-narrow" style={{ paddingTop: 0 }}>
         <div className={`${styles.ctaBox} fade-up`}>

@@ -4,9 +4,7 @@
 .missionText p:last-child { margin-bottom: 0; }
 .missionVisual {
   width: 100%; aspect-ratio: 4/3; background: var(--gray-light);
-  border: 1px dashed #B8DEE9; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  color: #9CB8C2; font-size: 12px; font-family: var(--font-en);
+  border-radius: 12px; object-fit: cover; display: block;
 }
 .valuesBg { background: var(--gray-light); }
 .valuesGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }

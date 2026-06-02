@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -27,7 +28,8 @@ export default function ServiceSEPage() {
             <p>ファンリアルのSE事業は、エンジニアの「成長」を最優先に考えたSES（システムエンジニアリングサービス）です。単なる人材派遣ではなく、エンジニア一人ひとりのキャリアビジョンに寄り添いながら、最適な現場へのアサインを実現します。</p>
             <p>私たちは「スキルが止まる現場には行かせない」という強いコミットメントのもと、技術力の向上と働きやすさの両立を追求しています。エンジニアが安心して成長に集中できる環境を、営業担当が全力でサポートします。</p>
           </div>
-          <div className={styles.msgVisual}>SERVICE IMAGE</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={styles.msgVisual} src={asset("/image/service-se.png")} alt="システムエンジニアリング" loading="lazy" />
         </div>
       </div>
 

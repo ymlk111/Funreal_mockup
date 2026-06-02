@@ -2,7 +2,7 @@
 .msgText { font-size: 15px; line-height: 2.2; color: #444; }
 .msgText p { margin-bottom: 20px; }
 .msgText p:last-child { margin-bottom: 0; }
-.msgVisual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); }
+.msgVisual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border-radius: 12px; object-fit: cover; display: block; }
 .strengthsBg { background: var(--gray-light); }
 .strGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .strCard { background: var(--white); border-radius: 12px; padding: 40px 32px; border: 1px solid var(--gray-mid); text-align: center; transition: box-shadow 0.2s, transform 0.2s; }

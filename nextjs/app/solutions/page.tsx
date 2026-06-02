@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -27,7 +28,8 @@ export default function SolutionsPage() {
             <p>ファンリアルのソリューションズ事業は、システム開発の企画段階から運用保守まで一気通貫で対応するサービスです。お客様のビジネス課題を深く理解し、最適なシステムソリューションを提供します。</p>
             <p>受託開発から自社プロダクト開発まで、幅広い開発ニーズに対応。小規模なWebアプリケーションから大規模な業務システムまで、チームの強みを活かして高品質なシステムを構築します。</p>
           </div>
-          <div className={styles.msgVisual}>SERVICE IMAGE</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={styles.msgVisual} src={asset("/image/service-solutions.png")} alt="ソリューションズ" loading="lazy" />
         </div>
       </div>
 

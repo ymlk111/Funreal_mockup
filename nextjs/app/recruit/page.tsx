@@ -38,7 +38,8 @@ export default function RecruitPage() {
             </div>
             <div className={styles.messageName}>株式会社ファンリアル 代表取締役<strong>（代表者名）</strong></div>
           </div>
-          <div className={styles.messagePhoto}>CEO PHOTO</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={styles.messagePhoto} src={asset("/image/ceo.png")} alt="代表メッセージ" loading="lazy" />
         </div>
       </div>
 
@@ -169,7 +170,8 @@ export default function RecruitPage() {
         <p className="section-lead fade-up">ファンリアルで働く仲間のリアルな声をお届けします。</p>
 
         <div className={`${styles.interviewItem} fade-up`}>
-          <div className={styles.interviewPhoto}>MEMBER PHOTO 1</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={styles.interviewPhoto} src={asset("/image/member-1.png")} alt="社員インタビュー1" loading="lazy" />
           <div>
             <div className={styles.interviewMeta}>Engineer / 入社2年目</div>
             <div className={styles.interviewTitle}>前の環境で消耗していた私が、<br />自分のペースと新しい目標を見つけるまで</div>
@@ -187,7 +189,8 @@ export default function RecruitPage() {
             <div className={styles.interviewQ}>入社のきっかけ</div>
             <p className={styles.interviewA}>インタビュー内容は取材後に差し替え予定です。</p>
           </div>
-          <div className={styles.interviewPhoto}>MEMBER PHOTO 2</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={styles.interviewPhoto} src={asset("/image/member-2.png")} alt="社員インタビュー2" loading="lazy" />
         </div>
       </div>
 

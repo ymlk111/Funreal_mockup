@@ -10,7 +10,7 @@
 .messageText p { margin-bottom: 20px; }
 .messageName { margin-top: 32px; font-size: 13px; color: var(--gray-text); }
 .messageName strong { font-size: 16px; color: var(--black); display: block; margin-top: 4px; }
-.messagePhoto { width: 100%; aspect-ratio: 3/4; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); }
+.messagePhoto { width: 100%; aspect-ratio: 3/4; background: var(--gray-light); border-radius: 12px; object-fit: cover; display: block; }
 
 .cultureHeader { background: #E5F4F9; padding: 72px 60px 56px; }
 .cultureHeaderInner { max-width: 1100px; margin: 0 auto; text-align: center; }
@@ -45,7 +45,7 @@
 .interviewItem { display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; padding: 48px 0; border-bottom: 1px solid var(--gray-mid); }
 .interviewItem:last-child { border-bottom: none; }
 .reverse { grid-template-columns: 1fr 240px; }
-.interviewPhoto { width: 100%; aspect-ratio: 1; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); }
+.interviewPhoto { width: 100%; aspect-ratio: 1; background: var(--gray-light); border-radius: 12px; object-fit: cover; display: block; }
 .interviewMeta { font-size: 11px; color: var(--blue); font-family: var(--font-en); letter-spacing: 0.15em; margin-bottom: 8px; text-transform: uppercase; }
 .interviewTitle { font-size: 20px; font-weight: 700; margin-bottom: 20px; line-height: 1.5; color: var(--black); }
 .interviewQ { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 6px; margin-top: 20px; }

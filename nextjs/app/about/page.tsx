@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -28,7 +29,8 @@ export default function AboutPage() {
             <p>画一的なキャリアパスに縛られず、一人ひとりの個性と希望に寄り添いながら、技術力と人間力の両面で成長できる場を提供すること。それが私たちの使命です。</p>
             <p>まだ小さな会社ですが、だからこそ一人ひとりの声が届き、一人ひとりの挑戦が会社を動かす。その手触り感を大切にしながら、お客様と社員の双方に価値ある未来を創っていきます。</p>
           </div>
-          <div className={`${styles.missionVisual} fade-up fade-up-delay-1`}>MISSION IMAGE</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={`${styles.missionVisual} fade-up fade-up-delay-1`} src={asset("/image/mission.png")} alt="私たちの使命" loading="lazy" />
         </div>
       </div>
 

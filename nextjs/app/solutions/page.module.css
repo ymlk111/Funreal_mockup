@@ -2,7 +2,7 @@
 .msgText { font-size: 15px; line-height: 2.2; color: #444; }
 .msgText p { margin-bottom: 20px; }
 .msgText p:last-child { margin-bottom: 0; }
-.msgVisual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border: 1px dashed #B8DEE9; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9CB8C2; font-size: 12px; font-family: var(--font-en); }
+.msgVisual { width: 100%; aspect-ratio: 4/3; background: var(--gray-light); border-radius: 12px; object-fit: cover; display: block; }
 .typeGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 32px; }
 .typeCard { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 12px; padding: 48px 36px; transition: box-shadow 0.2s, transform 0.2s; }
 .typeCard:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { asset } from "@/lib/asset";
 import styles from "../se/page.module.css";
 
 export default function ServiceISPage() {
@@ -25,7 +26,8 @@ export default function ServiceISPage() {
             <p>ファンリアルのIS事業「LEAD TECH」は、インサイドセールスを科学的・戦略的に設計・実行する専門サービスです。単なるコールセンターではなく、データ分析と営業ノウハウを組み合わせた高度なインサイドセールス支援を提供します。</p>
             <p>新規商談の創出から既存顧客のフォローアップまで、貴社の営業組織に最適な形でインサイドセールス機能を構築します。戦略立案から実際の運用・改善サイクルまで、一貫してサポートします。</p>
           </div>
-          <div className={styles.msgVisual}>SERVICE IMAGE</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={styles.msgVisual} src={asset("/image/service-is.png")} alt="インサイドセールス" loading="lazy" />
         </div>
       </div>
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <div className="page-hero" style={{ marginTop: "64px" }}>
+      <div className="page-hero">
         <div className="page-hero-label">About Us</div>
         <h1>人の力が、社会を動かす。</h1>
         <p className="page-hero-sub">

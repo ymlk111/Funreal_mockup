@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function ServiceSEPage() {
   return (
     <>
-      <div className="page-hero" style={{ marginTop: "64px" }}>
+      <div className="page-hero">
         <div className="page-hero-label">SE</div>
         <h1>システムエンジニアリング</h1>
         <p className="page-hero-sub">

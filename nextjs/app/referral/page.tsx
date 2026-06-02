@@ -10,7 +10,7 @@ export default function ReferralPage() {
   return (
     <>
       {/* HERO */}
-      <div className={styles.refHero} style={{ marginTop: "64px" }}>
+      <div className={styles.refHero}>
         <div className={styles.refHeroBg} />
         <div className={styles.refHeroParticles} />
         <div className={styles.refHeroContent}>

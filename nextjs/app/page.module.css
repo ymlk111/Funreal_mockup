@@ -1,7 +1,7 @@
 /* ===== HERO ===== */
 .heroValuesWrap {
   position: relative;
-  margin-top: 64px;
+  margin-top: 0;
   overflow: hidden;
 }
 .heroValuesBg {

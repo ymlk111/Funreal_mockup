@@ -18,7 +18,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <div className="page-hero" style={{ marginTop: "64px" }}>
+      <div className="page-hero">
         <div className="page-hero-label">Contact</div>
         <h1>お問い合わせ</h1>
         <p className="page-hero-sub">

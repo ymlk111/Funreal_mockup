@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <div className="page-hero" style={{ marginTop: "64px", minHeight: "36vh", padding: "80px 60px 60px" }}>
+      <div className="page-hero" style={{ minHeight: "36vh", padding: "80px 60px 60px" }}>
         <div className="page-hero-label">Legal</div>
         <h1>プライバシーポリシー</h1>
       </div>

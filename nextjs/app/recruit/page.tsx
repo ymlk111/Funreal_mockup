@@ -10,7 +10,7 @@ export default function RecruitPage() {
   return (
     <>
       {/* HERO */}
-      <div className={styles.recruitHero} style={{ marginTop: "64px" }}>
+      <div className={styles.recruitHero}>
         <div className={styles.recruitHeroBg} />
         <div className={styles.recruitHeroContent}>
           <h1 className={styles.recruitHeroCatch}>自由に、そして楽しく。</h1>

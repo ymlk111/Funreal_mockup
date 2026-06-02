@@ -1,9 +1,18 @@
 "use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useDrawer } from "@/hooks/useDrawer";
 
 export default function Header() {
   const { isOpen, subOpen, openDrawer, closeDrawer, toggleSub } = useDrawer();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
@@ -29,7 +38,7 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <header>
+      <header className={scrolled ? "scrolled" : ""}>
         <Link href="/" className="logo">
           <div className="logo-ph"><span>LOGO</span></div>
           <span className="logo-text">株式会社ファンリアル</span>

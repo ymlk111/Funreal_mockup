@@ -7,7 +7,9 @@
 .heroValuesBg {
   position: absolute;
   inset: 0;
-  background: url('/image/hero-image.png') center top / cover no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .heroValuesOverlay {
   position: absolute;

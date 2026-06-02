@@ -1,5 +1,5 @@
 .recruitHero { min-height: 70vh; background: #06384A; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
-.recruitHeroBg { position: absolute; inset: 0; background: url('/image/hero-image.png') center/cover no-repeat; opacity: 0.45; }
+.recruitHeroBg { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; opacity: 0.45; }
 .recruitHeroContent { position: relative; z-index: 1; padding: 80px 40px; }
 .recruitHeroCatch { font-size: clamp(36px,5vw,56px); font-weight: 900; color: var(--white); margin-bottom: 24px; line-height: 1.4; animation: heroFadeIn 1s ease forwards; }
 .recruitHeroSub { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 2; max-width: 520px; margin: 0 auto; animation: heroFadeIn 1s ease 0.3s forwards; opacity: 0; }

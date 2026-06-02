@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -11,7 +12,10 @@ export default function RecruitPage() {
     <>
       {/* HERO */}
       <div className={styles.recruitHero}>
-        <div className={styles.recruitHeroBg} />
+        <div
+          className={styles.recruitHeroBg}
+          style={{ backgroundImage: `url(${asset("/image/hero-image.png")})` }}
+        />
         <div className={styles.recruitHeroContent}>
           <h1 className={styles.recruitHeroCatch}>自由に、そして楽しく。</h1>
           <p className={styles.recruitHeroSub}>

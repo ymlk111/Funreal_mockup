@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PickupCarousel from "@/components/PickupCarousel";
+import { asset } from "@/lib/asset";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -12,7 +13,10 @@ export default function Home() {
     <>
       {/* HERO */}
       <div className={styles.heroValuesWrap}>
-        <div className={styles.heroValuesBg} />
+        <div
+          className={styles.heroValuesBg}
+          style={{ backgroundImage: `url(${asset("/image/hero-image.png")})` }}
+        />
         <div className={styles.heroValuesOverlay} />
         <div className={styles.heroValuesAccent} />
         <div className={styles.hero} id="hero">
@@ -43,7 +47,7 @@ export default function Home() {
           </div>
           <div className={styles.aboutVisual}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/image/human-image.png" alt="About Us" loading="lazy" style={{ width: "100%", borderRadius: "8px", display: "block" }} />
+            <img src={asset("/image/human-image.png")} alt="About Us" loading="lazy" style={{ width: "100%", borderRadius: "8px", display: "block" }} />
             <div className={styles.aboutVisualAccent} />
           </div>
         </div>

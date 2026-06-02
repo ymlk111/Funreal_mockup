@@ -46,7 +46,7 @@ export default function ReferralPage() {
           <div className={styles.gameGrid}>
             {[
               { title: "FPS・シューター", genre: "FPS / TPS", players: "複数メンバー参加" },
-              { title: "RPG・ARPG", genre: "RPG", players: "個人プレイ共有" },
+              { title: "MOBA", genre: "MOBA", players: "チームで連携プレイ" },
               { title: "ボードゲーム", genre: "Board Game", players: "オフライン開催" },
               { title: "オンラインゲーム", genre: "Online", players: "チーム戦" },
             ].map((g) => (

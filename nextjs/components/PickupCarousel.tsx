@@ -48,7 +48,6 @@ export default function PickupCarousel() {
     <section className={styles.sec}>
       <div className={`${styles.head} fade-up`}>
         <div className="section-label">Pick Up</div>
-        <h2 className="section-title">各ページへ</h2>
       </div>
       <div className={styles.stage}>
         <div className={styles.viewport}>

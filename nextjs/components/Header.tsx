@@ -1,18 +1,34 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useDrawer } from "@/hooks/useDrawer";
 
 export default function Header() {
   const { isOpen, subOpen, openDrawer, closeDrawer, toggleSub } = useDrawer();
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const isTop = pathname === "/";
+    const onScroll = () => {
+      // トップはヒーロー画像(#hero)を通過してから不透明化。
+      // 下層ページはヒーローが短いため少しのスクロールで不透明化。
+      let threshold = 40;
+      if (isTop) {
+        const hero = document.getElementById("hero");
+        threshold = hero ? hero.offsetHeight - 64 : window.innerHeight - 64;
+      }
+      setScrolled(window.scrollY > threshold);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   return (
     <>

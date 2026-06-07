@@ -69,6 +69,41 @@
 .menuCardTitle { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--black); }
 .menuCardText { font-size: 13px; color: var(--gray-text); line-height: 1.8; }
 
+/* ===== HERO META BAR ===== */
+.heroMeta { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--gray-mid); max-width: 1100px; margin: 48px auto 0; }
+.heroMetaItem { padding: 24px 22px 0; border-right: 1px solid var(--gray-mid); }
+.heroMetaItem:last-child { border-right: none; }
+.heroMetaNum { font-family: var(--font-en); font-weight: 800; font-size: 28px; color: var(--black); line-height: 1; }
+.heroMetaNum span { color: var(--blue); font-size: 17px; }
+.heroMetaLabel { font-family: var(--font-en); font-size: 11px; color: var(--gray-text); letter-spacing: 0.05em; margin-top: 10px; }
+
+/* ===== DOMAINS (得意領域) ===== */
+.domains { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: start; margin-top: 32px; }
+.domList { display: flex; flex-direction: column; gap: 14px; }
+.dom { display: flex; align-items: center; gap: 22px; padding: 24px 26px; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; transition: transform 0.25s, box-shadow 0.25s; }
+.dom:hover { transform: translateX(6px); box-shadow: 0 8px 24px rgba(0,170,204,0.1); }
+.domNum { font-family: var(--font-en); font-weight: 800; font-size: 26px; color: var(--blue); min-width: 44px; }
+.domTitle { font-size: 18px; font-weight: 700; color: var(--black); }
+.domText { font-size: 13.5px; color: var(--gray-text); margin-top: 4px; line-height: 1.7; }
+.domTag { margin-left: auto; font-family: var(--font-en); font-size: 11px; color: var(--blue); border: 1px solid rgba(0,170,204,0.35); padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+.domNote { background: var(--gray-light); border: 1px solid var(--gray-mid); border-radius: 10px; padding: 34px 32px; }
+.domNoteTitle { font-size: 18px; font-weight: 700; margin-bottom: 16px; line-height: 1.5; color: var(--black); }
+.domNoteText { color: var(--gray-text); font-size: 14px; margin-bottom: 18px; line-height: 1.9; }
+.domNoteList { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.domNoteList li { font-size: 14px; color: #444; display: flex; gap: 11px; align-items: flex-start; line-height: 1.7; }
+.domNoteList li::before { content: '▹'; color: var(--blue); font-family: var(--font-en); }
+
+/* ===== LANGUAGE MARQUEE ===== */
+.langMarquee { position: relative; overflow: hidden; margin-top: 40px; border-top: 1px solid var(--gray-mid); border-bottom: 1px solid var(--gray-mid); -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.langTrack { display: flex; align-items: center; width: max-content; animation: langScroll 46s linear infinite; }
+.langMarquee:hover .langTrack { animation-play-state: paused; }
+.lang { font-family: var(--font-en); font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; font-size: clamp(24px, 3.4vw, 44px); padding: 26px 28px; color: var(--gray-mid); transition: color 0.3s; }
+.lang:hover { color: var(--blue); }
+.langOn { color: var(--black); }
+.langAcc { color: var(--blue); }
+.langSep { color: var(--gray-mid); font-size: 14px; }
+@keyframes langScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 /* ===== FAQ (IS) ===== */
 .faqItem { border-bottom: 1px solid var(--gray-mid); }
 .faqQ { padding: 24px 0; font-size: 15px; font-weight: 700; color: var(--black); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -86,6 +121,9 @@
   .flowGrid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .flowStep::after { display: none; }
 }
+@media (max-width: 1024px) {
+  .domains { grid-template-columns: 1fr; }
+}
 @media (max-width: 768px) {
   .strGrid { grid-template-columns: 1fr; }
   .techGrid { grid-template-columns: 1fr; }
@@ -95,6 +133,9 @@
   .caseItem.reverse { direction: ltr; }
   .numbersGrid { grid-template-columns: repeat(2, 1fr); }
   .svcGrid { grid-template-columns: 1fr; }
+  .heroMeta { grid-template-columns: repeat(2, 1fr); }
+  .heroMetaItem:nth-child(2) { border-right: none; }
+  .heroMetaItem:nth-child(3), .heroMetaItem:nth-child(4) { border-top: 1px solid var(--gray-mid); padding-top: 24px; }
 }
 @media (max-width: 480px) {
   .numbersGrid { grid-template-columns: 1fr; }

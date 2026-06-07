@@ -1,290 +1,274 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { asset } from "@/lib/asset";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "SE（システムエンジニアリング） | 株式会社ファンリアル",
+  title: "SES事業（システムエンジニアリング） | 株式会社ファンリアル",
+  description:
+    "最新のWeb技術とAI開発に強みを持つエンジニアが、要件定義から運用保守まで一貫して伴走するSES事業。",
 };
 
 export default function ServiceSEPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="page-hero-label">SE</div>
-        <h1>システムエンジニアリング</h1>
-        <p className="page-hero-sub">
-          クライアントの開発現場にエンジニアを送り出すSES事業。<br />
-          成長を前提としたアサインで、技術力と品質を両立します。
-        </p>
-      </div>
-
-      {/* HERO META */}
-      <div className="section section-narrow" style={{ paddingTop: "60px", paddingBottom: "0" }}>
-        <div className={`${styles.heroMeta} fade-up`}>
-          {[
-            { num: <>Web<span>+AI</span></>, label: "CORE DOMAIN" },
-            { num: <>Polyglot</>, label: "対応言語 — MULTI-STACK" },
-            { num: <>要件<span>→運用</span></>, label: "FULL LIFECYCLE" },
-            { num: <>AWS</>, label: "CLOUD NATIVE" },
-          ].map((m, i) => (
-            <div key={i} className={styles.heroMetaItem}>
-              <div className={styles.heroMetaNum}>{m.num}</div>
-              <div className={styles.heroMetaLabel}>{m.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* OVERVIEW */}
-      <div className="section section-narrow">
-        <div className="section-label fade-up">Overview</div>
-        <h2 className="section-title fade-up">SE事業について</h2>
-        <div className={`${styles.msgGrid} fade-up`}>
-          <div className={styles.msgText}>
-            <p>ファンリアルのSE事業は、エンジニアの「成長」を最優先に考えたSES（システムエンジニアリングサービス）です。単なる人材派遣ではなく、エンジニア一人ひとりのキャリアビジョンに寄り添いながら、最適な現場へのアサインを実現します。</p>
-            <p>私たちは「スキルが止まる現場には行かせない」という強いコミットメントのもと、技術力の向上と働きやすさの両立を追求しています。エンジニアが安心して成長に集中できる環境を、営業担当が全力でサポートします。</p>
+      {/* ===== HERO ===== */}
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={`${styles.eyebrow} fade-up`}>SES / Engineering Partner</div>
+          <h1 className={`${styles.heroTitle} fade-up`}>
+            企業ごとの「独自課題」を、<br />
+            <em>Web × AI</em> の技術力で解決する<br />
+            エンジニアリングパートナー。
+          </h1>
+          <p className={`${styles.heroLead} fade-up`}>
+            最新の Web 技術と AI 開発に強みを持つエンジニアが、要件定義から運用保守まで一貫して伴走。金融・保険・公共をはじめとする、止められないシステムの現場で力を発揮します。
+          </p>
+          <div className={`${styles.heroCta} fade-up`}>
+            <Link href="/contact" className={styles.btnPrimary}>エンジニアのご相談 <span className={styles.arr}>→</span></Link>
+            <a href="#stack" className={styles.btnGhost}>技術スタックを見る</a>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.msgVisual} src={asset("/image/service-se.png")} alt="システムエンジニアリング" loading="lazy" />
+          <div className={`${styles.heroMeta} fade-up`}>
+            {[
+              { num: <>Web<span>+AI</span></>, label: "CORE DOMAIN" },
+              { num: <>Polyglot</>, label: "対応言語 — MULTI-STACK" },
+              { num: <>要件<span>→運用</span></>, label: "FULL LIFECYCLE" },
+              { num: <>AWS</>, label: "CLOUD NATIVE" },
+            ].map((m, i) => (
+              <div key={i} className={styles.heroMetaItem}>
+                <div className={styles.heroMetaNum}>{m.num}</div>
+                <div className={styles.heroMetaLabel}>{m.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      <hr className="divider" />
+      {/* ===== SERVICE / VALUE ===== */}
+      <section className={styles.sec} id="service">
+        <div className={styles.secInner}>
+          <div className={`${styles.secHead} fade-up`}>
+            <div className={styles.eyebrow}>01 / Service</div>
+            <h2 className={styles.secTitle}>準委任契約による、技術力の継続的なご提供。</h2>
+            <p className={styles.secLead}>受託開発と派遣の中間にある SES（システムエンジニアリングサービス）として、必要なフェーズに、必要なスキルのエンジニアを柔軟にアサイン。チームに溶け込み、成果に貢献します。</p>
+          </div>
+          <div className={styles.valueGrid}>
+            {[
+              { vn: "VALUE / 01", title: "Web開発に特化した即戦力", text: "モダンフロントエンドからクラウドネイティブなバックエンドまで、Webアプリ開発の現場経験が豊富なエンジニアをご提供します。" },
+              { vn: "VALUE / 02", title: "AI開発まで踏み込める技術幅", text: "生成AI・機械学習を活用した開発に対応。既存システムへのAI組み込みから新規のAIプロダクト開発まで伴走します。" },
+              { vn: "VALUE / 03", title: "全フェーズを一気通貫で", text: "要件定義・設計・実装・テスト・運用保守まで、プロジェクトのどの局面でも参画可能。長期の信頼関係を前提に支援します。" },
+            ].map((v) => (
+              <div key={v.vn} className={`${styles.vcard} fade-up`}>
+                <div className={styles.vn}>{v.vn}</div>
+                <h3>{v.title}</h3>
+                <p>{v.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* STRENGTHS */}
-      <div className={styles.strengthsBg} style={{ padding: "100px 60px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div className="section-label fade-up">Strengths</div>
-          <h2 className="section-title fade-up">ファンリアルSEの3つの強み</h2>
+      {/* ===== TECH STACK ===== */}
+      <section className={`${styles.sec} ${styles.secAlt}`} id="stack">
+        <div className={styles.secInner}>
+          <div className={`${styles.secHead} fade-up`}>
+            <div className={styles.eyebrow}>02 / Tech Stack</div>
+            <h2 className={styles.secTitle}>対応領域・技術スタック</h2>
+            <p className={styles.secLead}>Web系を中心に、最新技術にも積極的にチャレンジ。型安全性・セキュリティ・信頼性を重視した、堅牢でモダンな技術選定を得意とします。</p>
+          </div>
+          <div className={styles.stack}>
+            <div className={`${styles.stackcard} ${styles.feature} fade-up`}>
+              <div className={styles.scHead}>
+                <span className={styles.scNo}>★</span>
+                <span className={`${styles.scTitle} ${styles.big}`}>AI開発 — 生成AI・機械学習</span>
+                <span className={styles.scSub}>SPECIALITY</span>
+              </div>
+              <div className={styles.chips}>
+                {["生成AI / LLM活用", "RAG", "AIエージェント", "OpenAI", "Azure OpenAI", "Anthropic Claude", "PyTorch", "TensorFlow", "scikit-learn", "自然言語処理", "画像認識", "MLOps"].map((c, i) => (
+                  <span key={c} className={`${styles.chip}${i < 3 ? ` ${styles.hot}` : ""}`}>{c}</span>
+                ))}
+              </div>
+            </div>
+            {[
+              { no: "01", title: "フロントエンド", sub: "FRONTEND", chips: ["React", "Vue.js", "TypeScript", "Next.js", "Nuxt", "Tailwind CSS"] },
+              { no: "02", title: "バックエンド", sub: "BACKEND", chips: ["Python", "FastAPI / Django", "Java", "Spring Boot", "C#", ".NET / ASP.NET Core", "REST / GraphQL"] },
+              { no: "03", title: "インフラ / クラウド", sub: "AWS", chips: ["ECS / EKS", "Lambda", "RDS", "S3", "API Gateway", "Docker", "Kubernetes", "Terraform", "GitHub Actions"] },
+              { no: "04", title: "品質・セキュリティ", sub: "QUALITY", chips: ["認証認可 / 暗号化", "脆弱性診断", "高可用性設計", "監査ログ", "コンプライアンス対応"] },
+            ].map((s) => (
+              <div key={s.no} className={`${styles.stackcard} fade-up`}>
+                <div className={styles.scHead}>
+                  <span className={styles.scNo}>{s.no}</span>
+                  <span className={styles.scTitle}>{s.title}</span>
+                  <span className={styles.scSub}>{s.sub}</span>
+                </div>
+                <div className={styles.chips}>
+                  {s.chips.map((c) => <span key={c} className={styles.chip}>{c}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== LANGUAGES ===== */}
+      <section className={styles.sec} id="lang" style={{ paddingBottom: "60px" }}>
+        <div className={styles.secInner}>
+          <div className={`${styles.secHead} fade-up`}>
+            <div className={styles.eyebrow}>— / Languages</div>
+            <h2 className={styles.secTitle}>最新からレガシーまで、<br />言語を選ばない開発力。</h2>
+            <p className={styles.secLead}>プロジェクトの制約や既存資産に応じて、最適な言語を選定。モダンな新規開発はもちろん、金融・公共に多いレガシー資産の保守・刷新まで、幅広い言語に対応します。</p>
+          </div>
+        </div>
+        <div className={styles.langMarquee}>
+          <div className={styles.langTrack}>
+            {[...Array(2)].flatMap((_, dup) =>
+              [
+                ["JavaScript", "on"], ["TypeScript", ""], ["Python", "acc"], ["Java", ""],
+                ["C#", "on"], ["C", ""], ["C++", ""], ["VB.NET", "acc"], ["Go", ""],
+                ["PHP", "on"], ["Ruby", ""], ["Kotlin", ""], ["Swift", "acc"], ["SQL", ""], ["Rust", ""],
+              ].map(([name, variant], i) => (
+                <span key={`${dup}-${i}`} style={{ display: "inline-flex", alignItems: "center" }}>
+                  <span className={`${styles.lang}${variant === "on" ? ` ${styles.langOn}` : variant === "acc" ? ` ${styles.langAcc}` : ""}`}>{name}</span>
+                  <span className={styles.langSep}>◆</span>
+                </span>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== DOMAINS ===== */}
+      <section className={styles.sec} id="domains">
+        <div className={styles.secInner}>
+          <div className={`${styles.secHead} fade-up`}>
+            <div className={styles.eyebrow}>03 / Domains</div>
+            <h2 className={styles.secTitle}>各企業の「独自アプリ」を、業務の深いところまで。</h2>
+            <p className={styles.secLead}>パッケージでは解決しきれない、企業ごとの固有の業務課題に向き合うのが私たちの本領。とりわけ高い信頼性と規制対応が求められる領域で実力を発揮します。</p>
+          </div>
+          <div className={styles.domains}>
+            <div className={styles.domList}>
+              {[
+                { num: "01", title: "金融", text: "勘定系・周辺システム、トレーディング、フィンテック。高可用性とセキュリティが要となる領域。", tag: "STRENGTH" },
+                { num: "02", title: "保険", text: "契約・査定・保全業務システム、顧客向けWebサービス、業務効率化。複雑な業務ロジックへの対応。", tag: "STRENGTH" },
+                { num: "03", title: "公共", text: "自治体・官公庁システム、住民向けサービス。厳格な要件と品質基準への対応実績。", tag: "STRENGTH" },
+                { num: "04", title: "企業独自アプリ全般", text: "業種を問わず、自社業務に最適化した独自Webアプリ・基幹システムの開発を支援。", tag: "" },
+              ].map((d) => (
+                <div key={d.num} className={`${styles.dom} fade-up`}>
+                  <span className={styles.domNum}>{d.num}</span>
+                  <div>
+                    <div className={styles.domTitle}>{d.title}</div>
+                    <p className={styles.domText}>{d.text}</p>
+                  </div>
+                  {d.tag && <span className={styles.domTag}>{d.tag}</span>}
+                </div>
+              ))}
+            </div>
+            <div className={`${styles.domNote} fade-up`}>
+              <div className={styles.domNoteTitle}>規制産業で求められる「止まらない・漏らさない」を、設計から。</div>
+              <p className={styles.domNoteText}>金融・保険・公共といったミッションクリティカルな領域では、機能だけでなく信頼性そのものが価値になります。私たちは下記を前提に設計・実装します。</p>
+              <ul className={styles.domNoteList}>
+                <li>可用性・冗長性を考慮したアーキテクチャ設計</li>
+                <li>認証認可・データ暗号化によるセキュリティ確保</li>
+                <li>監査ログ・トレーサビリティの担保</li>
+                <li>各種ガイドライン・コンプライアンスへの対応</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PHASES ===== */}
+      <section className={`${styles.sec} ${styles.secAlt}`} id="phase">
+        <div className={styles.secInner}>
+          <div className={`${styles.secHead} fade-up`}>
+            <div className={styles.eyebrow}>04 / Phase</div>
+            <h2 className={styles.secTitle}>要件定義から運用保守まで、全フェーズに対応。</h2>
+            <p className={styles.secLead}>どの工程からでも参画可能。スポットでの技術支援も、長期の開発体制構築も、ご状況に合わせて柔軟に対応します。</p>
+          </div>
+          <div className={`${styles.phases} fade-up`}>
+            {[
+              { no: "PH.01", title: "要件定義", text: "業務理解・課題整理・要求仕様の策定を支援。" },
+              { no: "PH.02", title: "設計", text: "アーキテクチャ・DB・UI/UXの基本〜詳細設計。" },
+              { no: "PH.03", title: "実装", text: "フロント・バック・AI・インフラ構築。" },
+              { no: "PH.04", title: "テスト", text: "単体〜総合・セキュリティ試験と品質担保。" },
+              { no: "PH.05", title: "運用保守", text: "監視・改善・機能追加まで継続的に伴走。" },
+            ].map((p) => (
+              <div key={p.no} className={styles.phase}>
+                <div className={styles.pno}>{p.no}</div>
+                <h4>{p.title}</h4>
+                <p>{p.text}</p>
+                <div className={styles.phaseBar} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== STRENGTHS ===== */}
+      <section className={styles.sec} id="strength">
+        <div className={styles.secInner}>
+          <div className={`${styles.secHead} fade-up`}>
+            <div className={styles.eyebrow}>05 / Strength</div>
+            <h2 className={styles.secTitle}>選ばれる理由</h2>
+          </div>
           <div className={styles.strGrid}>
             {[
-              { num: "01", en: "Growth First", title: "成長を最優先に", text: "スキルアップを前提とした現場選びで、エンジニアのキャリアを積極的にサポート。単調な業務だけに偏ることなく、技術力が着実に伸びる環境を提供します。" },
-              { num: "02", en: "Trusted Assignment", title: "信頼できるアサイン", text: "エンジニアの希望・スキル・働き方をヒアリングし、最適な現場をマッチング。「行かせてよかった」と思える配属を全力で追求します。" },
-              { num: "03", en: "Continuous Support", title: "継続的なフォロー", text: "アサイン後も定期的な面談でコンディションを確認。困ったことがあればすぐに相談できる体制を整え、長期的なキャリア形成を支援します。" },
-            ].map((s, i) => (
-              <div key={s.num} className={`${styles.strCard} fade-up fade-up-delay-${i + 1}`}>
-                <div className={styles.strNum}>{s.num}</div>
-                <div className={styles.strEn}>{s.en}</div>
-                <div className={styles.strTitle}>{s.title}</div>
-                <p className={styles.strText}>{s.text}</p>
+              { si: "// 01", title: "最新技術への積極投資", text: "生成AIをはじめとする新技術を継続的にキャッチアップ。レガシーに留まらず、最適な技術選定を提案できます。" },
+              { si: "// 02", title: "規制産業での信頼性", text: "金融・保険・公共で培った、止められない／漏らせないシステムへの設計思想を、あらゆる案件に還元します。" },
+              { si: "// 03", title: "上流から運用まで一気通貫", text: "要件定義の議論から運用改善まで対応できる技術幅で、フェーズをまたいだ価値提供が可能です。" },
+              { si: "// 04", title: "Web × AI のかけ算", text: "WebアプリにAIを自然に組み込む実装力。両方を理解するエンジニアだからこその提案ができます。" },
+              { si: "// 05", title: "チームへの溶け込み", text: "準委任の枠を超え、プロジェクト成功にコミット。既存チームと一体になって動きます。" },
+              { si: "// 06", title: "柔軟な稼働形態", text: "リモート／常駐／ハイブリッド、稼働量もご状況に合わせて柔軟に調整いたします。" },
+            ].map((s) => (
+              <div key={s.si} className={`${styles.str} fade-up`}>
+                <div className={styles.si}>{s.si}</div>
+                <h4>{s.title}</h4>
+                <p>{s.text}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* TECHNOLOGY */}
-      <div className="section section-narrow">
-        <div className="section-label fade-up">Technology</div>
-        <h2 className="section-title fade-up">取り扱い技術領域</h2>
-        <div className={styles.techGrid}>
-          {[
-            { icon: "🤖", title: "AI開発 — 生成AI・機械学習", tags: ["生成AI / LLM", "RAG", "AIエージェント", "PyTorch"], text: "生成AI・機械学習を活用した開発に対応。既存システムへのAI組み込みから新規AIプロダクト開発まで伴走します。" },
-            { icon: "🖥️", title: "フロントエンド開発", tags: ["React", "Vue.js", "TypeScript", "Next.js"], text: "モダンなフロントエンド技術スタックに対応。SPAからSSRまで幅広い開発経験を持つエンジニアを提供します。" },
-            { icon: "⚙️", title: "バックエンド開発", tags: ["Java", "Python", "Go", "Node.js"], text: "API設計から実装・テストまで対応。マイクロサービスや大規模システムの経験も豊富です。" },
-            { icon: "☁️", title: "クラウド・インフラ", tags: ["AWS", "GCP", "Azure", "Docker"], text: "クラウドサービスの設計・構築・運用に対応。インフラ整備からCI/CD構築まで支援します。" },
-          ].map((t, i) => (
-            <div key={t.title} className={`${styles.techCard} fade-up fade-up-delay-${i + 1}`}>
-              <div className={styles.techIcon}>{t.icon}</div>
-              <div className={styles.techCardTitle}>{t.title}</div>
-              <div className={styles.techTags}>{t.tags.map((tag) => <span key={tag} className={styles.techTag}>{tag}</span>)}</div>
-              <p className={styles.techCardText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* LANGUAGES MARQUEE */}
-      <div className="section section-narrow" style={{ paddingBottom: "40px" }}>
-        <div className="section-label fade-up">Languages</div>
-        <h2 className="section-title fade-up">最新からレガシーまで、言語を選ばない開発力</h2>
-        <p className="section-lead fade-up">プロジェクトの制約や既存資産に応じて、最適な言語を選定。モダンな新規開発から既存資産の保守・刷新まで幅広く対応します。</p>
-      </div>
-      <div className={styles.langMarquee}>
-        <div className={styles.langTrack}>
-          {[...Array(2)].flatMap((_, dup) =>
-            [
-              ["JavaScript", "on"], ["TypeScript", ""], ["Python", "acc"], ["Java", ""],
-              ["C#", "on"], ["C", ""], ["C++", ""], ["VB.NET", "acc"], ["Go", ""],
-              ["PHP", "on"], ["Ruby", ""], ["Kotlin", ""], ["Swift", "acc"], ["SQL", ""], ["Rust", ""],
-            ].map(([name, variant], i) => (
-              <span key={`${dup}-${i}`} style={{ display: "inline-flex", alignItems: "center" }}>
-                <span className={`${styles.lang}${variant === "on" ? ` ${styles.langOn}` : variant === "acc" ? ` ${styles.langAcc}` : ""}`}>{name}</span>
-                <span className={styles.langSep}>◆</span>
-              </span>
-            ))
-          )}
-        </div>
-      </div>
-
-      {/* DOMAINS (得意領域) */}
-      <div className="section section-narrow">
-        <div className="fade-up">
-          <div className="section-label">Domains</div>
-          <h2 className="section-title">各企業の「独自アプリ」を、業務の深いところまで</h2>
-          <p className="section-lead">パッケージでは解決しきれない、企業ごとの固有の業務課題に向き合うのが私たちの本領。高い信頼性と規制対応が求められる領域で実力を発揮します。</p>
-        </div>
-        <div className={styles.domains}>
-          <div className={styles.domList}>
+      {/* ===== FLOW ===== */}
+      <section className={`${styles.sec} ${styles.secAlt}`} id="flow">
+        <div className={styles.secInner}>
+          <div className={`${styles.secHead} fade-up`}>
+            <div className={styles.eyebrow}>06 / Flow</div>
+            <h2 className={styles.secTitle}>ご支援の流れ</h2>
+            <p className={styles.secLead}>お問い合わせから最短数日でのアサインも可能です。まずはお気軽にご相談ください。</p>
+          </div>
+          <div className={styles.flow}>
             {[
-              { num: "01", title: "金融", text: "勘定系・周辺システム、トレーディング、フィンテック。高可用性とセキュリティが要となる領域。", tag: "STRENGTH" },
-              { num: "02", title: "保険", text: "契約・査定・保全業務システム、顧客向けWebサービス。複雑な業務ロジックへの対応。", tag: "STRENGTH" },
-              { num: "03", title: "公共", text: "自治体・官公庁システム、住民向けサービス。厳格な要件と品質基準への対応実績。", tag: "STRENGTH" },
-              { num: "04", title: "企業独自アプリ全般", text: "業種を問わず、自社業務に最適化した独自Webアプリ・基幹システムの開発を支援。", tag: "" },
-            ].map((d) => (
-              <div key={d.num} className={`${styles.dom} fade-up`}>
-                <span className={styles.domNum}>{d.num}</span>
+              { no: "01", title: "お問い合わせ・ヒアリング", text: "必要なスキル・体制・期間・ご予算などをお伺いします。", days: "目安：即日〜" },
+              { no: "02", title: "エンジニアのご提案", text: "ご要件に合致するエンジニアのスキルシートをご提示します。", days: "目安：2〜5営業日" },
+              { no: "03", title: "面談", text: "スキル・カルチャーフィットをオンライン等でご確認いただきます。", days: "目安：1週間以内" },
+              { no: "04", title: "ご契約", text: "準委任契約を締結。条件・精算幅・指揮命令の範囲を明確にします。", days: "—" },
+              { no: "05", title: "アサイン・稼働開始", text: "プロジェクトに参画し、継続的に伴走します。", days: "—" },
+            ].map((s) => (
+              <div key={s.no} className={`${styles.step} fade-up`}>
+                <div className={styles.sno}>{s.no}</div>
                 <div>
-                  <div className={styles.domTitle}>{d.title}</div>
-                  <p className={styles.domText}>{d.text}</p>
+                  <h4>{s.title}</h4>
+                  <p>{s.text}</p>
+                  <span className={styles.days}>{s.days}</span>
                 </div>
-                {d.tag && <span className={styles.domTag}>{d.tag}</span>}
               </div>
             ))}
           </div>
-          <div className={`${styles.domNote} fade-up`}>
-            <div className={styles.domNoteTitle}>規制産業で求められる「止まらない・漏らさない」を、設計から。</div>
-            <p className={styles.domNoteText}>金融・保険・公共といったミッションクリティカルな領域では、機能だけでなく信頼性そのものが価値になります。下記を前提に設計・実装します。</p>
-            <ul className={styles.domNoteList}>
-              <li>可用性・冗長性を考慮したアーキテクチャ設計</li>
-              <li>認証認可・データ暗号化によるセキュリティ確保</li>
-              <li>監査ログ・トレーサビリティの担保</li>
-              <li>各種ガイドライン・コンプライアンスへの対応</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <hr className="divider" />
-
-      {/* FLOW */}
-      <div className="section section-narrow">
-        <div className="section-label fade-up">Flow</div>
-        <h2 className="section-title fade-up">ご利用の流れ</h2>
-        <div className={`${styles.flowGrid} fade-up`}>
-          {[
-            { num: "01", title: "お問い合わせ", text: "まずはお気軽にご連絡ください。担当者よりご連絡いたします。" },
-            { num: "02", title: "ヒアリング", text: "必要なスキルや現場環境などをお聞かせください。" },
-            { num: "03", title: "候補者提案", text: "要件にマッチしたエンジニアをご提案いたします。" },
-            { num: "04", title: "面談・契約", text: "面談後、詳細条件を確認し契約を締結します。" },
-          ].map((s, i) => (
-            <div key={s.num} className={styles.flowStep}>
-              <div className={styles.flowNum}>{s.num}</div>
-              <div className={styles.flowStepTitle}>{s.title}</div>
-              <p className={styles.flowStepText}>{s.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* CASE STUDIES */}
-      <section className="section" style={{ background: "var(--gray-light)" }}>
-        <div className="fade-up">
-          <div className="section-label">Case</div>
-          <h2 className="section-title">プロジェクト事例</h2>
-          <p className="section-lead">業界・規模を問わず、さまざまな開発プロジェクトにエンジニアが参画しています。</p>
-        </div>
-        {[
-          {
-            label: "CASE 01", reverse: false,
-            title: "大手EC企業 — 基幹システムリプレイス",
-            tags: ["EC / リテール", "Java / Spring Boot", "12ヶ月", "3名参画"],
-            text: "老朽化した基幹システムのマイクロサービス化プロジェクトにバックエンドエンジニア3名が参画。API設計からテスト自動化まで一貫して担当し、段階的な移行を実現しました。",
-          },
-          {
-            label: "CASE 02", reverse: true,
-            title: "フィンテック企業 — モバイルアプリ新規開発",
-            tags: ["金融 / フィンテック", "Flutter / Firebase", "8ヶ月", "2名参画"],
-            text: "個人向け資産管理アプリの新規開発にモバイルエンジニアが参画。Flutter × Firebaseのクロスプラットフォーム構成で、iOS/Android同時リリースを達成しました。",
-          },
-          {
-            label: "CASE 03", reverse: false,
-            title: "SaaS企業 — インフラ基盤のクラウド移行",
-            tags: ["SaaS / BtoB", "AWS / Terraform", "6ヶ月", "1名参画"],
-            text: "オンプレミス環境からAWSへの全面移行プロジェクトにインフラエンジニアが参画。IaC化とCI/CDパイプラインの構築を推進し、デプロイ時間を大幅に短縮しました。",
-          },
-        ].map((c, i) => (
-          <div key={c.label}>
-            <div className={`${styles.caseItem}${c.reverse ? " reverse" : ""} fade-up`}>
-              <div className={styles.caseImg}>CASE IMAGE {i + 1}</div>
-              <div>
-                <div className={styles.caseLabel}>{c.label}</div>
-                <div className={styles.caseTitle}>{c.title}</div>
-                <div className={styles.caseMeta}>
-                  {c.tags.map((t) => <span key={t} className={styles.caseMetaTag}>{t}</span>)}
-                </div>
-                <p className={styles.caseText}>{c.text}</p>
-              </div>
-            </div>
-            {i < 2 && <hr className="divider" style={{ marginBottom: "48px" }} />}
-          </div>
-        ))}
-      </section>
-
-      {/* NUMBERS */}
-      <section className={`section ${styles.numbersBg}`}>
-        <div className="fade-up" style={{ textAlign: "center", marginBottom: "60px" }}>
-          <div className="section-label" style={{ justifyContent: "center", color: "rgba(255,255,255,0.9)" }}>
-            <span style={{ color: "rgba(255,255,255,0.9)" }}>Numbers</span>
-          </div>
-          <h2 className="section-title" style={{ color: "var(--white)" }}>数字で見るSE事業</h2>
-        </div>
-        <div className={`${styles.numbersGrid} fade-up`}>
-          {[
-            { value: "50", unit: "+", label: "累計参画プロジェクト数" },
-            { value: "6", unit: "", label: "対応技術領域" },
-            { value: "95", unit: "%", label: "クライアント継続率" },
-            { value: "10", unit: "+", label: "業界カバー数" },
-            { value: "3", unit: "年", label: "平均プロジェクト継続期間" },
-            { value: "100", unit: "%", label: "エンド直案件比率" },
-          ].map((n) => (
-            <div key={n.label} className={styles.numItem}>
-              <div className={styles.numValue}>{n.value}{n.unit && <span className={styles.numUnit}>{n.unit}</span>}</div>
-              <div className={styles.numLabel}>{n.label}</div>
-            </div>
-          ))}
         </div>
       </section>
 
-      {/* RECRUIT CTA + OTHER SERVICES */}
-      <section className="section">
-        <div className="fade-up" style={{ marginBottom: "80px" }}>
-          <div className={styles.recruitCta}>
-            <div className={styles.recruitCtaTitle}>エンジニアとして、ファンリアルで働く</div>
-            <p className={styles.recruitCtaText}>成長を前提としたアサイン、自由で快適な環境、柔軟なキャリアパス。<br />あなたの「次のステップ」を一緒に見つけませんか。</p>
-            <Link href="/recruit" className="btn btn-primary">View Recruit →</Link>
-          </div>
-        </div>
-        <div className="fade-up">
-          <div className="section-label">Other Services</div>
-          <h2 className="section-title">その他のサービス</h2>
-          <p className="section-lead">SE事業以外にも、インサイドセールス支援やソリューション開発など、多角的にサービスを展開しています。</p>
-        </div>
-        <div className={`${styles.svcGrid} fade-up`}>
-          <Link href="/service/is" className={styles.svcCard}>
-            <div className={styles.svcCardIcon}>📞</div>
-            <div className={styles.svcCardTitle}>IS — LEAD TECH</div>
-            <p className={styles.svcCardText}>インサイドセールスの戦略設計から実行・改善まで。安定した商談創出の仕組みをつくり、営業成果を最大化します。</p>
-            <span className={styles.svcCardLink}>View Detail →</span>
-          </Link>
-          <Link href="/solutions" className={styles.svcCard}>
-            <div className={styles.svcCardIcon}>💡</div>
-            <div className={styles.svcCardTitle}>Solutions — ソリューションズ</div>
-            <p className={styles.svcCardText}>受託開発から自社プロダクトまで。企画構想からシステム開発・運用保守を一貫して手がけ、ビジネスの成長を支えます。</p>
-            <span className={styles.svcCardLink}>View Detail →</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <div className="section section-narrow" style={{ paddingTop: 0 }}>
+      {/* ===== CTA ===== */}
+      <section className={styles.ctaSec} id="contact">
         <div className={`${styles.ctaBox} fade-up`}>
-          <div className={styles.ctaTitle}>SE事業に関するお問い合わせ</div>
-          <p className={styles.ctaText}>エンジニアのアサインについて、まずはお気軽にご相談ください。</p>
-          <Link href="/contact" className="btn btn-primary">お問い合わせ →</Link>
+          <div className={styles.eyebrow} style={{ justifyContent: "center", color: "rgba(255,255,255,0.9)" }}>Contact</div>
+          <h2>Web・AI 開発の体制づくり、<br />まずはご相談ください。</h2>
+          <p>「こんなエンジニアはいる？」というご質問だけでも歓迎です。貴社の課題に合わせて、最適なご提案をいたします。</p>
+          <div className={styles.heroCta}>
+            <Link href="/contact" className={styles.btnOnDark}>お問い合わせフォームへ <span className={styles.arr}>→</span></Link>
+          </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

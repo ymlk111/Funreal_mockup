@@ -30,6 +30,8 @@ export default function Header() {
 
   // トップ以外、またはトップでスクロール後は不透明ヘッダー
   const solid = !isTop || scrolled;
+  // ISページはダークテーマのため、ヘッダーも黒地・白文字に合わせる
+  const isDark = pathname === "/service/is";
 
   return (
     <>
@@ -55,7 +57,7 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <header className={solid ? "scrolled" : ""}>
+      <header className={`${solid ? "scrolled" : ""}${isDark ? " is-dark" : ""}`}>
         <Link href="/" className="logo">
           <div className="logo-ph"><span>LOGO</span></div>
           <span className="logo-text">株式会社ファンリアル</span>

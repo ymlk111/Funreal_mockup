@@ -47,7 +47,7 @@ export default function ServiceSEPage() {
       <section className={styles.sec} id="service">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
-            <div className={styles.eyebrow}>01 / Service</div>
+            <div className={styles.eyebrow}>Service</div>
             <h2 className={styles.secTitle}>準委任契約による、技術力の継続的なご提供。</h2>
             <p className={styles.secLead}>受託開発と派遣の中間にある SES（システムエンジニアリングサービス）として、必要なフェーズに、必要なスキルのエンジニアを柔軟にアサイン。チームに溶け込み、成果に貢献します。</p>
           </div>
@@ -71,7 +71,7 @@ export default function ServiceSEPage() {
       <section className={`${styles.sec} ${styles.secAlt}`} id="stack">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
-            <div className={styles.eyebrow}>02 / Tech Stack</div>
+            <div className={styles.eyebrow}>Tech Stack</div>
             <h2 className={styles.secTitle}>対応領域・技術スタック</h2>
             <p className={styles.secLead}>Web系を中心に、最新技術にも積極的にチャレンジ。型安全性・セキュリティ・信頼性を重視した、堅牢でモダンな技術選定を得意とします。</p>
           </div>
@@ -113,7 +113,7 @@ export default function ServiceSEPage() {
       <section className={styles.sec} id="lang" style={{ paddingBottom: "60px" }}>
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
-            <div className={styles.eyebrow}>— / Languages</div>
+            <div className={styles.eyebrow}>Languages</div>
             <h2 className={styles.secTitle}>最新からレガシーまで、<br />言語を選ばない開発力。</h2>
             <p className={styles.secLead}>プロジェクトの制約や既存資産に応じて、最適な言語を選定。モダンな新規開発はもちろん、金融・公共に多いレガシー資産の保守・刷新まで、幅広い言語に対応します。</p>
           </div>
@@ -140,7 +140,7 @@ export default function ServiceSEPage() {
       <section className={styles.sec} id="domains">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
-            <div className={styles.eyebrow}>03 / Domains</div>
+            <div className={styles.eyebrow}>Domains</div>
             <h2 className={styles.secTitle}>各企業の「独自アプリ」を、業務の深いところまで。</h2>
             <p className={styles.secLead}>パッケージでは解決しきれない、企業ごとの固有の業務課題に向き合うのが私たちの本領。とりわけ高い信頼性と規制対応が求められる領域で実力を発揮します。</p>
           </div>
@@ -180,7 +180,7 @@ export default function ServiceSEPage() {
       <section className={`${styles.sec} ${styles.secAlt}`} id="phase">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
-            <div className={styles.eyebrow}>04 / Phase</div>
+            <div className={styles.eyebrow}>Phase</div>
             <h2 className={styles.secTitle}>要件定義から運用保守まで、全フェーズに対応。</h2>
             <p className={styles.secLead}>どの工程からでも参画可能。スポットでの技術支援も、長期の開発体制構築も、ご状況に合わせて柔軟に対応します。</p>
           </div>
@@ -207,7 +207,7 @@ export default function ServiceSEPage() {
       <section className={styles.sec} id="strength">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
-            <div className={styles.eyebrow}>05 / Strength</div>
+            <div className={styles.eyebrow}>Strength</div>
             <h2 className={styles.secTitle}>選ばれる理由</h2>
           </div>
           <div className={styles.strGrid}>
@@ -233,7 +233,7 @@ export default function ServiceSEPage() {
       <section className={`${styles.sec} ${styles.secAlt}`} id="flow">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
-            <div className={styles.eyebrow}>06 / Flow</div>
+            <div className={styles.eyebrow}>Flow</div>
             <h2 className={styles.secTitle}>ご支援の流れ</h2>
             <p className={styles.secLead}>お問い合わせから最短数日でのアサインも可能です。まずはお気軽にご相談ください。</p>
           </div>

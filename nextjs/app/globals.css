@@ -46,6 +46,12 @@ header.scrolled {
 header.scrolled .logo-ph { border-color: var(--gray-mid); color: var(--gray-text); }
 header.scrolled .logo-text { color: var(--black); }
 header.scrolled .hamburger span { background: var(--black); }
+
+/* ISページ(ダークテーマ): ヘッダーも黒地・白文字に */
+header.is-dark, header.is-dark.scrolled { background: rgba(11,11,11,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
+header.is-dark .logo-ph, header.is-dark.scrolled .logo-ph { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+header.is-dark .logo-text, header.is-dark.scrolled .logo-text { color: #fff; }
+header.is-dark .hamburger span, header.is-dark.scrolled .hamburger span { background: #fff; }
 .header-right { display: flex; align-items: center; gap: 12px; }
 .header-entry-btn {
   padding: 8px 20px; background: var(--blue); color: var(--white);

@@ -16,9 +16,9 @@
 .heroTitle em { font-style: normal; color: var(--blue); }
 .heroLead { font-size: clamp(15px, 1.7vw, 18px); color: var(--gray-text); max-width: 620px; margin-bottom: 40px; line-height: 2; }
 .heroCta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-.btnPrimary { font-weight: 700; font-size: 15px; padding: 16px 30px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: var(--blue); color: #fff; transition: .25s; box-shadow: 0 8px 30px -8px rgba(0,170,204,.5); }
+.btnPrimary { font-weight: 700; font-size: 15px; padding: 16px 30px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: var(--blue); color: #fff; text-decoration: none; transition: .25s; box-shadow: 0 8px 30px -8px rgba(0,170,204,.5); }
 .btnPrimary:hover { transform: translateY(-2px); box-shadow: 0 14px 38px -8px rgba(0,170,204,.5); }
-.btnGhost { font-weight: 700; font-size: 15px; padding: 16px 30px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--black); border: 1px solid var(--gray-mid); transition: .25s; }
+.btnGhost { font-weight: 700; font-size: 15px; padding: 16px 30px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--black); border: 1px solid var(--gray-mid); text-decoration: none; transition: .25s; }
 .btnGhost:hover { border-color: var(--blue); color: var(--blue); }
 .arr { font-family: var(--font-en); transition: transform .25s; }
 .btnPrimary:hover .arr { transform: translateX(4px); }
@@ -129,7 +129,7 @@
 .ctaBox h2 { font-weight: 900; font-size: clamp(24px, 3.6vw, 40px); line-height: 1.4; margin-bottom: 20px; color: var(--white); }
 .ctaBox p { color: rgba(255,255,255,.88); font-size: 16px; max-width: 560px; margin: 0 auto 36px; line-height: 2; }
 .ctaBox .heroCta { justify-content: center; }
-.btnOnDark { font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); color: var(--black); transition: .25s; }
+.btnOnDark { font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); color: var(--black); text-decoration: none; transition: .25s; }
 .btnOnDark:hover { background: var(--yellow); transform: translateY(-2px); }
 
 /* ===== RESPONSIVE ===== */

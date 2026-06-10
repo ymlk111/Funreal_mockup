@@ -6,19 +6,17 @@ import { useDrawer } from "@/hooks/useDrawer";
 
 export default function Header() {
   const { isOpen, subOpen, openDrawer, closeDrawer, toggleSub } = useDrawer();
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  // トップページのみ透過ヒーロー演出。下層ページは常時不透明の白ヘッダー。
+  const isTop = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const isTop = pathname === "/";
+    if (!isTop) return;
     const onScroll = () => {
-      // トップはヒーロー画像(#hero)を通過してから不透明化。
-      // 下層ページはヒーローが短いため少しのスクロールで不透明化。
-      let threshold = 40;
-      if (isTop) {
-        const hero = document.getElementById("hero");
-        threshold = hero ? hero.offsetHeight - 64 : window.innerHeight - 64;
-      }
+      // トップはヒーロー画像を通過してから不透明化。
+      const hero = document.getElementById("hero");
+      const threshold = hero ? hero.offsetHeight - 64 : window.innerHeight - 64;
       setScrolled(window.scrollY > threshold);
     };
     onScroll();
@@ -28,7 +26,10 @@ export default function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [pathname]);
+  }, [isTop]);
+
+  // トップ以外、またはトップでスクロール後は不透明ヘッダー
+  const solid = !isTop || scrolled;
 
   return (
     <>
@@ -54,7 +55,7 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <header className={scrolled ? "scrolled" : ""}>
+      <header className={solid ? "scrolled" : ""}>
         <Link href="/" className="logo">
           <div className="logo-ph"><span>LOGO</span></div>
           <span className="logo-text">株式会社ファンリアル</span>

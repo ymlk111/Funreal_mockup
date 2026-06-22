@@ -24,7 +24,7 @@ export default function ServiceSEPage() {
             最新の Web 技術と AI 開発に強みを持つエンジニアが、要件定義から運用保守まで一貫して伴走。金融・保険・公共をはじめとする、止められないシステムの現場で力を発揮します。
           </p>
           <div className={`${styles.heroCta} fade-up`}>
-            <Link href="/contact" className={styles.btnPrimary}>エンジニアのご相談 <span className={styles.arr}>→</span></Link>
+            <Link href="/contact" className={styles.btnPrimary}>お問い合わせ <span className={styles.arr}>→</span></Link>
             <a href="#stack" className={styles.btnGhost}>技術スタックを見る</a>
           </div>
         </div>
@@ -239,7 +239,7 @@ export default function ServiceSEPage() {
           <h2>Web・AI 開発の体制づくり、<br />まずはご相談ください。</h2>
           <p>「こんなエンジニアはいる？」というご質問だけでも歓迎です。貴社の課題に合わせて、最適なご提案をいたします。</p>
           <div className={styles.heroCta}>
-            <Link href="/contact" className={styles.btnOnDark}>お問い合わせフォームへ <span className={styles.arr}>→</span></Link>
+            <Link href="/contact" className={styles.btnOnDark}>お問い合わせ <span className={styles.arr}>→</span></Link>
           </div>
         </div>
       </section>

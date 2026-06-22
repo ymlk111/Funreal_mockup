@@ -20,7 +20,7 @@ export default function ServiceISPage() {
             データと戦略で設計された、<strong>再現性のある商談創出の仕組み</strong>をつくります。
           </p>
           <div className={`${styles.heroCta} fade-up`}>
-            <Link href="/contact" className={styles.btnPrimary}>無料相談はこちら <span className={styles.arr}>→</span></Link>
+            <Link href="/contact" className={styles.btnPrimary}>お問い合わせ <span className={styles.arr}>→</span></Link>
             <a href="#strength" className={styles.btnGhost}>LEAD TECHの強みを見る</a>
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function ServiceISPage() {
           </div>
           <div className={styles.ctaRight}>
             <Link href="/contact" className={styles.btnOnDark}>
-              <span>無料相談を申し込む</span>
+              <span>お問い合わせ</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
             <div className={styles.ctaNotes}>
@@ -207,7 +207,7 @@ export default function ServiceISPage() {
       <div className={styles.footerStrip}>
         <div className={styles.footerStripInner}>
           <div className={styles.footerStripLeft}>インサイドセールスを、<br /><em>次のステージへ。</em></div>
-          <Link href="/contact" className={styles.btnPrimary}>無料相談を始める <span className={styles.arr}>→</span></Link>
+          <Link href="/contact" className={styles.btnPrimary}>お問い合わせ <span className={styles.arr}>→</span></Link>
         </div>
       </div>
     </div>

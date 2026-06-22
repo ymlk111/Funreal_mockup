@@ -116,6 +116,7 @@
 .ctaBox .heroCta { justify-content: center; }
 .btnOnDark { font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); color: var(--blue); text-decoration: none; transition: .25s; }
 .btnOnDark:hover { background: var(--gray-light); transform: translateY(-2px); }
+.btnOnDark:hover .arr { transform: translateX(4px); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {

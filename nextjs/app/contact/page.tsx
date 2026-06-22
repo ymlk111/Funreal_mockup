@@ -33,7 +33,6 @@ export default function ContactPage() {
           <div className={styles.typeGrid}>
             {[
               { icon: "💬", title: "サービスに関する\nご相談", text: "SE・IS・ソリューションズ各サービスについてのご質問・お見積もり" },
-              { icon: "👥", title: "採用に関する\nお問い合わせ", text: "求人情報・選考プロセスについてのご質問はこちら" },
               { icon: "📋", title: "その他の\nお問い合わせ", text: "取材・協業・その他のお問い合わせはこちらから" },
             ].map((t) => (
               <div key={t.title} className={styles.typeCard}>
@@ -69,7 +68,6 @@ export default function ContactPage() {
                   <option value="" disabled>選択してください</option>
                   <option>サービスに関するご相談</option>
                   <option>お見積もりのご依頼</option>
-                  <option>採用に関するお問い合わせ</option>
                   <option>取材・メディア関連</option>
                   <option>協業・パートナーシップ</option>
                   <option>その他</option>

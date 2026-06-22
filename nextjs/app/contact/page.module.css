@@ -1,6 +1,5 @@
-.typeGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
-.typeCard { background: var(--gray-light); border-radius: 12px; padding: 32px 24px; text-align: center; border: 2px solid transparent; transition: all 0.2s; }
-.typeCard:hover { border-color: var(--blue); background: rgba(0,170,204,0.03); }
+.typeGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 60px; }
+.typeCard { background: var(--gray-light); border-radius: 12px; padding: 32px 24px; text-align: center; border: 1px solid var(--gray-mid); }
 .typeIcon { width: 56px; height: 56px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; }
 .typeCardTitle { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--black); }
 .typeCardText { font-size: 13px; color: var(--gray-text); line-height: 1.7; }

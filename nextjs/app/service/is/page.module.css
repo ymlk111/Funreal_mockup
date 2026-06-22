@@ -39,7 +39,7 @@
 .btnPrimary { font-weight: 700; font-size: 15px; padding: 16px 30px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: var(--lime); color: #0b0b0b; text-decoration: none; transition: .25s; }
 .btnPrimary:hover { transform: translateY(-2px); background: #e2ff1a; }
 .btnGhost { font-weight: 700; font-size: 15px; padding: 16px 30px; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--is-fg); border: 1px solid var(--is-line2); text-decoration: none; transition: .25s; }
-.btnGhost:hover { border-color: var(--lime); color: var(--lime); }
+.btnGhost:hover { transform: translateY(-2px); border-color: var(--lime); color: var(--lime); }
 .arr { font-family: var(--font-en); transition: transform .25s; }
 .btnPrimary:hover .arr { transform: translateX(4px); }
 
@@ -95,7 +95,7 @@
 .flow { display: flex; flex-direction: column; max-width: 840px; }
 .step { display: grid; grid-template-columns: 88px 1fr; gap: 30px; padding: 28px 0; border-bottom: 1px solid var(--is-line); align-items: start; }
 .step:last-child { border-bottom: none; }
-.sno { font-family: var(--font-en); font-weight: 800; font-size: 44px; color: transparent; -webkit-text-stroke: 1px var(--is-line2); line-height: 1; transition: .3s; }
+.sno { font-family: var(--font-en); font-weight: 800; font-size: 44px; color: var(--lime); line-height: 1; }
 .step h4 { font-size: 19px; font-weight: 700; margin-bottom: 8px; color: var(--is-fg); }
 .step p { color: var(--is-muted); font-size: 14.5px; line-height: 1.9; }
 
@@ -118,7 +118,7 @@
 /* ===== FAQ ===== */
 .faqList { border-top: 1px solid var(--is-line); }
 .faqItem { border-bottom: 1px solid var(--is-line); }
-.faqQ { width: 100%; padding: 28px 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; cursor: pointer; transition: color .2s; }
+.faqQ { width: 100%; padding: 28px 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; cursor: pointer; transition: color .2s; background: transparent; border: none; }
 .faqQ:hover .faqQTxt { color: var(--lime); }
 .faqQTxt { font-size: 15px; font-weight: 700; color: var(--is-fg); flex: 1; text-align: left; transition: color .2s; }
 .faqIcon { width: 30px; height: 30px; border: 1px solid var(--is-line2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all .3s; color: var(--lime); font-family: var(--font-en); font-size: 18px; }

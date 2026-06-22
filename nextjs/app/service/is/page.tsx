@@ -23,19 +23,6 @@ export default function ServiceISPage() {
             <Link href="/contact" className={styles.btnPrimary}>無料相談はこちら <span className={styles.arr}>→</span></Link>
             <a href="#strength" className={styles.btnGhost}>LEAD TECHの強みを見る</a>
           </div>
-          <div className={`${styles.heroMeta} fade-up`}>
-            {[
-              { num: <>500<span>+</span></>, label: "月間商談創出数" },
-              { num: <>8.5<span>%</span></>, label: "平均アポイント率" },
-              { num: <>92<span>%</span></>, label: "クライアント継続率" },
-              { num: <>2<span>週間</span></>, label: "最短稼働開始" },
-            ].map((m, i) => (
-              <div key={i} className={styles.heroMetaItem}>
-                <div className={styles.heroMetaNum}>{m.num}</div>
-                <div className={styles.heroMetaLabel}>{m.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -73,15 +60,14 @@ export default function ServiceISPage() {
           </div>
           <div className={styles.strGrid}>
             {[
-              { num: "01", title: "戦略設計から支援", pill: "Strategy Design", desc: "ターゲット選定・アプローチ方法・スクリプト設計まで、インサイドセールスの戦略から構築。独自のインテントデータを活用し、購買意欲の高い見込み客に絞ってアプローチします。単純な架電代行とは成果の次元が違います。" },
-              { num: "02", title: "データドリブンな改善", pill: "Data-Driven", desc: "接触率・商談化率・受注率などのKPIをリアルタイムで分析。感覚ではなく数字でPDCAを高速回転させます。週次レポートで透明性を確保しながら、継続的な改善で成果を積み上げます。" },
-              { num: "03", title: "自走できる組織をつくる", pill: "Enablement", desc: "外注で終わらせません。セールスイネーブルメント体制によりノウハウを貴社に移転。将来的に内製化できる強いチームを構築します。フィールドセールスとのシームレスな連携体制も設計します。" },
+              { num: "01", title: "戦略設計から支援", desc: "ターゲット選定・アプローチ方法・スクリプト設計まで、インサイドセールスの戦略から構築。独自のインテントデータを活用し、購買意欲の高い見込み客に絞ってアプローチします。単純な架電代行とは成果の次元が違います。" },
+              { num: "02", title: "データドリブンな改善", desc: "接触率・商談化率・受注率などのKPIをリアルタイムで分析。感覚ではなく数字でPDCAを高速回転させます。週次レポートで透明性を確保しながら、継続的な改善で成果を積み上げます。" },
+              { num: "03", title: "自走できる組織をつくる", desc: "外注で終わらせません。セールスイネーブルメント体制によりノウハウを貴社に移転。将来的に内製化できる強いチームを構築します。フィールドセールスとのシームレスな連携体制も設計します。" },
             ].map((s) => (
               <div key={s.num} className={`${styles.str} fade-up`}>
                 <div className={styles.strNum}>{s.num}</div>
                 <div className={styles.strTtl}>
                   <span>{s.title}</span>
-                  <span className={styles.strPill}>{s.pill}</span>
                 </div>
                 <p className={styles.strDesc}>{s.desc}</p>
               </div>
@@ -100,16 +86,15 @@ export default function ServiceISPage() {
           </div>
           <div className={styles.menuGrid}>
             {[
-              { num: "01", title: "アポイント獲得代行", label: "Inside Sales Execution", desc: "ターゲットリストに基づき、架電・メールによるアポイント獲得を実行。インテントデータで絞り込んだ質の高い見込み客に、最適なタイミングでアプローチします。" },
-              { num: "02", title: "リードナーチャリング", label: "Lead Nurturing", desc: "既存リードに対して適切なタイミングでフォローアップ。メール・電話・コンテンツを組み合わせたマルチチャネルで検討段階を引き上げ、商談化率を最大化します。" },
-              { num: "03", title: "トークスクリプト設計", label: "Script Design", desc: "ターゲットの課題・ペルソナに最適化されたスクリプトを設計。再現性の高い営業トークを標準化し、チーム全体のアポイント率を底上げします。" },
-              { num: "04", title: "営業戦略コンサルティング", label: "Strategy Consulting", desc: "ターゲット市場の分析からKPI設計、チーム体制の構築まで。インサイドセールスの立ち上げ・組織化を包括的にサポートします。" },
+              { num: "01", title: "アポイント獲得代行", desc: "ターゲットリストに基づき、架電・メールによるアポイント獲得を実行。インテントデータで絞り込んだ質の高い見込み客に、最適なタイミングでアプローチします。" },
+              { num: "02", title: "リードナーチャリング", desc: "既存リードに対して適切なタイミングでフォローアップ。メール・電話・コンテンツを組み合わせたマルチチャネルで検討段階を引き上げ、商談化率を最大化します。" },
+              { num: "03", title: "トークスクリプト設計", desc: "ターゲットの課題・ペルソナに最適化されたスクリプトを設計。再現性の高い営業トークを標準化し、チーム全体のアポイント率を底上げします。" },
+              { num: "04", title: "営業戦略コンサルティング", desc: "ターゲット市場の分析からKPI設計、チーム体制の構築まで。インサイドセールスの立ち上げ・組織化を包括的にサポートします。" },
             ].map((m) => (
               <div key={m.num} className={`${styles.menuCard} fade-up`}>
                 <div className={styles.menuNum}>{m.num}</div>
                 <div className={styles.menuTtl}>{m.title}</div>
                 <p className={styles.menuDesc}>{m.desc}</p>
-                <span className={styles.menuLabel}>{m.label}</span>
               </div>
             ))}
           </div>

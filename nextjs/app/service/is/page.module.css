@@ -127,12 +127,6 @@
 .faqItem:global(.open) .faqA { max-height: 260px; }
 .faqAInner { padding: 0 0 28px; font-size: 14px; color: var(--is-muted); line-height: 2; }
 
-/* ===== FOOTER STRIP ===== */
-.footerStrip { background: var(--is-bg2); border-top: 1px solid var(--is-line); padding: 56px 0; }
-.footerStripInner { max-width: 1100px; margin: 0 auto; padding: 0 60px; display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
-.footerStripLeft { font-weight: 900; font-size: clamp(22px, 3vw, 34px); line-height: 1.3; color: var(--is-fg); }
-.footerStripLeft em { font-style: normal; color: var(--lime); }
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .numGrid { grid-template-columns: repeat(2, 1fr); }
@@ -146,7 +140,6 @@
   .numGrid { grid-template-columns: 1fr; }
   .ctaBox { grid-template-columns: 1fr; padding: 50px 28px; }
   .ctaRight { min-width: 0; }
-  .footerStripInner { padding: 0 24px; flex-direction: column; text-align: center; }
   .step { grid-template-columns: 56px 1fr; gap: 18px; }
   .sno { font-size: 32px; }
   .sec { padding: 70px 0; }

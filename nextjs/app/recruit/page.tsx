@@ -28,19 +28,13 @@ export default function RecruitPage() {
       {/* MESSAGE */}
       <div className="section section-narrow">
         <div className="section-label fade-up">Message</div>
-        <h2 className={`section-title fade-up flow-title`}>代表メッセージ</h2>
-        <div className={`${styles.messageGrid} fade-up`}>
-          <div>
-            <div className={styles.messageText}>
-              <p>これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br />株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span className="hl-flow">「自然体で、長く安心して働けること」</span>です。</p>
-              <p>私たちは、画一的なモチベーションの高さを求めたり、過度なプレッシャーをかけたりすることはありません。これまでの枠組みが合わず一度立ち止まってしまった方や、不器用でもコツコツと取り組める方にこそ、当社の柔軟な環境が活きると考えています。</p>
-              <p>社内は若手メンバーが多く、年齢や社歴に関わらず<span className="hl-flow">フラットに会話ができる風通しの良さ</span>があります。<br />まずはしっかりと腰を据え、<span className="hl-flow">残業の少ない環境</span>でご自身のペースを取り戻してください。心に余裕が生まれてから、次のステップや新しいやりがいを一緒に見つけていきましょう。</p>
-            </div>
-            <div className={styles.messageName}>株式会社ファンリアル 代表取締役<strong>（代表者名）</strong></div>
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.messagePhoto} src={asset("/image/ceo.png")} alt="代表メッセージ" loading="lazy" />
+        <h2 className={`section-title fade-up flow-title`}>会社からのひとこと</h2>
+        <div className={`${styles.messageText} fade-up`}>
+          <p>これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br />株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span className="hl-flow">「自然体で、長く安心して働けること」</span>です。</p>
+          <p>私たちは、画一的なモチベーションの高さを求めたり、過度なプレッシャーをかけたりすることはありません。これまでの枠組みが合わず一度立ち止まってしまった方や、不器用でもコツコツと取り組める方にこそ、当社の柔軟な環境が活きると考えています。</p>
+          <p>社内は若手メンバーが多く、年齢や社歴に関わらず<span className="hl-flow">フラットに会話ができる風通しの良さ</span>があります。<br />まずはしっかりと腰を据え、<span className="hl-flow">残業の少ない環境</span>でご自身のペースを取り戻してください。心に余裕が生まれてから、次のステップや新しいやりがいを一緒に見つけていきましょう。</p>
         </div>
+        <div className={`${styles.messageName} fade-up`}>株式会社ファンリアル</div>
       </div>
 
       <hr className="divider" />

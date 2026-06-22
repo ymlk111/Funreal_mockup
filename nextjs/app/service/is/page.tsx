@@ -203,13 +203,6 @@ export default function ServiceISPage() {
         </div>
       </section>
 
-      {/* ===== FOOTER STRIP ===== */}
-      <div className={styles.footerStrip}>
-        <div className={styles.footerStripInner}>
-          <div className={styles.footerStripLeft}>インサイドセールスを、<br /><em>次のステージへ。</em></div>
-          <Link href="/contact" className={styles.btnPrimary}>お問い合わせ <span className={styles.arr}>→</span></Link>
-        </div>
-      </div>
     </div>
   );
 }

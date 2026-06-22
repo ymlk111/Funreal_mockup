@@ -27,19 +27,6 @@ export default function ServiceSEPage() {
             <Link href="/contact" className={styles.btnPrimary}>エンジニアのご相談 <span className={styles.arr}>→</span></Link>
             <a href="#stack" className={styles.btnGhost}>技術スタックを見る</a>
           </div>
-          <div className={`${styles.heroMeta} fade-up`}>
-            {[
-              { num: <>Web<span>+AI</span></>, label: "CORE DOMAIN" },
-              { num: <>Polyglot</>, label: "対応言語 — MULTI-STACK" },
-              { num: <>要件<span>→運用</span></>, label: "FULL LIFECYCLE" },
-              { num: <>AWS</>, label: "CLOUD NATIVE" },
-            ].map((m, i) => (
-              <div key={i} className={styles.heroMetaItem}>
-                <div className={styles.heroMetaNum}>{m.num}</div>
-                <div className={styles.heroMetaLabel}>{m.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -77,17 +64,16 @@ export default function ServiceSEPage() {
           </div>
           <div className={styles.stack}>
             {[
-              { no: "01", title: "AI開発 — 生成AI・機械学習", sub: "AI / ML", feature: true, chips: ["生成AI / LLM活用", "RAG", "AIエージェント", "OpenAI", "Azure OpenAI", "Anthropic Claude", "PyTorch", "TensorFlow", "scikit-learn", "自然言語処理", "画像認識", "MLOps"] },
-              { no: "02", title: "フロントエンド", sub: "FRONTEND", chips: ["React", "Vue.js", "TypeScript", "Next.js", "Nuxt", "Tailwind CSS"] },
-              { no: "03", title: "バックエンド", sub: "BACKEND", chips: ["Python", "FastAPI / Django", "Java", "Spring Boot", "C#", ".NET / ASP.NET Core", "REST / GraphQL"] },
-              { no: "04", title: "インフラ / クラウド", sub: "AWS", chips: ["ECS / EKS", "Lambda", "RDS", "S3", "API Gateway", "Docker", "Kubernetes", "Terraform", "GitHub Actions"] },
-              { no: "05", title: "品質・セキュリティ", sub: "QUALITY", chips: ["認証認可 / 暗号化", "脆弱性診断", "高可用性設計", "監査ログ", "コンプライアンス対応"] },
+              { no: "01", title: "AI開発 — 生成AI・機械学習", feature: true, chips: ["生成AI / LLM活用", "RAG", "AIエージェント", "OpenAI", "Azure OpenAI", "Anthropic Claude", "PyTorch", "TensorFlow", "scikit-learn", "自然言語処理", "画像認識", "MLOps"] },
+              { no: "02", title: "フロントエンド", chips: ["React", "Vue.js", "TypeScript", "Next.js", "Nuxt", "Tailwind CSS"] },
+              { no: "03", title: "バックエンド", chips: ["Python", "FastAPI / Django", "Java", "Spring Boot", "C#", ".NET / ASP.NET Core", "REST / GraphQL"] },
+              { no: "04", title: "インフラ / クラウド", chips: ["ECS / EKS", "Lambda", "RDS", "S3", "API Gateway", "Docker", "Kubernetes", "Terraform", "GitHub Actions"] },
+              { no: "05", title: "品質・セキュリティ", chips: ["認証認可 / 暗号化", "脆弱性診断", "高可用性設計", "監査ログ", "コンプライアンス対応"] },
             ].map((s) => (
               <div key={s.no} className={`${styles.stackcard}${s.feature ? ` ${styles.feature}` : ""} fade-up`}>
                 <div className={styles.scHead}>
                   <span className={styles.scNo}>{s.no}</span>
                   <span className={styles.scTitle}>{s.title}</span>
-                  <span className={styles.scSub}>{s.sub}</span>
                 </div>
                 <div className={styles.chips}>
                   {s.chips.map((c) => <span key={c} className={styles.chip}>{c}</span>)}

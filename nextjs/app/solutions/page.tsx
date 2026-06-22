@@ -35,8 +35,8 @@ export default function SolutionsPage() {
 
       {/* WORKS */}
       <section className="section section-narrow">
-        <div className="section-label fade-up">Works</div>
-        <h2 className="section-title fade-up">成果物</h2>
+        <div className="section-label fade-up">Solutions</div>
+        <h2 className="section-title fade-up">ソリューション</h2>
         <div className={styles.workGrid}>
           {works.map((w) => (
             <div key={w.title} className={`${styles.workCard} fade-up`}>

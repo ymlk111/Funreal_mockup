@@ -53,7 +53,7 @@ export default function SolutionsPage() {
         <div className={`${styles.ctaBox} fade-up`}>
           <div className={styles.ctaTitle}>開発のご相談はお気軽に</div>
           <p className={styles.ctaText}>企画・開発・運用について、まずはお問い合わせください。</p>
-          <Link href="/contact" className="btn btn-primary">お問い合わせ →</Link>
+          <Link href="/contact" className="btn btn-primary">お問い合わせ <span className="arr">→</span></Link>
         </div>
       </section>
     </>

@@ -138,7 +138,7 @@ export default function Home() {
             ご質問・ご相談はお気軽にどうぞ。<br />
             担当者より2営業日以内にご連絡いたします。
           </p>
-          <Link href="/contact" className={styles.btnContact}>Contact Us →</Link>
+          <Link href="/contact" className={styles.btnContact}>お問い合わせ <span className={styles.arr}>→</span></Link>
         </div>
       </section>
     </>

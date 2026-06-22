@@ -58,7 +58,7 @@ export default function AboutPage() {
         <div className={`${styles.contactCta} fade-up`}>
           <div className={styles.contactCtaTitle}>お問い合わせはこちら</div>
           <p className={styles.contactCtaText}>サービス・採用・その他のご相談はお気軽にどうぞ。</p>
-          <Link href="/contact" className="btn btn-primary">お問い合わせ →</Link>
+          <Link href="/contact" className="btn btn-primary">お問い合わせ <span className="arr">→</span></Link>
         </div>
       </div>
     </>

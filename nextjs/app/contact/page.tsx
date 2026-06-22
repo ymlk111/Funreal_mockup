@@ -142,7 +142,7 @@ export default function ContactPage() {
       <section className="section" style={{ maxWidth: "1100px", background: "var(--gray-light)" }}>
         <div className="fade-up" style={{ textAlign: "center", marginBottom: "48px" }}>
           <div className="section-label" style={{ justifyContent: "center" }}>Company Info</div>
-          <h2 className="section-title">お電話・ご来社でのお問い合わせ</h2>
+          <h2 className="section-title">お電話でのお問い合わせ</h2>
         </div>
         <div className={`${styles.infoGrid} fade-up`}>
           <div className={styles.infoCard}>
@@ -152,14 +152,14 @@ export default function ContactPage() {
             <div style={{ fontSize: "12px", color: "var(--gray-text)", marginTop: "4px" }}>平日 10:00 - 19:00</div>
           </div>
           <div className={styles.infoCard}>
-            <div className={styles.infoIcon}>📍</div>
-            <div className={styles.infoCardTitle}>Address</div>
-            <div className={styles.infoCardValue}>〒160-0023<br />東京都新宿区西新宿7-5-5<br />Plaza西新宿 UCF406</div>
-          </div>
-          <div className={styles.infoCard}>
             <div className={styles.infoIcon}>🕐</div>
             <div className={styles.infoCardTitle}>Business Hours</div>
             <div className={styles.infoCardValue}>平日 10:00 - 19:00<br /><span style={{ fontSize: "12px", color: "var(--gray-text)" }}>土日祝日はお休みです</span></div>
+          </div>
+          <div className={styles.infoCard}>
+            <div className={styles.infoIcon}>🚫</div>
+            <div className={styles.infoCardTitle}>Notice</div>
+            <div className={styles.infoCardValue}>営業目的のポスティング・<br />飛び込み営業はご遠慮ください</div>
           </div>
         </div>
       </section>
@@ -181,7 +181,7 @@ function FaqList() {
     { q: "返信までどのくらいかかりますか？", a: "通常、2営業日以内にご連絡いたします。お急ぎの場合は、お電話（03-6403-4418）にてお問い合わせください。" },
     { q: "対応可能なエリアはどこですか？", a: "SE事業・IS事業ともに、基本的に首都圏（東京・神奈川・千葉・埼玉）を中心に対応しています。リモート対応が可能な案件については、全国からのご相談も承ります。" },
     { q: "見積もりだけでも相談できますか？", a: "もちろんです。ご検討段階でのお見積もり・ご相談も歓迎しております。まずはお気軽にお問い合わせください。" },
-    { q: "採用に関する問い合わせもここからできますか？", a: "はい、お問い合わせ種別で「採用に関するお問い合わせ」を選択してご送信ください。採用ページのエントリーフォームからも直接ご応募いただけます。" },
+    { q: "採用に関する問い合わせもここからできますか？", a: "採用に関するお問い合わせ・ご応募は、採用ページの専用エントリーフォームより承っております。お手数ですが採用ページからお進みください。" },
   ];
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 

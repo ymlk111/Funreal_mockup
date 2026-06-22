@@ -266,7 +266,9 @@
   text-decoration: none;
   transition: all 0.2s;
 }
-.btnContact:hover { background: #0090aa; }
+.btnContact:hover { background: #0090aa; transform: translateY(-2px); }
+.arr { font-family: var(--font-en); transition: transform 0.2s; }
+.btnContact:hover .arr { transform: translateX(4px); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {

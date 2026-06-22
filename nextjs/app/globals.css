@@ -166,7 +166,9 @@ footer { background: #DCF0F7; padding: 60px 60px 32px; border-top: 1px solid #C5
   transition: all 0.2s; cursor: pointer; border: none;
 }
 .btn-primary { background: var(--blue); color: var(--white); padding: 16px 40px; }
-.btn-primary:hover { background: #0090aa; }
+.btn-primary:hover { background: #0090aa; transform: translateY(-2px); }
+.btn .arr { font-family: var(--font-en); transition: transform 0.2s; }
+.btn:hover .arr { transform: translateX(4px); }
 .btn-outline-sm {
   display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
   border: 1.5px solid var(--black); border-radius: 4px; font-size: 13px; font-weight: 600;

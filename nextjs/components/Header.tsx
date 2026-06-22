@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { asset } from "@/lib/asset";
 import { useDrawer } from "@/hooks/useDrawer";
 
 export default function Header() {
@@ -59,7 +60,8 @@ export default function Header() {
       </div>
       <header className={`${solid ? "scrolled" : ""}${isDark ? " is-dark" : ""}`}>
         <Link href="/" className="logo">
-          <div className="logo-ph"><span>LOGO</span></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="logo-img" src={asset("/logo.png")} alt="株式会社ファンリアル" />
           <span className="logo-text">株式会社ファンリアル</span>
         </Link>
         <div className="header-right">

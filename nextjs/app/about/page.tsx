@@ -40,7 +40,12 @@ export default function AboutPage() {
         <div className="section-label fade-up">Access</div>
         <h2 className="section-title fade-up">アクセス</h2>
         <div className={`${styles.mapWrapper} fade-up`}>
-          <span className={styles.mapPlaceholder}>MAP — 実装時にGoogleマップを埋め込み</span>
+          <iframe
+            src="https://maps.google.com/maps?q=東京都新宿区西新宿7-5-5&z=17&hl=ja&output=embed"
+            title="株式会社ファンリアル 所在地 — 東京都新宿区西新宿7丁目5番5号"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
         <p className={`${styles.accessInfo} fade-up`}>
           〒160-0023 東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406<br />

@@ -76,25 +76,14 @@ export default function ServiceSEPage() {
             <p className={styles.secLead}>Web系を中心に、最新技術にも積極的にチャレンジ。型安全性・セキュリティ・信頼性を重視した、堅牢でモダンな技術選定を得意とします。</p>
           </div>
           <div className={styles.stack}>
-            <div className={`${styles.stackcard} ${styles.feature} fade-up`}>
-              <div className={styles.scHead}>
-                <span className={styles.scNo}>★</span>
-                <span className={`${styles.scTitle} ${styles.big}`}>AI開発 — 生成AI・機械学習</span>
-                <span className={styles.scSub}>SPECIALITY</span>
-              </div>
-              <div className={styles.chips}>
-                {["生成AI / LLM活用", "RAG", "AIエージェント", "OpenAI", "Azure OpenAI", "Anthropic Claude", "PyTorch", "TensorFlow", "scikit-learn", "自然言語処理", "画像認識", "MLOps"].map((c, i) => (
-                  <span key={c} className={`${styles.chip}${i < 3 ? ` ${styles.hot}` : ""}`}>{c}</span>
-                ))}
-              </div>
-            </div>
             {[
-              { no: "01", title: "フロントエンド", sub: "FRONTEND", chips: ["React", "Vue.js", "TypeScript", "Next.js", "Nuxt", "Tailwind CSS"] },
-              { no: "02", title: "バックエンド", sub: "BACKEND", chips: ["Python", "FastAPI / Django", "Java", "Spring Boot", "C#", ".NET / ASP.NET Core", "REST / GraphQL"] },
-              { no: "03", title: "インフラ / クラウド", sub: "AWS", chips: ["ECS / EKS", "Lambda", "RDS", "S3", "API Gateway", "Docker", "Kubernetes", "Terraform", "GitHub Actions"] },
-              { no: "04", title: "品質・セキュリティ", sub: "QUALITY", chips: ["認証認可 / 暗号化", "脆弱性診断", "高可用性設計", "監査ログ", "コンプライアンス対応"] },
+              { no: "01", title: "AI開発 — 生成AI・機械学習", sub: "AI / ML", feature: true, chips: ["生成AI / LLM活用", "RAG", "AIエージェント", "OpenAI", "Azure OpenAI", "Anthropic Claude", "PyTorch", "TensorFlow", "scikit-learn", "自然言語処理", "画像認識", "MLOps"] },
+              { no: "02", title: "フロントエンド", sub: "FRONTEND", chips: ["React", "Vue.js", "TypeScript", "Next.js", "Nuxt", "Tailwind CSS"] },
+              { no: "03", title: "バックエンド", sub: "BACKEND", chips: ["Python", "FastAPI / Django", "Java", "Spring Boot", "C#", ".NET / ASP.NET Core", "REST / GraphQL"] },
+              { no: "04", title: "インフラ / クラウド", sub: "AWS", chips: ["ECS / EKS", "Lambda", "RDS", "S3", "API Gateway", "Docker", "Kubernetes", "Terraform", "GitHub Actions"] },
+              { no: "05", title: "品質・セキュリティ", sub: "QUALITY", chips: ["認証認可 / 暗号化", "脆弱性診断", "高可用性設計", "監査ログ", "コンプライアンス対応"] },
             ].map((s) => (
-              <div key={s.no} className={`${styles.stackcard} fade-up`}>
+              <div key={s.no} className={`${styles.stackcard}${s.feature ? ` ${styles.feature}` : ""} fade-up`}>
                 <div className={styles.scHead}>
                   <span className={styles.scNo}>{s.no}</span>
                   <span className={styles.scTitle}>{s.title}</span>
@@ -147,10 +136,10 @@ export default function ServiceSEPage() {
           <div className={styles.domains}>
             <div className={styles.domList}>
               {[
-                { num: "01", title: "金融", text: "勘定系・周辺システム、トレーディング、フィンテック。高可用性とセキュリティが要となる領域。", tag: "STRENGTH" },
-                { num: "02", title: "保険", text: "契約・査定・保全業務システム、顧客向けWebサービス、業務効率化。複雑な業務ロジックへの対応。", tag: "STRENGTH" },
-                { num: "03", title: "公共", text: "自治体・官公庁システム、住民向けサービス。厳格な要件と品質基準への対応実績。", tag: "STRENGTH" },
-                { num: "04", title: "企業独自アプリ全般", text: "業種を問わず、自社業務に最適化した独自Webアプリ・基幹システムの開発を支援。", tag: "" },
+                { num: "01", title: "金融", text: "勘定系・周辺システム、トレーディング、フィンテック。高可用性とセキュリティが要となる領域。" },
+                { num: "02", title: "保険", text: "契約・査定・保全業務システム、顧客向けWebサービス、業務効率化。複雑な業務ロジックへの対応。" },
+                { num: "03", title: "公共", text: "自治体・官公庁システム、住民向けサービス。厳格な要件と品質基準への対応実績。" },
+                { num: "04", title: "企業独自アプリ全般", text: "業種を問わず、自社業務に最適化した独自Webアプリ・基幹システムの開発を支援。" },
               ].map((d) => (
                 <div key={d.num} className={`${styles.dom} fade-up`}>
                   <span className={styles.domNum}>{d.num}</span>
@@ -158,7 +147,6 @@ export default function ServiceSEPage() {
                     <div className={styles.domTitle}>{d.title}</div>
                     <p className={styles.domText}>{d.text}</p>
                   </div>
-                  {d.tag && <span className={styles.domTag}>{d.tag}</span>}
                 </div>
               ))}
             </div>

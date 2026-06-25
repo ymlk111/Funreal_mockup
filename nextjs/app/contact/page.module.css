@@ -19,6 +19,8 @@
 .formSubmit { text-align: center; margin-top: 40px; }
 .formPrivacy { text-align: center; margin-top: 20px; font-size: 12px; color: var(--gray-text); }
 .formPrivacy a { color: var(--blue); text-decoration: none; }
+.privacyLink { color: var(--blue); text-decoration: underline; background: none; border: none; padding: 0; font-size: inherit; font-family: inherit; cursor: pointer; }
+.privacyLink:hover { text-decoration: none; }
 .formMockupNote { text-align: center; margin-top: 16px; padding: 12px; background: rgba(0,170,204,0.05); border-radius: 6px; font-size: 12px; color: var(--blue); font-family: var(--font-en); }
 .infoGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .infoCard { text-align: center; }

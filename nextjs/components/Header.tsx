@@ -31,8 +31,9 @@ export default function Header() {
 
   // トップ以外、またはトップでスクロール後は不透明ヘッダー
   const solid = !isTop || scrolled;
-  // ISページはダークテーマのため、ヘッダーも黒地・白文字に合わせる
-  const isDark = pathname === "/service/is";
+  // IS・リファラルページはダークテーマのため、ヘッダー・ドロワーも各ページの配色に合わせる
+  const darkKind = pathname === "/service/is" ? "is" : pathname === "/referral" ? "referral" : "";
+  const isDark = darkKind !== "";
 
   return (
     <>
@@ -40,7 +41,7 @@ export default function Header() {
         className={`drawer-overlay${isOpen ? " open" : ""}`}
         onClick={closeDrawer}
       />
-      <div className={`drawer${isOpen ? " open" : ""}`} id="drawer">
+      <div className={`drawer${isOpen ? " open" : ""}${darkKind ? ` drawer-${darkKind}` : ""}`} id="drawer">
         <button className="drawer-close" onClick={closeDrawer}>&#x2715;</button>
         <nav>
           <ul>

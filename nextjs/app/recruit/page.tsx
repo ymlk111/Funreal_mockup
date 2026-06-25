@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { asset } from "@/lib/asset";
+import RecruitInterviews from "@/components/RecruitInterviews";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -162,30 +163,7 @@ export default function RecruitPage() {
         <div className="section-label fade-up">Interview</div>
         <h2 className="section-title fade-up flow-title">社員インタビュー</h2>
         <p className="section-lead fade-up">ファンリアルで働く仲間のリアルな声をお届けします。</p>
-
-        <div className={`${styles.interviewItem} fade-up`}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.interviewPhoto} src={asset("/image/member-1.png")} alt="社員インタビュー1" loading="lazy" />
-          <div>
-            <div className={styles.interviewMeta}>Engineer / 入社2年目</div>
-            <div className={styles.interviewTitle}>前の環境で消耗していた私が、<br />自分のペースと新しい目標を見つけるまで</div>
-            <div className={styles.interviewQ}>入社のきっかけ</div>
-            <p className={styles.interviewA}>以前は規模の大きい企業にいたのですが、希望とは全く違う単調な現場に配属され、残業も多く心身ともにすり減っていました。ファンリアルの面接では、無理に自分を良く見せようとしなくても自然体で話せたこと、「まずは自分のペースで働きなよ」という言葉に惹かれ、入社を決めました。</p>
-            <div className={styles.interviewQ}>ファンリアルでの働き方</div>
-            <p className={styles.interviewA}>劇的に変わったのは、残業が減りプライベートの時間がしっかり取れるようになったことです。現場配属の際も、「どんなスキルを身につけたいか」「どんな環境なら働きやすいか」を親身にヒアリングしてくれ、先のステップに繋がる現場を任せてもらえています。</p>
-          </div>
-        </div>
-
-        <div className={`${styles.interviewItem} ${styles.reverse} fade-up`}>
-          <div>
-            <div className={styles.interviewMeta}>Sales / 入社3年目</div>
-            <div className={styles.interviewTitle}>社員インタビュー 2</div>
-            <div className={styles.interviewQ}>入社のきっかけ</div>
-            <p className={styles.interviewA}>インタビュー内容は取材後に差し替え予定です。</p>
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.interviewPhoto} src={asset("/image/member-2.png")} alt="社員インタビュー2" loading="lazy" />
-        </div>
+        <RecruitInterviews />
       </div>
 
       <hr className="divider" />

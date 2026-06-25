@@ -6,15 +6,49 @@ export const metadata: Metadata = {
   title: "ファンリアルの素顔 | 株式会社ファンリアル",
 };
 
+const games = [
+  { icon: "🎮", title: "League of Legends", desc: "5v5のチーム連携ゲー。社内でも人気で、一緒にランクを回すことも。" },
+  { icon: "🔫", title: "VALORANT", desc: "エイムと連携が試される対戦FPS。ランクマを回すメンバーが複数在籍。" },
+  { icon: "🛡️", title: "Apex Legends", desc: "スピード感あるバトロワFPS。パーティを組んで一緒に遊ぶ定番タイトル。" },
+  { icon: "🎯", title: "ポケモン対戦", desc: "構築・選出・読み合いの三位一体。レーティング戦に本気で挑む人も。" },
+  { icon: "⚔️", title: "Eternal Return", desc: "頭脳戦が熱いバトルロイヤルMOBA。立ち回りの総合力が問われる。" },
+  { icon: "🕹️", title: "その他いろいろ", desc: "格ゲー・スマホゲー・新作まで。話せばきっと被るタイトルが見つかる。" },
+];
+
+const events = [
+  { month: "不定期", title: "ゲーム会", text: "オンライン・オフライン問わず、メンバー同士でゲームを楽しむ時間。初心者も大歓迎です。" },
+  { month: "定期開催", title: "ボードゲーム会", text: "カタン・ドミニオン・人狼など。毎回誰かが新作を持ち込んで盛り上がります。" },
+  { month: "随時", title: "チームビルディング", text: "テーマを決めて、みんなで意見を出し合う場。働き方やイベントの企画まで、会社のことを一緒に考えます。" },
+  { month: "随時", title: "ランチ・飲み会", text: "気軽に誘える雰囲気がファンリアルの魅力。もちろん強制参加はなし。" },
+];
+
+const hobbies = [
+  { emoji: "🎬", name: "映画鑑賞", text: "話題作から名作まで。週末に観た映画の感想で盛り上がることもしばしば。" },
+  { emoji: "🖼️", name: "美術鑑賞", text: "美術館・展示巡りが好きなメンバーも。気になる展示情報の共有が活発です。" },
+  { emoji: "✈️", name: "旅行", text: "国内外問わずフットワーク軽め。おすすめスポットの話が尽きません。" },
+  { emoji: "📣", name: "スポーツ観戦", text: "野球・サッカー・格闘技など。試合の翌日は感想戦で盛り上がります。" },
+  { emoji: "📺", name: "アニメ・漫画", text: "今期アニメから名作まで。雑談チャンネルが一番賑わうジャンルです。" },
+  { emoji: "💻", name: "個人開発", text: "趣味で何か作るのが好きな人多数。会社のプロジェクトに発展した例も。" },
+];
+
+const supports = [
+  { emoji: "💻", name: "キャリア・技術", text: "「次に何を学ぶべきか」の道筋を会社が一緒に考えます。現場で困ったときも、先輩エンジニアが気軽に相談に乗ってくれます。" },
+  { emoji: "💬", name: "プライベートの相談", text: "仕事以外のちょっとした悩みも、気兼ねなく話せる雰囲気。先輩たちが親身に話を聞いてくれます。" },
+  { emoji: "📦", name: "引越し", text: "物件探しのコツや手続きの注意点など。東京での暮らしに詳しいメンバーが、新生活のスタートをサポートします。" },
+  { emoji: "✈️", name: "旅行", text: "行き先選びから穴場スポットまで。旅好きなメンバーが、おすすめの旅行プランの相談に乗ります。" },
+  { emoji: "🌱", name: "体調・コンディション", text: "体やメンタルの不調に気づいたら、無理せず相談できる雰囲気。みんなで気にかけ合える環境です。" },
+  { emoji: "🗨️", name: "その他（よろず相談）", text: "「ちょっと聞いてほしい」くらいの雑談から、どんな内容でも歓迎。気軽に声をかけてください。" },
+];
+
 export default function ReferralPage() {
   return (
-    <>
+    <div className={styles.referral}>
       {/* HERO */}
       <div className={styles.refHero}>
         <div className={styles.refHeroBg} />
         <div className={styles.refHeroParticles} />
         <div className={styles.refHeroContent}>
-          <div className={styles.refHeroBadge}>🎮 For Friends</div>
+          <div className={styles.refHeroBadge}>★ For Friends</div>
           <h1 className={styles.refHeroCatch}>ファンリアルの<em>素顔</em>へようこそ。</h1>
           <p className={styles.refHeroSub}>仕事の話の前に、まずは私たちのことを知ってほしい。</p>
         </div>
@@ -23,40 +57,18 @@ export default function ReferralPage() {
       {/* GAMING */}
       <div className={styles.gamingBg} style={{ padding: "100px 60px" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div className="section-label fade-up" style={{ color: "var(--blue)" }}>Gaming</div>
-          <h2 className="section-title fade-up" style={{ color: "var(--white)" }}>ゲーム好きが集まる会社</h2>
-          <p className="section-lead fade-up" style={{ color: "rgba(255,255,255,0.6)" }}>
-            ファンリアルには、ゲームが大好きなメンバーが多く在籍しています。<br />
-            FPS、RPG、ボードゲーム——ジャンルは様々ですが、共通の趣味で盛り上がれる環境です。
+          <div className="section-label fade-up">Gaming</div>
+          <h2 className="section-title fade-up">ゲームも仕事も、本気の仲間。</h2>
+          <p className="section-lead fade-up">
+            FPSからMOBA、対戦ゲームまで——いろんなタイトルを遊ぶメンバーが在籍しています。<br />
+            仕事の合間や終業後に、メンバー同士でランクを回したり一緒に遊ぶこともよくあります。
           </p>
-          <div className={`${styles.gameStatBar} fade-up`}>
-            <div className={styles.gameStat}>
-              <div className={styles.gameStatNum}>80%</div>
-              <div className={styles.gameStatLabel}>ゲーマー率</div>
-            </div>
-            <div className={styles.gameStat}>
-              <div className={styles.gameStatNum}>10+</div>
-              <div className={styles.gameStatLabel}>共有タイトル</div>
-            </div>
-            <div className={styles.gameStat}>
-              <div className={styles.gameStatNum}>月1</div>
-              <div className={styles.gameStatLabel}>ゲーム会頻度</div>
-            </div>
-          </div>
           <div className={styles.gameGrid}>
-            {[
-              { title: "FPS・シューター", genre: "FPS / TPS", players: "複数メンバー参加" },
-              { title: "MOBA", genre: "MOBA", players: "チームで連携プレイ" },
-              { title: "ボードゲーム", genre: "Board Game", players: "オフライン開催" },
-              { title: "オンラインゲーム", genre: "Online", players: "チーム戦" },
-            ].map((g) => (
+            {games.map((g) => (
               <div key={g.title} className={`${styles.gameCard} fade-up`}>
-                <div className={styles.gameCardImg}>GAME IMAGE</div>
-                <div className={styles.gameCardBody}>
-                  <div className={styles.gameCardTitle}>{g.title}</div>
-                  <div className={styles.gameCardGenre}>{g.genre}</div>
-                  <div className={styles.gameCardPlayers}>{g.players}</div>
-                </div>
+                <div className={styles.gameCardIcon} aria-hidden="true">{g.icon}</div>
+                <div className={styles.gameCardTitle}>{g.title}</div>
+                <div className={styles.gameCardPlayers}>{g.desc}</div>
               </div>
             ))}
           </div>
@@ -69,12 +81,7 @@ export default function ReferralPage() {
         <h2 className="section-title fade-up">社内イベント</h2>
         <p className="section-lead fade-up">仕事を離れて、一緒に楽しむ時間を大切にしています。</p>
         <div className={`${styles.eventTimeline} fade-up`}>
-          {[
-            { month: "不定期", title: "ゲーム会", text: "オンライン・オフライン問わず、みんなでゲームを楽しむ時間。初心者も大歓迎です。" },
-            { month: "定期開催", title: "ボードゲームナイト", text: "ボドゲ好きが集まる会。新作から名作まで幅広くプレイしています。" },
-            { month: "年1〜2回", title: "チームビルディング", text: "チームの絆を深めるイベント。内容は毎回メンバーのアイデアで決まります。" },
-            { month: "随時", title: "ランチ・飲み会", text: "気軽に誘える雰囲気がファンリアルの魅力。強制参加はなし。" },
-          ].map((e) => (
+          {events.map((e) => (
             <div key={e.title} className={styles.eventItem}>
               <div className={styles.eventDot} />
               <div className={styles.eventDate}>{e.month}</div>
@@ -89,25 +96,38 @@ export default function ReferralPage() {
       <div className={styles.hobbyBg} style={{ padding: "100px 60px" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div className="section-label fade-up">Hobby &amp; Interest</div>
-          <h2 className="section-title fade-up">メンバーの趣味いろいろ</h2>
+          <h2 className="section-title fade-up">オフの日も、それぞれ本気。</h2>
           <p className="section-lead fade-up">
-            入社してから新しい趣味が増えた、という声も多数。<br />
-            共通点が見つかると、一気に距離が縮まります。
+            インドアもアウトドアも。オフの過ごし方は人それぞれですが、<br />
+            共通の趣味が見つかると、一気に距離が縮まります。
           </p>
           <div className={styles.hobbyGrid}>
-            {[
-              { emoji: "🎮", name: "ゲーム全般", who: "社内人気 No.1", text: "FPS、MOBA、格ゲー、ソシャゲまで。ジャンル不問で盛り上がれます" },
-              { emoji: "🎲", name: "ボードゲーム", who: "月1定期開催", text: "カタン、ドミニオン、人狼etc. 毎回新作を持ち込む猛者も" },
-              { emoji: "📺", name: "アニメ・漫画", who: "布教活動が活発", text: "今期のアニメから名作まで。Slackの雑談チャンネルが一番賑やか" },
-              { emoji: "🏋", name: "筋トレ・運動", who: "じわじわ増加中", text: "ジム仲間を募集中。リモートワーク太り対策で始めた人多数" },
-              { emoji: "☕", name: "カフェ巡り", who: "おすすめマップあり", text: "新宿周辺のカフェ情報はメンバーに聞けば間違いない" },
-              { emoji: "💻", name: "個人開発", who: "会社支援あり", text: "趣味の開発が会社のプロジェクトになった事例も。持ち込み企画歓迎" },
-            ].map((h) => (
+            {hobbies.map((h) => (
               <div key={h.name} className={`${styles.hobbyCard} fade-up`}>
                 <div className={styles.hobbyEmoji}>{h.emoji}</div>
                 <div className={styles.hobbyName}>{h.name}</div>
-                <div className={styles.hobbyWho}>{h.who}</div>
                 <div className={styles.hobbyText}>{h.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* SUPPORT */}
+      <div className={styles.supportBg} style={{ padding: "100px 60px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div className="section-label fade-up">Support</div>
+          <h2 className="section-title fade-up">困ったときは、頼れる仲間がいる。</h2>
+          <p className="section-lead fade-up">
+            仕事の技術的な壁から、プライベートのちょっとした迷いまで。<br />
+            経験豊富な仲間が、気軽に相談に乗ります。ひとりで抱え込まず、いつでも頼ってください。
+          </p>
+          <div className={styles.hobbyGrid}>
+            {supports.map((s) => (
+              <div key={s.name} className={`${styles.hobbyCard} fade-up`}>
+                <div className={styles.hobbyEmoji}>{s.emoji}</div>
+                <div className={styles.hobbyName}>{s.name}</div>
+                <p className={styles.supportText}>{s.text}</p>
               </div>
             ))}
           </div>
@@ -121,18 +141,17 @@ export default function ReferralPage() {
         <p className="section-lead fade-up">友達に紹介するなら、こう言います。</p>
         <div className={styles.voiceGrid}>
           {[
-            { text: "前職ではゲームの話なんてできなかったけど、ここは趣味の話で盛り上がれるのがマジで嬉しい。仕事の相談もしやすくなった。", meta: "エンジニア / 20代", year: "入社1年目" },
-            { text: "「残業少ないよ」って聞いてたけど、本当に少なくてびっくりした。定時で帰ってランクマ回す生活、最高です。", meta: "エンジニア / 20代", year: "入社2年目" },
-            { text: "ボドゲ会がきっかけで、全然違うプロジェクトの先輩と仲良くなれた。縦のつながりがフラットなのはガチ。", meta: "エンジニア / 20代", year: "入社1年目" },
-            { text: "未経験で入って不安だったけど、自分のペースでいいよって言ってくれる環境で、気づいたら楽しく仕事してた。", meta: "エンジニア / 20代", year: "入社3年目" },
+            { text: "頑張った分だけ正当に評価してもらえるのが一番のやりがい。メンタル面や家庭環境にも配慮があって、土日はしっかり休んで趣味も楽しめています。", name: "R.O さん", role: "開発エンジニア" },
+            { text: "社内の距離がとても近くて、人柄の良いメンバーばかり。仕事のこともプライベートのことも、気兼ねなく相談できる環境があります。", name: "J.N さん", role: "運用保守エンジニア" },
+            { text: "多趣味な人が多くて共通の話題を見つけやすいし、人間関係がフレンドリー。在宅で浮いた時間を趣味にフル活用できるのも嬉しいです。", name: "R.H さん", role: "開発エンジニア" },
+            { text: "週末にメンバーとボードゲームをしたり、オンラインで一緒にゲームをしたり、仕事を離れても仲が良いです。お酒好きな仲間と楽しく飲める時間も、自分にとっては大事なリフレッシュになっています。", name: "T.F さん", role: "開発エンジニア" },
           ].map((v, i) => (
             <div key={i} className={`${styles.voiceCard} fade-up`}>
               <p className={styles.voiceText}>{v.text}</p>
-              <div className={styles.voiceMeta}><strong>{v.meta}</strong> — {v.year}</div>
+              <div className={styles.voiceMeta}><strong>{v.name}</strong> — {v.role}</div>
             </div>
           ))}
         </div>
-        <p style={{ textAlign: "center", marginTop: "24px", fontSize: "12px", color: "#aaa", fontFamily: "var(--font-en)" }}>※ Voice内容はすべてダミーです</p>
       </div>
 
       {/* CTA */}
@@ -141,11 +160,11 @@ export default function ReferralPage() {
           <div className={styles.ctaTitle}>気になったら、まずは話してみよう。</div>
           <p className={styles.ctaText}>
             堅苦しい雰囲気は一切ありません。<br />
-            ゲームの話でも、キャリアの話でも、お気軽にどうぞ。
+            趣味の話でも、キャリアの話でも、お気軽にどうぞ。
           </p>
           <Link href="/recruit" className="btn btn-primary">採用情報を見る →</Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }

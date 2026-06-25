@@ -98,6 +98,24 @@ header.is-dark .hamburger span, header.is-dark.scrolled .hamburger span { backgr
 .drawer-sub li a::before { content: "- "; }
 .has-sub > a::after { content: " >"; color: var(--blue); }
 
+/* dark drawer for special pages (matches each page's accent) */
+.drawer.drawer-is, .drawer.drawer-referral { box-shadow: -8px 0 24px rgba(0,0,0,0.5); }
+.drawer.drawer-is { background: #0d0d0d; }
+.drawer.drawer-referral { background: #000030; }
+.drawer.drawer-is .drawer-close, .drawer.drawer-referral .drawer-close { color: #fff; }
+.drawer.drawer-is nav > ul > li { border-bottom-color: rgba(255,255,255,0.1); }
+.drawer.drawer-referral nav > ul > li { border-bottom-color: rgba(255,255,255,0.12); }
+.drawer.drawer-is nav > ul > li > a,
+.drawer.drawer-referral nav > ul > li > a { color: #fff; }
+.drawer.drawer-is nav > ul > li > a:hover { color: #d4f500; }
+.drawer.drawer-referral nav > ul > li > a:hover { color: #e8b800; }
+.drawer.drawer-is .drawer-sub li a,
+.drawer.drawer-referral .drawer-sub li a { color: rgba(255,255,255,0.6); }
+.drawer.drawer-is .drawer-sub li a:hover { color: #d4f500; }
+.drawer.drawer-referral .drawer-sub li a:hover { color: #e8b800; }
+.drawer.drawer-is .has-sub > a::after { color: #d4f500; }
+.drawer.drawer-referral .has-sub > a::after { color: #e8b800; }
+
 /* ===== SECTIONS ===== */
 .section { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
 .section-narrow { max-width: 1100px; }
@@ -112,29 +130,34 @@ header.is-dark .hamburger span, header.is-dark.scrolled .hamburger span { backgr
 .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 0; }
 
 /* ===== FOOTER ===== */
-footer { background: #DCF0F7; padding: 60px 60px 32px; border-top: 1px solid #C5E4EE; }
+footer { background: var(--white); padding: 32px 60px 22px; border-top: 1px solid var(--gray-mid); }
 .footer-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  padding-bottom: 40px; border-bottom: 1px solid #C5E4EE; margin-bottom: 32px;
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  padding-bottom: 18px; border-bottom: 1px solid var(--gray-mid); margin-bottom: 16px;
 }
-.footer-logo-ph {
-  height: 48px; width: 100px; border: 1px dashed #9CCEDC; border-radius: 4px;
-  display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
-}
-.footer-logo-ph span { font-size: 10px; color: #5A7A85; font-family: var(--font-en); letter-spacing: 0.05em; }
-.footer-logo-name { color: #5A7A85; font-size: 12px; }
-.footer-sns { display: flex; gap: 10px; align-items: center; }
-.sns-icon {
-  width: 36px; height: 36px; border-radius: 50%; border: 1px solid #B8DEE9;
-  display: flex; align-items: center; justify-content: center; color: #5A7A85;
-  text-decoration: none; transition: all 0.2s;
-}
-.sns-icon:hover { border-color: var(--blue); color: var(--blue); }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-logo-img { height: 30px; width: auto; display: block; }
+.footer-logo-name { color: var(--gray-text); font-size: 13px; font-weight: 700; }
 .footer-links { display: flex; gap: 24px; }
-.footer-links a { color: #5A7A85; font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
-.footer-links a:hover { color: var(--blue); }
-.footer-copy { color: #88A6B0; font-size: 12px; font-family: var(--font-en); }
+.footer-links a, .footer-link-btn { color: var(--gray-text); font-size: 12px; text-decoration: none; cursor: pointer; transition: color 0.2s; }
+.footer-links a:hover, .footer-link-btn:hover { color: var(--blue); }
+.footer-link-btn { background: none; border: none; padding: 0; font-family: inherit; line-height: inherit; }
+.footer-copy { color: #88A6B0; font-size: 11px; font-family: var(--font-en); }
+
+/* dark footer for special pages */
+footer.footer-dark { background: #0b0b0b; border-top-color: rgba(255,255,255,0.1); }
+footer.footer-dark .footer-top { border-bottom-color: rgba(255,255,255,0.1); }
+footer.footer-dark .footer-logo-name { color: rgba(255,255,255,0.7); }
+footer.footer-dark .footer-links a, footer.footer-dark .footer-link-btn { color: rgba(255,255,255,0.6); }
+footer.footer-dark .footer-links a:hover, footer.footer-dark .footer-link-btn:hover { color: #d4f500; }
+footer.footer-dark .footer-copy { color: rgba(255,255,255,0.45); }
+
+footer.footer-night { background: #000030; border-top-color: rgba(255,255,255,0.12); }
+footer.footer-night .footer-top { border-bottom-color: rgba(255,255,255,0.12); }
+footer.footer-night .footer-logo-name { color: rgba(252,252,252,0.72); }
+footer.footer-night .footer-links a, footer.footer-night .footer-link-btn { color: rgba(252,252,252,0.62); }
+footer.footer-night .footer-links a:hover, footer.footer-night .footer-link-btn:hover { color: #e8b800; }
+footer.footer-night .footer-copy { color: rgba(252,252,252,0.45); }
 
 /* ===== SCROLL TO TOP ===== */
 .scroll-top {
@@ -183,10 +206,6 @@ footer { background: #DCF0F7; padding: 60px 60px 32px; border-top: 1px solid #C5
   padding: 100px 60px 80px; position: relative; overflow: hidden;
   text-align: center; min-height: 52vh; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-}
-.page-hero::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--blue), var(--yellow));
 }
 .page-hero-label {
   font-family: var(--font-en); font-size: 11px; font-weight: 600;
@@ -249,10 +268,10 @@ footer { background: #DCF0F7; padding: 60px 60px 32px; border-top: 1px solid #C5
   .header-entry-btn { padding: 6px 14px; font-size: 11px; }
   .section { padding: 60px 24px; }
   .section-title { font-size: 22px; }
-  footer { padding: 40px 24px 24px; }
-  .footer-top { flex-direction: column; gap: 20px; }
-  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  footer { padding: 28px 24px 20px; }
+  .footer-top { flex-direction: column; align-items: center; gap: 14px; text-align: center; }
   .footer-links { justify-content: center; }
+  .footer-copy { text-align: center; }
   .drawer { width: 85%; right: -85%; }
   .page-hero { padding: 60px 24px 50px; min-height: 40vh; }
   .legal { padding: 40px 24px 60px; }

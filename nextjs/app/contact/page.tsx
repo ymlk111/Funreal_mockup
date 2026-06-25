@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import styles from "./page.module.css";
+import LegalModal from "../../components/LegalModal";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [legalOpen, setLegalOpen] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const form = e.currentTarget;
@@ -111,7 +112,7 @@ export default function ContactPage() {
                 <button type="submit" className="btn btn-primary">送信する →</button>
               </div>
               <div className={styles.formPrivacy}>
-                送信することで、<Link href="/privacy">プライバシーポリシー</Link>に同意したものとみなします。
+                送信することで、<button type="button" className={styles.privacyLink} onClick={() => setLegalOpen(true)}>プライバシーポリシー</button>に同意したものとみなします。
               </div>
               <div className={styles.formMockupNote}>
                 ※ Google Forms の action URL と entry ID を差し替えると送信が有効化されます
@@ -170,6 +171,8 @@ export default function ContactPage() {
         </div>
         <FaqList />
       </section>
+
+      <LegalModal type={legalOpen ? "privacy" : null} onClose={() => setLegalOpen(false)} />
     </>
   );
 }

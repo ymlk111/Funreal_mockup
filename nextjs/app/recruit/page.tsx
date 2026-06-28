@@ -170,7 +170,7 @@ export default function RecruitPage() {
 
       {/* JOB */}
       <div className="section section-narrow">
-        <div className="section-label">Job</div>
+        <div className="section-label">Recruit</div>
         <h2 className="section-title flow-title">募集職種・条件</h2>
         <div className={styles.cardGrid}>
           <div className={styles.card}>
@@ -218,7 +218,7 @@ export default function RecruitPage() {
         <div className={`${styles.entryCta} fade-up`}>
           <div className={styles.entryCtaTitle}>私たちと一緒に、新しいスタートを切りませんか？</div>
           <p className={styles.entryCtaText}>
-            現在、様々なポジションで積極採用を行っています。<br />
+            現在、新しいメンバーの積極採用を行っております。<br />
             少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。
           </p>
           <a href="#" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>Entry →</a>

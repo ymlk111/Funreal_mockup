@@ -56,9 +56,9 @@ header.is-dark .hamburger span, header.is-dark.scrolled .hamburger span { backgr
 .header-right { display: flex; align-items: center; gap: 12px; }
 .header-entry-btn {
   padding: 8px 20px; background: var(--blue); color: var(--white);
-  font-size: 12px; font-weight: 700; font-family: var(--font-en);
-  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-  border-radius: 4px; transition: background 0.2s;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.06em; text-decoration: none;
+  border-radius: 4px; transition: background 0.2s; white-space: nowrap;
 }
 .header-entry-btn:hover { background: #0090aa; }
 .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }

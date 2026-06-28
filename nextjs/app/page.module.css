@@ -241,7 +241,7 @@
 .btnRecruit:hover { background: var(--yellow); }
 
 /* ===== CONTACT CTA ===== */
-.contactBg { background: var(--gray-light); border-top: 1px solid var(--gray-mid); }
+.contactBg { background: var(--white); border-top: 1px solid var(--gray-mid); }
 .contactInner {
   max-width: 1200px;
   margin: 0 auto;

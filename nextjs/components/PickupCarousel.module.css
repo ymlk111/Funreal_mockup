@@ -31,9 +31,27 @@
   text-decoration: none;
 }
 .cardHighlight {
-  background: linear-gradient(135deg, rgba(0, 170, 204, 0.12), rgba(0, 170, 204, 0.04));
-  border-color: var(--blue);
-  box-shadow: 0 10px 28px rgba(0, 170, 204, 0.22);
+  border: none;
+  color: #fff;
+  background: linear-gradient(115deg, #ff004c, #ff8a00, #ffd500, #34d058, #00aacc, #7b2ff7, #ff004c);
+  background-size: 300% 300%;
+  animation: rainbowSlide 8s ease-in-out infinite;
+}
+.cardHighlight .tag {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.cardHighlight .cardTitle,
+.cardHighlight .cardDesc {
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+@keyframes rainbowSlide {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cardHighlight { animation: none; }
 }
 .tag {
   display: inline-block;

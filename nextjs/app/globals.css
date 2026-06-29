@@ -98,8 +98,24 @@ header.is-dark .hamburger span, header.is-dark.scrolled .hamburger span { backgr
 .drawer-sub li a::before { content: "- "; }
 .has-sub > a::after { content: " >"; color: var(--blue); }
 
-/* 採用情報を強調（文字色のみ） */
-.drawer-recruit > a { color: var(--blue) !important; font-weight: 700; }
+/* 採用情報を強調（レインボーグラデ文字） */
+.drawer-recruit > a {
+  font-weight: 800;
+  background: linear-gradient(100deg, #ff004c, #ff8a00, #ffd500, #34d058, #00aacc, #7b2ff7, #ff004c);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: drawerRainbow 8s ease-in-out infinite;
+}
+@keyframes drawerRainbow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawer-recruit > a { animation: none; }
+}
 
 /* dark drawer for special pages (matches each page's accent) */
 .drawer.drawer-is, .drawer.drawer-referral { box-shadow: -8px 0 24px rgba(0,0,0,0.5); }

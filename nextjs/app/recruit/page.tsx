@@ -43,7 +43,6 @@ export default function RecruitPage() {
       {/* CREDO */}
       <div className={styles.credoSec}>
         <div className={styles.credoHead}>
-          <div className="section-label fade-up" style={{ justifyContent: "center" }}>Our Credo</div>
           <h2 className={`section-title fade-up flow-title`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの信条</h2>
         </div>
 

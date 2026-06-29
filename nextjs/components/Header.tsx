@@ -54,7 +54,7 @@ export default function Header() {
                 <li><Link href="/solutions" onClick={closeDrawer}>ソリューションズ</Link></li>
               </ul>
             </li>
-            <li className="drawer-recruit"><Link href="/recruit" onClick={closeDrawer}>採用情報<span className="drawer-recruit-arrow">→</span></Link></li>
+            <li className="drawer-recruit"><Link href="/recruit" onClick={closeDrawer}>採用情報</Link></li>
             <li><Link href="/contact" onClick={closeDrawer}>お問い合わせ</Link></li>
           </ul>
         </nav>

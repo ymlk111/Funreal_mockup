@@ -31,7 +31,7 @@ export default function ServiceSEPage() {
       </section>
 
       {/* ===== SERVICE / VALUE ===== */}
-      <section className={styles.sec} id="service">
+      <section className={`${styles.sec} ${styles.secAlt}`} id="service">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
             <div className={styles.eyebrow}>Service</div>
@@ -55,7 +55,7 @@ export default function ServiceSEPage() {
       </section>
 
       {/* ===== TECH STACK ===== */}
-      <section className={`${styles.sec} ${styles.secAlt}`} id="stack">
+      <section className={styles.sec} id="stack">
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
             <div className={styles.eyebrow}>Tech Stack</div>
@@ -85,7 +85,7 @@ export default function ServiceSEPage() {
       </section>
 
       {/* ===== LANGUAGES ===== */}
-      <section className={styles.sec} id="lang" style={{ paddingBottom: "60px" }}>
+      <section className={`${styles.sec} ${styles.secAlt}`} id="lang" style={{ paddingBottom: "60px" }}>
         <div className={styles.secInner}>
           <div className={`${styles.secHead} fade-up`}>
             <div className={styles.eyebrow}>Languages</div>

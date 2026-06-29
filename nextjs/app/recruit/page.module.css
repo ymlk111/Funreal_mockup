@@ -55,7 +55,7 @@
 .cardTag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
 .jobTable { width: 100%; border-collapse: collapse; }
 .jobTable th, .jobTable td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
-.jobTable th { width: 100px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); }
+.jobTable th { width: 160px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); white-space: nowrap; }
 .jobTable td { color: var(--black); line-height: 1.7; }
 
 .referralBanner { text-align: center; padding: 48px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); border-radius: 12px; }

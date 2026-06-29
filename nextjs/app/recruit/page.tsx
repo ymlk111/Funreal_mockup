@@ -131,7 +131,7 @@ export default function RecruitPage() {
                 <rect x="98" y="40" width="20" height="22" rx="2" fill="rgba(255,255,255,0.6)"/>
                 <rect x="126" y="44" width="20" height="18" rx="2" fill="rgba(255,255,255,0.8)"/>
               </svg>
-              <div className={styles.numCardValue}>10<span className={styles.numCardUnit}>h</span></div>
+              <div className={styles.numCardValue}>10<span className={styles.numCardUnit}>h以下</span></div>
             </div>
             <div className={styles.numCard}>
               <div className={styles.numCardTitle}>平均年齢</div>
@@ -172,34 +172,24 @@ export default function RecruitPage() {
       <div className="section section-narrow">
         <div className="section-label">Recruit</div>
         <h2 className="section-title flow-title">募集職種・条件</h2>
-        <div className={styles.cardGrid}>
-          <div className={styles.card}>
-            <div className={styles.cardBody}>
-              <span className={styles.cardTag}>OPEN</span>
-              <div style={{ fontSize: "18px", fontWeight: 700, margin: "8px 0 20px" }}>エンジニア職</div>
-              <table className={styles.jobTable}>
-                <tbody>
-                  <tr><th>雇用形態</th><td>正社員 / 契約社員 / 業務委託 / SES</td></tr>
-                  <tr><th>給与</th><td>内容は後日</td></tr>
-                  <tr><th>勤務地</th><td>東京都新宿区（リモート相談可）</td></tr>
-                  <tr><th>特徴</th><td>未経験歓迎 / キャリアチェンジ可</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <div className={styles.cardBody}>
-              <span className={styles.cardTag}>OPEN</span>
-              <div style={{ fontSize: "18px", fontWeight: 700, margin: "8px 0 20px" }}>営業職</div>
-              <table className={styles.jobTable}>
-                <tbody>
-                  <tr><th>雇用形態</th><td>正社員</td></tr>
-                  <tr><th>給与</th><td>内容は後日</td></tr>
-                  <tr><th>勤務地</th><td>東京都新宿区</td></tr>
-                  <tr><th>特徴</th><td>エンジニア経験者歓迎</td></tr>
-                </tbody>
-              </table>
-            </div>
+        <div className={styles.card} style={{ marginBottom: "48px" }}>
+          <div className={styles.cardBody}>
+            <span className={styles.cardTag}>OPEN</span>
+            <div style={{ fontSize: "18px", fontWeight: 700, margin: "8px 0 20px" }}>エンジニア（システムエンジニア／プログラマー）</div>
+            <table className={styles.jobTable}>
+              <tbody>
+                <tr><th>仕事内容</th><td>ソフトウェアまたはハードウェア開発における業務全般</td></tr>
+                <tr><th>応募資格・求める人材</th><td>システムエンジニアまたはプログラマーの経験者<br />※保有技術・経験年数は不問</td></tr>
+                <tr><th>雇用形態・試用期間</th><td>正社員　※3ヵ月間の試用期間あり</td></tr>
+                <tr><th>給与</th><td>月給 30〜50万円（年俸制）<br />基本給にみなし残業分を含む<br />残業が多い場合は別途手当を支給</td></tr>
+                <tr><th>勤務地</th><td>首都圏　※参画案件に準ずる</td></tr>
+                <tr><th>勤務時間</th><td>9:00〜18:00　※参画案件に準ずる</td></tr>
+                <tr><th>昇給</th><td>年1回（4月）</td></tr>
+                <tr><th>休日・休暇</th><td>完全週休二日制／祝日休／夏季休暇／年末年始休暇<br />初年度有給15日付与　※4月入社を基準</td></tr>
+                <tr><th>待遇・福利厚生</th><td>リモートワーク推進／社員紹介手当あり<br />有給休暇を取得しやすい環境です</td></tr>
+                <tr><th>選考プロセス</th><td>下記のフォームより応募の意思をお送りいただいた後、メールにて以降のプロセスを折り返しご連絡いたします。</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

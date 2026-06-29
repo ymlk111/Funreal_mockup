@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>採用情報 強調サンプル</title>
+<style>
+  :root {
+    --black:#1A1A1A; --red:#CC2200; --blue:#00AACC; --yellow:#CCAA00;
+    --white:#FFFFFF; --gray-light:#E5F4F9; --gray-mid:#CDE8F0; --gray-text:#5A7A85;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family:-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:var(--black); background:var(--gray-light); padding:40px 28px 80px;
+  }
+  h1 { font-size:24px; font-weight:900; margin-bottom:6px; }
+  .lead { color:var(--gray-text); font-size:13px; margin-bottom:36px; line-height:1.8; }
+  h2 { font-size:18px; font-weight:800; margin:48px 0 18px; padding-bottom:8px; border-bottom:2px solid var(--blue); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; }
+
+  /* ===== base pickup card (現状の構造を再現) ===== */
+  .card {
+    position:relative; overflow:hidden; background:var(--white);
+    border:1px solid var(--gray-mid); border-radius:14px; padding:22px 24px;
+    text-decoration:none; display:block; min-height:150px;
+  }
+  .card .tag {
+    display:inline-block; font-size:10px; font-weight:700; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--white); background:var(--blue);
+    padding:3px 11px; border-radius:20px; margin-bottom:14px;
+  }
+  .card .ttl { font-size:16px; font-weight:700; color:var(--black); line-height:1.5; margin-bottom:10px; }
+  .card .desc { font-size:13px; color:var(--gray-text); line-height:1.8; }
+  .opt { font-size:12px; font-weight:700; color:var(--blue); margin-bottom:8px; letter-spacing:.04em; }
+  .note { font-size:11px; color:var(--gray-text); margin-top:6px; line-height:1.6; }
+
+  /* ---- A: 現状（比較用） ---- */
+  .cur {
+    background:linear-gradient(135deg,rgba(0,170,204,.12),rgba(0,170,204,.04));
+    border-color:var(--blue); box-shadow:0 10px 28px rgba(0,170,204,.22);
+  }
+
+  /* ---- 1: レインボー（虹色アニメグラデ） ---- */
+  .rainbow {
+    border:none; color:#fff;
+    background:linear-gradient(115deg,#ff004c,#ff8a00,#ffd500,#34d058,#00aacc,#7b2ff7,#ff004c);
+    background-size:300% 100%; animation:rainbowSlide 6s linear infinite;
+    box-shadow:0 12px 30px rgba(123,47,247,.35);
+  }
+  .rainbow .tag { background:rgba(255,255,255,.25); color:#fff; }
+  .rainbow .ttl, .rainbow .desc { color:#fff; text-shadow:0 1px 4px rgba(0,0,0,.25); }
+  @keyframes rainbowSlide { to { background-position:300% 0; } }
+
+  /* ---- 2: レインボー枠（白地＋虹色ボーダー、文字は読みやすく） ---- */
+  .rainbowEdge {
+    background:var(--white); border:3px solid transparent;
+    background-image:linear-gradient(var(--white),var(--white)),
+      linear-gradient(115deg,#ff004c,#ff8a00,#ffd500,#34d058,#00aacc,#7b2ff7,#ff004c);
+    background-origin:border-box; background-clip:padding-box,border-box;
+    background-size:auto,300% 100%; animation:rainbowSlide 6s linear infinite;
+    box-shadow:0 10px 26px rgba(0,0,0,.12);
+  }
+  .rainbowEdge .tag {
+    background:linear-gradient(115deg,#ff004c,#ff8a00,#34d058,#00aacc,#7b2ff7);
+    background-size:300% 100%; animation:rainbowSlide 6s linear infinite; color:#fff;
+  }
+
+  /* ---- 3: ゴールド（高級感・シマー） ---- */
+  .gold {
+    border:2px solid #e7c14c; color:#3a2c00;
+    background:linear-gradient(135deg,#fff7df,#ffe9a8 45%,#f5d36b 55%,#fff7df);
+    background-size:220% 100%; animation:goldShimmer 5s ease-in-out infinite;
+    box-shadow:0 10px 28px rgba(200,160,40,.4);
+  }
+  .gold .tag { background:#bf9300; color:#fff; }
+  .gold .ttl { color:#5a4400; }
+  .gold .desc { color:#7a6320; }
+  @keyframes goldShimmer { 0%,100%{background-position:0 0;} 50%{background-position:100% 0;} }
+
+  /* ---- 4: ネオングロー（青の発光・パルス） ---- */
+  .neon {
+    background:#04222b; border:2px solid var(--blue); color:#dffaff;
+    animation:neonPulse 2.2s ease-in-out infinite;
+  }
+  .neon .tag { background:var(--blue); color:#022; box-shadow:0 0 12px var(--blue); }
+  .neon .ttl { color:#aef3ff; text-shadow:0 0 10px rgba(0,170,204,.9); }
+  .neon .desc { color:#7fd6e8; }
+  @keyframes neonPulse {
+    0%,100% { box-shadow:0 0 0 rgba(0,170,204,.0),0 0 18px rgba(0,170,204,.5); }
+    50% { box-shadow:0 0 0 4px rgba(0,170,204,.15),0 0 36px rgba(0,170,204,.95); }
+  }
+
+  /* ---- 5: オーロラ（青→紫→ピンクの流動グラデ） ---- */
+  .aurora {
+    border:none; color:#fff;
+    background:linear-gradient(125deg,#00aacc,#3a7bd5,#7b2ff7,#e94fa1,#00aacc);
+    background-size:300% 300%; animation:auroraMove 8s ease infinite;
+    box-shadow:0 12px 30px rgba(58,123,213,.4);
+  }
+  .aurora .tag { background:rgba(255,255,255,.22); color:#fff; }
+  .aurora .ttl, .aurora .desc { color:#fff; text-shadow:0 1px 4px rgba(0,0,0,.25); }
+  @keyframes auroraMove { 0%{background-position:0 50%;} 50%{background-position:100% 50%;} 100%{background-position:0 50%;} }
+
+  /* ===== drawer recruit samples ===== */
+  .drawer {
+    background:#fff; border-radius:12px; padding:14px 20px; box-shadow:0 6px 18px rgba(0,0,0,.08);
+  }
+  .drawer ul { list-style:none; }
+  .drawer li { border-bottom:1px solid var(--gray-mid); }
+  .drawer li:last-child { border-bottom:none; }
+  .drawer a { display:block; padding:14px 0; color:var(--black); text-decoration:none; font-size:15px; font-weight:500; }
+
+  /* d-cur: 現状 */
+  .d-cur .rec > a { color:var(--blue); font-weight:700; }
+
+  /* d1: レインボーグラデ文字 */
+  .d1 .rec > a {
+    font-weight:800;
+    background:linear-gradient(100deg,#ff004c,#ff8a00,#ffd500,#34d058,#00aacc,#7b2ff7,#ff004c);
+    background-size:300% 100%; -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; animation:rainbowSlide 5s linear infinite;
+  }
+  /* d2: ゴールドグラデ文字 */
+  .d2 .rec > a {
+    font-weight:800;
+    background:linear-gradient(100deg,#9a6b00,#f5d36b,#fff3c4,#f5d36b,#9a6b00);
+    background-size:250% 100%; -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; animation:rainbowSlide 5s linear infinite;
+  }
+  /* d3: ネオン青発光文字 */
+  .d3 .rec > a {
+    color:var(--blue); font-weight:800;
+    text-shadow:0 0 6px rgba(0,170,204,.7),0 0 14px rgba(0,170,204,.5);
+    animation:textGlow 2s ease-in-out infinite;
+  }
+  @keyframes textGlow { 50%{text-shadow:0 0 10px rgba(0,170,204,1),0 0 24px rgba(0,170,204,.8);} }
+  /* d4: バッジ化（赤背景白文字パルス＋NEW） */
+  .d4 .rec > a {
+    display:inline-block; color:#fff; font-weight:800; background:var(--red);
+    padding:8px 16px; border-radius:8px; margin:8px 0;
+    animation:badgePulse 1.8s ease-in-out infinite;
+  }
+  .d4 .rec > a::after {
+    content:"採用中"; font-size:10px; margin-left:8px; background:#fff; color:var(--red);
+    padding:2px 6px; border-radius:10px; vertical-align:middle;
+  }
+  @keyframes badgePulse {
+    0%,100%{box-shadow:0 0 0 0 rgba(204,34,0,.5);} 70%{box-shadow:0 0 0 10px rgba(204,34,0,0);}
+  }
+  /* d5: 青文字＋アニメ下線スイープ */
+  .d5 .rec > a {
+    color:var(--blue); font-weight:800; position:relative; display:inline-block;
+  }
+  .d5 .rec > a::after {
+    content:""; position:absolute; left:0; bottom:6px; height:3px; width:100%;
+    background:linear-gradient(90deg,#ff004c,#ffd500,#00aacc,#7b2ff7);
+    background-size:200% 100%; border-radius:2px; animation:rainbowSlide 3s linear infinite;
+  }
+</style>
+</head>
+<body>
+  <h1>採用情報を「とにかく目立たせる」サンプル</h1>
+
+  <h2>① Pickupセクション「採用情報」カード 背景</h2>
+  <div class="grid">
+    <div>
+      <div class="opt">A. 現状（参考）</div>
+      <a class="card cur">
+        <span class="tag">Recruit</span>
+        <div class="ttl">一緒に、未来をつくろう。</div>
+        <div class="desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
+      </a>
+    </div>
+    <div>
+      <div class="opt">1. レインボー（虹色アニメ塗り）</div>
+      <a class="card rainbow">
+        <span class="tag">Recruit</span>
+        <div class="ttl">一緒に、未来をつくろう。</div>
+        <div class="desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
+      </a>
+      <p class="note">最も派手。白文字で視認性確保。</p>
+    </div>
+    <div>
+      <div class="opt">2. レインボー枠（白地＋虹色ボーダー）</div>
+      <a class="card rainbowEdge">
+        <span class="tag">Recruit</span>
+        <div class="ttl">一緒に、未来をつくろう。</div>
+        <div class="desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
+      </a>
+      <p class="note">本文は黒のまま読みやすく、枠だけ虹色で目立つ折衷案。</p>
+    </div>
+    <div>
+      <div class="opt">3. ゴールド（高級感・シマー）</div>
+      <a class="card gold">
+        <span class="tag">Recruit</span>
+        <div class="ttl">一緒に、未来をつくろう。</div>
+        <div class="desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
+      </a>
+      <p class="note">上品に目立つ。サイトの青基調とも喧嘩しにくい。</p>
+    </div>
+    <div>
+      <div class="opt">4. ネオングロー（青発光パルス）</div>
+      <a class="card neon">
+        <span class="tag">Recruit</span>
+        <div class="ttl">一緒に、未来をつくろう。</div>
+        <div class="desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
+      </a>
+      <p class="note">ブランドカラー（青）を活かしつつ発光で強調。</p>
+    </div>
+    <div>
+      <div class="opt">5. オーロラ（青→紫→ピンク流動）</div>
+      <a class="card aurora">
+        <span class="tag">Recruit</span>
+        <div class="ttl">一緒に、未来をつくろう。</div>
+        <div class="desc">2026年度エントリー受付中。あなたのペースで成長できる環境があります。</div>
+      </a>
+      <p class="note">虹色よりやや落ち着いた華やかさ。青基調と相性◎。</p>
+    </div>
+  </div>
+
+  <h2>② ドロワー（ハンバーガー）内「採用情報」文字</h2>
+  <div class="grid">
+    <div>
+      <div class="opt">A. 現状（参考）</div>
+      <nav class="drawer d-cur"><ul>
+        <li><a href="#">About Us（会社概要）</a></li>
+        <li><a href="#">サービス</a></li>
+        <li class="rec"><a href="#">採用情報</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul></nav>
+    </div>
+    <div>
+      <div class="opt">1. レインボーグラデ文字</div>
+      <nav class="drawer d1"><ul>
+        <li><a href="#">About Us（会社概要）</a></li>
+        <li><a href="#">サービス</a></li>
+        <li class="rec"><a href="#">採用情報</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul></nav>
+    </div>
+    <div>
+      <div class="opt">2. ゴールドグラデ文字</div>
+      <nav class="drawer d2"><ul>
+        <li><a href="#">About Us（会社概要）</a></li>
+        <li><a href="#">サービス</a></li>
+        <li class="rec"><a href="#">採用情報</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul></nav>
+    </div>
+    <div>
+      <div class="opt">3. ネオン青発光文字</div>
+      <nav class="drawer d3"><ul>
+        <li><a href="#">About Us（会社概要）</a></li>
+        <li><a href="#">サービス</a></li>
+        <li class="rec"><a href="#">採用情報</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul></nav>
+    </div>
+    <div>
+      <div class="opt">4. バッジ化（赤背景・パルス＋「採用中」）</div>
+      <nav class="drawer d4"><ul>
+        <li><a href="#">About Us（会社概要）</a></li>
+        <li><a href="#">サービス</a></li>
+        <li class="rec"><a href="#">採用情報</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul></nav>
+    </div>
+    <div>
+      <div class="opt">5. 青文字＋虹色アニメ下線</div>
+      <nav class="drawer d5"><ul>
+        <li><a href="#">About Us（会社概要）</a></li>
+        <li><a href="#">サービス</a></li>
+        <li class="rec"><a href="#">採用情報</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul></nav>
+    </div>
+  </div>
+</body>
+</html>

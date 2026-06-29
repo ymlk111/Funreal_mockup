@@ -136,7 +136,7 @@ export default function Home() {
           <h2 className={styles.contactTitle}>サービスに関するお問い合わせ</h2>
           <p className={styles.contactDesc}>
             ご質問・ご相談はお気軽にどうぞ。<br />
-            担当者より2営業日以内にご連絡いたします。
+            担当者より5営業日以内にご連絡いたします。
           </p>
           <Link href="/contact" className={styles.btnContact}>お問い合わせ <span className={styles.arr}>→</span></Link>
         </div>

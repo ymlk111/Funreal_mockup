@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "ソリューションズ | 株式会社ファンリアル",
   description:
-    "株式会社ファンリアルが提供する独自サービスをご紹介します。",
+    "株式会社ファンリアルが提供するサービスをご紹介します。",
 };
 
 // image に画像パス（例: "/image/solution-xxx.png"）を設定すると差し替わります。
@@ -34,7 +34,7 @@ export default function SolutionsPage() {
         <h1>ソリューションズ</h1>
         <p className="page-hero-sub">
           ファンリアルから提供する、<br />
-          独自サービスをご紹介します。
+          サービスをご紹介します。
         </p>
       </div>
 

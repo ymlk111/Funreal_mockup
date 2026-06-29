@@ -66,7 +66,7 @@ export default function Header() {
           <span className="logo-text">株式会社ファンリアル</span>
         </Link>
         <div className="header-right">
-          <Link href="/recruit" className="header-entry-btn">リクルート</Link>
+          <Link href="/recruit" className="header-entry-btn">Recruit</Link>
           <div className="hamburger" onClick={openDrawer} role="button" aria-label="メニューを開く">
             <span /><span /><span />
           </div>

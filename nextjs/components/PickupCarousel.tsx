@@ -12,11 +12,12 @@ type Card = {
   highlight?: boolean;
 };
 
+// 採用カードを2番目に置くことで、初期表示(中央コピーの先頭3枚)の「中央」に来る。
 const cards: Card[] = [
   { href: "/about", tag: "About", title: "私たちについて", desc: "ITで人と企業の未来を拓く。ファンリアルのビジョンと想いをご紹介します。" },
+  { href: "/recruit", tag: "Recruit", title: "一緒に、未来をつくろう。", desc: "2026年度エントリー受付中。あなたのペースで成長できる環境があります。", highlight: true },
   { href: "/service/se", tag: "SES", tagVariant: "red", title: "システムエンジニアリング", desc: "成長を前提とした現場アサインで、エンジニアの可能性を最大化します。" },
   { href: "/solutions", tag: "Solutions", tagVariant: "yellow", title: "ソリューションズ", desc: "企画構想から開発・運用まで一気通貫。ビジネスの成長をサポートします。" },
-  { href: "/recruit", tag: "Recruit", title: "一緒に、未来をつくろう。", desc: "2026年度エントリー受付中。あなたのペースで成長できる環境があります。", highlight: true },
   { href: "/contact", tag: "Contact", tagVariant: "dark", title: "お問い合わせ", desc: "サービスへのご相談・ご質問はお気軽にどうぞ。5営業日以内にご連絡します。" },
 ];
 
@@ -24,11 +25,10 @@ const GAP = 24;
 
 export default function PickupCarousel() {
   const total = cards.length;
-  const recruitIndex = cards.findIndex((c) => c.highlight);
   // 前後にクローンを並べてシームレスな無限ループにする
   const loop = [...cards, ...cards, ...cards];
-  // 採用カードを初期表示の中央に置く（中央コピー基準）
-  const [index, setIndex] = useState(total + Math.max(recruitIndex - 1, 0));
+  // 中央コピーの先頭から開始（描画位置は初期コピーと同一なので読み込み時のジャンプが起きない）
+  const [index, setIndex] = useState(total);
   const [animate, setAnimate] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -81,7 +81,8 @@ export default function PickupCarousel() {
     }
   };
 
-  const activeDot = ((index % total) + total) % total;
+  // 中央(可視3枚の真ん中)のカードをアクティブ表示にする
+  const activeDot = (((index + 1) % total) + total) % total;
 
   return (
     <section className={styles.sec}>
@@ -116,7 +117,7 @@ export default function PickupCarousel() {
             key={i}
             className={`${styles.dot}${i === activeDot ? ` ${styles.dotActive}` : ""}`}
             aria-label={`${i + 1}番目へ`}
-            onClick={() => setIndex(total + i)}
+            onClick={() => setIndex(total + i - 1)}
           />
         ))}
       </div>

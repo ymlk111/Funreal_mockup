@@ -145,7 +145,7 @@ export default function ReferralPage() {
           {[
             { text: "頑張った分だけ正当に評価してもらえるのが一番のやりがい。メンタル面や家庭環境にも配慮があって、土日はしっかり休んで趣味も楽しめています。", name: "R.O さん", role: "開発エンジニア" },
             { text: "社内の距離がとても近くて、人柄の良いメンバーばかり。仕事のこともプライベートのことも、気兼ねなく相談できる環境があります。", name: "J.N さん", role: "運用保守エンジニア" },
-            { text: "多趣味な人が多くて共通の話題を見つけやすいし、人間関係がフレンドリー。在宅で浮いた時間を趣味にフル活用できるのも嬉しいです。", name: "R.H さん", role: "開発エンジニア" },
+            { text: "多趣味な人が多くて共通の話題を見つけやすいし、人間関係がフレンドリー。在宅で浮いた時間を趣味にフル活用できるのも嬉しいです。", name: "K.H さん", role: "開発エンジニア" },
             { text: "週末にメンバーとボードゲームをしたり、オンラインで一緒にゲームをしたり、仕事を離れても仲が良いです。お酒好きな仲間と楽しく飲める時間も、自分にとっては大事なリフレッシュになっています。", name: "T.F さん", role: "開発エンジニア" },
           ].map((v, i) => (
             <div key={i} className={`${styles.voiceCard} fade-up`}>
@@ -165,7 +165,7 @@ export default function ReferralPage() {
             趣味の話でも、キャリアの話でも、お気軽にどうぞ。
           </p>
           <div className={styles.ctaActions}>
-            <a href="#" className="btn btn-primary">エントリーする →</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary">エントリーする →</a>
             <Link href="/recruit" className={styles.ctaSecondary}>採用情報を見る →</Link>
           </div>
         </div>

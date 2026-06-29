@@ -209,36 +209,37 @@
 .ceoQuoteLink:hover { gap: 10px; color: #0090aa; }
 
 /* ===== RECRUIT CTA ===== */
-.recruitBg { background: linear-gradient(135deg, #00AACC 0%, #007E9C 100%); }
+.recruitBg { position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; }
 .recruitInner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 60px;
+  padding: 110px 60px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 40px;
   align-items: center;
 }
-.recruitTitle { font-size: 36px; font-weight: 900; color: var(--white); margin-bottom: 16px; }
-.recruitDesc { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 2; }
+.recruitTitle { font-size: clamp(30px, 4vw, 46px); font-weight: 900; color: var(--white); margin-bottom: 18px; text-shadow: 0 2px 16px rgba(0,0,0,0.4); }
+.recruitDesc { font-size: 15px; color: rgba(255,255,255,0.92); line-height: 2; text-shadow: 0 1px 10px rgba(0,0,0,0.35); }
 .btnRecruit {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  border-radius: 6px;
+  gap: 12px;
+  padding: 20px 48px;
+  border-radius: 8px;
   background: var(--white);
   color: var(--black);
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   font-family: var(--font-en);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  transition: all 0.2s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
 }
-.btnRecruit:hover { background: var(--yellow); }
+.btnRecruit:hover { transform: translateY(-3px); background: var(--yellow); color: var(--black); box-shadow: 0 16px 40px rgba(0,0,0,0.34); }
 
 /* ===== CONTACT CTA ===== */
 .contactBg { background: var(--white); border-top: 1px solid var(--gray-mid); }

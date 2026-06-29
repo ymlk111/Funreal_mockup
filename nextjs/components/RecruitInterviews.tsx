@@ -73,8 +73,8 @@ const interviews: Interview[] = [
     ],
   },
   {
-    initials: "R.H",
-    name: "R.H さん",
+    initials: "K.H",
+    name: "K.H さん",
     role: "開発エンジニア",
     catch: "希望の案件で上流工程へ。効率を追求する働き方。",
     topics: [

@@ -49,12 +49,12 @@ export default function Header() {
             <li className="has-sub">
               <a href="#" onClick={toggleSub}>サービス</a>
               <ul className={`drawer-sub${subOpen ? " open" : ""}`}>
-                <li><Link href="/service/se" onClick={closeDrawer}>SE</Link></li>
-                <li><Link href="/service/is" onClick={closeDrawer}>IS</Link></li>
+                <li><Link href="/service/se" onClick={closeDrawer}>SES</Link></li>
+                <li><Link href="/service/is" onClick={closeDrawer}>IS（インサイドセールス）</Link></li>
                 <li><Link href="/solutions" onClick={closeDrawer}>ソリューションズ</Link></li>
               </ul>
             </li>
-            <li><Link href="/recruit" onClick={closeDrawer}>採用情報</Link></li>
+            <li className="drawer-recruit"><Link href="/recruit" onClick={closeDrawer}>採用情報</Link></li>
             <li><Link href="/contact" onClick={closeDrawer}>お問い合わせ</Link></li>
           </ul>
         </nav>
@@ -66,7 +66,7 @@ export default function Header() {
           <span className="logo-text">株式会社ファンリアル</span>
         </Link>
         <div className="header-right">
-          <Link href="/contact" className="header-entry-btn">お問い合わせ</Link>
+          <Link href="/recruit" className="header-entry-btn">Recruit</Link>
           <div className="hamburger" onClick={openDrawer} role="button" aria-label="メニューを開く">
             <span /><span /><span />
           </div>

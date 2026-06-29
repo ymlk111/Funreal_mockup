@@ -7,13 +7,9 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    const form = e.currentTarget;
-    if (form.action.includes("GOOGLE_FORM_ACTION_URL")) {
-      e.preventDefault();
-      alert("【開発者向け】\nGoogle Forms の formResponse URL が未設定です。\naction 属性を差し替えてください。");
-      return;
-    }
+  function handleSubmit() {
+    // 隠しiframeへ送信されるため、ここでは完了表示のみ行う。
+    // ※ クロスオリジンのため実際の成否は取得できない点に留意。
     setTimeout(() => setSubmitted(true), 600);
   }
 
@@ -59,14 +55,14 @@ export default function ContactPage() {
           {!submitted ? (
             <form
               id="contactForm"
-              action="GOOGLE_FORM_ACTION_URL"
+              action="https://docs.google.com/forms/d/e/1FAIpQLSdncENwTN68A4Kw_FCCByJBYIFm5m4c9JH3ZvKuieh610COuw/formResponse"
               method="POST"
               target="form_hidden_target"
               onSubmit={handleSubmit}
             >
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>お問い合わせ種別<span className={styles.required}>*</span></label>
-                <select className={styles.formSelect} name="entry.XXXXX_INQUIRY_TYPE" required defaultValue="">
+                <select className={styles.formSelect} name="entry.818957223" required defaultValue="">
                   <option value="" disabled>選択してください</option>
                   <option>SESに関するご相談</option>
                   <option>IS・各種ソリューションに関するご相談</option>
@@ -79,36 +75,36 @@ export default function ContactPage() {
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>会社名</label>
-                  <input type="text" className={styles.formInput} name="entry.XXXXX_COMPANY" placeholder="株式会社〇〇" />
+                  <input type="text" className={styles.formInput} name="entry.113174893" placeholder="株式会社〇〇" />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>部署名</label>
-                  <input type="text" className={styles.formInput} name="entry.XXXXX_DEPT" placeholder="営業部" />
+                  <input type="text" className={styles.formInput} name="entry.840725714" placeholder="営業部" />
                 </div>
               </div>
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>お名前<span className={styles.required}>*</span></label>
-                  <input type="text" className={styles.formInput} name="entry.XXXXX_NAME" placeholder="山田 太郎" required />
+                  <input type="text" className={styles.formInput} name="entry.1238159954" placeholder="山田 太郎" required />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>フリガナ<span className={styles.required}>*</span></label>
-                  <input type="text" className={styles.formInput} name="entry.XXXXX_NAME_KANA" placeholder="ヤマダ タロウ" required />
+                  <input type="text" className={styles.formInput} name="entry.1599495687" placeholder="ヤマダ タロウ" required />
                 </div>
               </div>
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>メールアドレス<span className={styles.required}>*</span></label>
-                  <input type="email" className={styles.formInput} name="entry.XXXXX_EMAIL" placeholder="example@company.co.jp" required />
+                  <input type="email" className={styles.formInput} name="entry.96942490" placeholder="example@company.co.jp" required />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>電話番号<span className={styles.required}>*</span></label>
-                  <input type="tel" className={styles.formInput} name="entry.XXXXX_PHONE" placeholder="03-0000-0000" required />
+                  <input type="tel" className={styles.formInput} name="entry.996403375" placeholder="03-0000-0000" required />
                 </div>
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>お問い合わせ内容<span className={styles.required}>*</span></label>
-                <textarea className={styles.formTextarea} name="entry.XXXXX_MESSAGE" placeholder="お問い合わせ内容をご記入ください。" required />
+                <textarea className={styles.formTextarea} name="entry.1138150142" placeholder="お問い合わせ内容をご記入ください。" required />
               </div>
               <div className={styles.formSubmit}>
                 <button type="submit" className="btn btn-primary">送信する →</button>

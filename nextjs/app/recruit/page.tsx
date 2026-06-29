@@ -40,59 +40,64 @@ export default function RecruitPage() {
 
       <hr className="divider" />
 
-      {/* CULTURE HEADER */}
-      <div className={styles.cultureHeader}>
-        <div className={styles.cultureHeaderInner}>
-          <div className="section-label fade-up" style={{ justifyContent: "center" }}>Culture &amp; Environment</div>
-          <h2 className={`section-title fade-up flow-title`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの約束</h2>
-          <p className="section-lead fade-up" style={{ maxWidth: "560px", margin: "0 auto", textAlign: "center" }}>
-            エンゲージメントは、押し付けるものではなく自然と生まれるもの。<br />
-            安心して働ける環境の先に、やりがいや挑戦が待っています。
-          </p>
+      {/* CREDO */}
+      <div className={styles.credoSec}>
+        <div className={styles.credoHead}>
+          <div className="section-label fade-up" style={{ justifyContent: "center" }}>Our Credo</div>
+          <h2 className={`section-title fade-up flow-title`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの信条</h2>
         </div>
-      </div>
 
-      {/* PILLAR 1 */}
-      <div className={styles.pillarRow} style={{ background: "var(--white)" }}>
-        <div className={styles.pillarRowInner}>
-          <div className={`${styles.pillarVisualWrap} fade-up`}>
-            <div className={styles.pillarVisualCircle}>📈</div>
-          </div>
-          <div className="fade-up fade-up-delay-1">
-            <div className={styles.pillarSub}>Growth Assignment</div>
-            <h3 className={styles.pillarTitleLg}>エンジニアの「成長」を<br />第一に考えたアサイン</h3>
-            <p className={styles.pillarText}>「キャリアが停滞するアサイン」はいたしません。今のあなたにとって最適な働き方と成長のバランスを、営業担当が二人三脚で一緒に見つけていきます。</p>
-            <p className={styles.pillarExtra}><span className="hl-flow">「スキルが止まる現場には行かせない」</span>——それが私たちの約束です。現場の状況や技術トレンドを定期的にヒアリングしながら、あなたが確実に前進できる環境を整えます。</p>
-          </div>
+        <div className={`${styles.credoIntro} fade-up`}>
+          <p className={styles.credoLead}>SESの「めんどくさい」を、できるだけ会社側で消します。</p>
+          <p>エンジニアに必要なのは、無駄な社内作業でも、飲み会参加でも、上司へのご機嫌取りでもありません。</p>
+          <p>ファンリアルが大事にするのは、現場での仕事、キャリアの希望、そして将来の収入です。</p>
+          <p>20代・30代が無理なく成長し、ちゃんと昇給できる会社を目指しています。</p>
         </div>
-      </div>
 
-      {/* PILLAR 2 */}
-      <div className={styles.pillarRow} style={{ background: "#E5F4F9" }}>
-        <div className={styles.pillarRowInner}>
-          <div className="fade-up">
-            <div className={styles.pillarSub}>Freedom &amp; Comfort</div>
-            <h3 className={styles.pillarTitleLg}>肩の力を抜いて働ける<br />「圧倒的な自由度」</h3>
-            <p className={styles.pillarText}>定着率の高さが証明する居心地の良さは、過度な干渉や厳しすぎるルールのないフラットな社風にあります。残業も少なく、オンとオフを両立させて働くことができます。</p>
-            <p className={styles.pillarExtra}>フラットな組織で<span className="hl-flow">上司への気遣いや空気を読んだ残業は不要</span>。好きなゲームや趣味の話で盛り上がれる仲間がいる職場で、ストレスなく自分らしく働けます。</p>
+        <div className={styles.credoList}>
+          {/* 信条 1 */}
+          <div className={`${styles.credoBlock} fade-up`}>
+            <div className={styles.credoNum}>01</div>
+            <div className={styles.credoBody}>
+              <h3 className={styles.credoTitle}>余計なことで評価しない。現場の仕事で、まっすぐ昇給。</h3>
+              <p>ファンリアルでは、エンジニアとしての日々の仕事を一番大切に評価します。</p>
+              <p>自社業務の多さ、飲み会への参加、上司へのアピール、少しのミスだけで評価を下げるようなことはしません。</p>
+              <p>現場で誠実に働き、任された仕事に向き合ってくれたら、それが一番の評価対象です。</p>
+              <p className={styles.credoEmph}>「現場で毎日働いているのに、なぜか評価されない」<br />そんな状態をなくしたいと考えています。</p>
+            </div>
           </div>
-          <div className={`${styles.pillarVisualWrap} fade-up fade-up-delay-1`} style={{ order: 1 }}>
-            <div className={styles.pillarVisualCircle} style={{ background: "rgba(0,170,204,0.08)" }}>☕</div>
-          </div>
-        </div>
-      </div>
 
-      {/* PILLAR 3 */}
-      <div className={styles.pillarRow} style={{ background: "var(--white)" }}>
-        <div className={styles.pillarRowInner}>
-          <div className={`${styles.pillarVisualWrap} fade-up`}>
-            <div className={styles.pillarVisualCircle}>🚩</div>
+          {/* 信条 2 */}
+          <div className={`${styles.credoBlock} fade-up`}>
+            <div className={styles.credoNum}>02</div>
+            <div className={styles.credoBody}>
+              <h3 className={styles.credoTitle}>案件・技術・働き方の相談は、いつでも歓迎。</h3>
+              <ul className={styles.credoQuotes}>
+                <li>「この技術を使う案件に挑戦したい」</li>
+                <li>「今の案件が合わない」</li>
+                <li>「リモートを増やしたい」</li>
+                <li>「将来的に単価を上げたい」</li>
+              </ul>
+              <p>そういう相談は、遠慮なくしてください。</p>
+              <p>すぐに希望通りにできないこともあります。でもその場合も、「無理」で終わらせず、どうすれば近づけるのかを一緒に考えます。</p>
+              <p>ファンリアルは、エンジニアの希望を会社都合で押しつぶすのではなく、キャリアに近づけるための伴走をします。</p>
+            </div>
           </div>
-          <div className="fade-up fade-up-delay-1">
-            <div className={styles.pillarSub}>Flexible Career Path</div>
-            <h3 className={styles.pillarTitleLg}>「やってみたい」を<br />形にできるキャリアパス</h3>
-            <p className={styles.pillarText}>やりがいは、強制されるものではなく「選ぶ」もの。個人やチームでの開発プロジェクトを会社の事業として持ち込むことも大歓迎。幅広い雇用形態にも対応しています。</p>
-            <p className={styles.pillarExtra}><span className="hl-flow">あなたの「やってみたい」に応える多彩なキャリアパス</span>を用意しています。副業や週3日勤務など、柔軟な雇用形態との組み合わせも可能です。</p>
+
+          {/* 信条 3 */}
+          <div className={`${styles.credoBlock} fade-up`}>
+            <div className={styles.credoNum}>03</div>
+            <div className={styles.credoBody}>
+              <h3 className={styles.credoTitle}>上下関係ではなく、対等な相談関係をつくる。</h3>
+              <p>ファンリアルでは、必要以上の上下関係をつくりたくありません。</p>
+              <p>SESにおいて大切なのは、社内の役職よりも、現場でどう働き、どう成長していくかだと考えています。</p>
+              <ul className={styles.credoQuotes}>
+                <li>技術スタックが違う人から的外れな指示をされる。</li>
+                <li>なぜこの人の言うことを聞かなければいけないのか分からない。</li>
+                <li>上司の機嫌で評価や働き方が変わる。</li>
+              </ul>
+              <p>そういったストレスをできるだけ減らし、エンジニアが対等に相談できる組織を目指します。</p>
+            </div>
           </div>
         </div>
       </div>
@@ -168,14 +173,14 @@ export default function RecruitPage() {
       {/* JOB */}
       <div className="section section-narrow">
         <div className="section-label">Recruit</div>
-        <h2 className="section-title flow-title">募集職種・条件</h2>
+        <h2 className="section-title flow-title">募集要項</h2>
         <div className={styles.card} style={{ marginBottom: "48px" }}>
           <div className={styles.cardBody}>
             <div style={{ fontSize: "18px", fontWeight: 700, margin: "0 0 20px" }}>エンジニア（システムエンジニア／プログラマー）</div>
             <table className={styles.jobTable}>
               <tbody>
                 <tr><th>仕事内容</th><td>ソフトウェアまたはハードウェア開発における業務全般</td></tr>
-                <tr><th>応募資格・求める人材</th><td>システムエンジニアまたはプログラマーの経験者<br />※保有技術・経験年数は不問</td></tr>
+                <tr><th>応募資格・求める人材</th><td>システムエンジニア・運用エンジニア・プログラマーの経験者<br />※保有技術・経験年数は不問</td></tr>
                 <tr><th>雇用形態・試用期間</th><td>正社員　※3ヵ月間の試用期間あり</td></tr>
                 <tr><th>給与</th><td>月給 30〜50万円（年俸制）<br />基本給にみなし残業分を含む<br />残業が多い場合は別途手当を支給</td></tr>
                 <tr><th>勤務地</th><td>首都圏　※参画案件に準ずる</td></tr>

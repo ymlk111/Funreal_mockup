@@ -9,13 +9,14 @@ type Card = {
   tagVariant?: "red" | "yellow" | "dark";
   title: string;
   desc: string;
+  highlight?: boolean;
 };
 
 const cards: Card[] = [
   { href: "/about", tag: "About", title: "私たちについて", desc: "ITで人と企業の未来を拓く。ファンリアルのビジョンと想いをご紹介します。" },
-  { href: "/service/se", tag: "SE", tagVariant: "red", title: "システムエンジニアリング", desc: "成長を前提とした現場アサインで、エンジニアの可能性を最大化します。" },
+  { href: "/service/se", tag: "SES", tagVariant: "red", title: "システムエンジニアリング", desc: "成長を前提とした現場アサインで、エンジニアの可能性を最大化します。" },
   { href: "/solutions", tag: "Solutions", tagVariant: "yellow", title: "ソリューションズ", desc: "企画構想から開発・運用まで一気通貫。ビジネスの成長をサポートします。" },
-  { href: "/recruit", tag: "Recruit", title: "一緒に、未来をつくろう。", desc: "2026年度エントリー受付中。あなたのペースで成長できる環境があります。" },
+  { href: "/recruit", tag: "Recruit", title: "一緒に、未来をつくろう。", desc: "2026年度エントリー受付中。あなたのペースで成長できる環境があります。", highlight: true },
   { href: "/contact", tag: "Contact", tagVariant: "dark", title: "お問い合わせ", desc: "サービスへのご相談・ご質問はお気軽にどうぞ。5営業日以内にご連絡します。" },
 ];
 
@@ -23,9 +24,11 @@ const GAP = 24;
 
 export default function PickupCarousel() {
   const total = cards.length;
+  const recruitIndex = cards.findIndex((c) => c.highlight);
   // 前後にクローンを並べてシームレスな無限ループにする
   const loop = [...cards, ...cards, ...cards];
-  const [index, setIndex] = useState(total); // 中央コピーから開始
+  // 採用カードを初期表示の中央に置く（中央コピー基準）
+  const [index, setIndex] = useState(total + Math.max(recruitIndex - 1, 0));
   const [animate, setAnimate] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +97,7 @@ export default function PickupCarousel() {
             {loop.map((c, i) => {
               const tagClass = `${styles.tag}${c.tagVariant ? ` ${styles[`tag_${c.tagVariant}`]}` : ""}`;
               return (
-                <Link key={i} href={c.href} className={styles.card}>
+                <Link key={i} href={c.href} className={`${styles.card}${c.highlight ? ` ${styles.cardHighlight}` : ""}`}>
                   <span className={tagClass}>{c.tag}</span>
                   <div className={styles.cardTitle}>{c.title}</div>
                   <div className={styles.cardDesc}>{c.desc}</div>

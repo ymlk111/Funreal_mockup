@@ -98,6 +98,19 @@ header.is-dark .hamburger span, header.is-dark.scrolled .hamburger span { backgr
 .drawer-sub li a::before { content: "- "; }
 .has-sub > a::after { content: " >"; color: var(--blue); }
 
+/* 採用情報を強調（ブランドカラーのCTAピル） */
+.drawer-recruit { border-bottom: none !important; margin-top: 12px; }
+.drawer-recruit > a {
+  display: flex !important; align-items: center; justify-content: center; gap: 8px;
+  background: var(--blue); color: #fff !important;
+  border-radius: 8px; padding: 15px 18px !important;
+  font-weight: 700; letter-spacing: 0.04em;
+  box-shadow: 0 6px 18px rgba(0,170,204,0.32);
+}
+.drawer-recruit > a:hover { background: #0090aa; color: #fff !important; }
+.drawer-recruit-arrow { font-family: var(--font-en); transition: transform 0.2s; }
+.drawer-recruit > a:hover .drawer-recruit-arrow { transform: translateX(3px); }
+
 /* dark drawer for special pages (matches each page's accent) */
 .drawer.drawer-is, .drawer.drawer-referral { box-shadow: -8px 0 24px rgba(0,0,0,0.5); }
 .drawer.drawer-is { background: #0d0d0d; }

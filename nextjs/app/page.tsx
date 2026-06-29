@@ -68,7 +68,7 @@ export default function Home() {
                   <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
                 </svg>
               </div>
-              <div className={styles.svcLabel} style={{ color: "var(--red)" }}>SE</div>
+              <div className={styles.svcLabel} style={{ color: "var(--red)" }}>SES</div>
               <div className={styles.svcName}>システムエンジニアリング</div>
               <div className={styles.svcDesc}>クライアントの開発現場にエンジニアを送り出すSES事業。成長を前提としたアサインで、技術力と品質を両立します。</div>
               <div className={styles.svcArrow} style={{ color: "var(--red)" }}>詳しく見る →</div>
@@ -115,7 +115,10 @@ export default function Home() {
       </section>
 
       {/* RECRUIT CTA */}
-      <section className={styles.recruitBg}>
+      <section
+        className={styles.recruitBg}
+        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.82) 0%, rgba(0,95,122,0.74) 100%), url(${asset("/image/hero-image2.png")})` }}
+      >
         <div className={`${styles.recruitInner} fade-up`}>
           <div>
             <div className="section-label" style={{ color: "var(--yellow)" }}>Recruit</div>
@@ -132,8 +135,7 @@ export default function Home() {
       {/* CONTACT CTA */}
       <section className={styles.contactBg}>
         <div className={`${styles.contactInner} fade-up`}>
-          <div className="section-label" style={{ justifyContent: "center" }}>Contact</div>
-          <h2 className={styles.contactTitle}>サービスに関するお問い合わせ</h2>
+          <h2 className={styles.contactTitle}>お問い合わせはこちらへ</h2>
           <p className={styles.contactDesc}>
             ご質問・ご相談はお気軽にどうぞ。<br />
             担当者より5営業日以内にご連絡いたします。

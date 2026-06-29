@@ -101,7 +101,7 @@ export default function RecruitPage() {
       <div className={styles.cultureCta}>
         <div className={`${styles.midCta} fade-up`}>
           <p>少しでも気になった方は、まずはカジュアルにお話ししましょう。</p>
-          <Link href="#entry" className="btn btn-primary" style={{ fontSize: "13px", padding: "14px 40px" }}>Entry →</Link>
+          <a href="#" className="btn btn-primary" style={{ fontSize: "13px", padding: "14px 40px" }}>エントリーする →</a>
         </div>
       </div>
 
@@ -152,9 +152,6 @@ export default function RecruitPage() {
               <div className={styles.numCardValue}>60<span className={styles.numCardUnit}>%</span></div>
             </div>
           </div>
-          <p style={{ textAlign: "center", marginTop: "32px", fontSize: "11px", color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-en)" }}>
-            ※ 数値はすべてダミーです。実データに差し替え予定（2026年◯月時点）
-          </p>
         </div>
       </div>
 
@@ -174,8 +171,7 @@ export default function RecruitPage() {
         <h2 className="section-title flow-title">募集職種・条件</h2>
         <div className={styles.card} style={{ marginBottom: "48px" }}>
           <div className={styles.cardBody}>
-            <span className={styles.cardTag}>OPEN</span>
-            <div style={{ fontSize: "18px", fontWeight: 700, margin: "8px 0 20px" }}>エンジニア（システムエンジニア／プログラマー）</div>
+            <div style={{ fontSize: "18px", fontWeight: 700, margin: "0 0 20px" }}>エンジニア（システムエンジニア／プログラマー）</div>
             <table className={styles.jobTable}>
               <tbody>
                 <tr><th>仕事内容</th><td>ソフトウェアまたはハードウェア開発における業務全般</td></tr>
@@ -211,7 +207,7 @@ export default function RecruitPage() {
             現在、新しいメンバーの積極採用を行っております。<br />
             少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。
           </p>
-          <a href="#" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>Entry →</a>
+          <a href="#" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>エントリーする →</a>
           <p style={{ color: "#555", fontSize: "11px", marginTop: "16px", fontFamily: "var(--font-en)" }}>* Google フォームに遷移します</p>
         </div>
       </div>

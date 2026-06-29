@@ -87,7 +87,6 @@ export default function ReferralPage() {
           {events.map((e) => (
             <div key={e.title} className={styles.eventItem}>
               <div className={styles.eventDot} />
-              <div className={styles.eventDate}>{e.month}</div>
               <div className={styles.eventTitle}>{e.title}</div>
               <p className={styles.eventText}>{e.text}</p>
             </div>
@@ -166,7 +165,7 @@ export default function ReferralPage() {
             趣味の話でも、キャリアの話でも、お気軽にどうぞ。
           </p>
           <div className={styles.ctaActions}>
-            <Link href="/recruit#entry" className="btn btn-primary">採用に応募する →</Link>
+            <a href="#" className="btn btn-primary">エントリーする →</a>
             <Link href="/recruit" className={styles.ctaSecondary}>採用情報を見る →</Link>
           </div>
         </div>

@@ -49,9 +49,8 @@
 .interviewA { font-size: 14px; line-height: 2; color: #555; }
 
 .cardGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
-.card { background: var(--white); border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-.card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
-.cardBody { padding: 32px; }
+.card { background: transparent; }
+.cardBody { padding: 0; }
 .cardTag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
 .jobTable { width: 100%; border-collapse: collapse; }
 .jobTable th, .jobTable td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }

@@ -158,7 +158,7 @@ export default function ServiceISPage() {
           <div>
             <div className={styles.ctaEyebrow}>Free Consultation</div>
             <div className={styles.ctaH}>まず、話を聞かせてください。</div>
-            <p className={styles.ctaSub}>インサイドセールスの導入・強化について、貴社の課題に合わせた提案をいたします。相談・見積もりは完全無料です。</p>
+            <p className={styles.ctaSub}>インサイドセールスの導入・強化について、貴社の課題に合わせた提案をいたします。相談・お見積りは完全無料です。</p>
           </div>
           <div className={styles.ctaRight}>
             <Link href="/contact" className={styles.btnOnDark}>
@@ -166,7 +166,7 @@ export default function ServiceISPage() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
             <div className={styles.ctaNotes}>
-              {["相談・見積もり完全無料", "2営業日以内にご連絡", "しつこい営業は一切なし"].map((t) => (
+              {["相談・お見積り完全無料", "5営業日以内にご連絡", "しつこい営業は一切なし"].map((t) => (
                 <div key={t} className={styles.ctaNoteRow}>
                   <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
                   {t}

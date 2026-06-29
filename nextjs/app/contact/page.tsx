@@ -34,7 +34,7 @@ export default function ContactPage() {
           <div className={styles.typeGrid}>
             {[
               { icon: "💬", title: "サービスについて", text: "SES・IS・各種ソリューションについてのご質問・お見積り" },
-              { icon: "🚫", title: "営業のお問い合わせ", text: "営業目的のポスティング・飛び込み営業はご遠慮ください" },
+              { icon: "🚫", title: "ご遠慮事項", text: "営業目的のポスティング・飛び込み営業はご遠慮ください" },
               { icon: "📋", title: "その他", text: "取材・協業・その他のお問い合わせ" },
             ].map((t) => (
               <div key={t.title} className={styles.typeCard}>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                   <option value="" disabled>選択してください</option>
                   <option>SESに関するご相談</option>
                   <option>IS・各種ソリューションに関するご相談</option>
-                  <option>お見積もりのご依頼</option>
+                  <option>お見積りのご依頼</option>
                   <option>取材・メディア関連</option>
                   <option>協業・パートナーシップ</option>
                   <option>その他</option>
@@ -116,9 +116,6 @@ export default function ContactPage() {
               <div className={styles.formPrivacy}>
                 送信することで、<button type="button" className={styles.privacyLink} onClick={() => setLegalOpen(true)}>プライバシーポリシー</button>に同意したものとみなします。
               </div>
-              <div className={styles.formMockupNote}>
-                ※ Google Forms の action URL と entry ID を差し替えると送信が有効化されます
-              </div>
             </form>
           ) : (
             <div style={{ textAlign: "center", padding: "60px 24px" }}>
@@ -139,13 +136,6 @@ export default function ContactPage() {
 
       <hr className="divider" />
 
-      {/* RECEPTION HOURS */}
-      <section className="section section-narrow" style={{ paddingTop: "0", textAlign: "center" }}>
-        <p className="fade-up" style={{ color: "var(--gray-text)", fontSize: "13px", lineHeight: 2 }}>
-          受付時間：平日 10:00〜18:00（土日祝を除く）
-        </p>
-      </section>
-
       {/* FAQ */}
       <section className="section" style={{ maxWidth: "780px" }}>
         <div className="fade-up">
@@ -164,7 +154,7 @@ function FaqList() {
   const items = [
     { q: "返信までどのくらいかかりますか？", a: "通常、5営業日以内にご連絡いたします。但し、内容によって返信が不要と判断した場合は、返信いたしかねますのでご了承ください。" },
     { q: "対応可能なエリアはどこですか？", a: "SE事業・IS事業ともに、基本的に首都圏（東京・神奈川・千葉・埼玉）を中心に対応しています。リモート対応が可能な案件については、全国からのご相談も承ります。" },
-    { q: "見積もりだけでも相談できますか？", a: "もちろんです。ご検討段階でのお見積もり・ご相談も歓迎しております。まずはお気軽にお問い合わせください。" },
+    { q: "お見積りだけでも相談できますか？", a: "もちろんです。ご検討段階でのお見積り・ご相談も歓迎しております。まずはお気軽にお問い合わせください。" },
     { q: "採用に関する問い合わせもここからできますか？", a: "採用に関するお問い合わせ・ご応募は、採用ページの専用エントリーフォームより承っております。お手数ですが採用ページからお進みください。" },
   ];
   const [openIdx, setOpenIdx] = useState<number | null>(null);

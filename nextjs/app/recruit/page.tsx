@@ -101,7 +101,7 @@ export default function RecruitPage() {
       <div className={styles.cultureCta}>
         <div className={`${styles.midCta} fade-up`}>
           <p>少しでも気になった方は、まずはカジュアルにお話ししましょう。</p>
-          <a href="#" className="btn btn-primary" style={{ fontSize: "13px", padding: "14px 40px" }}>エントリーする →</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "13px", padding: "14px 40px" }}>エントリーする →</a>
         </div>
       </div>
 
@@ -207,7 +207,7 @@ export default function RecruitPage() {
             現在、新しいメンバーの積極採用を行っております。<br />
             少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。
           </p>
-          <a href="#" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>エントリーする →</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>エントリーする →</a>
           <p style={{ color: "#555", fontSize: "11px", marginTop: "16px", fontFamily: "var(--font-en)" }}>* Google フォームに遷移します</p>
         </div>
       </div>

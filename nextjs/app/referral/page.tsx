@@ -165,7 +165,7 @@ export default function ReferralPage() {
             趣味の話でも、キャリアの話でも、お気軽にどうぞ。
           </p>
           <div className={styles.ctaActions}>
-            <a href="#" className="btn btn-primary">エントリーする →</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary">エントリーする →</a>
             <Link href="/recruit" className={styles.ctaSecondary}>採用情報を見る →</Link>
           </div>
         </div>

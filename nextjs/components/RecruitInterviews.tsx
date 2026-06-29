@@ -132,14 +132,16 @@ export default function RecruitInterviews() {
               ))}
             </div>
 
-            <button
-              className={styles.toggle}
-              onClick={() => setOpenIdx(open ? null : i)}
-              aria-expanded={open}
-            >
-              {open ? "閉じる" : "インタビュー全文を読む"}
-              <span className={`${styles.toggleIcon}${open ? ` ${styles.toggleIconOpen}` : ""}`}>＋</span>
-            </button>
+            {!open && (
+              <button
+                className={styles.toggle}
+                onClick={() => setOpenIdx(i)}
+                aria-expanded={open}
+              >
+                インタビュー全文を読む
+                <span className={styles.toggleIcon}>＋</span>
+              </button>
+            )}
 
             <div className={`${styles.qaWrap}${open ? ` ${styles.qaOpen}` : ""}`}>
               <div className={styles.qaInner}>
@@ -149,6 +151,14 @@ export default function RecruitInterviews() {
                     <p className={styles.qaA}>{item.a}</p>
                   </div>
                 ))}
+                <button
+                  className={styles.toggle}
+                  onClick={() => setOpenIdx(null)}
+                  aria-expanded={open}
+                >
+                  閉じる
+                  <span className={`${styles.toggleIcon} ${styles.toggleIconOpen}`}>＋</span>
+                </button>
               </div>
             </div>
           </div>

@@ -159,6 +159,9 @@
 }
 .ctaTitle { font-family: var(--g-rpg); font-size: 24px; font-weight: 400; color: var(--g-white); margin-bottom: 14px; }
 .ctaText { font-family: var(--g-rpg); color: var(--g-dim); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+.ctaActions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.ctaSecondary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border: 2px solid rgba(255,255,255,0.45); border-radius: 0; color: var(--g-white); font-family: var(--g-rpg); font-weight: 700; font-size: 14px; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+.ctaSecondary:hover { border-color: var(--g-coin); color: var(--g-coin); }
 
 @media (max-width: 768px) {
   .gameGrid { grid-template-columns: 1fr 1fr; }

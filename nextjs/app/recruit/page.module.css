@@ -11,26 +11,30 @@
 
 .cultureHeader { background: #E5F4F9; padding: 72px 60px 56px; }
 .cultureHeaderInner { max-width: 1100px; margin: 0 auto; text-align: center; }
-.pillarRow { padding: 72px 60px; }
-.pillarRowInner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.pillarVisualWrap { display: flex; align-items: center; justify-content: center; }
-.pillarVisualCircle { width: 240px; height: 240px; border-radius: 50%; background: rgba(0,170,204,0.1); border: 2px dashed rgba(0,170,204,0.3); display: flex; align-items: center; justify-content: center; font-size: 72px; flex-shrink: 0; transition: transform 0.35s ease; }
+.pillarRow { padding: 72px 60px; background: var(--white); }
+.pillarRowAlt { background: var(--gray-light); }
+.pillarRowInner { max-width: 1100px; margin: 0 auto; display: flex; gap: 64px; align-items: center; }
+.pillarVisualWrap { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+.credoBody { flex: 1 1 auto; min-width: 0; }
+.pillarVisualCircle { width: 200px; height: 200px; border-radius: 50%; background: rgba(0,170,204,0.1); border: 2px dashed rgba(0,170,204,0.3); display: flex; align-items: center; justify-content: center; color: var(--blue); flex-shrink: 0; transition: transform 0.35s ease; }
+.pillarVisualCircle svg { width: 80px; height: 80px; }
 .pillarVisualCircle:hover { transform: scale(1.06) rotate(4deg); }
-.pillarSub { font-size: 11px; font-family: var(--font-en); font-weight: 600; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 8px; text-transform: uppercase; }
-.pillarTitleLg {
-  font-size: clamp(24px,2.4vw,32px); font-weight: 700; line-height: 1.45; margin: 6px 0 14px;
-  background: linear-gradient(90deg, var(--black) 0%, var(--blue) 50%, var(--black) 100%);
-  background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: pillarFlow 4s linear infinite; animation-play-state: paused;
-}
-.pillarRow:hover .pillarTitleLg { animation-play-state: running; }
+.credoNum { font-family: var(--font-en); font-size: 18px; font-weight: 800; color: var(--blue); letter-spacing: 0.12em; line-height: 1; margin-bottom: 8px; }
+.credoTitle { margin: 0 0 18px; line-height: 1.45; }
 .pillarText { font-size: 14px; line-height: 2; color: #555; margin-bottom: 14px; }
 .pillarExtra { font-size: 13.5px; line-height: 2.1; color: #444; padding: 14px 18px; border-left: 3px solid var(--blue); background: rgba(0,170,204,0.05); border-radius: 0 8px 8px 0; }
 .cultureCta { background: var(--gray-light); padding: 56px 60px; }
 .midCta { text-align: center; padding: 48px 40px; background: rgba(0,170,204,0.06); border: 1px solid rgba(0,170,204,0.15); border-radius: 12px; max-width: 1100px; margin: 0 auto; }
 .midCta p { font-size: 14px; color: #555; margin-bottom: 20px; }
 
-.numbersBg { background: linear-gradient(135deg, #00AACC, #006E8A); }
+.numbersBg {
+  background-color: #111a2e;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1.6px),
+    linear-gradient(135deg, #1b2a4d 0%, #0b1120 100%);
+  background-size: 16px 16px, 100% 100%;
+  background-position: 0 0, 0 0;
+}
 .numGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .numCard { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 28px 24px; text-align: center; transition: transform 0.2s, background 0.2s; }
 .numCard:hover { transform: translateY(-2px); background: rgba(255,255,255,0.18); }
@@ -68,16 +72,13 @@
 .entryCtaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
 
 /* ===== CREDO (3つの信条) ===== */
-.credoSec { max-width: 860px; margin: 0 auto; padding: 80px 24px 96px; }
-.credoHead { text-align: center; margin-bottom: 44px; }
-.credoIntro { background: var(--gray-light); border-radius: 14px; padding: 36px 40px; margin-bottom: 60px; }
+.credoHeader { max-width: 860px; margin: 0 auto; padding: 80px 24px 8px; text-align: center; }
+.credoSecTitle { position: relative; display: inline-block; padding-bottom: 18px; }
+.credoSecTitle::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--blue), #7b2ff7); }
+.credoIntro { background: var(--gray-light); border-radius: 14px; padding: 36px 40px; margin: 28px 0 0; text-align: left; }
 .credoIntro p { font-size: 15px; line-height: 2; color: #444; margin: 0 0 14px; }
 .credoIntro p:last-child { margin-bottom: 0; }
-.credoLead { font-size: 19px; font-weight: 700; color: var(--black); line-height: 1.7; margin-bottom: 18px; }
-.credoList { display: flex; flex-direction: column; gap: 56px; }
-.credoBlock { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start; }
-.credoNum { font-family: var(--font-en); font-size: 46px; font-weight: 900; line-height: 1; color: var(--blue); }
-.credoTitle { font-size: clamp(19px, 2.4vw, 24px); font-weight: 800; color: var(--black); line-height: 1.55; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--gray-mid); }
+.credoLead { font-size: 21px; font-weight: 800; color: var(--black); line-height: 1.6; margin: 0 0 18px; padding-bottom: 14px; border-bottom: 2px solid rgba(0,170,204,0.45); }
 .credoBody p { font-size: 15px; line-height: 2; color: #444; margin: 0 0 16px; }
 .credoBody p:last-child { margin-bottom: 0; }
 .credoEmph { color: var(--black); font-weight: 600; background: rgba(0,170,204,0.06); border-left: 3px solid var(--blue); padding: 14px 18px; border-radius: 0 8px 8px 0; }
@@ -86,16 +87,16 @@
 .credoQuotes li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
 
 @media (max-width: 768px) {
-  .credoSec { padding: 56px 20px 70px; }
-  .credoIntro { padding: 26px 22px; margin-bottom: 44px; }
-  .credoList { gap: 44px; }
-  .credoBlock { grid-template-columns: 1fr; gap: 10px; }
-  .credoNum { font-size: 34px; }
+  .credoHeader { padding: 56px 20px 4px; }
+  .credoSecTitle { padding-bottom: 14px; }
+  .credoLead { font-size: 18px; }
+  .credoIntro { padding: 26px 22px; }
   .recruitHeroContent { padding: 60px 24px; }
   .pillarRow { padding: 48px 24px; }
-  .pillarRowInner { grid-template-columns: 1fr; gap: 28px; }
+  .pillarRowInner { flex-direction: column; gap: 24px; align-items: stretch; }
   .pillarVisualWrap { order: -1 !important; }
-  .pillarVisualCircle { width: 140px; height: 140px; font-size: 44px; }
+  .pillarVisualCircle { width: 140px; height: 140px; }
+  .pillarVisualCircle svg { width: 58px; height: 58px; }
   .cultureHeader { padding: 48px 24px 36px; }
   .cultureCta { padding: 40px 24px; }
   .numGrid { grid-template-columns: 1fr; }

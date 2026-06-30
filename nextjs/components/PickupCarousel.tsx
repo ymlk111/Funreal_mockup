@@ -15,7 +15,7 @@ type Card = {
 // 採用カードを2番目に置くことで、初期表示(中央コピーの先頭3枚)の「中央」に来る。
 const cards: Card[] = [
   { href: "/about", tag: "About", title: "私たちについて", desc: "ITで人と企業の未来を拓く。ファンリアルのビジョンと想いをご紹介します。" },
-  { href: "/recruit", tag: "Recruit", title: "一緒に、未来をつくろう。", desc: "2026年度エントリー受付中。あなたのペースで成長できる環境があります。", highlight: true },
+  { href: "/recruit", tag: "Recruit", title: "一緒に、未来をつくろう。", desc: "中途採用エントリー募集中。あなたのペースで成長できる環境があります。", highlight: true },
   { href: "/service/se", tag: "SES", tagVariant: "red", title: "システムエンジニアリング", desc: "成長を前提とした現場アサインで、エンジニアの可能性を最大化します。" },
   { href: "/solutions", tag: "Solutions", tagVariant: "yellow", title: "ソリューションズ", desc: "企画構想から開発・運用まで一気通貫。ビジネスの成長をサポートします。" },
   { href: "/contact", tag: "Contact", tagVariant: "dark", title: "お問い合わせ", desc: "サービスへのご相談・ご質問はお気軽にどうぞ。5営業日以内にご連絡します。" },
@@ -70,6 +70,19 @@ export default function PickupCarousel() {
     setIndex((i) => i + dir);
   };
 
+  // スマホ向けスワイプ操作
+  const touchStartX = useRef<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(dx) < 40) return; // 誤反応防止のしきい値
+    go(dx < 0 ? 1 : -1);
+  };
+
   const handleTransitionEnd = (e: React.TransitionEvent) => {
     if (e.target !== trackRef.current) return; // カードのホバー等のバブリングを無視
     if (index >= total * 2) {
@@ -93,7 +106,7 @@ export default function PickupCarousel() {
         <button className={`${styles.btn} ${styles.btnPrev}`} aria-label="前へ" onClick={() => go(-1)}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6" /></svg>
         </button>
-        <div className={styles.viewport}>
+        <div className={styles.viewport} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} style={{ touchAction: "pan-y" }}>
           <div className={styles.track} ref={trackRef} onTransitionEnd={handleTransitionEnd}>
             {loop.map((c, i) => {
               const tagClass = `${styles.tag}${c.tagVariant ? ` ${styles[`tag_${c.tagVariant}`]}` : ""}`;

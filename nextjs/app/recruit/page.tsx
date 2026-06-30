@@ -41,62 +41,78 @@ export default function RecruitPage() {
       <hr className="divider" />
 
       {/* CREDO */}
-      <div className={styles.credoSec}>
-        <div className={styles.credoHead}>
-          <h2 className={`section-title fade-up flow-title`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの信条</h2>
-        </div>
-
+      <div className={styles.credoHeader}>
+        <h2 className={`section-title fade-up flow-title ${styles.credoSecTitle}`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの信条</h2>
         <div className={`${styles.credoIntro} fade-up`}>
           <p className={styles.credoLead}>SESの「めんどくさい」を、できるだけ会社側で消します。</p>
           <p>エンジニアに必要なのは、無駄な社内作業でも、飲み会参加でも、上司へのご機嫌取りでもありません。</p>
           <p>ファンリアルが大事にするのは、現場での仕事、キャリアの希望、そして将来の収入です。</p>
           <p>20代・30代が無理なく成長し、ちゃんと昇給できる会社を目指しています。</p>
         </div>
+      </div>
 
-        <div className={styles.credoList}>
-          {/* 信条 1 */}
-          <div className={`${styles.credoBlock} fade-up`}>
+      {/* 信条1 ── 視覚=左 / 文章=右 */}
+      <div className={styles.pillarRow}>
+        <div className={styles.pillarRowInner}>
+          <div className={`${styles.pillarVisualWrap} fade-up`}>
+            <div className={styles.pillarVisualCircle} aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17l6-6 4 4 8-8" /><path d="M14 7h7v7" /></svg>
+            </div>
+          </div>
+          <div className={`${styles.credoBody} fade-up fade-up-delay-1`}>
             <div className={styles.credoNum}>01</div>
-            <div className={styles.credoBody}>
-              <h3 className={styles.credoTitle}>余計なことで評価しない。現場の仕事で、まっすぐ昇給。</h3>
-              <p>ファンリアルでは、エンジニアとしての日々の仕事を一番大切に評価します。</p>
-              <p>自社業務の多さ、飲み会への参加、上司へのアピール、少しのミスだけで評価を下げるようなことはしません。</p>
-              <p>現場で誠実に働き、任された仕事に向き合ってくれたら、それが一番の評価対象です。</p>
-              <p className={styles.credoEmph}>「現場で毎日働いているのに、なぜか評価されない」<br />そんな状態をなくしたいと考えています。</p>
-            </div>
+            <h3 className={`section-title flow-title ${styles.credoTitle}`}>余計なことで評価しない。現場の仕事で、まっすぐ昇給。</h3>
+            <p>ファンリアルでは、エンジニアとしての日々の仕事を一番大切に評価します。</p>
+            <p>自社業務の多さ、飲み会への参加、上司へのアピール、少しのミスだけで評価を下げるようなことはしません。</p>
+            <p>現場で誠実に働き、任された仕事に向き合ってくれたら、それが一番の評価対象です。</p>
+            <p className={styles.credoEmph}>「現場で毎日働いているのに、なぜか評価されない」<br />そんな状態をなくしたいと考えています。</p>
           </div>
+        </div>
+      </div>
 
-          {/* 信条 2 */}
-          <div className={`${styles.credoBlock} fade-up`}>
+      {/* 信条2 ── 文章=左 / 視覚=右（薄青背景） */}
+      <div className={`${styles.pillarRow} ${styles.pillarRowAlt}`}>
+        <div className={styles.pillarRowInner}>
+          <div className={`${styles.credoBody} fade-up`}>
             <div className={styles.credoNum}>02</div>
-            <div className={styles.credoBody}>
-              <h3 className={styles.credoTitle}>案件・技術・働き方の相談は、いつでも歓迎。</h3>
-              <ul className={styles.credoQuotes}>
-                <li>「この技術を使う案件に挑戦したい」</li>
-                <li>「今の案件が合わない」</li>
-                <li>「リモートを増やしたい」</li>
-                <li>「将来的に単価を上げたい」</li>
-              </ul>
-              <p>そういう相談は、遠慮なくしてください。</p>
-              <p>すぐに希望通りにできないこともあります。でもその場合も、「無理」で終わらせず、どうすれば近づけるのかを一緒に考えます。</p>
-              <p>ファンリアルは、エンジニアの希望を会社都合で押しつぶすのではなく、キャリアに近づけるための伴走をします。</p>
+            <h3 className={`section-title flow-title ${styles.credoTitle}`}>案件・技術・働き方の相談は、いつでも歓迎。</h3>
+            <ul className={styles.credoQuotes}>
+              <li>「この技術を使う案件に挑戦したい」</li>
+              <li>「今の案件が合わない」</li>
+              <li>「リモートを増やしたい」</li>
+              <li>「将来的に単価を上げたい」</li>
+            </ul>
+            <p>そういう相談は、遠慮なくしてください。</p>
+            <p>すぐに希望通りにできないこともあります。でもその場合も、「無理」で終わらせず、どうすれば近づけるのかを一緒に考えます。</p>
+            <p className={styles.credoEmph}>ファンリアルは、エンジニアの希望を会社都合で押しつぶすのではなく、キャリアに近づけるための伴走をします。</p>
+          </div>
+          <div className={`${styles.pillarVisualWrap} fade-up fade-up-delay-1`}>
+            <div className={styles.pillarVisualCircle} aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M8 9h8" /><path d="M8 13h5" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3z" /></svg>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* 信条 3 */}
-          <div className={`${styles.credoBlock} fade-up`}>
-            <div className={styles.credoNum}>03</div>
-            <div className={styles.credoBody}>
-              <h3 className={styles.credoTitle}>上下関係ではなく、対等な相談関係をつくる。</h3>
-              <p>ファンリアルでは、必要以上の上下関係をつくりたくありません。</p>
-              <p>SESにおいて大切なのは、社内の役職よりも、現場でどう働き、どう成長していくかだと考えています。</p>
-              <ul className={styles.credoQuotes}>
-                <li>技術スタックが違う人から的外れな指示をされる。</li>
-                <li>なぜこの人の言うことを聞かなければいけないのか分からない。</li>
-                <li>上司の機嫌で評価や働き方が変わる。</li>
-              </ul>
-              <p>そういったストレスをできるだけ減らし、エンジニアが対等に相談できる組織を目指します。</p>
+      {/* 信条3 ── 視覚=左 / 文章=右 */}
+      <div className={styles.pillarRow}>
+        <div className={styles.pillarRowInner}>
+          <div className={`${styles.pillarVisualWrap} fade-up`}>
+            <div className={styles.pillarVisualCircle} aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M7 20h10" /><path d="M6 6l6-1 6 1" /><path d="M12 3v17" /><path d="M9 12L6 6l-3 6a3 3 0 0 0 6 0" /><path d="M21 12l-3-6-3 6a3 3 0 0 0 6 0" /></svg>
             </div>
+          </div>
+          <div className={`${styles.credoBody} fade-up fade-up-delay-1`}>
+            <div className={styles.credoNum}>03</div>
+            <h3 className={`section-title flow-title ${styles.credoTitle}`}>上下関係ではなく、対等な相談関係をつくる。</h3>
+            <p>ファンリアルでは、必要以上の上下関係をつくりたくありません。</p>
+            <p>SESにおいて大切なのは、社内の役職よりも、現場でどう働き、どう成長していくかだと考えています。</p>
+            <ul className={styles.credoQuotes}>
+              <li>技術スタックが違う人から的外れな指示をされる。</li>
+              <li>なぜこの人の言うことを聞かなければいけないのか分からない。</li>
+              <li>上司の機嫌で評価や働き方が変わる。</li>
+            </ul>
+            <p className={styles.credoEmph}>そういったストレスをできるだけ減らし、エンジニアが対等に相談できる組織を目指します。</p>
           </div>
         </div>
       </div>
@@ -148,12 +164,12 @@ export default function RecruitPage() {
               <div className={styles.numCardValue}>27<span className={styles.numCardUnit}>歳</span></div>
             </div>
             <div className={styles.numCard}>
-              <div className={styles.numCardTitle}>未経験入社率</div>
+              <div className={styles.numCardTitle}>前職より給与アップ</div>
               <svg className={styles.numSvgChart} viewBox="0 0 80 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="40" cy="38" r="26" stroke="rgba(255,255,255,0.18)" strokeWidth="9" fill="none"/>
-                <circle cx="40" cy="38" r="26" stroke="white" strokeWidth="9" fill="none" strokeDasharray="98.0 65.3" strokeLinecap="round" transform="rotate(-90 40 38)"/>
+                <circle cx="40" cy="38" r="26" stroke="white" strokeWidth="9" fill="none" strokeDasharray="147 16.4" strokeLinecap="round" transform="rotate(-90 40 38)"/>
               </svg>
-              <div className={styles.numCardValue}>60<span className={styles.numCardUnit}>%</span></div>
+              <div className={styles.numCardValue}>90<span className={styles.numCardUnit}>%以上</span></div>
             </div>
           </div>
         </div>
@@ -170,7 +186,7 @@ export default function RecruitPage() {
       <hr className="divider" />
 
       {/* JOB */}
-      <div className="section section-narrow">
+      <div className="section section-narrow" style={{ paddingBottom: "56px" }}>
         <div className="section-label">Recruit</div>
         <h2 className="section-title flow-title">募集要項</h2>
         <div className={styles.card} style={{ marginBottom: "48px" }}>
@@ -195,7 +211,7 @@ export default function RecruitPage() {
       </div>
 
       {/* REFERRAL BANNER */}
-      <div className="section section-narrow" style={{ paddingBottom: 0 }}>
+      <div className="section section-narrow" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <div className={`${styles.referralBanner} fade-up`}>
           <div className={styles.referralBannerTitle}>🎮 友達に紹介されましたか？</div>
           <p className={styles.referralBannerText}>ゲーム好き・ボドゲ好き必見。ファンリアルの「素顔」を覗いてみてください。</p>

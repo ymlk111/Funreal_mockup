@@ -15,7 +15,7 @@ export default function RecruitPage() {
       <div className={styles.recruitHero}>
         <div
           className={styles.recruitHeroBg}
-          style={{ backgroundImage: `url(${asset("/image/hero-image.png")})` }}
+          style={{ backgroundImage: `url(${asset("/image/Recruit_top.png")})` }}
         />
         <div className={styles.recruitHeroContent}>
           <h1 className={styles.recruitHeroCatch}>自由に、そして楽しく。</h1>
@@ -56,7 +56,8 @@ export default function RecruitPage() {
         <div className={styles.pillarRowInner}>
           <div className={`${styles.pillarVisualWrap} fade-up`}>
             <div className={styles.pillarVisualCircle} aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17l6-6 4 4 8-8" /><path d="M14 7h7v7" /></svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/image/RecruitIcon1.png")} alt="" loading="lazy" />
             </div>
           </div>
           <div className={`${styles.credoBody} fade-up fade-up-delay-1`}>
@@ -88,7 +89,8 @@ export default function RecruitPage() {
           </div>
           <div className={`${styles.pillarVisualWrap} fade-up fade-up-delay-1`}>
             <div className={styles.pillarVisualCircle} aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M8 9h8" /><path d="M8 13h5" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3z" /></svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/image/RecruitIcon2.png")} alt="" loading="lazy" />
             </div>
           </div>
         </div>
@@ -99,7 +101,8 @@ export default function RecruitPage() {
         <div className={styles.pillarRowInner}>
           <div className={`${styles.pillarVisualWrap} fade-up`}>
             <div className={styles.pillarVisualCircle} aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M7 20h10" /><path d="M6 6l6-1 6 1" /><path d="M12 3v17" /><path d="M9 12L6 6l-3 6a3 3 0 0 0 6 0" /><path d="M21 12l-3-6-3 6a3 3 0 0 0 6 0" /></svg>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/image/RecruitIcon3.png")} alt="" loading="lazy" />
             </div>
           </div>
           <div className={`${styles.credoBody} fade-up fade-up-delay-1`}>
@@ -212,7 +215,10 @@ export default function RecruitPage() {
 
       {/* REFERRAL BANNER */}
       <div className="section section-narrow" style={{ paddingTop: 0, paddingBottom: 0 }}>
-        <div className={`${styles.referralBanner} fade-up`}>
+        <div
+          className={`${styles.referralBanner} fade-up`}
+          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.85), rgba(0,90,115,0.85)), url(${asset("/image/ToReferral.png")})` }}
+        >
           <div className={styles.referralBannerTitle}>🎮 友達に紹介されましたか？</div>
           <p className={styles.referralBannerText}>ゲーム好き・ボドゲ好き必見。ファンリアルの「素顔」を覗いてみてください。</p>
           <Link href="/referral" className={styles.referralBannerLink}>ファンリアルの素顔を見る →</Link>
@@ -221,14 +227,17 @@ export default function RecruitPage() {
 
       {/* ENTRY CTA */}
       <div className="section section-narrow" id="entry" style={{ paddingTop: "48px" }}>
-        <div className={`${styles.entryCta} fade-up`}>
+        <div
+          className={`${styles.entryCta} fade-up`}
+          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.85), rgba(0,90,115,0.85)), url(${asset("/image/ToEntry.png")})` }}
+        >
           <div className={styles.entryCtaTitle}>私たちと一緒に、新しいスタートを切りませんか？</div>
           <p className={styles.entryCtaText}>
             現在、新しいメンバーの積極採用を行っております。<br />
             少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。
           </p>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>エントリーする →</a>
-          <p style={{ color: "#555", fontSize: "11px", marginTop: "16px", fontFamily: "var(--font-en)" }}>* Google フォームに遷移します</p>
+          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "11px", marginTop: "16px", fontFamily: "var(--font-en)" }}>* Google フォームに遷移します</p>
         </div>
       </div>
     </>

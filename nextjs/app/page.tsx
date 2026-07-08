@@ -15,7 +15,7 @@ export default function Home() {
       <div className={styles.heroValuesWrap}>
         <div
           className={styles.heroValuesBg}
-          style={{ backgroundImage: `url(${asset("/image/hero-image.png")})` }}
+          style={{ backgroundImage: `url(${asset("/image/Hero.png")})` }}
         />
         <div className={styles.heroValuesOverlay} />
         <div className={styles.heroValuesAccent} />
@@ -51,7 +51,7 @@ export default function Home() {
           </div>
           <div className={styles.aboutVisual}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/image/human-image.png")} alt="About Us" loading="lazy" style={{ width: "100%", borderRadius: "8px", display: "block" }} />
+            <img src={asset("/image/Aboutus.png")} alt="About Us" loading="lazy" style={{ width: "100%", borderRadius: "8px", display: "block" }} />
             <div className={styles.aboutVisualAccent} />
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function Home() {
       {/* RECRUIT CTA */}
       <section
         className={styles.recruitBg}
-        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.82) 0%, rgba(0,95,122,0.74) 100%), url(${asset("/image/hero-image2.png")})` }}
+        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.82) 0%, rgba(0,95,122,0.74) 100%), url(${asset("/image/ToRecruit.png")})` }}
       >
         <div className={`${styles.recruitInner} fade-up`}>
           <div>

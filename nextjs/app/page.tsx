@@ -15,7 +15,7 @@ export default function Home() {
       <div className={styles.heroValuesWrap}>
         <div
           className={styles.heroValuesBg}
-          style={{ backgroundImage: `url(${asset("/image/hero-image.png")})` }}
+          style={{ backgroundImage: `url(${asset("/image/Hero.png")})` }}
         />
         <div className={styles.heroValuesOverlay} />
         <div className={styles.heroValuesAccent} />
@@ -39,15 +39,19 @@ export default function Home() {
             <div className="section-label">About Us</div>
             <h2 className="section-title">人の力が、社会を動かす。</h2>
             <p className={styles.aboutBody}>
-              ITの進化が加速するいま、私たちは「人」の可能性を最大化することに全力を注いでいます。
-              個々の「やりたいこと」を実現し、心身ともに豊かなエンジニアが生み出す力で、
-              社会とお客様の発展に貢献します。
+              ITの進化が加速するいま、私たちは「人」の可能性を最大化することを大切にしています。
+              <br /><br />
+              SES事業から始まった当社は、仲間の増加とともに、インサイドセールス、各種SaaSアプリ、ミニ情シスなど、事業領域を少しずつ広げてきました。
+              <br />
+              エンジニア一人ひとりの「やりたいこと」を実現し、心身ともに豊かに働ける環境をつくることで、お客様と社会の発展に貢献してまいります。
+              <br /><br />
+              これからも一歩一歩、成長を続ける会社であり続けます。
             </p>
             <Link href="/about" className="btn-outline-sm">会社概要を見る →</Link>
           </div>
           <div className={styles.aboutVisual}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/image/human-image.png")} alt="About Us" loading="lazy" style={{ width: "100%", borderRadius: "8px", display: "block" }} />
+            <img src={asset("/image/Aboutus.png")} alt="About Us" loading="lazy" style={{ width: "100%", borderRadius: "8px", display: "block" }} />
             <div className={styles.aboutVisualAccent} />
           </div>
         </div>
@@ -117,7 +121,7 @@ export default function Home() {
       {/* RECRUIT CTA */}
       <section
         className={styles.recruitBg}
-        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.82) 0%, rgba(0,95,122,0.74) 100%), url(${asset("/image/hero-image2.png")})` }}
+        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.82) 0%, rgba(0,95,122,0.74) 100%), url(${asset("/image/ToRecruit.png")})` }}
       >
         <div className={`${styles.recruitInner} fade-up`}>
           <div>

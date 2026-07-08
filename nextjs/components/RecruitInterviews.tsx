@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
+import { asset } from "@/lib/asset";
 import styles from "./RecruitInterviews.module.css";
 
 type Interview = {
   initials: string;
+  avatar: string;
   name: string;
   role: string;
   catch: string;
@@ -14,6 +16,7 @@ type Interview = {
 const interviews: Interview[] = [
   {
     initials: "R.O",
+    avatar: "/image/Icon_RO.png",
     name: "R.O さん",
     role: "開発エンジニア",
     catch: "未経験から開発エンジニアへ。安心のサポートで踏み出した第一歩。",
@@ -44,6 +47,7 @@ const interviews: Interview[] = [
   },
   {
     initials: "J.N",
+    avatar: "/image/Icon_JN.png",
     name: "J.N さん",
     role: "運用保守エンジニア",
     catch: "正当な評価と明確な道筋。技術に集中できる環境。",
@@ -74,6 +78,7 @@ const interviews: Interview[] = [
   },
   {
     initials: "K.H",
+    avatar: "/image/Icon_KH.png",
     name: "K.H さん",
     role: "開発エンジニア",
     catch: "希望の案件で上流工程へ。効率を追求する働き方。",
@@ -114,7 +119,10 @@ export default function RecruitInterviews() {
         return (
           <div key={iv.initials} className={`${styles.card} fade-up`}>
             <div className={styles.head}>
-              <div className={styles.avatar}>{iv.initials}</div>
+              <div className={styles.avatar}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={asset(iv.avatar)} alt={`${iv.name}のアバター`} loading="lazy" />
+              </div>
               <div>
                 <div className={styles.name}>{iv.name}</div>
                 <div className={styles.role}>{iv.role}</div>

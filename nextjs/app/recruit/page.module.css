@@ -12,7 +12,7 @@
 .cultureHeader { background: #E5F4F9; padding: 72px 60px 56px; }
 .cultureHeaderInner { max-width: 1100px; margin: 0 auto; text-align: center; }
 .pillarRow { padding: 72px 60px; background: var(--white); }
-.pillarRowAlt { background: var(--gray-light); }
+.pillarRowAlt { background: var(--white); }
 .pillarRowInner { max-width: 1100px; margin: 0 auto; display: flex; gap: 64px; align-items: center; }
 .pillarVisualWrap { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
 .credoBody { flex: 1 1 auto; min-width: 0; }
@@ -73,6 +73,7 @@
 .entryCtaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
 
 /* ===== CREDO (3つの信条) ===== */
+.credoHeaderBand { background: var(--white); }
 .credoHeader { max-width: 860px; margin: 0 auto; padding: 80px 24px 8px; text-align: center; }
 .credoSecTitle { position: relative; display: inline-block; padding-bottom: 18px; }
 .credoSecTitle::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--blue), #7b2ff7); }

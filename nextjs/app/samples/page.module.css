@@ -1,0 +1,77 @@
+/* =========================================================
+   デザイン比較用サンプルページ（検討用・本番非公開）
+   ========================================================= */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 56px 24px 140px; }
+.h1 { font-size: 28px; font-weight: 900; color: var(--black); margin-bottom: 6px; }
+.note { color: #888; font-size: 13px; line-height: 1.8; margin-bottom: 8px; }
+
+.sec { margin-top: 72px; padding-top: 28px; border-top: 3px solid #eef2f4; }
+.secTitle { font-size: 21px; font-weight: 800; color: var(--black); margin-bottom: 6px; }
+.secDesc { color: #667; font-size: 13.5px; line-height: 1.9; margin-bottom: 8px; }
+.label { display: inline-block; font-size: 12px; font-weight: 700; color: #00849e; background: rgba(0,170,204,0.12); padding: 5px 14px; border-radius: 20px; margin: 32px 0 12px; }
+.labelSub { color: #888; font-weight: 500; font-size: 11.5px; margin-left: 6px; }
+
+/* ---------- 白背景ステージ + ヘッダー/イントロ確認 ---------- */
+.whiteStage { background: #fff; border: 1px solid #e8edf0; border-radius: 16px; padding: 40px 32px 32px; }
+.introPrev { max-width: 720px; margin: 0 auto 8px; text-align: center; }
+.introTitle { display: inline-block; position: relative; font-size: 24px; font-weight: 900; color: var(--black); padding-bottom: 14px; }
+.introTitle::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--blue), #7b2ff7); }
+.introBox { background: #fff; border: 1px solid var(--gray-mid); border-radius: 14px; padding: 26px 30px; margin-top: 22px; text-align: left; }
+.introLead { font-size: 17px; font-weight: 800; color: var(--black); padding-bottom: 12px; border-bottom: 2px solid rgba(0,170,204,0.45); margin: 0 0 14px; }
+.introBox p { font-size: 13.5px; color: #556; line-height: 1.9; margin: 0 0 9px; }
+.introBox p:last-child { margin-bottom: 0; }
+
+/* ---------- 信条（現行と同一構成） ---------- */
+.credoRealWrap { background: #fff; border: 1px solid #e8edf0; border-radius: 16px; overflow: hidden; }
+
+/* ---------- 信条レイアウト mini（旧・未使用） ---------- */
+.credoMini { border: 1px solid #e8edf0; border-radius: 14px; overflow: hidden; }
+.credoRow { display: flex; align-items: center; gap: 36px; padding: 30px 40px; background: #fff; }
+.credoRow + .credoRow { border-top: 1px solid #f0f3f5; }
+.credoRowRev { flex-direction: row-reverse; }
+.credoCircle { width: 116px; height: 116px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(0,170,204,0.22); background: rgba(0,170,204,0.06); }
+.credoCircle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.credoText { flex: 1 1 auto; min-width: 0; }
+.credoNum { font-family: var(--font-en); font-size: 14px; font-weight: 800; color: var(--blue); letter-spacing: 0.1em; }
+.credoText h4 { font-size: 16px; font-weight: 800; color: var(--black); margin: 4px 0 6px; line-height: 1.4; }
+.credoText p { font-size: 13px; color: #667; line-height: 1.75; margin: 0; }
+
+/* ---------- CTA サンプル共通 ---------- */
+.cta { position: relative; overflow: hidden; border-radius: 14px; padding: 60px 40px; text-align: center; }
+.ctaImg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.ctaOverlay { position: absolute; inset: 0; }
+.ctaBody { position: relative; z-index: 2; }
+.ctaBody h4 { font-size: 21px; font-weight: 800; margin: 0 0 8px; }
+.ctaBody p { font-size: 13px; margin: 0 0 22px; line-height: 1.9; }
+.ctaBtn { display: inline-block; padding: 13px 30px; border-radius: 7px; font-weight: 700; font-size: 13px; text-decoration: none; }
+.ctaGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+
+/* hover: 通常オーバーレイ濃 → ホバーで薄く（裏の画像が見える） */
+.hoverReveal .ctaOverlay { transition: opacity 0.45s ease; }
+.hoverReveal:hover .ctaOverlay { opacity: 0.12 !important; }
+/* hover: 通常くっきり → ホバーでオーバーレイ（逆パターン） */
+.hoverCover .ctaOverlay { transition: opacity 0.45s ease; }
+.hoverCover:hover .ctaOverlay { opacity: 0.9 !important; }
+.hoverHint { font-size: 11.5px; color: #999; margin-top: 8px; }
+
+/* ---------- トップRECRUIT CTA フレーミング ---------- */
+.rcBand { position: relative; overflow: hidden; border-radius: 12px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+.rcImg { position: absolute; inset: 0; background-repeat: no-repeat; }
+.rcOverlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,35,50,0.62) 0%, rgba(0,95,122,0.5) 100%); }
+.rcInner { position: relative; z-index: 2; }
+.rcTitle { font-size: clamp(26px,3.4vw,40px); font-weight: 900; color: #fff; margin: 0 0 14px; text-shadow: 0 2px 16px rgba(0,0,0,0.45); }
+.rcDesc { font-size: 14px; color: rgba(255,255,255,0.92); line-height: 1.95; text-shadow: 0 1px 10px rgba(0,0,0,0.4); margin: 0; }
+.rcBtn { position: relative; z-index: 2; white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; padding: 18px 42px; border-radius: 8px; background: #fff; color: var(--black); font-family: var(--font-en); font-weight: 800; font-size: 14px; letter-spacing: 0.06em; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.28); }
+
+/* C5: 画像を実寸で右に置くスプリット */
+.rcSplit { display: grid; grid-template-columns: 1.05fr 1fr; align-items: stretch; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #062a38, #0b4f63); }
+.rcSplitText { padding: 56px 44px; align-self: center; }
+.rcSplitMedia { position: relative; min-height: 260px; }
+.rcSplitMedia img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 768px) {
+  .ctaGrid { grid-template-columns: 1fr; }
+  .credoRow, .credoRowRev { flex-direction: column; text-align: center; gap: 18px; }
+  .rcBand { grid-template-columns: 1fr; gap: 24px; }
+  .rcSplit { grid-template-columns: 1fr; }
+}

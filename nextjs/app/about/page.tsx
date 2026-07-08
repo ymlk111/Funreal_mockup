@@ -25,7 +25,7 @@ export default function AboutPage() {
             <tr><th>英文社名</th><td>Funreal Inc.</td></tr>
             <tr><th>設立日</th><td>2022年（令和4年）4月25日</td></tr>
             <tr><th>資本金</th><td>100万円</td></tr>
-            <tr><th>代表者</th><td>代表取締役 渡邉 悟<br />代表取締役 羽田 怜生</td></tr>
+            <tr><th>代表者</th><td>代表取締役 羽田 怜生<br />代表取締役 渡邉 悟</td></tr>
             <tr><th>事業内容</th><td>システムの設計・開発・運用<br />ウェブサイトの企画・制作・運営<br />各種映像の企画・制作・販売<br />ITソリューション事業</td></tr>
             <tr><th>所在地</th><td>〒160-0023<br />東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406</td></tr>
             <tr><th>TEL</th><td>03-6403-4418</td></tr>

@@ -35,19 +35,21 @@ export default function RecruitPage() {
           <p>私たちは、画一的なモチベーションの高さを求めたり、過度なプレッシャーをかけたりすることはありません。これまでの枠組みが合わず一度立ち止まってしまった方や、不器用でもコツコツと取り組める方にこそ、当社の柔軟な環境が活きると考えています。</p>
           <p>社内は若手メンバーが多く、年齢や社歴に関わらず<span className="hl-flow">フラットに会話ができる風通しの良さ</span>があります。<br />まずはしっかりと腰を据え、<span className="hl-flow">残業の少ない環境</span>でご自身のペースを取り戻してください。心に余裕が生まれてから、次のステップや新しいやりがいを一緒に見つけていきましょう。</p>
         </div>
-        <div className={`${styles.messageName} fade-up`}>株式会社ファンリアル</div>
+        <div className={`${styles.messageName} fade-up`}>代表取締役　羽田 怜生</div>
       </div>
 
       <hr className="divider" />
 
       {/* CREDO */}
-      <div className={styles.credoHeader}>
-        <h2 className={`section-title fade-up flow-title ${styles.credoSecTitle}`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの信条</h2>
-        <div className={`${styles.credoIntro} fade-up`}>
-          <p className={styles.credoLead}>SESの「めんどくさい」を、できるだけ会社側で消します。</p>
-          <p>エンジニアに必要なのは、無駄な社内作業でも、飲み会参加でも、上司へのご機嫌取りでもありません。</p>
-          <p>ファンリアルが大事にするのは、現場での仕事、キャリアの希望、そして将来の収入です。</p>
-          <p>20代・30代が無理なく成長し、ちゃんと昇給できる会社を目指しています。</p>
+      <div className={styles.credoHeaderBand}>
+        <div className={styles.credoHeader}>
+          <h2 className={`section-title fade-up flow-title ${styles.credoSecTitle}`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの信条</h2>
+          <div className={`${styles.credoIntro} fade-up`}>
+            <p className={styles.credoLead}>SESの「めんどくさい」を、できるだけ会社側で消します。</p>
+            <p>エンジニアに必要なのは、無駄な社内作業でも、飲み会参加でも、上司へのご機嫌取りでもありません。</p>
+            <p>ファンリアルが大事にするのは、現場での仕事、キャリアの希望、そして将来の収入です。</p>
+            <p>20代・30代が無理なく成長し、ちゃんと昇給できる会社を目指しています。</p>
+          </div>
         </div>
       </div>
 
@@ -117,14 +119,6 @@ export default function RecruitPage() {
             </ul>
             <p className={styles.credoEmph}>そういったストレスをできるだけ減らし、エンジニアが対等に相談できる組織を目指します。</p>
           </div>
-        </div>
-      </div>
-
-      {/* MID CTA */}
-      <div className={styles.cultureCta}>
-        <div className={`${styles.midCta} fade-up`}>
-          <p>少しでも気になった方は、まずはカジュアルにお話ししましょう。</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "13px", padding: "14px 40px" }}>エントリーする →</a>
         </div>
       </div>
 
@@ -217,7 +211,7 @@ export default function RecruitPage() {
       <div className="section section-narrow" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <div
           className={`${styles.referralBanner} fade-up`}
-          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.85), rgba(0,90,115,0.85)), url(${asset("/image/ToReferral.png")})` }}
+          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.5), rgba(0,90,115,0.5)), url(${asset("/image/ToReferral.png")})` }}
         >
           <div className={styles.referralBannerTitle}>🎮 友達に紹介されましたか？</div>
           <p className={styles.referralBannerText}>ゲーム好き・ボドゲ好き必見。ファンリアルの「素顔」を覗いてみてください。</p>
@@ -229,7 +223,7 @@ export default function RecruitPage() {
       <div className="section section-narrow" id="entry" style={{ paddingTop: "48px" }}>
         <div
           className={`${styles.entryCta} fade-up`}
-          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.85), rgba(0,90,115,0.85)), url(${asset("/image/ToEntry.png")})` }}
+          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.5), rgba(0,90,115,0.5)), url(${asset("/image/ToEntry.png")})` }}
         >
           <div className={styles.entryCtaTitle}>私たちと一緒に、新しいスタートを切りませんか？</div>
           <p className={styles.entryCtaText}>

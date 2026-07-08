@@ -70,8 +70,8 @@ export default function RecruitPage() {
         </div>
       </div>
 
-      {/* 信条2 ── 文章=左 / 視覚=右 */}
-      <div className={styles.pillarRow}>
+      {/* 信条2 ── 文章=左 / 視覚=右（薄青背景） */}
+      <div className={`${styles.pillarRow} ${styles.pillarRowAlt}`}>
         <div className={styles.pillarRowInner}>
           <div className={`${styles.credoBody} fade-up`}>
             <div className={styles.credoNum}>02</div>

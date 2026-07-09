@@ -21,7 +21,10 @@ export default function Home() {
         <div className={styles.heroValuesAccent} />
         <div className={styles.hero} id="hero">
           <div className={styles.heroContent}>
-            <h1 className={styles.heroCatch}>自由に、そして楽しく。</h1>
+            <h1 className={styles.heroCatch}>
+              <span className={styles.heroCatchP1}>自由に、</span>
+              <span className={styles.heroCatchP2}>そして楽しく。</span>
+            </h1>
           </div>
           <div className={styles.heroScroll}>
             <div className={styles.heroScrollLine} />
@@ -121,7 +124,7 @@ export default function Home() {
       {/* RECRUIT CTA */}
       <section
         className={styles.recruitBg}
-        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.82) 0%, rgba(0,95,122,0.74) 100%), url(${asset("/image/ToRecruit.png")})` }}
+        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.6) 0%, rgba(0,95,122,0.5) 100%), url(${asset("/image/ToRecruit.png")})` }}
       >
         <div className={`${styles.recruitInner} fade-up`}>
           <div>

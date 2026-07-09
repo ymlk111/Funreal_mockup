@@ -34,8 +34,12 @@ function CredoRow({ reversed, icon, children }: { reversed: boolean; icon: strin
   );
 }
 
-function CredoFull({ mode }: { mode: "alt" | "right" | "left" }) {
-  const rev = (i: number) => (mode === "right" ? true : mode === "left" ? false : i === 1);
+function CredoFull({ mode }: { mode: "alt" | "altRev" | "right" | "left" }) {
+  const rev = (i: number) =>
+    mode === "right" ? true
+    : mode === "left" ? false
+    : mode === "altRev" ? i !== 1
+    : i === 1;
   const titleCls = `section-title flow-title ${rc.credoTitle}`;
   return (
     <div className={styles.credoRealWrap}>
@@ -118,6 +122,24 @@ function RcBand({
   );
 }
 
+// エントリーCTA：文字視認性の改善案（実際の文言・ボタンで表示＝HP親和性の確認用）
+function EntryFrame({ frameClass, leg, overlays, caption }: { frameClass?: string; leg?: string; overlays: React.ReactNode; caption: string }) {
+  return (
+    <div>
+      <div className={`${styles.ecta} ${frameClass ?? ""} ${leg ?? ""}`}>
+        <div className={styles.ectaImg} style={{ backgroundImage: `url(${ENTRY})` }} />
+        {overlays}
+        <div className={styles.ectaBody}>
+          <div className={styles.ectaTitle}>私たちと一緒に、新しいスタートを切りませんか？</div>
+          <p className={styles.ectaText}>少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。</p>
+          <a href="#" className={styles.ectaBtn}>エントリーする →</a>
+        </div>
+      </div>
+      <div className={styles.cap}>{caption}</div>
+    </div>
+  );
+}
+
 export default function SamplesPage() {
   return (
     <div className={styles.wrap}>
@@ -145,11 +167,14 @@ export default function SamplesPage() {
           </div>
         </div>
 
+        <div className={styles.label}>★ B. 画像を右に統一（採用）<span className={styles.labelSub}>文字が左でそろう＝Z型視線の起点が左</span></div>
+        <CredoFull mode="right" />
+
         <div className={styles.label}>A. 現状（左右交互）</div>
         <CredoFull mode="alt" />
 
-        <div className={styles.label}>B. 画像を右に統一<span className={styles.labelSub}>文字が左でそろう</span></div>
-        <CredoFull mode="right" />
+        <div className={styles.label}>A&rsquo;. 現状の左右反転<span className={styles.labelSub}>信条1=右 / 2=左 / 3=右</span></div>
+        <CredoFull mode="altRev" />
 
         <div className={styles.label}>C. 画像を左に統一<span className={styles.labelSub}>文字が右でそろう</span></div>
         <CredoFull mode="left" />
@@ -190,8 +215,39 @@ export default function SamplesPage() {
           </div>
         </div>
 
-        <div className={styles.label}>参考：リファラル素材（B2 相当）<span className={styles.labelSub}>ToReferral.png</span></div>
+        <div className={styles.label}>★ リファラル＝B2 を採用（青・薄め 0.3）<span className={styles.labelSub}>ToReferral.png・実ページ反映済み</span></div>
         <CtaSample img={REFERRAL} overlay={BLUE_GRAD} overlayOpacity={0.3} textColor="#fff" btn={{ bg: "#fff", color: "#006E8A" }} />
+
+        <h3 className={styles.subHead}>エントリーCTA — 文字視認性の改善案</h3>
+        <p className={styles.secDesc}>
+          B5／B6（ホバー演出）は動きが良い一方、背景が見えると文字が読みにくいのが課題でした。
+          <strong>常時の下スクリム＋縁取り／影</strong>で可読性を確保した案と、<strong>B4→B3の遷移</strong>、<strong>ヒーロー流用（白文字＋画像に影）</strong>を、実際の文言・ボタンで並べています（カーソルを乗せて確認）。
+        </p>
+        <div className={styles.ctaGrid}>
+          <EntryFrame
+            frameClass={styles.eReveal}
+            leg={styles.legShadow}
+            overlays={<><div className={styles.ectaScrim} /><div className={styles.ectaBlue} /></>}
+            caption="E1. ホバーで裏写り（B5）＋影で視認性UP"
+          />
+          <EntryFrame
+            frameClass={styles.eCover}
+            leg={styles.legOutline}
+            overlays={<><div className={styles.ectaScrim} /><div className={styles.ectaBlue} /></>}
+            caption="E2. 逆ホバー（B6）＋縁取りで視認性UP"
+          />
+          <EntryFrame
+            frameClass={styles.eToWhite}
+            leg={styles.legShadow}
+            overlays={<><div className={styles.ectaScrim} /><div className={styles.ectaWhite} /></>}
+            caption="E3. B4→B3 遷移（ホバーで白幕＋文字が濃色に）"
+          />
+          <EntryFrame
+            leg={styles.legHero}
+            overlays={<div className={styles.ectaVignette} />}
+            caption="E4. ヒーロー流用（白文字＋画像に影・動きなし）"
+          />
+        </div>
       </section>
 
       {/* ============ 3. トップ RECRUIT CTA フレーミング ============ */}
@@ -237,6 +293,24 @@ export default function SamplesPage() {
           動きは <strong>「再生 ↻」</strong> か <strong>「▶ すべて再生」</strong>で確認できます（実画像 <code>Hero.png</code> 使用）。
         </p>
         <HeroSamples />
+      </section>
+
+      {/* ============ 5. 光る文字エフェクトの速度 ============ */}
+      <section className={styles.sec}>
+        <h2 className={styles.secTitle}>5. 見出しの「光る文字」— 読みやすさ</h2>
+        <p className={styles.secDesc}>
+          採用ページ見出しの青⇄白シマー（<code>flow-title</code>）の速度・有無です。「ピカピカが読みにくい」への候補。
+        </p>
+        <div className={styles.whiteStage}>
+          <div className={styles.subLabel}>G1. 現状（約6秒周期）</div>
+          <div className={`flow-title ${styles.flowDemo}`}>ファンリアルの3つの信条</div>
+
+          <div className={styles.subLabel}>G2. ゆっくり（約13秒周期）</div>
+          <div className={`flow-title ${styles.slowFlow} ${styles.flowDemo}`}>ファンリアルの3つの信条</div>
+
+          <div className={styles.subLabel}>G3. 光らせない（単色ブルー・静止）</div>
+          <div className={styles.flowDemo} style={{ color: "var(--blue)" }}>ファンリアルの3つの信条</div>
+        </div>
       </section>
     </div>
   );

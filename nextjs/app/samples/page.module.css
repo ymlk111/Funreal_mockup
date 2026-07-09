@@ -45,6 +45,41 @@
 .ctaBody p { font-size: 13px; margin: 0 0 22px; line-height: 1.9; }
 .ctaBtn { display: inline-block; padding: 13px 30px; border-radius: 7px; font-weight: 700; font-size: 13px; text-decoration: none; }
 .ctaGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.subHead { font-size: 17px; font-weight: 800; color: var(--black); margin: 44px 0 6px; padding-top: 26px; border-top: 1px dashed #dfe6ea; }
+
+/* ---------- エントリーCTA 視認性改善 ---------- */
+.ecta { position: relative; overflow: hidden; border-radius: 14px; padding: 58px 36px; text-align: center; min-height: 210px; }
+.ectaImg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.ectaScrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.12) 45%, rgba(0,0,0,0.3) 100%); }
+.ectaBlue { position: absolute; inset: 0; background: linear-gradient(135deg, #00AACC, #006E8A); transition: opacity 0.45s ease; }
+.ectaWhite { position: absolute; inset: 0; background: #fff; opacity: 0; transition: opacity 0.45s ease; }
+.ectaVignette { position: absolute; inset: 0; background: radial-gradient(ellipse 72% 58% at 50% 50%, rgba(0,0,0,0.44) 0%, rgba(0,0,0,0) 70%), linear-gradient(to bottom, rgba(0,0,0,0.14), rgba(0,0,0,0.04) 45%, rgba(0,0,0,0.32)); }
+.ectaBody { position: relative; z-index: 3; }
+.ectaTitle { font-size: 21px; font-weight: 800; margin: 0 0 8px; color: #fff; transition: color 0.4s ease, text-shadow 0.4s ease; }
+.ectaText { font-size: 13px; line-height: 1.9; margin: 0 0 20px; color: rgba(255,255,255,0.92); transition: color 0.4s ease; }
+.ectaBtn { display: inline-block; padding: 13px 30px; border-radius: 7px; font-weight: 700; font-size: 13px; text-decoration: none; background: #fff; color: #006E8A; transition: background 0.3s, color 0.3s; }
+
+/* 視認性の手法 */
+.legShadow .ectaTitle { text-shadow: 0 2px 14px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.5); }
+.legShadow .ectaText { text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
+.legOutline .ectaTitle { text-shadow: -1.5px -1.5px 0 rgba(0,0,0,0.55), 1.5px -1.5px 0 rgba(0,0,0,0.55), -1.5px 1.5px 0 rgba(0,0,0,0.55), 1.5px 1.5px 0 rgba(0,0,0,0.55), 0 2px 10px rgba(0,0,0,0.4); }
+.legOutline .ectaText { text-shadow: -1px -1px 0 rgba(0,0,0,0.45), 1px 1px 0 rgba(0,0,0,0.45), 0 1px 6px rgba(0,0,0,0.5); }
+.legHero .ectaTitle { text-shadow: 0 3px 22px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5); }
+.legHero .ectaText { text-shadow: 0 2px 14px rgba(0,0,0,0.55); }
+
+/* ホバー挙動 */
+.eReveal .ectaBlue { opacity: 0.8; }
+.eReveal:hover .ectaBlue { opacity: 0.2; }
+.eCover .ectaBlue { opacity: 0.12; }
+.eCover:hover .ectaBlue { opacity: 0.85; }
+.eToWhite:hover .ectaWhite { opacity: 0.72; }
+.eToWhite:hover .ectaTitle { color: #0a2b36; text-shadow: none; }
+.eToWhite:hover .ectaText { color: #274b57; }
+.eToWhite:hover .ectaBtn { background: #00AACC; color: #fff; }
+
+/* 光る文字デモ */
+.flowDemo { font-size: 26px; font-weight: 900; line-height: 1.5; margin: 2px 0 6px; }
+.slowFlow { animation-duration: 13s !important; }
 
 /* hover: 通常オーバーレイ濃 → ホバーで薄く（裏の画像が見える） */
 .hoverReveal .ctaOverlay { transition: opacity 0.45s ease; }

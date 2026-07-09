@@ -53,22 +53,22 @@ export default function RecruitPage() {
         </div>
       </div>
 
-      {/* 信条1 ── 視覚=左 / 文章=右 */}
+      {/* 信条1 ── 文章=左 / 視覚=右（B案：画像を右に統一） */}
       <div className={styles.pillarRow}>
         <div className={styles.pillarRowInner}>
-          <div className={`${styles.pillarVisualWrap} fade-up`}>
-            <div className={styles.pillarVisualCircle} aria-hidden="true">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset("/image/RecruitIcon1.png")} alt="" loading="lazy" />
-            </div>
-          </div>
-          <div className={`${styles.credoBody} fade-up fade-up-delay-1`}>
+          <div className={`${styles.credoBody} fade-up`}>
             <div className={styles.credoNum}>01</div>
             <h3 className={`section-title flow-title ${styles.credoTitle}`}>余計なことで評価しない。現場の仕事で、まっすぐ昇給。</h3>
             <p>ファンリアルでは、エンジニアとしての日々の仕事を一番大切に評価します。</p>
             <p>自社業務の多さ、飲み会への参加、上司へのアピール、少しのミスだけで評価を下げるようなことはしません。</p>
             <p>現場で誠実に働き、任された仕事に向き合ってくれたら、それが一番の評価対象です。</p>
             <p className={styles.credoEmph}>「現場で毎日働いているのに、なぜか評価されない」<br />そんな状態をなくしたいと考えています。</p>
+          </div>
+          <div className={`${styles.pillarVisualWrap} fade-up fade-up-delay-1`}>
+            <div className={styles.pillarVisualCircle} aria-hidden="true">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/image/RecruitIcon1.png")} alt="" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
@@ -98,16 +98,10 @@ export default function RecruitPage() {
         </div>
       </div>
 
-      {/* 信条3 ── 視覚=左 / 文章=右 */}
+      {/* 信条3 ── 文章=左 / 視覚=右（B案：画像を右に統一） */}
       <div className={styles.pillarRow}>
         <div className={styles.pillarRowInner}>
-          <div className={`${styles.pillarVisualWrap} fade-up`}>
-            <div className={styles.pillarVisualCircle} aria-hidden="true">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset("/image/RecruitIcon3.png")} alt="" loading="lazy" />
-            </div>
-          </div>
-          <div className={`${styles.credoBody} fade-up fade-up-delay-1`}>
+          <div className={`${styles.credoBody} fade-up`}>
             <div className={styles.credoNum}>03</div>
             <h3 className={`section-title flow-title ${styles.credoTitle}`}>上下関係ではなく、対等な相談関係をつくる。</h3>
             <p>ファンリアルでは、必要以上の上下関係をつくりたくありません。</p>
@@ -118,6 +112,12 @@ export default function RecruitPage() {
               <li>上司の機嫌で評価や働き方が変わる。</li>
             </ul>
             <p className={styles.credoEmph}>そういったストレスをできるだけ減らし、エンジニアが対等に相談できる組織を目指します。</p>
+          </div>
+          <div className={`${styles.pillarVisualWrap} fade-up fade-up-delay-1`}>
+            <div className={styles.pillarVisualCircle} aria-hidden="true">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/image/RecruitIcon3.png")} alt="" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
@@ -211,7 +211,7 @@ export default function RecruitPage() {
       <div className="section section-narrow" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <div
           className={`${styles.referralBanner} fade-up`}
-          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.5), rgba(0,90,115,0.5)), url(${asset("/image/ToReferral.png")})` }}
+          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,170,204,0.3), rgba(0,110,138,0.3)), url(${asset("/image/ToReferral.png")})` }}
         >
           <div className={styles.referralBannerTitle}>🎮 友達に紹介されましたか？</div>
           <p className={styles.referralBannerText}>ゲーム好き・ボドゲ好き必見。ファンリアルの「素顔」を覗いてみてください。</p>

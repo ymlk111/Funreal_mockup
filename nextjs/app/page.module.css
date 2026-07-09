@@ -10,7 +10,11 @@
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
+  /* ゆっくりズームイン（Ken Burns） */
+  transform-origin: 50% 45%;
+  animation: heroKenburns 22s ease-out both;
 }
+@keyframes heroKenburns { from { transform: scale(1.02); } to { transform: scale(1.12); } }
 .heroValuesOverlay {
   position: absolute;
   inset: 0;
@@ -55,8 +59,14 @@
   margin-bottom: 20px;
   text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
     0 -2px 0 #fff, 0 2px 0 #fff, -2px 0 0 #fff, 2px 0 0 #fff;
-  animation: heroTextIn 0.9s ease forwards;
 }
+/* 「自由に、」→「そして楽しく。」の順で、少しゆっくり浮かび上がる
+   ※ keyframes はこのモジュール内に定義（globals の heroTextIn は
+      CSSモジュールのハッシュ化で参照が一致せず発火しないため） */
+@keyframes heroPhraseIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.heroCatchP1, .heroCatchP2 { display: inline-block; opacity: 0; animation: heroPhraseIn 1.1s cubic-bezier(0.22,1,0.36,1) forwards; }
+.heroCatchP1 { animation-delay: 0.55s; }
+.heroCatchP2 { animation-delay: 1.25s; }
 .heroScroll {
   position: absolute;
   bottom: 32px;
@@ -209,11 +219,13 @@
 .ceoQuoteLink:hover { gap: 10px; color: #0090aa; }
 
 /* ===== RECRUIT CTA ===== */
-.recruitBg { position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; }
+/* C3: 画像を上寄せ＋帯を高くして、窓の外の東京タワーを見せる */
+.recruitBg { position: relative; background-size: cover; background-position: center top; background-repeat: no-repeat; }
 .recruitInner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 110px 60px;
+  padding: 120px 60px;
+  min-height: 460px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 40px;

@@ -9,14 +9,17 @@ const CATCH = "自由に、そして楽しく。";
 type Motion = "mNone" | "mZoom" | "mDrift";
 type TextMode = "whole" | "phrase" | "char";
 type Color = "colBlue" | "colGray" | "colWhite";
+type Pos = "posTop" | "posMid" | "posLow" | "posBottom";
 
-function Catch({ text, color }: { text: TextMode; color: Color }) {
+function Catch({ text, color, slow }: { text: TextMode; color: Color; slow?: boolean }) {
   const c = styles[color];
   if (text === "phrase") {
+    const a1 = slow ? styles.animP1Slow : styles.animP1;
+    const a2 = slow ? styles.animP2Slow : styles.animP2;
     return (
       <div className={styles.catch}>
-        <span className={`${styles.line} ${c} ${styles.animP1}`}>自由に、</span>
-        <span className={`${styles.line} ${c} ${styles.animP2}`}>そして楽しく。</span>
+        <span className={`${styles.line} ${c} ${a1}`}>自由に、</span>
+        <span className={`${styles.line} ${c} ${a2}`}>そして楽しく。</span>
       </div>
     );
   }
@@ -36,14 +39,17 @@ function Catch({ text, color }: { text: TextMode; color: Color }) {
   );
 }
 
-function Tile({ motion, text, color, label }: { motion: Motion; text: TextMode; color: Color; label: string }) {
+function Tile({ motion, text = "whole", color = "colBlue", label, slow, pos }: {
+  motion: Motion; text?: TextMode; color?: Color; label: string;
+  slow?: boolean; pos?: Pos;
+}) {
   const [k, setK] = useState(0);
   return (
     <div className={styles.tile}>
       <div className={styles.stage} key={k}>
-        <div className={`${styles.bg} ${styles[motion]}`} style={{ backgroundImage: `url(${HERO})` }} />
+        <div className={`${styles.bg} ${styles[motion]} ${pos ? styles[pos] : ""}`} style={{ backgroundImage: `url(${HERO})` }} />
         <div className={styles.scrim} />
-        <Catch text={text} color={color} />
+        <Catch text={text} color={color} slow={slow} />
       </div>
       <button className={styles.replay} onClick={() => setK((v) => v + 1)}>再生 ↻</button>
       <div className={styles.cap}>{label}</div>
@@ -83,8 +89,19 @@ export default function HeroSamples() {
 
       <div className={styles.subLabel}>3D. 組み合わせ例</div>
       <div className={styles.grid} key={`x-${gen}`}>
+        <Tile motion="mNone" text="phrase" color="colWhite" slow label="★実サイト採用：モーション無し × 順番に浮かぶ × 白（低速）" />
         <Tile motion="mZoom" text="phrase" color="colWhite" label="ズーム × 順番に浮かぶ × 白" />
         <Tile motion="mDrift" text="phrase" color="colGray" label="ドリフト × 順番に浮かぶ × グレー" />
+      </div>
+
+      <div className={styles.subLabel}>3E. ヒーロー画像の位置（手前の見切れ対策）</div>
+      <p className={styles.blockHint}>
+        横長の画面では画像の上下が <code>cover</code> で切られます。<code>background-position</code> を下げると手前（人物・PC）が残ります。
+      </p>
+      <div className={styles.grid} key={`p-${gen}`}>
+        <Tile motion="mNone" pos="posTop" color="colWhite" label="現状 center top：手前（人物・PC）が切れる" />
+        <Tile motion="mNone" pos="posLow" color="colWhite" label="★実サイト採用 center 60%：手前が収まる" />
+        <Tile motion="mNone" pos="posBottom" color="colWhite" label="center bottom：手前を最優先（空は減る）" />
       </div>
     </div>
   );

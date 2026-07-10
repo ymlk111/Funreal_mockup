@@ -15,7 +15,7 @@ const TOKYO = asset("/image/ToRecruit.png"); // 窓の外に東京タワーが�
 
 // 現行の採用ページ(app/recruit)と同じ構成・同じCSSクラス(rc)を再利用し、
 // アイコンの左右配置(mode)だけを差し替えて比較する。
-function CredoRow({ reversed, icon, children }: { reversed: boolean; icon: string; children: React.ReactNode }) {
+function CredoRow({ reversed, tinted, icon, children }: { reversed: boolean; tinted?: boolean; icon: string; children: React.ReactNode }) {
   const visual = (
     <div className={rc.pillarVisualWrap}>
       <div className={rc.pillarVisualCircle} aria-hidden="true">
@@ -26,7 +26,7 @@ function CredoRow({ reversed, icon, children }: { reversed: boolean; icon: strin
   );
   const body = <div className={rc.credoBody}>{children}</div>;
   return (
-    <div className={rc.pillarRow}>
+    <div className={`${rc.pillarRow} ${tinted ? rc.pillarRowAlt : ""}`}>
       <div className={rc.pillarRowInner}>
         {reversed ? <>{body}{visual}</> : <>{visual}{body}</>}
       </div>
@@ -34,8 +34,10 @@ function CredoRow({ reversed, icon, children }: { reversed: boolean; icon: strin
   );
 }
 
-function CredoFull({ mode }: { mode: "alt" | "right" | "left" }) {
-  const rev = (i: number) => (mode === "right" ? true : mode === "left" ? false : i === 1);
+// 02(index 1) だけ薄青にして 白/薄青/白 に分離（実サイトと同じ）
+function CredoFull({ mode }: { mode: "alt" | "altRev" | "right" | "left" }) {
+  const rev = (i: number) =>
+    mode === "right" ? true : mode === "left" ? false : mode === "altRev" ? i !== 1 : i === 1;
   const titleCls = `section-title flow-title ${rc.credoTitle}`;
   return (
     <div className={styles.credoRealWrap}>
@@ -47,7 +49,7 @@ function CredoFull({ mode }: { mode: "alt" | "right" | "left" }) {
         <p>現場で誠実に働き、任された仕事に向き合ってくれたら、それが一番の評価対象です。</p>
         <p className={rc.credoEmph}>「現場で毎日働いているのに、なぜか評価されない」<br />そんな状態をなくしたいと考えています。</p>
       </CredoRow>
-      <CredoRow reversed={rev(1)} icon="/image/RecruitIcon2.png">
+      <CredoRow reversed={rev(1)} tinted icon="/image/RecruitIcon2.png">
         <div className={rc.credoNum}>02</div>
         <h3 className={titleCls}>案件・技術・働き方の相談は、いつでも歓迎。</h3>
         <ul className={rc.credoQuotes}>
@@ -77,6 +79,8 @@ function CredoFull({ mode }: { mode: "alt" | "right" | "left" }) {
 }
 
 const BLUE_GRAD = "linear-gradient(135deg, #00AACC, #006E8A)";
+// リファラルバナーと同じオーバーレイ（0.5の青）。エントリーCTAのホバー前をこれに合わせる。
+const REFERRAL_GRAD = "linear-gradient(135deg, rgba(0,140,170,0.5), rgba(0,90,115,0.5))";
 
 function CtaSample({
   img, overlay, overlayOpacity, textColor, btn, extraClass, hint,
@@ -102,6 +106,24 @@ function CtaSample({
   );
 }
 
+// B7 / B8: B4(暗め・白文字) ⇔ B3(白オーバーレイ・濃色文字) をホバーで相互に切り替える。
+// 2枚のオーバーレイをクロスフェードし、文字色・ボタン色も同時に変化させる。
+function CtaMorph({ rest, hint }: { rest: "b4" | "b3"; hint?: string }) {
+  return (
+    <div className={`${styles.cta} ${styles.morph} ${rest === "b4" ? styles.morphB4 : styles.morphB3}`}>
+      <div className={styles.ctaImg} style={{ backgroundImage: `url(${ENTRY})` }} />
+      <div className={`${styles.morphOv} ${styles.ovDark}`} />
+      <div className={`${styles.morphOv} ${styles.ovWhite}`} />
+      <div className={styles.ctaBody}>
+        <h4>私たちと一緒に、新しいスタートを</h4>
+        <p>少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。</p>
+        <a href="#" className={styles.ctaBtn}>エントリーする →</a>
+        {hint ? <div className={styles.hoverHint}>{hint}</div> : null}
+      </div>
+    </div>
+  );
+}
+
 function RcBand({
   size, position, minHeight, bg,
 }: { size: string; position: string; minHeight: number; bg?: string }) {
@@ -114,6 +136,17 @@ function RcBand({
         <p className={styles.rcDesc}>成長を前提としたアサイン、自由で快適な環境、柔軟なキャリアパス。</p>
       </div>
       <a href="#" className={styles.rcBtn}>採用情報を見る →</a>
+    </div>
+  );
+}
+
+// 採用ページ見出しの「青白の光る効果」(.flow-title) を読みやすくする候補。
+// 同じ見出し文で、光沢・アニメの量を変えた案を並べて比較する。
+function HeadingSample({ label, note, cls }: { label: string; note?: string; cls: string }) {
+  return (
+    <div className={styles.hdRow}>
+      <div className={styles.label}>{label}{note ? <span className={styles.labelSub}>{note}</span> : null}</div>
+      <h3 className={cls}>ファンリアルの3つの信条</h3>
     </div>
   );
 }
@@ -145,13 +178,16 @@ export default function SamplesPage() {
           </div>
         </div>
 
-        <div className={styles.label}>A. 現状（左右交互）</div>
+        <div className={styles.label}>A. ★実サイト採用：左右交互（始まり逆＝R,L,R）＋ 02だけ薄青<span className={styles.labelSub}>白／薄青／白で分離</span></div>
+        <CredoFull mode="altRev" />
+
+        <div className={styles.label}>B. 参考：現状の交互（始まり＝L,R,L）</div>
         <CredoFull mode="alt" />
 
-        <div className={styles.label}>B. 画像を右に統一<span className={styles.labelSub}>文字が左でそろう</span></div>
+        <div className={styles.label}>C. 参考：画像を右に統一<span className={styles.labelSub}>文字が左でそろう</span></div>
         <CredoFull mode="right" />
 
-        <div className={styles.label}>C. 画像を左に統一<span className={styles.labelSub}>文字が右でそろう</span></div>
+        <div className={styles.label}>D. 参考：画像を左に統一<span className={styles.labelSub}>文字が右でそろう</span></div>
         <CredoFull mode="left" />
       </section>
 
@@ -181,12 +217,20 @@ export default function SamplesPage() {
             <CtaSample img={ENTRY} overlay="linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.05))" overlayOpacity={1} textColor="#fff" btn={{ bg: "#fff", color: "#006E8A" }} />
           </div>
           <div>
-            <div className={styles.label}>B5. ホバーで裏の画像が見える</div>
-            <CtaSample img={ENTRY} overlay={BLUE_GRAD} overlayOpacity={0.8} textColor="#fff" btn={{ bg: "#fff", color: "#006E8A" }} extraClass={styles.hoverReveal} hint="↑ マウスを乗せると背景がくっきり" />
+            <div className={styles.label}>B5. ホバーで裏の画像が見える<span className={styles.labelSub}>★実サイト採用／ホバー前はリファラルと同じ</span></div>
+            <CtaSample img={ENTRY} overlay={REFERRAL_GRAD} overlayOpacity={1} textColor="#fff" btn={{ bg: "#fff", color: "#006E8A" }} extraClass={styles.hoverReveal} hint="↑ 通常はリファラルと同じ0.5オーバーレイ／ホバーで背景がくっきり（採用ページに反映済み）" />
           </div>
           <div>
             <div className={styles.label}>B6. 逆：通常くっきり→ホバーで青</div>
             <CtaSample img={ENTRY} overlay={BLUE_GRAD} overlayOpacity={0.1} textColor="#fff" btn={{ bg: "#fff", color: "#006E8A" }} extraClass={styles.hoverCover} hint="↑ マウスを乗せると青が濃くなる" />
+          </div>
+          <div>
+            <div className={styles.label}>B7. B4 → B3<span className={styles.labelSub}>通常＝暗め・白文字／ホバー＝白オーバーレイ・濃色文字</span></div>
+            <CtaMorph rest="b4" hint="↑ マウスを乗せると白背景・濃色文字に切り替わる" />
+          </div>
+          <div>
+            <div className={styles.label}>B8. B3 → B4<span className={styles.labelSub}>通常＝白オーバーレイ・濃色文字／ホバー＝暗め・白文字</span></div>
+            <CtaMorph rest="b3" hint="↑ マウスを乗せると暗め・白文字に切り替わる" />
           </div>
         </div>
 
@@ -207,7 +251,7 @@ export default function SamplesPage() {
         <div className={styles.label}>C2. 縦を伸ばす（cover / 中央 / 高め）</div>
         <RcBand size="cover" position="center" minHeight={380} />
 
-        <div className={styles.label}>C3. 引き＋上を見せる（cover / 上寄せ）<span className={styles.labelSub}>窓＝東京タワーが上部に入る</span></div>
+        <div className={styles.label}>C3. ★実サイト採用：引き＋上を見せる（cover / 上寄せ）<span className={styles.labelSub}>窓＝東京タワーが上部に入る</span></div>
         <RcBand size="cover" position="center top" minHeight={440} />
 
         <div className={styles.label}>C4. 全景を収める（contain / 濃い地色）<span className={styles.labelSub}>手紙も窓も切らずに全部見せる</span></div>
@@ -237,6 +281,26 @@ export default function SamplesPage() {
           動きは <strong>「再生 ↻」</strong> か <strong>「▶ すべて再生」</strong>で確認できます（実画像 <code>Hero.png</code> 使用）。
         </p>
         <HeroSamples />
+      </section>
+
+      {/* ============ 5. 見出しの「光る」効果（青白）読みやすい候補 ============ */}
+      <section className={styles.sec}>
+        <h2 className={styles.secTitle}>5. 見出しの「光る」効果（青白）— 速度で調整</h2>
+        <p className={styles.secDesc}>
+          採用ページ見出しの <code>.flow-title</code>（青→水色→青が流れるグラデ文字）。
+          <strong>色・動きはそのまま、速度を落として「ピカピカ」を軽減</strong>する方針です。
+          文字色を変えるCSSのままにしたいので、下線に置き換える案は対象外にしています。（背景＝白で確認）
+        </p>
+        <div className={styles.hdStage}>
+          <HeadingSample label="A. 変更前" note="6秒・速い（＝ピカピカ）" cls={`section-title ${styles.hdFlowFast}`} />
+          <HeadingSample label="B. ★実サイト採用：ゆっくり" note="15秒・色と動きは同じで速度だけ半分以下" cls="section-title flow-title" />
+          <HeadingSample label="C. 参考：静的グラデ" note="動き無し・水色を抜いて濃度UP" cls={`section-title ${styles.hdStaticGrad}`} />
+          <HeadingSample label="D. 参考：1回だけ光沢" note="読み込み時に一瞬だけ流れて停止" cls={`section-title ${styles.hdSheen}`} />
+        </div>
+        <p className={styles.secDesc} style={{ marginTop: 14 }}>
+          <strong>B（15秒に減速）を実ページに採用済み</strong>（採用ページ全見出しの <code>.flow-title</code>）。
+          もっと速く／遅くする、または C・D に変える場合は秒数・案をご指定ください。
+        </p>
       </section>
     </div>
   );

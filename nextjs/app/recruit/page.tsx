@@ -55,7 +55,7 @@ export default function RecruitPage() {
 
       {/* 信条1 ── 視覚=左 / 文章=右 */}
       <div className={styles.pillarRow}>
-        <div className={styles.pillarRowInner}>
+        <div className={`${styles.pillarRowInner} ${styles.credoReverse}`}>
           <div className={`${styles.pillarVisualWrap} fade-up`}>
             <div className={styles.pillarVisualCircle} aria-hidden="true">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -75,7 +75,7 @@ export default function RecruitPage() {
 
       {/* 信条2 ── 文章=左 / 視覚=右（薄青背景） */}
       <div className={`${styles.pillarRow} ${styles.pillarRowAlt}`}>
-        <div className={styles.pillarRowInner}>
+        <div className={`${styles.pillarRowInner} ${styles.credoReverse}`}>
           <div className={`${styles.credoBody} fade-up`}>
             <div className={styles.credoNum}>02</div>
             <h3 className={`section-title flow-title ${styles.credoTitle}`}>案件・技術・働き方の相談は、いつでも歓迎。</h3>
@@ -100,7 +100,7 @@ export default function RecruitPage() {
 
       {/* 信条3 ── 視覚=左 / 文章=右 */}
       <div className={styles.pillarRow}>
-        <div className={styles.pillarRowInner}>
+        <div className={`${styles.pillarRowInner} ${styles.credoReverse}`}>
           <div className={`${styles.pillarVisualWrap} fade-up`}>
             <div className={styles.pillarVisualCircle} aria-hidden="true">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -221,17 +221,19 @@ export default function RecruitPage() {
 
       {/* ENTRY CTA */}
       <div className="section section-narrow" id="entry" style={{ paddingTop: "48px" }}>
-        <div
-          className={`${styles.entryCta} fade-up`}
-          style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.5), rgba(0,90,115,0.5)), url(${asset("/image/ToEntry.png")})` }}
-        >
-          <div className={styles.entryCtaTitle}>私たちと一緒に、新しいスタートを切りませんか？</div>
-          <p className={styles.entryCtaText}>
-            現在、新しいメンバーの積極採用を行っております。<br />
-            少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。
-          </p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>エントリーする →</a>
-          <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "11px", marginTop: "16px", fontFamily: "var(--font-en)" }}>* Google フォームに遷移します</p>
+        <div className={`${styles.entryCta} fade-up`}>
+          {/* 通常は青オーバーレイ、ホバーで背景写真がくっきり見える（サンプルB5を採用） */}
+          <div className={styles.entryCtaImg} style={{ backgroundImage: `url(${asset("/image/ToEntry.png")})` }} />
+          <div className={styles.entryCtaOverlay} />
+          <div className={styles.entryCtaBody}>
+            <div className={styles.entryCtaTitle}>私たちと一緒に、新しいスタートを切りませんか？</div>
+            <p className={styles.entryCtaText}>
+              現在、新しいメンバーの積極採用を行っております。<br />
+              少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>エントリーする →</a>
+            <p className={styles.entryCtaNote}>* Google フォームに遷移します</p>
+          </div>
         </div>
       </div>
     </>

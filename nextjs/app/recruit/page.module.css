@@ -12,8 +12,12 @@
 .cultureHeader { background: #E5F4F9; padding: 72px 60px 56px; }
 .cultureHeaderInner { max-width: 1100px; margin: 0 auto; text-align: center; }
 .pillarRow { padding: 72px 60px; background: var(--white); }
-.pillarRowAlt { background: var(--white); }
+/* 信条02 の帯だけ薄青にして 白/薄青/白 で分離（全体イメージは崩さない） */
+.pillarRowAlt { background: var(--gray-light); }
 .pillarRowInner { max-width: 1100px; margin: 0 auto; display: flex; gap: 64px; align-items: center; }
+/* 左右交互を「始まり逆(R,L,R)」にする。DOM順は保持し表示だけ反転。
+   ※モバイル(≤768)の column 指定より前に置くこと（column を勝たせる）。 */
+.credoReverse { flex-direction: row-reverse; }
 .pillarVisualWrap { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
 .credoBody { flex: 1 1 auto; min-width: 0; }
 .pillarVisualCircle { width: 200px; height: 200px; border-radius: 50%; background: rgba(0,170,204,0.1); border: 2px solid rgba(0,170,204,0.25); overflow: hidden; display: flex; align-items: center; justify-content: center; color: var(--blue); flex-shrink: 0; transition: transform 0.35s ease; }
@@ -68,9 +72,16 @@
 .referralBannerLink { display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px; background: var(--white); color: #006E8A; font-size: 13px; font-weight: 700; font-family: var(--font-en); letter-spacing: 0.08em; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
 .referralBannerLink:hover { background: rgba(255,255,255,0.85); }
 
-.entryCta { text-align: center; padding: 80px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); background-size: cover; background-position: center; border-radius: 16px; }
-.entryCtaTitle { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
-.entryCtaText { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 32px; line-height: 2; }
+/* エントリーCTA: 通常は青オーバーレイ、ホバーで背景写真が見える（サンプルB5相当） */
+.entryCta { position: relative; overflow: hidden; text-align: center; padding: 80px 40px; border-radius: 16px; background: #063241; }
+.entryCtaImg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+/* 通常時はリファラルバナーと同じ見せ方（0.5 の青オーバーレイ）。ホバーで更に薄く。 */
+.entryCtaOverlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,140,170,0.5), rgba(0,90,115,0.5)); opacity: 1; transition: opacity 0.55s ease; }
+.entryCta:hover .entryCtaOverlay { opacity: 0.4; }
+.entryCtaBody { position: relative; z-index: 2; }
+.entryCtaTitle { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 16px; text-shadow: 0 1px 10px rgba(0,35,50,0.5); }
+.entryCtaText { color: rgba(255,255,255,0.9); font-size: 14px; margin-bottom: 32px; line-height: 2; text-shadow: 0 1px 8px rgba(0,35,50,0.5); }
+.entryCtaNote { color: rgba(255,255,255,0.85); font-size: 11px; margin-top: 16px; font-family: var(--font-en); text-shadow: 0 1px 8px rgba(0,35,50,0.5); }
 
 /* ===== CREDO (3つの信条) ===== */
 .credoHeaderBand { background: var(--white); }

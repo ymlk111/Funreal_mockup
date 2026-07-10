@@ -259,7 +259,8 @@ footer.footer-night .footer-copy { color: rgba(252,252,252,0.45); }
   background: linear-gradient(90deg, #006E8A 0%, var(--blue) 30%, #7fdcee 50%, var(--blue) 70%, #006E8A 100%);
   background-size: 300% auto;
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: titleFlow 6s linear infinite;
+  /* 6s → 15s に減速。色・動きは現状のまま、速度だけ落として「ピカピカ」を軽減。 */
+  animation: titleFlow 15s linear infinite;
   display: inline-block;
 }
 .hl-flow { position: relative; display: inline; }

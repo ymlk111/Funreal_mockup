@@ -54,6 +54,35 @@
 .hoverCover:hover .ctaOverlay { opacity: 0.9 !important; }
 .hoverHint { font-size: 11.5px; color: #999; margin-top: 8px; }
 
+/* B7/B8: B4(暗め・白字) ⇔ B3(白オーバーレイ・濃色字) をホバーで相互変化 */
+.morphOv { position: absolute; inset: 0; transition: opacity 0.5s ease; }
+.ovDark { background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.12)); }
+.ovWhite { background: #ffffff; }
+.morph .ctaBody h4, .morph .ctaBody p { transition: color 0.5s ease; }
+.morph .ctaBtn { transition: background 0.4s ease, color 0.4s ease; }
+/* rest = B4（暗め・白文字）→ hover = B3（白・濃色文字） */
+.morphB4 .ovDark { opacity: 1; }
+.morphB4 .ovWhite { opacity: 0; }
+.morphB4:hover .ovDark { opacity: 0; }
+.morphB4:hover .ovWhite { opacity: 0.66; }
+.morphB4 .ctaBody h4 { color: #fff; }
+.morphB4 .ctaBody p { color: rgba(255,255,255,0.9); }
+.morphB4 .ctaBtn { background: #fff; color: #006E8A; }
+.morphB4:hover .ctaBody h4 { color: #0a2b36; }
+.morphB4:hover .ctaBody p { color: #274b57; }
+.morphB4:hover .ctaBtn { background: #00AACC; color: #fff; }
+/* rest = B3（白・濃色文字）→ hover = B4（暗め・白文字） */
+.morphB3 .ovDark { opacity: 0; }
+.morphB3 .ovWhite { opacity: 0.66; }
+.morphB3:hover .ovDark { opacity: 1; }
+.morphB3:hover .ovWhite { opacity: 0; }
+.morphB3 .ctaBody h4 { color: #0a2b36; }
+.morphB3 .ctaBody p { color: #274b57; }
+.morphB3 .ctaBtn { background: #00AACC; color: #fff; }
+.morphB3:hover .ctaBody h4 { color: #fff; }
+.morphB3:hover .ctaBody p { color: rgba(255,255,255,0.9); }
+.morphB3:hover .ctaBtn { background: #fff; color: #006E8A; }
+
 /* ---------- トップRECRUIT CTA フレーミング ---------- */
 .rcBand { position: relative; overflow: hidden; border-radius: 12px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
 .rcImg { position: absolute; inset: 0; background-repeat: no-repeat; }
@@ -68,6 +97,25 @@
 .rcSplitText { padding: 56px 44px; align-self: center; }
 .rcSplitMedia { position: relative; min-height: 260px; }
 .rcSplitMedia img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------- 見出しの「光る」効果（速度違い・文字色を変えるCSS） ---------- */
+.hdStage { background: #fff; border: 1px solid #e8edf0; border-radius: 16px; padding: 12px 32px 28px; }
+.hdRow { padding: 20px 0; border-top: 1px solid #f0f3f5; }
+.hdRow:first-child { border-top: none; }
+.hdRow h3 { margin: 8px 0 0; font-size: clamp(22px, 2.8vw, 30px); font-weight: 800; line-height: 1.5; display: inline-block; }
+
+/* A. 変更前：現状フローの6秒版（比較用／実サイトは .flow-title を15秒に減速済み）
+   ※ globals の titleFlow は CSS Modules がスコープして参照できないので、同等のローカルキーフレームを使う。 */
+.hdFlowFast { background: linear-gradient(90deg, #006E8A 0%, #00AACC 30%, #7fdcee 50%, #00AACC 70%, #006E8A 100%); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: hdFlowMove 6s linear infinite; display: inline-block; }
+@keyframes hdFlowMove { from { background-position: 0% center; } to { background-position: 300% center; } }
+/* C. 静的グラデ（濃青のみ・動き無し） */
+.hdStaticGrad { background: linear-gradient(90deg, #005f77, #0090aa 55%, #007e96); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* D. 1回だけ光沢（無限ループ無し・ソリッド濃青ベース） */
+.hdSheen { color: #0a7c92; background: linear-gradient(100deg, #0a7c92 44%, #a9ecf7 50%, #0a7c92 56%); background-size: 250% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: hdSheen 3.6s ease-in-out 0.3s 1 both; }
+@keyframes hdSheen { from { background-position: 130% center; } to { background-position: -30% center; } }
+@media (prefers-reduced-motion: reduce) {
+  .hdSheen { animation: none; -webkit-text-fill-color: #0a7c92; }
+}
 
 @media (max-width: 768px) {
   .ctaGrid { grid-template-columns: 1fr; }

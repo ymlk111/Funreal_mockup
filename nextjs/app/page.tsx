@@ -21,7 +21,11 @@ export default function Home() {
         <div className={styles.heroValuesAccent} />
         <div className={styles.hero} id="hero">
           <div className={styles.heroContent}>
-            <h1 className={styles.heroCatch}>自由に、そして楽しく。</h1>
+            {/* 画像モーション無し・白文字・2フレーズを順番にゆっくり浮かせる */}
+            <h1 className={styles.heroCatch}>
+              <span className={styles.heroCatchA}>自由に、</span>
+              <span className={styles.heroCatchB}>そして楽しく。</span>
+            </h1>
           </div>
           <div className={styles.heroScroll}>
             <div className={styles.heroScrollLine} />

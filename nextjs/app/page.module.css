@@ -7,17 +7,19 @@
 .heroValuesBg {
   position: absolute;
   inset: 0;
-  background-position: center top;
+  /* 横長ビューポートでは cover で上下が切れる。center top だと手前(人物・PC)が
+     切れてしまうため、やや下寄せにして手前を残しつつ空も見せる。 */
+  background-position: center 60%;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .heroValuesOverlay {
   position: absolute;
   inset: 0;
-  /* 画像を明るく見せるため全体は薄め。中央のキャッチ背後だけ
-     ラジアルで軽く落として文字の可読性を確保する。 */
+  /* 画像を明るく見せるため全体は薄め。中央のキャッチ(白文字)背後だけ
+     ラジアルで少し落として可読性を確保する。 */
   background:
-    radial-gradient(ellipse 60% 38% at 50% 50%, rgba(6,42,56,0.28) 0%, rgba(6,42,56,0) 70%),
+    radial-gradient(ellipse 62% 42% at 50% 50%, rgba(6,42,56,0.34) 0%, rgba(6,42,56,0) 72%),
     linear-gradient(to bottom, rgba(6,42,56,0.12) 0%, rgba(6,42,56,0.04) 40%, rgba(6,42,56,0.1) 100%);
 }
 .heroValuesAccent {
@@ -51,12 +53,16 @@
   font-size: clamp(36px, 5.5vw, 64px);
   font-weight: 900;
   line-height: 1.5;
-  color: var(--blue);
+  color: #fff;
   margin-bottom: 20px;
-  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
-    0 -2px 0 #fff, 0 2px 0 #fff, -2px 0 0 #fff, 2px 0 0 #fff;
-  animation: heroTextIn 0.9s ease forwards;
+  /* 明るい空の写真上でも白文字が読めるよう影を重ねる */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.55), 0 2px 14px rgba(0,0,0,0.5), 0 6px 32px rgba(0,0,0,0.32);
 }
+/* 2フレーズを順番に、ゆっくり浮かび上がらせる（画像モーションは無し） */
+.heroCatch span { display: inline-block; opacity: 0; will-change: transform, opacity; }
+.heroCatchA { animation: heroFloatUp 1.5s cubic-bezier(0.2,0.7,0.2,1) 0.25s forwards; }
+.heroCatchB { animation: heroFloatUp 1.5s cubic-bezier(0.2,0.7,0.2,1) 1.05s forwards; }
+@keyframes heroFloatUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 .heroScroll {
   position: absolute;
   bottom: 32px;
@@ -67,7 +73,8 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  animation: heroTextIn 0.9s ease 0.6s forwards;
+  /* キャッチ(低速・順番)の後に現れるよう遅らせる */
+  animation: heroTextIn 0.9s ease 1.9s forwards;
   opacity: 0;
 }
 .heroScrollLine {
@@ -209,11 +216,12 @@
 .ceoQuoteLink:hover { gap: 10px; color: #0090aa; }
 
 /* ===== RECRUIT CTA ===== */
-.recruitBg { position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; }
+/* サンプル C3 を採用：cover / 上寄せ（窓＝東京タワーが上部に入る）＋ 縦を伸ばす */
+.recruitBg { position: relative; background-size: cover; background-position: center top; background-repeat: no-repeat; }
 .recruitInner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 110px 60px;
+  padding: 140px 60px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 40px;
@@ -293,7 +301,7 @@
   .ceoQuoteText { font-size: 14px; }
 }
 @media (max-width: 480px) {
-  .heroValuesBg { background-position: 60% center; }
+  .heroValuesBg { background-position: 45% center; }
   .hero { min-height: 70vh; }
   .heroCatch { font-size: 28px; }
   .aboutVisual { aspect-ratio: 4/3; }

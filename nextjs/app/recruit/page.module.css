@@ -69,6 +69,8 @@
 /* インタビュー(薄青の帯) と 募集要項(白い帯) で背景を分けて隣接セクションを区別する */
 .interviewBg { background: var(--gray-light); }
 .jobBg { background: var(--white); }
+/* リファラル＋エントリーのCTAセクションも白背景にする（水色のページ地を避ける） */
+.ctaBg { background: var(--white); }
 
 .referralBanner { text-align: center; padding: 48px 40px; background: linear-gradient(135deg, #00AACC, #006E8A); background-size: cover; background-position: center; border-radius: 12px; }
 .referralBannerTitle { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }

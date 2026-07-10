@@ -209,6 +209,8 @@ export default function RecruitPage() {
         </div>
       </div>
 
+      {/* 採用CTA群（リファラル＋エントリー）は白背景の帯に乗せる（水色ページ地から白へ） */}
+      <div className={styles.ctaBg}>
       {/* REFERRAL BANNER */}
       <div className="section section-narrow" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <div
@@ -237,6 +239,7 @@ export default function RecruitPage() {
             <p className={styles.entryCtaNote}>* Google フォームに遷移します</p>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

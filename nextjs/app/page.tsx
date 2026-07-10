@@ -125,7 +125,7 @@ export default function Home() {
       {/* RECRUIT CTA */}
       <section
         className={styles.recruitBg}
-        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.82) 0%, rgba(0,95,122,0.74) 100%), url(${asset("/image/ToRecruit.png")})` }}
+        style={{ backgroundImage: `linear-gradient(135deg, rgba(0,35,50,0.6) 0%, rgba(0,95,122,0.5) 100%), url(${asset("/image/ToRecruit.png")})` }}
       >
         <div className={`${styles.recruitInner} fade-up`}>
           <div>

@@ -140,6 +140,24 @@ function RcBand({
   );
 }
 
+// エントリーCTA：文字視認性の改善案（実際の文言・ボタンで表示＝HP親和性の確認用）。PR#13由来のサンプル。
+function EntryFrame({ frameClass, leg, overlays, caption }: { frameClass?: string; leg?: string; overlays: React.ReactNode; caption: string }) {
+  return (
+    <div>
+      <div className={`${styles.ecta} ${frameClass ?? ""} ${leg ?? ""}`}>
+        <div className={styles.ectaImg} style={{ backgroundImage: `url(${ENTRY})` }} />
+        {overlays}
+        <div className={styles.ectaBody}>
+          <div className={styles.ectaTitle}>私たちと一緒に、新しいスタートを切りませんか？</div>
+          <p className={styles.ectaText}>少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。</p>
+          <a href="#" className={styles.ectaBtn}>エントリーする →</a>
+        </div>
+      </div>
+      <div className={styles.cap}>{caption}</div>
+    </div>
+  );
+}
+
 // 採用ページ見出しの「青白の光る効果」(.flow-title) を読みやすくする候補。
 // 同じ見出し文で、光沢・アニメの量を変えた案を並べて比較する。
 function HeadingSample({ label, note, cls }: { label: string; note?: string; cls: string }) {
@@ -234,8 +252,39 @@ export default function SamplesPage() {
           </div>
         </div>
 
-        <div className={styles.label}>参考：リファラル素材（B2 相当）<span className={styles.labelSub}>ToReferral.png</span></div>
+        <div className={styles.label}>★ リファラル＝B2 を採用（青・薄め 0.3）<span className={styles.labelSub}>ToReferral.png・実ページ反映済み</span></div>
         <CtaSample img={REFERRAL} overlay={BLUE_GRAD} overlayOpacity={0.3} textColor="#fff" btn={{ bg: "#fff", color: "#006E8A" }} />
+
+        <h3 className={styles.subHead}>エントリーCTA — 文字視認性の改善案</h3>
+        <p className={styles.secDesc}>
+          B5／B6（ホバー演出）は動きが良い一方、背景が見えると文字が読みにくいのが課題でした。
+          <strong>常時の下スクリム＋縁取り／影</strong>で可読性を確保した案と、<strong>B4→B3の遷移</strong>、<strong>ヒーロー流用（白文字＋画像に影）</strong>を、実際の文言・ボタンで並べています（カーソルを乗せて確認）。
+        </p>
+        <div className={styles.ctaGrid}>
+          <EntryFrame
+            frameClass={styles.eReveal}
+            leg={styles.legShadow}
+            overlays={<><div className={styles.ectaScrim} /><div className={styles.ectaBlue} /></>}
+            caption="E1. ホバーで裏写り（B5）＋影で視認性UP"
+          />
+          <EntryFrame
+            frameClass={styles.eCover}
+            leg={styles.legOutline}
+            overlays={<><div className={styles.ectaScrim} /><div className={styles.ectaBlue} /></>}
+            caption="E2. 逆ホバー（B6）＋縁取りで視認性UP"
+          />
+          <EntryFrame
+            frameClass={styles.eToWhite}
+            leg={styles.legShadow}
+            overlays={<><div className={styles.ectaScrim} /><div className={styles.ectaWhite} /></>}
+            caption="E3. B4→B3 遷移（ホバーで白幕＋文字が濃色に）"
+          />
+          <EntryFrame
+            leg={styles.legHero}
+            overlays={<div className={styles.ectaVignette} />}
+            caption="E4. ヒーロー流用（白文字＋画像に影・動きなし）"
+          />
+        </div>
       </section>
 
       {/* ============ 3. トップ RECRUIT CTA フレーミング ============ */}

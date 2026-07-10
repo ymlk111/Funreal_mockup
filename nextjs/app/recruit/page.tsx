@@ -53,7 +53,7 @@ export default function RecruitPage() {
         </div>
       </div>
 
-      {/* 信条1 ── 視覚=左 / 文章=右 */}
+      {/* 信条1 ── 視覚=右 / 文章=左（左右交互・始まり逆 R,L,R の R。row-reverse で表示） */}
       <div className={styles.pillarRow}>
         <div className={`${styles.pillarRowInner} ${styles.credoReverse}`}>
           <div className={`${styles.pillarVisualWrap} fade-up`}>
@@ -73,7 +73,7 @@ export default function RecruitPage() {
         </div>
       </div>
 
-      {/* 信条2 ── 文章=左 / 視覚=右（薄青背景） */}
+      {/* 信条2 ── 視覚=左 / 文章=右（R,L,R の L・薄青背景） */}
       <div className={`${styles.pillarRow} ${styles.pillarRowAlt}`}>
         <div className={`${styles.pillarRowInner} ${styles.credoReverse}`}>
           <div className={`${styles.credoBody} fade-up`}>
@@ -98,7 +98,7 @@ export default function RecruitPage() {
         </div>
       </div>
 
-      {/* 信条3 ── 視覚=左 / 文章=右 */}
+      {/* 信条3 ── 視覚=右 / 文章=左（R,L,R の R） */}
       <div className={styles.pillarRow}>
         <div className={`${styles.pillarRowInner} ${styles.credoReverse}`}>
           <div className={`${styles.pillarVisualWrap} fade-up`}>
@@ -172,18 +172,19 @@ export default function RecruitPage() {
         </div>
       </div>
 
-      {/* INTERVIEW */}
-      <div className="section section-narrow">
-        <div className="section-label fade-up">Interview</div>
-        <h2 className="section-title fade-up flow-title">社員インタビュー</h2>
-        <p className="section-lead fade-up">ファンリアルで働く仲間のリアルな声をお届けします。</p>
-        <RecruitInterviews />
+      {/* INTERVIEW（薄青の帯） */}
+      <div className={styles.interviewBg}>
+        <div className="section section-narrow">
+          <div className="section-label fade-up">Interview</div>
+          <h2 className="section-title fade-up flow-title">社員インタビュー</h2>
+          <p className="section-lead fade-up">ファンリアルで働く仲間のリアルな声をお届けします。</p>
+          <RecruitInterviews />
+        </div>
       </div>
 
-      <hr className="divider" />
-
-      {/* JOB */}
-      <div className="section section-narrow" style={{ paddingBottom: "56px" }}>
+      {/* JOB（白い帯：募集要項。インタビューと背景を分ける） */}
+      <div className={styles.jobBg}>
+        <div className="section section-narrow" style={{ paddingBottom: "56px" }}>
         <div className="section-label">Recruit</div>
         <h2 className="section-title flow-title">募集要項</h2>
         <div className={styles.card} style={{ marginBottom: "48px" }}>
@@ -204,6 +205,7 @@ export default function RecruitPage() {
               </tbody>
             </table>
           </div>
+        </div>
         </div>
       </div>
 

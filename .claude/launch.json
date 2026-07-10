@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "next",
-      "runtimeExecutable": "C:\\tomotomomtomomoom新しいフォルダー\\Funreal_mockup\\.claude\\dev-with-node.cmd",
-      "runtimeArgs": [],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "nextjs", "run", "dev"],
       "port": 3000
     },
     {

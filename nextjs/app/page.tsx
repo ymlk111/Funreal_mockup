@@ -136,7 +136,7 @@ export default function Home() {
               あなたの「次のステップ」を一緒に見つけませんか。
             </p>
           </div>
-          <Link href="/contact#apply" className={styles.btnRecruit}>応募する →</Link>
+          <Link href="/recruit" className={styles.btnRecruit}>採用情報を見る →</Link>
         </div>
       </section>
 

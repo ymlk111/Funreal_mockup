@@ -216,12 +216,15 @@
 .ceoQuoteLink:hover { gap: 10px; color: #0090aa; }
 
 /* ===== RECRUIT CTA ===== */
-/* サンプル C2 を採用：画像はそのまま（ToRecruit.png）cover / 中央 ＋ 縦を伸ばす */
-.recruitBg { position: relative; background-size: cover; background-position: center center; background-repeat: no-repeat; }
+/* サンプル C2 と同じ見える範囲に：帯を幅:高さ=2.8:1 のアスペクト比にして、
+   画面幅に関わらず画像(ToRecruit.png・16:9)の縦 約63% を常に見せる。
+   超ワイド画面で高くなり過ぎないよう max-height でキャップ。 */
+.recruitBg { position: relative; background-size: cover; background-position: center center; background-repeat: no-repeat; aspect-ratio: 2.8; max-height: 640px; display: flex; align-items: center; }
 .recruitInner {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 120px 60px;
+  padding: 48px 60px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 40px;
@@ -283,7 +286,8 @@
 @media (max-width: 1024px) {
   .aboutInner { grid-template-columns: 1fr; gap: 40px; }
   .servicesGrid { grid-template-columns: 1fr 1fr; }
-  .recruitInner { grid-template-columns: 1fr; text-align: center; }
+  .recruitBg { aspect-ratio: auto; max-height: none; }
+  .recruitInner { grid-template-columns: 1fr; text-align: center; padding: 80px 40px; }
 }
 @media (max-width: 768px) {
   .heroValuesBg { background-position: center center; }

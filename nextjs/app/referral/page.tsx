@@ -57,43 +57,6 @@ export default function ReferralPage() {
         </div>
       </div>
 
-      {/* GAMING */}
-      <div className={styles.gamingBg} style={{ padding: "100px 60px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div className="section-label fade-up">Gaming</div>
-          <h2 className="section-title fade-up">ゲームも仕事も、本気の仲間。</h2>
-          <p className="section-lead fade-up">
-            FPSからMOBA、対戦ゲームまで——いろんなタイトルを遊ぶメンバーが在籍しています。<br />
-            仕事の合間や終業後に、メンバー同士でランクを回したり一緒に遊ぶこともよくあります。
-          </p>
-          <div className={styles.gameGrid}>
-            {games.map((g) => (
-              <div key={g.title} className={`${styles.gameCard} fade-up`}>
-                <div className={styles.gameCardIcon} aria-hidden="true">{g.icon}</div>
-                <div className={styles.gameCardTitle}>{g.title}</div>
-                <div className={styles.gameCardPlayers}>{g.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* EVENTS */}
-      <div className="section section-narrow">
-        <div className="section-label fade-up">Events</div>
-        <h2 className="section-title fade-up">社内イベント</h2>
-        <p className="section-lead fade-up">仕事を離れて、一緒に楽しむ時間を大切にしています。</p>
-        <div className={`${styles.eventTimeline} fade-up`}>
-          {events.map((e) => (
-            <div key={e.title} className={styles.eventItem}>
-              <div className={styles.eventDot} />
-              <div className={styles.eventTitle}>{e.title}</div>
-              <p className={styles.eventText}>{e.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* HOBBY */}
       <div className={styles.hobbyBg} style={{ padding: "100px 60px" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
@@ -136,6 +99,27 @@ export default function ReferralPage() {
         </div>
       </div>
 
+      {/* GAMING */}
+      <div className={styles.gamingBg} style={{ padding: "100px 60px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div className="section-label fade-up">Gaming</div>
+          <h2 className="section-title fade-up">ゲーム好きのメンバーがたくさん。</h2>
+          <p className="section-lead fade-up">
+            FPSからMOBA、対戦ゲームまで——いろんなタイトルを遊ぶメンバーが在籍しています。<br />
+            仕事の合間や終業後に、メンバー同士でランクを回したり一緒に遊ぶこともよくあります。
+          </p>
+          <div className={styles.gameGrid}>
+            {games.map((g) => (
+              <div key={g.title} className={`${styles.gameCard} fade-up`}>
+                <div className={styles.gameCardIcon} aria-hidden="true">{g.icon}</div>
+                <div className={styles.gameCardTitle}>{g.title}</div>
+                <div className={styles.gameCardPlayers}>{g.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* VOICE */}
       <div className="section section-narrow">
         <div className="section-label fade-up">Voice</div>
@@ -151,6 +135,22 @@ export default function ReferralPage() {
             <div key={i} className={`${styles.voiceCard} fade-up`}>
               <p className={styles.voiceText}>{v.text}</p>
               <div className={styles.voiceMeta}><strong>{v.name}</strong> — {v.role}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* EVENTS */}
+      <div className="section section-narrow">
+        <div className="section-label fade-up">Events</div>
+        <h2 className="section-title fade-up">社内イベント</h2>
+        <p className="section-lead fade-up">仕事を離れて、一緒に楽しむ時間を大切にしています。</p>
+        <div className={`${styles.eventTimeline} fade-up`}>
+          {events.map((e) => (
+            <div key={e.title} className={styles.eventItem}>
+              <div className={styles.eventDot} />
+              <div className={styles.eventTitle}>{e.title}</div>
+              <p className={styles.eventText}>{e.text}</p>
             </div>
           ))}
         </div>

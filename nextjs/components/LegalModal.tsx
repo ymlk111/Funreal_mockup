@@ -22,7 +22,7 @@ function PrivacyContent() {
           <dl>
             <dt>名称</dt><dd>株式会社ファンリアル</dd>
             <dt>所在地</dt><dd>〒160-0023 東京都新宿区西新宿7丁目5番5号 Plaza西新宿 UCF406</dd>
-            <dt>代表者</dt><dd>代表取締役 渡邉 悟／代表取締役 羽田 怜生</dd>
+            <dt>代表者</dt><dd>代表取締役 羽田 怜生／代表取締役 渡邉 悟</dd>
           </dl>
         </div>
       </section>

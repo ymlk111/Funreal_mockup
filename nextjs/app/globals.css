@@ -48,8 +48,8 @@ header.scrolled .logo-ph { border-color: var(--gray-mid); color: var(--gray-text
 header.scrolled .logo-text { color: var(--black); }
 header.scrolled .hamburger span { background: var(--black); }
 
-/* ISページ(ダークテーマ): ヘッダーも黒地・白文字に */
-header.is-dark, header.is-dark.scrolled { background: rgba(11,11,11,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
+/* ダークテーマ(IS/リファラル): スクロール後のみ黒地に（ヒーロー中は透過） */
+header.is-dark.scrolled { background: rgba(11,11,11,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
 header.is-dark .logo-ph, header.is-dark.scrolled .logo-ph { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
 header.is-dark .logo-text, header.is-dark.scrolled .logo-text { color: #fff; }
 header.is-dark .hamburger span, header.is-dark.scrolled .hamburger span { background: #fff; }
@@ -245,6 +245,9 @@ footer.footer-night .footer-copy { color: rgba(252,252,252,0.45); }
   max-width: 600px; margin: 0 auto;
   animation: heroIn 0.8s ease 0.2s forwards; opacity: 0;
 }
+/* タイトルバナーの縦幅を低くするスリム版（Contact / Solutions で使用）
+   ※ 固定ヘッダー(64px)に潜って見えなくならないよう上余白は十分に確保する */
+.page-hero.page-hero-slim { padding: 96px 60px 56px; min-height: 36vh; }
 @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes heroTextIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes scrollPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
@@ -294,6 +297,7 @@ footer.footer-night .footer-copy { color: rgba(252,252,252,0.45); }
   .footer-copy { text-align: center; }
   .drawer { width: 85%; right: -85%; }
   .page-hero { padding: 60px 24px 50px; min-height: 40vh; }
+  .page-hero.page-hero-slim { padding: 76px 24px 44px; min-height: 28vh; }
   .legal { padding: 40px 24px 60px; }
 }
 @media (max-width: 480px) {

@@ -12,16 +12,16 @@ export default function RecruitPage() {
   return (
     <>
       {/* HERO */}
-      <div className={styles.recruitHero}>
+      <div className={styles.recruitHero} data-hero>
         <div
           className={styles.recruitHeroBg}
           style={{ backgroundImage: `url(${asset("/image/Recruit_top.png")})` }}
         />
         <div className={styles.recruitHeroContent}>
-          <h1 className={styles.recruitHeroCatch}>自由に、そして楽しく。</h1>
+          <h1 className={styles.recruitHeroCatch}>SEの「めんどくさい」を減らし、<br />仕事を正当に評価します。</h1>
           <p className={styles.recruitHeroSub}>
-            完璧な経歴も、飾った言葉も必要ありません。<br />
-            ファンリアルは、あなたらしく息ができる場所です。
+            評価するのは、現場での取り組みや技術力、積み重ねてきた経験。<br />
+            頑張った分が、きちんと昇給やキャリアにつながる会社を目指します。
           </p>
         </div>
       </div>
@@ -31,9 +31,12 @@ export default function RecruitPage() {
         <div className="section-label fade-up">Message</div>
         <h2 className={`section-title fade-up flow-title`}>会社からのひとこと</h2>
         <div className={`${styles.messageText} fade-up`}>
-          <p>これまでの働く環境で、ご自身のキャリアや会社のルールにミスマッチを感じたことはありませんか？<br />株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span className="hl-flow">「自然体で、長く安心して働けること」</span>です。</p>
-          <p>私たちは、画一的なモチベーションの高さを求めたり、過度なプレッシャーをかけたりすることはありません。これまでの枠組みが合わず一度立ち止まってしまった方や、不器用でもコツコツと取り組める方にこそ、当社の柔軟な環境が活きると考えています。</p>
-          <p>社内は若手メンバーが多く、年齢や社歴に関わらず<span className="hl-flow">フラットに会話ができる風通しの良さ</span>があります。<br />まずはしっかりと腰を据え、<span className="hl-flow">残業の少ない環境</span>でご自身のペースを取り戻してください。心に余裕が生まれてから、次のステップや新しいやりがいを一緒に見つけていきましょう。</p>
+          <p>これまでの働く環境で、ご自身のキャリアや評価制度、会社のルールにミスマッチを感じたことはありませんか？<br />株式会社ファンリアルが大切にしているのは、社員一人ひとりが<span className="hl-flow">自然体で長く働きながら、エンジニアとして着実に成長していける環境</span>をつくることです。</p>
+          <p>私たちは、画一的なモチベーションの高さや、必要以上の社内活動を求めることはありません。その一方で、仕事や技術に真摯に向き合い、コツコツと経験を積み重ねる姿勢は大切にしています。</p>
+          <p>ファンリアルが目指しているのは、単に人材を案件へ送り出す会社ではありません。社員一人ひとりの技術力や専門性を高め、<span className="hl-flow">将来的には自社でシステムやサービスを生み出せる、優秀なエンジニアを育てる会社</span>です。</p>
+          <p>現在の経験やスキルだけで判断するのではなく、これから何を身につけ、どのようなエンジニアになりたいのかを一緒に考えます。案件選びやキャリア形成についても相談しながら、それぞれに合った成長を支援していきます。</p>
+          <p>社内は若手メンバーが多く、年齢や社歴に関係なく<span className="hl-flow">フラットに意見を交わせる環境</span>です。</p>
+          <p>無理に背伸びをする必要はありません。自分らしく働きながらも、技術者として一歩ずつ前へ進みたい。そんな方と一緒に、これからのファンリアルをつくっていきたいと考えています。</p>
         </div>
         <div className={`${styles.messageName} fade-up`}>代表取締役　羽田 怜生</div>
       </div>
@@ -44,12 +47,6 @@ export default function RecruitPage() {
       <div className={styles.credoHeaderBand}>
         <div className={styles.credoHeader}>
           <h2 className={`section-title fade-up flow-title ${styles.credoSecTitle}`} style={{ fontSize: "clamp(22px,2.8vw,32px)" }}>ファンリアルの3つの信条</h2>
-          <div className={`${styles.credoIntro} fade-up`}>
-            <p className={styles.credoLead}>SESの「めんどくさい」を、できるだけ会社側で消します。</p>
-            <p>エンジニアに必要なのは、無駄な社内作業でも、飲み会参加でも、上司へのご機嫌取りでもありません。</p>
-            <p>ファンリアルが大事にするのは、現場での仕事、キャリアの希望、そして将来の収入です。</p>
-            <p>20代・30代が無理なく成長し、ちゃんと昇給できる会社を目指しています。</p>
-          </div>
         </div>
       </div>
 
@@ -185,6 +182,7 @@ export default function RecruitPage() {
       {/* JOB（白い帯：募集要項。インタビューと背景を分ける） */}
       <div className={styles.jobBg}>
         <div className="section section-narrow" style={{ paddingBottom: "56px" }}>
+        <div className={styles.jobInner}>
         <div className="section-label">Recruit</div>
         <h2 className="section-title flow-title">募集要項</h2>
         <div className={styles.card} style={{ marginBottom: "48px" }}>
@@ -200,11 +198,12 @@ export default function RecruitPage() {
                 <tr><th>勤務時間</th><td>9:00〜18:00　※参画案件に準ずる</td></tr>
                 <tr><th>昇給</th><td>年1回（4月）</td></tr>
                 <tr><th>休日・休暇</th><td>完全週休二日制／祝日休／夏季休暇／年末年始休暇<br />初年度有給15日付与　※4月入社を基準</td></tr>
-                <tr><th>待遇・福利厚生</th><td>リモートワーク推進／社員紹介手当あり<br />有給休暇を取得しやすい環境です</td></tr>
+                <tr><th>待遇・福利厚生</th><td>社会保険完備／リモートワーク推進／社員紹介手当あり<br />資格手当／資格合格報奨金／資格試験費用補助<br />懇親会費補助／書籍購入費補助／セミナー補助<br />有給休暇を取得しやすい環境です</td></tr>
                 <tr><th>選考プロセス</th><td>下記のフォームより応募の意思をお送りいただいた後、メールにて以降のプロセスを折り返しご連絡いたします。</td></tr>
               </tbody>
             </table>
           </div>
+        </div>
         </div>
         </div>
       </div>
@@ -235,8 +234,8 @@ export default function RecruitPage() {
               現在、新しいメンバーの積極採用を行っております。<br />
               少しでも興味をお持ちいただけたら、まずはカジュアルにお話ししましょう。
             </p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyChjpTrCOZUJYFkMui0hjmTtX3Hnt3YPEBsYoZigtMn_IDA/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>エントリーする →</a>
-            <p className={styles.entryCtaNote}>* Google フォームに遷移します</p>
+            <Link href="/contact#apply" className="btn btn-primary" style={{ fontSize: "15px", padding: "18px 56px" }}>応募する →</Link>
+            <p className={styles.entryCtaNote}>* お問い合わせページの応募フォームへ移動します</p>
           </div>
         </div>
       </div>

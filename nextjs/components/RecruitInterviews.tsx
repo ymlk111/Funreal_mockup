@@ -109,12 +109,18 @@ const interviews: Interview[] = [
   },
 ];
 
+// 表示順（一番上を K.H さんに）
+const displayOrder = ["K.H", "R.O", "J.N"];
+const orderedInterviews = displayOrder
+  .map((init) => interviews.find((iv) => iv.initials === init))
+  .filter((iv): iv is Interview => Boolean(iv));
+
 export default function RecruitInterviews() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
     <div className={styles.list}>
-      {interviews.map((iv, i) => {
+      {orderedInterviews.map((iv, i) => {
         const open = openIdx === i;
         return (
           <div key={iv.initials} className={`${styles.card} fade-up`}>

@@ -47,7 +47,7 @@ export default function ReferralPage() {
   return (
     <div className={styles.referral}>
       {/* HERO */}
-      <div className={styles.refHero}>
+      <div className={styles.refHero} data-hero>
         <div className={styles.refHeroBg} />
         <div className={styles.refHeroParticles} />
         <div className={styles.refHeroContent}>

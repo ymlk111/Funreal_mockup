@@ -5,8 +5,8 @@
 /* ===== WORKS (image + text rows) ===== */
 .solutionList { display: flex; flex-direction: column; gap: 56px; margin-top: 40px; }
 .solutionRow { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; }
-.solutionMedia { order: 2; border-radius: 12px; overflow: hidden; border: 1px solid var(--gray-mid); }
-.solutionMedia img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.solutionMedia { order: 2; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; border: 1px solid var(--gray-mid); }
+.solutionMedia img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .solutionMediaPh { aspect-ratio: 16 / 10; background: var(--gray-light); display: flex; align-items: center; justify-content: center; color: #9CCEDC; font-size: 12px; font-family: var(--font-en); letter-spacing: 0.15em; }
 .solutionBody { order: 1; }
 .workTag { display: inline-block; font-family: var(--font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); background: rgba(0,170,204,0.08); padding: 5px 12px; border-radius: 20px; margin-bottom: 18px; }

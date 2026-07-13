@@ -61,10 +61,14 @@
 .card { background: transparent; }
 .cardBody { padding: 0; }
 .cardTag { display: inline-block; padding: 3px 10px; background: rgba(0,170,204,0.08); color: var(--blue); font-size: 11px; font-weight: 600; font-family: var(--font-en); border-radius: 20px; margin-bottom: 8px; }
+/* 見出し(Recruit/募集要項)と表を同じ幅の中央ブロックに揃える */
+.jobInner { max-width: 760px; margin: 0 auto; }
+
+/* シンプルな定義リスト風テーブル：ラベルは太字・白地、行間は細い罫線のみ。 */
 .jobTable { width: 100%; border-collapse: collapse; }
-.jobTable th, .jobTable td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--gray-mid); text-align: left; vertical-align: top; }
-.jobTable th { width: 160px; color: var(--gray-text); font-weight: 500; background: var(--gray-light); white-space: nowrap; }
-.jobTable td { color: var(--black); line-height: 1.7; }
+.jobTable th, .jobTable td { padding: 15px 10px; font-size: 13.5px; border-bottom: 1px solid #d3dbe0; text-align: left; vertical-align: top; }
+.jobTable th { width: 170px; color: var(--black); font-weight: 700; white-space: nowrap; }
+.jobTable td { color: #444; line-height: 1.85; }
 
 /* インタビュー(薄青の帯) と 募集要項(白い帯) で背景を分けて隣接セクションを区別する */
 .interviewBg { background: var(--gray-light); }

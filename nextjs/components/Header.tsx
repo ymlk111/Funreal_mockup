@@ -5,18 +5,20 @@ import { usePathname } from "next/navigation";
 import { asset } from "@/lib/asset";
 import { useDrawer } from "@/hooks/useDrawer";
 
+// ヒーロー表示中はヘッダーを透過する対象ページ（トップと同様の演出）
+const HERO_PAGES = new Set(["/", "/recruit", "/contact", "/solutions", "/referral"]);
+
 export default function Header() {
   const { isOpen, subOpen, openDrawer, closeDrawer, toggleSub } = useDrawer();
   const pathname = usePathname();
-  // トップページのみ透過ヒーロー演出。下層ページは常時不透明の白ヘッダー。
-  const isTop = pathname === "/";
+  const hasHero = HERO_PAGES.has(pathname);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (!isTop) return;
+    if (!hasHero) return;
     const onScroll = () => {
-      // トップはヒーロー画像を通過してから不透明化。
-      const hero = document.getElementById("hero");
+      // 各ページのヒーロー([data-hero])を通過してから不透明化。
+      const hero = document.querySelector<HTMLElement>("[data-hero]");
       const threshold = hero ? hero.offsetHeight - 64 : window.innerHeight - 64;
       setScrolled(window.scrollY > threshold);
     };
@@ -27,10 +29,10 @@ export default function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [isTop]);
+  }, [hasHero, pathname]);
 
-  // トップ以外、またはトップでスクロール後は不透明ヘッダー
-  const solid = !isTop || scrolled;
+  // ヒーローの無いページ、またはヒーローを通過後は不透明ヘッダー
+  const solid = !hasHero || scrolled;
   // IS・リファラルページはダークテーマのため、ヘッダー・ドロワーも各ページの配色に合わせる
   const darkKind = pathname === "/service/is" ? "is" : pathname === "/referral" ? "referral" : "";
   const isDark = darkKind !== "";

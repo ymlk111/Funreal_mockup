@@ -19,7 +19,7 @@ export default function Home() {
         />
         <div className={styles.heroValuesOverlay} />
         <div className={styles.heroValuesAccent} />
-        <div className={styles.hero} id="hero">
+        <div className={styles.hero} id="hero" data-hero>
           <div className={styles.heroContent}>
             {/* 画像モーション無し・白文字・2フレーズを順番にゆっくり浮かせる */}
             <h1 className={styles.heroCatch}>
@@ -136,7 +136,7 @@ export default function Home() {
               あなたの「次のステップ」を一緒に見つけませんか。
             </p>
           </div>
-          <Link href="/recruit" className={styles.btnRecruit}>採用情報を見る →</Link>
+          <Link href="/contact#apply" className={styles.btnRecruit}>応募する →</Link>
         </div>
       </section>
 

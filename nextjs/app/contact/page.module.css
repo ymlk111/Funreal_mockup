@@ -3,6 +3,12 @@
 .typeIcon { width: 56px; height: 56px; border-radius: 50%; background: rgba(0,170,204,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; }
 .typeCardTitle { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--black); }
 .typeCardText { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
+/* お問い合わせ / 採用応募 切替タブ */
+.modeToggle { display: inline-flex; gap: 4px; padding: 4px; background: var(--gray-light); border: 1px solid var(--gray-mid); border-radius: 10px; margin-bottom: 20px; }
+.modeBtn { appearance: none; border: none; background: transparent; padding: 10px 24px; border-radius: 7px; font-size: 14px; font-weight: 700; color: var(--gray-text); cursor: pointer; transition: background 0.2s, color 0.2s, box-shadow 0.2s; }
+.modeBtn:hover { color: var(--blue); }
+.modeBtnActive { background: var(--white); color: var(--blue); box-shadow: 0 1px 4px rgba(0,90,120,0.12); }
+
 .formGroup { margin-bottom: 28px; }
 .formLabel { display: block; font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
 .required { font-size: 11px; color: var(--red); margin-left: 6px; font-weight: 700; }

@@ -216,12 +216,12 @@
 .ceoQuoteLink:hover { gap: 10px; color: #0090aa; }
 
 /* ===== RECRUIT CTA ===== */
-/* サンプル C3 を採用：cover / 上寄せ（窓＝東京タワーが上部に入る）＋ 縦を伸ばす */
-.recruitBg { position: relative; background-size: cover; background-position: center top; background-repeat: no-repeat; }
+/* サンプル C2 を採用：画像はそのまま（ToRecruit.png）cover / 中央 ＋ 縦を伸ばす */
+.recruitBg { position: relative; background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .recruitInner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 140px 60px;
+  padding: 120px 60px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 40px;

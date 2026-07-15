@@ -216,7 +216,7 @@ export default function RecruitPage() {
           className={`${styles.referralBanner} fade-up`}
           style={{ backgroundImage: `linear-gradient(135deg, rgba(0,140,170,0.5), rgba(0,90,115,0.5)), url(${asset("/image/ToReferral.png")})` }}
         >
-          <div className={styles.referralBannerTitle}>🎮 友達に紹介されましたか？</div>
+          <div className={styles.referralBannerTitle}>友達に紹介されましたか？</div>
           <p className={styles.referralBannerText}>ゲーム好き・ボドゲ好き必見。ファンリアルの「素顔」を覗いてみてください。</p>
           <Link href="/referral" className={styles.referralBannerLink}>ファンリアルの素顔を見る →</Link>
         </div>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>たぬきポスト｜フォーム営業自動化ツール | 株式会社ファンリアル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=M+PLUS+Rounded+1c:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   たぬきポスト LP モックアップ
+   ビジュアルは tanuki_post_adrovice_redesign.html 準拠。
+   参照ファイルは「元の CSS ＋ !important の上書き」という二層構造だったが、
+   手で直しづらいので一枚のスタイルシートに統合してある。
+   ========================================================= */
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FFFDFB;
+    --cream-deep: #FFF4D5;
+    --brown: #4B261E;
+    --brown-soft: #76574E;
+    --brown-mute: #9A7C73;
+    --pink: #F36D8F;
+    --pink-dark: #E95378;
+    --pink-soft: #FFE5ED;
+    /* パステルのアクセント3色。アイコンの地を節ごとに巡回させるために使う */
+    --blue: #8DD3E9;
+    --green: #9FD36D;
+    --yellow: #FFD96F;
+    --white: #FFFFFF;
+    /* 地の帯。白との差は 1.10:1 で、帯とわかる最小限に留めてある */
+    --band: #FDF1F4;
+    /* カードに影は落とさない（浮かせない）。器の区切りは罫線だけが持つ */
+    --line: #EDDAE1;
+    /* 帯の上のカードは、白地の上より罫線を一段濃くしないと輪郭が消える */
+    --line-on-band: #F0DDE4;
+    --rounded: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+    --body-font: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+    --mono-jp: 'JetBrains Mono', 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body-font); color: var(--brown);
+    background: var(--white); overflow-x: hidden;
+  }
+  /* 地はベタ白ではなく、パステルの点を薄く敷く（.band の帯はこれを覆う） */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: 0.5;
+    background:
+      radial-gradient(circle at 8% 14%, #BDE9F4 0 4px, transparent 5px),
+      radial-gradient(circle at 94% 24%, #FFE47B 0 6px, transparent 7px),
+      radial-gradient(circle at 76% 8%, #F8C8D7 0 5px, transparent 6px),
+      radial-gradient(circle at 18% 72%, #DFF4CF 0 5px, transparent 6px);
+    background-size: 240px 240px, 310px 310px, 190px 190px, 270px 270px;
+  }
+  img { max-width: 100%; display: block; }
+  section { position: relative; }
+
+  /* ===== 縦のリズムと地の帯 =====
+     どの節も隣と地の色が変わるように、白と .band を1節ずつ交互に敷く。
+     まとめて同じ地に置く作りだと、まとまりの中の節と節の境目が消えるため。
+
+       グラデ（桃）— ヒーローと末尾CTA
+       .band（淡桃）— 偶数番目の節（課題／しくみ／特長／運用ステップ）
+       白＋点柄     — 奇数番目の節（とは／結果／ご相談／FAQ）
+
+     地が1節ごとに切り替わるので、上下の余白は全節そろえてよい（78px）。
+     まとまりの頭だけ余白を広げる、といった強弱は付けない。
+
+     節ラベル（BEFORE / ABOUT / RESULT / FAQ）は全廃した。
+     一部の節にしか無く、有無が揃っていなかったため。 */
+  .inner { width: min(1120px, calc(100% - 48px)); margin: 0 auto; position: relative; padding-block: 78px; }
+  .inner-cta { padding-top: 85px; padding-bottom: 105px; }
+  .band { background: var(--band); }
+  /* 帯の上では、白カードの罫線を一段濃くして輪郭を保つ */
+  .band .reality-cell, .band .stop, .band .feat, .band .step,
+  .band .faq-item, .band .sheet-card, .band .stat { border-color: var(--line-on-band); }
+
+  /* ===== TYPE ===== */
+  h2.h2 {
+    font-family: var(--rounded); font-weight: 900;
+    font-size: clamp(29px, 3.5vw, 42px); line-height: 1.45;
+    letter-spacing: -0.045em; color: var(--brown); margin: 0 0 16px;
+  }
+  /* 参照ファイルの本文は 10〜11px だが、和文だと読めないので 13px を下限にした。
+     カード内も同じ基準（13.5px / line-height 1.95）に揃えてある。 */
+  .lead { font-size: 14.5px; line-height: 2; color: #80675E; margin: 0; max-width: 44em; }
+  .note-small { margin-top: 24px; font-size: 12.5px; line-height: 1.9; color: var(--brown-mute); }
+
+  .about-body { font-size: 15px; line-height: 2.15; color: #765A52; margin: 24px 0 0; max-width: 44em; }
+
+  /* ===== BUTTON ===== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 56px; padding: 0 26px; border: 0; border-radius: 999px;
+    background: linear-gradient(135deg, #F56F91, #EC557D); color: #fff;
+    font-family: var(--rounded); font-weight: 900; font-size: 15px;
+    text-decoration: none; cursor: pointer;
+    box-shadow: 0 10px 22px rgba(239, 91, 125, 0.24);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 28px rgba(239, 91, 125, 0.28); }
+  .btn:focus-visible { outline: 3px solid var(--pink-dark); outline-offset: 3px; }
+  .btn-paw { font-size: 17px; }
+  .btn-arrow { font-family: var(--mono-jp); font-weight: 700; }
+
+  /* ===== ヒーロー ===== */
+  .hero {
+    /* min-height は大きな一枚絵を置く前提の値だったが、いまはフォームカードだけ。
+       残すと下に空きが出るので、高さは中身と padding に任せる。 */
+    padding: 76px 0 84px; overflow: hidden;
+    background:
+      radial-gradient(circle at 76% 45%, #FFE9F1 0 19%, transparent 20%),
+      linear-gradient(180deg, #fff 0%, #FFF9FB 100%);
+  }
+  /* 画面外へはみ出す大きな丸。左は水色、右は黄色 */
+  .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; }
+  .hero::before { width: 170px; height: 170px; left: -85px; top: 95px; background: #E7F8FC; }
+  .hero::after { width: 130px; height: 130px; right: -50px; top: 180px; background: #FFF2BD; }
+
+  .hero-deco { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .hero-deco span { position: absolute; }
+  .hero-deco span:nth-child(1) { top: 12%; left: 4%; font-size: 20px; color: #F19AB0; }
+  .hero-deco span:nth-child(2) { top: 22%; left: 52%; font-size: 14px; color: #9DDCE9; }
+  .hero-deco span:nth-child(3) { top: 62%; left: 45%; font-size: 16px; color: #FFD76C; }
+  .hero-deco span:nth-child(4) { top: 73%; left: 7%; font-size: 12px; color: #BFE3A0; }
+  .hero-deco span:nth-child(5) { top: 9%; left: 82%; font-size: 15px; color: #F3A7C0; }
+  .hero-deco span:nth-child(6) { top: 38%; left: 92%; font-size: 12px; color: #8FD1E4; }
+
+  .hero-inner {
+    width: min(1320px, calc(100% - 96px)); margin: 0 auto;
+    /* 参照デザインは art 側が minmax(470px, …) だったが、それだと 900〜1100px の
+       あいだで左のテキスト列が 300px 台まで潰れ、h1 が3行に折れる。
+       下限を外して比で配分し、カード幅は .form-stage の max-width に任せる。 */
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
+    gap: 35px; align-items: center; position: relative; z-index: 1;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+  .brand-ja {
+    display: inline-flex; align-items: center;
+    font-family: var(--rounded); font-weight: 900; font-size: 18px;
+    letter-spacing: 0.03em; color: var(--pink-dark);
+  }
+  .brand-ja::before {
+    content: '🐾'; display: inline-grid; place-items: center;
+    width: 34px; height: 34px; margin-right: 9px;
+    background: #FFE4ED; border-radius: 50%; font-size: 16px;
+  }
+  .h1 {
+    position: relative;
+    font-family: var(--rounded); font-weight: 900; color: var(--brown);
+    /* 参照デザインは clamp(42px,5vw,68px) だが、それだと「フォーム営業を自動化。」
+       11文字が左列に収まらず、意図した2行が3行に折れる。全幅域で2行を保つ上限に下げた。
+       文言を変えるときは行数を再確認すること。 */
+    font-size: clamp(36px, 4.2vw, 58px); line-height: 1.28;
+    letter-spacing: -0.055em; margin: 0 0 24px;
+  }
+  /* 見出しの足元に引くピンクの線。z-index:-1 で文字の裏へ回す。
+     .h1 は position:relative だけで z-index を持たないので、
+     この擬似要素は .hero-inner の重ね順の中に留まる（背景より前・文字より後）。 */
+  .h1::after {
+    content: ''; position: absolute; left: -10px; bottom: 3px;
+    width: 220px; height: 13px; background: #FFDBE6;
+    border-radius: 20px; z-index: -1; transform: rotate(-1deg);
+  }
+  .hero-lead { font-size: 15px; line-height: 2; color: var(--brown-soft); margin: 0 0 14px; max-width: 580px; }
+  .hero-sub { font-size: 14px; line-height: 1.9; color: var(--brown-mute); margin: 0 0 28px; max-width: 580px; }
+  .hero-art { min-height: 540px; position: relative; display: flex; justify-content: center; align-items: center; }
+  .hero-art-glow {
+    position: absolute; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, #FFDFEA 0, #FFEEF4 45%, transparent 70%);
+    z-index: 0;
+  }
+
+  /* ===== ヒーローのシグネチャ：自分で埋まるフォーム =====
+     8秒ループ。CSSアニメーションのみ（JSなし）。
+     ★重要：アニメーション未適用時の見た目（base state）は「入力完了後」にしてある。
+     base を空欄にすると、低モーション環境で空のフォームが表示されてしまう。
+     文言を変えるときは type1/2/3 の文字数（em / ch と steps()）を数え直すこと。 */
+  .form-stage { position: relative; z-index: 1; width: 100%; max-width: 430px; }
+  /* このカードだけ罫線を一段濃くする。他のカードは白地の上だが、
+     これは桃色のグラデの上に乗るため、共通の罫線では地との比が 1.16 まで落ちて
+     輪郭が消える（影を外したぶん、輪郭は罫線だけが持っている）。 */
+  .card {
+    background: var(--white); border: 1px solid #E3CBD5; border-radius: 24px;
+    padding: 26px; position: relative;
+  }
+  .card-head {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding-bottom: 13px; margin-bottom: 18px; border-bottom: 1px solid #F6E9EE;
+    font-family: var(--rounded); font-weight: 900; font-size: 13.5px; color: var(--brown);
+  }
+  .card-url { font-family: var(--mono-jp); font-size: 9.5px; font-weight: 400; color: var(--brown-mute); }
+  .field { margin-bottom: 14px; }
+  .f-label {
+    display: flex; align-items: center; gap: 7px;
+    font-family: var(--mono-jp); font-size: 9.5px; font-weight: 500;
+    color: var(--brown-mute); letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .req { font-size: 9.5px; font-weight: 900; color: var(--pink-dark); background: #FFF0F5; border: 1px solid #F1C9D5; border-radius: 999px; padding: 2px 8px; letter-spacing: 0; }
+  .f-input { height: 34px; display: flex; align-items: center; padding: 0 12px; background: #FFFCFD; border: 1px solid #F1DFE4; border-radius: 12px; overflow: hidden; }
+  /* box-sizing は content-box に戻す。border-box のままだとキャレットの
+     border-right 2px が width に含まれ、タイプ演出の終端で最後の文字が切れる。 */
+  .val {
+    display: inline-block; white-space: nowrap; overflow: hidden;
+    box-sizing: content-box;
+    font-size: 12.5px; color: var(--brown); border-right: 2px solid transparent;
+  }
+  .val-mono { font-family: var(--mono-jp); font-size: 11.5px; }
+  .v1 { animation: type1 8s steps(8) infinite, caret1 8s infinite; }
+  .v2 { animation: type2 8s steps(4) infinite, caret2 8s infinite; }
+  .v3 { animation: type3 8s steps(17) infinite, caret3 8s infinite; }
+  @keyframes type1 { 0%, 3% { width: 0; } 16%, 90% { width: 8em; } 91%, 100% { width: 0; } }
+  @keyframes type2 { 0%, 18% { width: 0; } 29%, 90% { width: 4em; } 91%, 100% { width: 0; } }
+  @keyframes type3 { 0%, 31% { width: 0; } 43%, 90% { width: 17ch; } 91%, 100% { width: 0; } }
+  @keyframes caret1 { 0%, 2% { border-right-color: transparent; } 3%, 16% { border-right-color: var(--pink); } 17%, 100% { border-right-color: transparent; } }
+  @keyframes caret2 { 0%, 17% { border-right-color: transparent; } 18%, 29% { border-right-color: var(--pink); } 30%, 100% { border-right-color: transparent; } }
+  @keyframes caret3 { 0%, 30% { border-right-color: transparent; } 31%, 43% { border-right-color: var(--pink); } 44%, 100% { border-right-color: transparent; } }
+
+  .radios { display: flex; gap: 18px; }
+  .radio { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--brown-soft); }
+  .dot { width: 14px; height: 14px; border: 1.5px solid #E6D3D8; border-radius: 50%; position: relative; }
+  .dot-on { border-color: var(--pink); animation: ring 8s infinite; }
+  .dot-on::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--pink); animation: pick 8s infinite; }
+  @keyframes ring { 0%, 46% { border-color: #E6D3D8; } 50%, 90% { border-color: var(--pink); } 91%, 100% { border-color: #E6D3D8; } }
+  @keyframes pick { 0%, 46% { opacity: 0; transform: scale(0.4); } 50%, 90% { opacity: 1; transform: scale(1); } 91%, 100% { opacity: 0; } }
+
+  .f-area { border: 1px solid #F1DFE4; border-radius: 12px; background: #FFFCFD; padding: 10px 12px; min-height: 48px; }
+  .area-txt { display: block; font-size: 11px; line-height: 1.75; color: var(--brown); }
+  .tmpl {
+    display: block; margin-top: 8px; padding-top: 7px; border-top: 1px dashed #F1DFE4;
+    font-family: var(--mono-jp); font-size: 10px; font-weight: 700; color: var(--pink-dark);
+  }
+  .fill { animation: fill 8s infinite; }
+  @keyframes fill { 0%, 50% { opacity: 0; } 56%, 90% { opacity: 1; } 91%, 100% { opacity: 0; } }
+
+  /* 送信ボタンは「他社サイトのボタン」なので茶。ピンクは自社CTAの色として空けておく */
+  .f-submit {
+    margin-top: 16px; padding: 13px; text-align: center;
+    background: var(--brown); color: #fff;
+    font-family: var(--rounded); font-weight: 900; font-size: 13px;
+    border-radius: 14px; animation: press 8s infinite;
+  }
+  @keyframes press {
+    0%, 64% { transform: scale(1); background: var(--brown); }
+    67% { transform: scale(0.975); background: #33170F; }
+    70%, 100% { transform: scale(1); background: var(--brown); }
+  }
+
+  .stamp {
+    position: absolute; right: -14px; bottom: -14px;
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 2px solid #fff; background: linear-gradient(135deg, #F56F91, #EC557D);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    /* 影はフォームに「押された」感を出すぶんだけ。カードが平らになったので浅くした */
+    transform: rotate(-9deg); box-shadow: 0 3px 8px rgba(239, 91, 125, 0.22);
+    animation: stamp 8s infinite;
+  }
+  .stamp-mark { font-family: var(--mono-jp); font-weight: 700; font-size: 22px; color: #fff; line-height: 1; }
+  .stamp-txt { font-size: 9.5px; font-weight: 900; color: #fff; letter-spacing: 0.08em; }
+  @keyframes stamp {
+    0%, 70% { opacity: 0; transform: scale(1.5) rotate(-9deg); }
+    75%, 90% { opacity: 1; transform: scale(1) rotate(-9deg); }
+    91%, 100% { opacity: 0; transform: scale(1) rotate(-9deg); }
+  }
+
+  /* 低モーション環境では base state（完成形）を見せる */
+  @media (prefers-reduced-motion: reduce) {
+    .v1, .v2, .v3, .dot-on, .dot-on::after, .fill, .f-submit, .stamp { animation: none; }
+  }
+
+  /* ===== 共通のカード =====
+     白地・1px のパステル罫・大きめ角丸。影は持たない。
+     サイズの基準を1箇所に集約してある（節ごとにバラバラだったものを統一）：
+       余白 32px ／ アイコン 58px ／ 見出し 19px ／ 本文 13.5px・行間 1.95
+     カード内の本文は 12px だと和文が潰れるので 13.5px を下限にする。 */
+  .reality-cell, .stop, .step, .faq-item, .feat {
+    background: var(--white); border: 1px solid var(--line);
+  }
+  .reality-cell h3, .stop-name, .step h3, .feat h3, .duo-cell h3 {
+    font-family: var(--rounded); font-weight: 900; color: var(--brown);
+  }
+  .reality-cell p, .stop-desc, .step p, .duo-cell p {
+    font-size: 13.5px; line-height: 1.95; margin: 0; color: #80685F;
+  }
+  /* アイコンの地は節をまたいで桃→水→緑→黄と巡回させる。
+     どの節も同じ桃色だと器の反復に見えるため。 */
+  .reality-icon, .stop-icon, .feat-icon {
+    display: grid; place-items: center; flex-shrink: 0;
+  }
+
+  /* ===== 課題（3枚カード） ===== */
+  .reality { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .reality-cell { border-radius: 24px; padding: 32px; }
+  .reality-icon { width: 58px; height: 58px; border-radius: 50%; font-size: 26px; background: #EEFAFF; }
+  .reality-cell:nth-child(2) .reality-icon { background: #FFF0F5; }
+  .reality-cell:nth-child(3) .reality-icon { background: #EFF9E5; }
+  .reality-cell h3 { font-size: 19px; line-height: 1.6; margin: 20px 0 12px; }
+
+  /* ===== 処理ステップ ===== */
+  .rail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .stop { border-radius: 24px; padding: 32px; }
+  .stop-icon { width: 58px; height: 58px; border-radius: 18px; font-size: 26px; background: #FFF0F5; }
+  .stop:nth-child(2) .stop-icon { background: #EAF8FD; }
+  .stop:nth-child(3) .stop-icon { background: #F0F8E7; }
+  .stop:nth-child(4) .stop-icon { background: #FFF6E0; }
+  .stop:nth-child(5) .stop-icon { background: #EAF8FD; }
+  .stop:nth-child(6) .stop-icon { background: #F0F8E7; }
+  /* 「選ぶ」＝送らない判断をする唯一の工程。ここだけ地を持たせる */
+  .stop.stop-key { background: linear-gradient(135deg, #FFF5F8, #F2FBFF); border-color: #F0DCE3; }
+  .stop-no { display: block; margin-top: 22px; font-family: var(--mono-jp); font-weight: 900; font-size: 11.5px; letter-spacing: 0.14em; color: #EF8BA5; }
+  .stop-name { font-size: 21px; margin: 6px 0 10px; }
+
+  /* ===== 結果Excel ===== */
+  .sheet-wrap { margin-top: 30px; }
+  .sheet-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 26px;
+    padding: 8px; overflow: hidden; overflow-x: auto;
+  }
+  table.sheet { width: 100%; border-collapse: collapse; font-family: var(--mono-jp); font-variant-numeric: tabular-nums; text-align: left; }
+  .sheet caption { caption-side: top; text-align: left; font-family: var(--rounded); font-size: 13px; font-weight: 900; color: var(--brown-mute); padding: 16px 20px 12px; }
+  .sheet th { background: #FFF7DF; font-size: 11.5px; font-weight: 900; letter-spacing: 0.06em; color: #8C7268; }
+  .sheet td { border-bottom: 1px solid #F7EDE4; font-size: 13px; color: var(--brown); }
+  .sheet tr:last-child td { border-bottom: none; }
+  .sheet th, .sheet td { padding: 14px 20px; }
+  .sheet-mark-col { text-align: center; width: 64px; font-weight: 900; color: var(--pink-dark); }
+  .sheet th.sheet-mark-col { color: #8C7268; }
+
+  /* ===== 5つの特長 =====
+     全幅の横長カードを5枚積むと、同じ形が5回続いて一覧の抑揚がなくなる。
+     2列に組んで最後の1枚だけ全幅にすると 2/2/1 になり、5枚でも最終行が空かない。
+     項目ごとに --accent を持たせて、アイコン・番号・→ を同じ色で揃える。
+     色は内容と結びついていないので、並び順を変えたら色も付け替えること。 */
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .feat { border-radius: 26px; padding: 34px; }
+  .feat:last-child { grid-column: 1 / -1; }
+  .feat-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+  .feat-icon {
+    width: 62px; height: 62px; border-radius: 20px; font-size: 28px;
+    background: var(--accent-soft, #FFF0F5);
+  }
+  .feat-no {
+    display: block; margin-bottom: 4px;
+    font-family: var(--mono-jp); font-weight: 900; font-size: 11.5px;
+    letter-spacing: 0.16em; color: var(--accent, var(--pink));
+  }
+  .feat h3 { font-size: 21px; margin: 0; line-height: 1.45; }
+  .feat ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .feat li { position: relative; padding-left: 26px; font-size: 14.5px; line-height: 1.95; color: #80675E; }
+  .feat li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent, var(--pink)); font-family: var(--mono-jp); font-weight: 700;
+  }
+  /* 価格の1枚だけ地を持たせ、金額を数字として立たせる。
+     この節で一番言いたいのが金額なので、色を置く理由が内容側にある。 */
+  .feat-key { background: linear-gradient(135deg, #FFF0F5, #FFF7E8); border-color: #F0D6DE; }
+  .feat-price {
+    display: block; margin-top: 6px;
+    font-family: var(--rounded); font-weight: 900; font-size: 30px;
+    letter-spacing: -0.03em; color: var(--pink-dark);
+  }
+
+  /* ===== 数字（成功率・送信数） =====
+     結果表のすぐ下に置く。「どれくらい届くか」「何件まで送れるか」は
+     結果の話なので、この節に属する。 */
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  .stat {
+    background: var(--white); border: 1px solid var(--line); border-radius: 24px;
+    padding: 28px 32px;
+  }
+  .stat-label {
+    display: block; font-family: var(--mono-jp); font-weight: 900; font-size: 11.5px;
+    letter-spacing: 0.14em; color: var(--brown-mute); margin-bottom: 10px;
+  }
+  .stat-num {
+    display: block; font-family: var(--rounded); font-weight: 900;
+    font-size: 40px; line-height: 1.1; letter-spacing: -0.03em; color: var(--pink-dark);
+  }
+  .stat-note { margin-top: 12px; font-size: 12.5px; line-height: 1.9; color: #80685F; }
+
+  /* ===== ご相談いただけるもの ===== */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .duo-cell {
+    background: linear-gradient(135deg, #FFF5F8, #F2FBFF);
+    border: 1px solid #EEDFE5; border-radius: 24px; padding: 34px;
+  }
+  .duo-cell h3 { font-size: 20px; margin: 0 0 12px; }
+
+  /* ===== 運用ステップ =====
+     3枚なので3列に並べる。1枚 360px あり、番号を上に置いて本文に全幅を渡せば
+     1行あたり20文字ほど入る（4列 268px・横並び番号だった頃の窮屈さは解消）。 */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .step { border-radius: 24px; padding: 32px; }
+  .step-no {
+    width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%;
+    background: #FFE5ED; color: var(--pink-dark); margin-bottom: 20px;
+    font-family: var(--rounded); font-weight: 900; font-size: 14px;
+  }
+  .step:nth-child(2) .step-no { background: #EAF8FD; color: #3E93AE; }
+  .step:nth-child(3) .step-no { background: #F0F8E7; color: #5E9134; }
+  .step h3 { font-size: 19px; margin: 0 0 10px; }
+
+  /* ===== FAQ ===== */
+  /* 幅を絞る。器いっぱい（1120px）だと、設問と＋のあいだが空きすぎて行が間延びする */
+  .faq { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; max-width: 860px; }
+  /* 開閉の差は「＋が×に回る」だけでは弱かったので、3つの手がかりを重ねる：
+       ① 罫線が桃に変わる ② 地が淡桃に変わる ③ ＋の丸が塗りつぶしに変わる
+     hover にも段階を置いて、押せるものだと分かるようにする。 */
+  .faq-item {
+    border-radius: 18px; overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .faq-item.is-open { border-color: var(--pink); background: #FFF7FA; }
+  .faq-q {
+    width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    background: transparent; border: 0; cursor: pointer; padding: 22px 24px; text-align: left;
+    font-family: var(--rounded); font-weight: 900; font-size: 15px; line-height: 1.6; color: var(--brown);
+    transition: background 0.2s;
+  }
+  .faq-item:not(.is-open) .faq-q:hover { background: #FFF9FB; }
+  /* 開いたときは設問の下余白を詰める。閉じた状態の 22px のままだと
+     設問と回答のあいだが 22+16=38px 空いて、間延びして見える */
+  .faq-item.is-open .faq-q { padding-bottom: 12px; }
+  .faq-q:focus-visible { outline: 3px solid var(--pink); outline-offset: -3px; border-radius: 18px; }
+  .faq-sign {
+    width: 30px; height: 30px; flex-shrink: 0; display: grid; place-items: center;
+    border-radius: 50%; background: var(--pink-soft); color: var(--pink-dark);
+    font-family: var(--mono-jp); font-weight: 700; font-size: 15px; line-height: 1;
+    transition: transform 0.2s, background 0.2s, color 0.2s;
+  }
+  .faq-item.is-open .faq-sign { transform: rotate(45deg); background: var(--pink); color: #fff; }
+  .faq-a {
+    margin: 0 24px; padding: 12px 0 20px; border-top: 1px dashed #F3D9E1;
+    font-size: 13.5px; line-height: 1.95; color: #80685F; display: none;
+  }
+  .faq-item.is-open .faq-a { display: block; }
+
+  /* ===== CTA（末尾） =====
+     参照デザインでは末尾CTAも淡いグラデーション。ダーク帯は使わない。 */
+  .cta-section {
+    background: linear-gradient(135deg, #FFF0F5, #EEFAFF);
+    border-top: 1px solid var(--line); overflow: hidden;
+  }
+  .cta-deco { position: absolute; inset: 0; pointer-events: none; }
+  .cta-deco span { position: absolute; }
+  .cta-deco span:nth-child(1) { top: 12%; left: 8%; font-size: 20px; color: #F3A7C0; }
+  .cta-deco span:nth-child(2) { top: 22%; right: 10%; font-size: 14px; color: #9DDCE9; }
+  .cta-deco span:nth-child(3) { bottom: 16%; left: 14%; font-size: 15px; color: #FFD76C; }
+  .cta-deco span:nth-child(4) { bottom: 22%; right: 20%; font-size: 12px; color: #BFE3A0; }
+  .cta-wrap { text-align: center; position: relative; z-index: 1; }
+  .cta-title {
+    font-family: var(--rounded); font-weight: 900;
+    font-size: clamp(28px, 4vw, 42px); line-height: 1.45;
+    letter-spacing: -0.045em; color: var(--brown); margin: 0 0 16px;
+  }
+  .cta-text { font-size: 14.5px; line-height: 2; color: #80685F; margin: 0 auto 30px; max-width: 640px; }
+  .cta-foot-note { margin-top: 40px; font-size: 12.5px; color: #A38B83; }
+
+  /* ===== フッター ===== */
+  footer { background: #fff; border-top: 1px solid #F1E0E4; padding: 35px 24px; }
+  .footer-inner { width: min(1120px, 100%); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-brand { font-family: var(--rounded); font-size: 13px; font-weight: 900; color: var(--brown); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 12.5px; color: #8C746C; text-decoration: none; }
+  .footer-links a:hover { color: var(--pink-dark); }
+  .footer-copy { width: min(1120px, 100%); margin: 16px auto 0; font-size: 11.5px; color: #AA938B; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px) {
+    .inner { padding-block: 64px; }
+    .hero { min-height: 0; padding: 55px 0 70px; }
+    .hero-inner { width: min(calc(100% - 44px), 720px); grid-template-columns: 1fr; gap: 24px; }
+    .hero-art { min-height: 0; order: -1; }
+    .h1 { font-size: 42px; }
+    .card { padding: 20px; }
+    .stamp { width: 66px; height: 66px; right: -8px; bottom: -8px; }
+    .stamp-mark { font-size: 18px; }
+    .stamp-txt { font-size: 8.5px; }
+    .reality, .rail { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .duo { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .feat { padding: 28px 24px; }
+    .feat-head { gap: 14px; margin-bottom: 16px; }
+    .feat-icon { width: 54px; height: 54px; font-size: 25px; }
+  }
+  @media (max-width: 560px) {
+    .inner { width: calc(100% - 36px); padding-block: 54px; }
+    .hero-inner { width: calc(100% - 36px); }
+    .h1 { font-size: 37px; }
+    .h1::after { width: 160px; }
+    .hero-lead { font-size: 13px; }
+    .hero-sub { font-size: 12.5px; }
+    .reality, .rail, .steps, .stats { grid-template-columns: 1fr; }
+    .stat-num { font-size: 34px; }
+    .inner-cta { padding-top: 60px; padding-bottom: 70px; }
+    .h2 { font-size: 29px; }
+    .sheet-url { display: none; }
+    .sheet th, .sheet td { padding: 10px 10px; }
+    footer { padding: 30px 18px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 1. ヒーロー -->
+  <section class="hero">
+    <div class="hero-deco" aria-hidden="true">
+      <span>✦</span><span>●</span><span>✧</span><span>●</span><span>✦</span><span>●</span>
+    </div>
+    <div class="hero-inner">
+      <div>
+        <div class="brand">
+          <span class="brand-ja">たぬきポスト</span>
+        </div>
+        <h1 class="h1">Excelを渡すだけで、<br>フォーム営業を自動化。</h1>
+        <p class="hero-lead">
+          企業リストをアップロードするだけ。各社の問い合わせフォームを探して、
+          入力項目を判別して、用意した文面を入力して、送信まで自動で行います。
+        </p>
+        <p class="hero-sub">フォーム営業の「めんどくさい」を減らします。</p>
+        <a href="#contact" class="btn"><span class="btn-paw">🐾</span> 導入を相談する <span class="btn-arrow">→</span></a>
+      </div>
+      <div class="hero-art">
+        <span class="hero-art-glow" aria-hidden="true"></span>
+        <!-- 他社サイトの問い合わせフォームを模した装飾。実際の入力欄ではないため
+             aria-hidden とし、フォーム要素（input / button）は使わない。
+             値はすべて架空。実在企業名・実在ドメインは入れない。 -->
+        <div class="form-stage">
+          <div class="card" aria-hidden="true">
+            <div class="card-head">
+              <span>お問い合わせ</span>
+              <span class="card-url">example.co.jp/contact</span>
+            </div>
+
+            <div class="field">
+              <div class="f-label">会社名 <span class="req">必須</span></div>
+              <div class="f-input"><span class="val v1">サンプル株式会社</span></div>
+            </div>
+
+            <div class="field">
+              <div class="f-label">ご担当者名 <span class="req">必須</span></div>
+              <div class="f-input"><span class="val v2">山田太郎</span></div>
+            </div>
+
+            <div class="field">
+              <div class="f-label">メールアドレス <span class="req">必須</span></div>
+              <div class="f-input"><span class="val val-mono v3">sales@example.com</span></div>
+            </div>
+
+            <div class="field">
+              <div class="f-label">お問い合わせ種別</div>
+              <div class="radios">
+                <span class="radio"><span class="dot"></span>製品について</span>
+                <span class="radio"><span class="dot dot-on"></span>その他</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="f-label">お問い合わせ内容 <span class="req">必須</span></div>
+              <div class="f-area">
+                <span class="area-txt fill">突然のご連絡失礼いたします。貴社の……</span>
+                <span class="tmpl fill">← テンプレート1つを全社ぶんに展開</span>
+              </div>
+            </div>
+
+            <div class="f-submit">送信する</div>
+
+            <div class="stamp">
+              <span class="stamp-mark">○</span>
+              <span class="stamp-txt">送信済</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. こんな作業、毎回やっていませんか？ ── 帯 -->
+  <section class="band">
+    <div class="inner">
+      <h2 class="h2">手作業で何件も送るのは大変。</h2>
+      <p class="lead">
+        フォーム営業は、1件なら簡単。でも、100社、500社、1,000社……となると、
+        ひとつひとつの小さな作業が、大きな負担になってしまいます。
+      </p>
+      <div class="reality">
+        <div class="reality-cell">
+          <span class="reality-icon" aria-hidden="true">🔎</span>
+          <h3>問い合わせフォームを探す</h3>
+          <p>会社によってフォームの場所もURLもバラバラ。「お問い合わせはどこ？」から始める必要があります。</p>
+        </div>
+        <div class="reality-cell">
+          <span class="reality-icon" aria-hidden="true">📝</span>
+          <h3>入力項目を確認する</h3>
+          <p>会社ごとに項目名も順番も違います。そのたびに入力欄を確認して、文面を貼り付けるのは大変です。</p>
+        </div>
+        <div class="reality-cell">
+          <span class="reality-icon" aria-hidden="true">🚫</span>
+          <h3>送ってはいけない会社を確認する</h3>
+          <p>「営業目的のお問い合わせはご遠慮ください」そんな記載がある会社には、できれば送りたくない。でも、これも一社ずつ確認する必要があります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. たぬきポストなら ── 白 -->
+  <section>
+    <div class="inner">
+      <h2 class="h2">たぬきポストなら、Excelとテンプレートを渡すだけ。</h2>
+      <p class="about-body">
+        企業リストが入ったExcelと、送信する文面のテンプレートをご用意ください。あとは、たぬきポストに渡すだけ。
+        各社のWebサイトを巡回して、問い合わせフォームを探し、入力項目を判別して、文面を自動で入力。
+        そして、フォームを送信します。あなたが一社ずつ作業する必要はありません。
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. たぬきポストのしくみ ── 帯 -->
+  <section class="band">
+    <div class="inner">
+      <h2 class="h2">たぬきポストのしくみ。</h2>
+      <div class="rail">
+        <div class="stop">
+          <span class="stop-icon" aria-hidden="true">🔎</span>
+          <span class="stop-no">01</span>
+          <h3 class="stop-name">探す</h3>
+          <p class="stop-desc">企業リストをもとに各社のWebサイトを巡回。問い合わせフォームを探します。</p>
+        </div>
+        <div class="stop">
+          <span class="stop-icon" aria-hidden="true">👀</span>
+          <span class="stop-no">02</span>
+          <h3 class="stop-name">見分ける</h3>
+          <p class="stop-desc">入力欄の種類や必須項目を自動で判別。テキスト入力、ラジオボタン、チェックボックス、プルダウンなどにも対応します。</p>
+        </div>
+        <div class="stop">
+          <span class="stop-icon" aria-hidden="true">📝</span>
+          <span class="stop-no">03</span>
+          <h3 class="stop-name">あてはめる</h3>
+          <p class="stop-desc">用意したテンプレートを各社のフォームに合わせて入力。一つの文面を、まとめて展開できます。</p>
+        </div>
+        <div class="stop stop-key">
+          <span class="stop-icon" aria-hidden="true">🚫</span>
+          <span class="stop-no">04</span>
+          <h3 class="stop-name">選ぶ</h3>
+          <p class="stop-desc">「営業お断り」などの記載を検出した場合は、送信対象から除外します。※サイト上の記載から判別できる場合に限ります。</p>
+        </div>
+        <div class="stop">
+          <span class="stop-icon" aria-hidden="true">📮</span>
+          <span class="stop-no">05</span>
+          <h3 class="stop-name">送る</h3>
+          <p class="stop-desc">入力が完了したら、フォームを送信。送信できたかどうかも記録します。</p>
+        </div>
+        <div class="stop">
+          <span class="stop-icon" aria-hidden="true">📊</span>
+          <span class="stop-no">06</span>
+          <h3 class="stop-name">記録する</h3>
+          <p class="stop-desc">送信結果をExcelにまとめて保存。送れなかった場合も、その理由がわかります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 結果は、ちゃんと残ります ── 白 -->
+  <section>
+    <div class="inner">
+      <h2 class="h2">結果も、ひとめでわかる。</h2>
+      <p class="lead">処理が終わったら、結果をExcelで確認できます。成功した会社も、失敗した会社も、理由と一緒に確認できます。</p>
+      <div class="sheet-wrap">
+        <div class="sheet-card">
+          <table class="sheet">
+            <caption>結果Excelの見本</caption>
+            <thead>
+              <tr>
+                <th scope="col">会社名</th>
+                <th scope="col" class="sheet-url">URL</th>
+                <th scope="col" class="sheet-mark-col">結果</th>
+                <th scope="col">理由</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>青葉精工株式会社</td><td class="sheet-url">example.jp/contact</td><td class="sheet-mark-col">○</td><td>—</td></tr>
+              <tr><td>株式会社カネダ物流</td><td class="sheet-url">example.jp/inquiry</td><td class="sheet-mark-col">○</td><td>—</td></tr>
+              <tr><td>三崎化成株式会社</td><td class="sheet-url">example.jp/contact</td><td class="sheet-mark-col">推定</td><td>JavaScriptページのため</td></tr>
+              <tr><td>有限会社ヒノデ工業</td><td class="sheet-url">example.jp/contact</td><td class="sheet-mark-col">NG</td><td>営業目的の連絡をお断り</td></tr>
+              <tr><td>白鳥トレーディング株式会社</td><td class="sheet-url">example.jp</td><td class="sheet-mark-col">×</td><td>フォームが見つからない</td></tr>
+              <tr><td>三崎化成株式会社</td><td class="sheet-url">example.jp</td><td class="sheet-mark-col">重複</td><td>同一サイトのため</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-label">成功率の目安</span>
+          <span class="stat-num">30%</span>
+          <p class="stat-note">送信できるかどうかは、各社サイトのフォームの作りによって変わります。</p>
+        </div>
+        <div class="stat">
+          <span class="stat-label">送信数</span>
+          <span class="stat-num">制限なし</span>
+          <p class="stat-note">月額のなかで、送信件数の上限は設けていません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 5つの特長 ── 帯 -->
+  <section class="band">
+    <div class="inner">
+      <h2 class="h2">たぬきポストの、5つの特長。</h2>
+      <div class="features">
+        <div class="feat" style="--accent:#E0708F;--accent-soft:#FFF0F5">
+          <div class="feat-head">
+            <span class="feat-icon" aria-hidden="true">📮</span>
+            <div>
+              <span class="feat-no">01</span>
+              <h3>簡単に自動で投稿</h3>
+            </div>
+          </div>
+          <ul>
+            <li>テンプレートに入力するだけ</li>
+            <li>予約機能を完備</li>
+          </ul>
+        </div>
+
+        <div class="feat feat-key" style="--accent:#E95378;--accent-soft:#FFFFFF">
+          <div class="feat-head">
+            <span class="feat-icon" aria-hidden="true">👏</span>
+            <div>
+              <span class="feat-no">02</span>
+              <h3>業界最安クラスを実現</h3>
+            </div>
+          </div>
+          <ul>
+            <li>たぬきも拍手のパチパチ価格！<span class="feat-price">税込み8,800円</span></li>
+          </ul>
+        </div>
+
+        <div class="feat" style="--accent:#3E93AE;--accent-soft:#EAF8FD">
+          <div class="feat-head">
+            <span class="feat-icon" aria-hidden="true">☁️</span>
+            <div>
+              <span class="feat-no">03</span>
+              <h3>パソコンを閉じても稼働</h3>
+            </div>
+          </div>
+          <ul>
+            <li>クラウドシステムなので、いつでも働きます</li>
+          </ul>
+        </div>
+
+        <div class="feat" style="--accent:#5E9134;--accent-soft:#F0F8E7">
+          <div class="feat-head">
+            <span class="feat-icon" aria-hidden="true">⚖️</span>
+            <div>
+              <span class="feat-no">04</span>
+              <h3>リーガル面を考慮したクリーンな設計</h3>
+            </div>
+          </div>
+          <ul>
+            <li>reCAPTCHA突破は規約違反なので行いません</li>
+            <li>オプトアウトにも考慮</li>
+          </ul>
+        </div>
+
+        <div class="feat" style="--accent:#B0862A;--accent-soft:#FFF6E0">
+          <div class="feat-head">
+            <span class="feat-icon" aria-hidden="true">🔒</span>
+            <div>
+              <span class="feat-no">05</span>
+              <h3>セキュリティ対策、ごあんしん！</h3>
+            </div>
+          </div>
+          <ul>
+            <li>１社１台のAWS環境を用意するので情報漏洩対策バツグン！</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note-small">※サイト上の表現によっては自動判定できない場合があります。最終的な送信対象の判断は、お客様にてお願いいたします。</p>
+    </div>
+  </section>
+
+  <!-- 7. ご相談いただけるもの ── 白 -->
+  <section>
+    <div class="inner">
+      <div class="duo">
+        <div class="duo-cell">
+          <h3>初回テンプレートの添削サービス</h3>
+          <p>インサイドセールスの観点から、初回のテンプレートを添削します。送る文面がこれでいいのか不安な場合も、ご相談いただけます。</p>
+        </div>
+        <div class="duo-cell">
+          <h3>営業リストがまだなくても大丈夫。</h3>
+          <p>「そもそも、どこに営業したらいいかわからない」そんな場合もご相談いただけます。営業リストの出どころや、集め方についてもご案内します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 運用ステップ ── 帯
+       （料金セクションは削除。金額は「5つの特長」の02とFAQが持つ） -->
+  <section class="band">
+    <div class="inner">
+      <h2 class="h2">運用ステップ</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-no">01</div>
+          <h3>テンプレ・リスト作成</h3>
+          <p>スプレッドシートで簡単に作成できます。</p>
+        </div>
+        <div class="step">
+          <div class="step-no">02</div>
+          <h3>作業登録</h3>
+          <p>アプリ上にテンプレとリストを登録します。</p>
+        </div>
+        <div class="step">
+          <div class="step-no">03</div>
+          <h3>送信開始</h3>
+          <p>たぬきががんばります。自動で動きますので、あとは待つだけ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. よくあるご質問 ── 白 -->
+  <section>
+    <div class="inner">
+      <h2 class="h2">よくあるご質問</h2>
+      <div class="faq">
+          <div class="faq-item is-open">
+            <button type="button" class="faq-q" aria-expanded="true" onclick="toggleFaq(this)">
+              <span>用意するものは何ですか？</span><span class="faq-sign" aria-hidden="true">＋</span>
+            </button>
+            <p class="faq-a">企業名とURLが入ったExcelと、送信する文面のテンプレートをご用意ください。</p>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>フォームが見つからない会社はどうなりますか？</span><span class="faq-sign" aria-hidden="true">＋</span>
+            </button>
+            <p class="faq-a">フォームが見つからない場合は送信せず、結果Excelに「フォームが見つからない」などの理由を記録します。</p>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>「営業お断り」の会社に送られませんか？</span><span class="faq-sign" aria-hidden="true">＋</span>
+            </button>
+            <p class="faq-a">各社サイトに営業お断りの記載がある場合は、送信対象から除外します。ただし、サイト上の表現によっては判定できない場合がありますので、最終的な送信対象はお客様にてご確認ください。</p>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>パソコンを閉じても処理できますか？</span><span class="faq-sign" aria-hidden="true">＋</span>
+            </button>
+            <p class="faq-a">はい。処理はクラウド上で行われるため、パソコンを閉じても処理は継続します。</p>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>料金はいくらですか？</span><span class="faq-sign" aria-hidden="true">＋</span>
+            </button>
+            <p class="faq-a">月額8,800円（税込）です。プランは1つだけなので、シンプルにご利用いただけます。</p>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- 11. 最終CTA -->
+  <section class="cta-section" id="contact">
+    <div class="cta-deco" aria-hidden="true">
+      <span>✦</span><span>✧</span><span>●</span><span>✦</span>
+    </div>
+    <div class="inner inner-cta">
+      <div class="cta-wrap">
+        <h2 class="cta-title">フォーム営業を、もっとラクに。</h2>
+        <p class="cta-text">
+          一社ずつ探して、入力して、送る。その繰り返しから、そろそろ卒業しませんか？
+          Excelを渡したら、あとはたぬきにおまかせ。探す。見つける。入力する。送る。記録する。
+          面倒なフォーム営業を、まとめて自動化。たぬきポストがお手伝いします。
+        </p>
+        <a href="mailto:contact@example.com" class="btn"><span class="btn-paw">🐾</span> 導入について相談する <span class="btn-arrow">→</span></a>
+        <p class="cta-foot-note">TANUKI POST — フォーム営業の「めんどくさい」を、たぬきにおまかせ。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. フッター -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">株式会社ファンリアル</div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">利用規約</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Funreal Inc. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('is-open');
+      item.classList.toggle('is-open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+  </script>
+</body>
+</html>
